@@ -3,6 +3,11 @@
   <persistence-unit name="Agencia_Fiscal_PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>org.itson.proyectoBDA.agencia_fiscal.Persona</class>
+    <class>org.itson.proyectoBDA.agencia_fiscal.Vehiculo</class>
+    <class>org.itson.proyectoBDA.agencia_fiscal.Licencia</class>
+    <class>org.itson.proyectoBDA.agencia_fiscal.Placa</class>
+    <class>org.itson.proyectoBDA.agencia_fiscal.Vehiculo_Usado</class>
+    <class>org.itson.proyectoBDA.agencia_fiscal.Vehiculo_Nuevo</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/agencia_fiscal?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

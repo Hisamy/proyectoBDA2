@@ -2,9 +2,8 @@
 package org.itson.proyectoBDA.agencia_fiscal;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -12,23 +11,103 @@ import javax.persistence.Id;
 @Entity
 public class Persona implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String CURP;
+    
+    private String nombre;
+    private String apellido_paterno;
+    private String apellido_materno;
+    private boolean discapacidad;
+    private String RFC;
+    private String telefono;
+    private Calendar fecha_nacimiento;
 
-    public Long getId() {
-        return id;
+    public Persona() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    
+    public Persona(String CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento) {
+        this.CURP = CURP;
+        this.nombre = nombre;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
+        this.discapacidad = discapacidad;
+        this.RFC = RFC;
+        this.telefono = telefono;
+        this.fecha_nacimiento = fecha_nacimiento;
     }
+
+    public String getCURP() {
+        return CURP;
+    }
+
+    public void setCURP(String CURP) {
+        this.CURP = CURP;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido_paterno() {
+        return apellido_paterno;
+    }
+
+    public void setApellido_paterno(String apellido_paterno) {
+        this.apellido_paterno = apellido_paterno;
+    }
+
+    public String getApellido_materno() {
+        return apellido_materno;
+    }
+
+    public void setApellido_materno(String apellido_materno) {
+        this.apellido_materno = apellido_materno;
+    }
+
+    public boolean isDiscapacidad() {
+        return discapacidad;
+    }
+
+    public void setDiscapacidad(boolean discapacidad) {
+        this.discapacidad = discapacidad;
+    }
+
+    public String getRFC() {
+        return RFC;
+    }
+
+    public void setRFC(String RFC) {
+        this.RFC = RFC;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public Calendar getFecha_nacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFecha_nacimiento(Calendar fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (CURP != null ? CURP.hashCode() : 0);
         return hash;
     }
 
@@ -39,7 +118,7 @@ public class Persona implements Serializable {
             return false;
         }
         Persona other = (Persona) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.CURP == null && other.CURP != null) || (this.CURP != null && !this.CURP.equals(other.CURP))) {
             return false;
         }
         return true;
@@ -47,7 +126,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itson.proyectoBDA.agencia_fiscal.Persona[ id=" + id + " ]";
+        return "org.itson.proyectoBDA.agencia_fiscal.Persona[ id=" + CURP + " ]";
     }
     
 }
