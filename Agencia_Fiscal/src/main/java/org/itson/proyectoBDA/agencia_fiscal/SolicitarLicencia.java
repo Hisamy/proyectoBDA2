@@ -49,24 +49,30 @@ public class SolicitarLicencia extends javax.swing.JFrame {
         rbtnSi = new javax.swing.JRadioButton();
         rbtnNo = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Solicitar Licencia");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblSi.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblSi.setText("Si");
+        jPanel1.add(lblSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, -1, -1));
 
         lblSolicitarLicencia.setFont(new java.awt.Font("Inter ExtraBold", 0, 18)); // NOI18N
         lblSolicitarLicencia.setForeground(new java.awt.Color(65, 34, 52));
         lblSolicitarLicencia.setText("Solicitar licencia");
+        jPanel1.add(lblSolicitarLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
         lblDatosPersonales.setFont(new java.awt.Font("Inter ExtraBold", 0, 14)); // NOI18N
         lblDatosPersonales.setText("Datos personales");
+        jPanel1.add(lblDatosPersonales, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
 
         lblNombre.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblNombre.setText("Nombre");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
 
         txtRFC.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         txtRFC.setForeground(new java.awt.Color(109, 70, 107));
@@ -75,9 +81,11 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                 txtRFCActionPerformed(evt);
             }
         });
+        jPanel1.add(txtRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 220, -1));
 
         lblApellidoPaterno.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblApellidoPaterno.setText("Apellido paterno");
+        jPanel1.add(lblApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
         txtApellidoMaterno.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         txtApellidoMaterno.setForeground(new java.awt.Color(109, 70, 107));
@@ -86,9 +94,11 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                 txtApellidoMaternoActionPerformed(evt);
             }
         });
+        jPanel1.add(txtApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 122, -1));
 
         lblApellidoMaterno.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblApellidoMaterno.setText("Apellido materno");
+        jPanel1.add(lblApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, -1));
 
         txtApellidoPaterno.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         txtApellidoPaterno.setForeground(new java.awt.Color(109, 70, 107));
@@ -97,12 +107,15 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                 txtApellidoPaternoActionPerformed(evt);
             }
         });
+        jPanel1.add(txtApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 122, -1));
 
         lblFechaNacimiento.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblFechaNacimiento.setText("Fecha de nacimiento");
+        jPanel1.add(lblFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
 
         lblTelefono.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblTelefono.setText("Teléfono");
+        jPanel1.add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, -1, -1));
 
         txtTelefono.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(109, 70, 107));
@@ -111,6 +124,7 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                 txtTelefonoActionPerformed(evt);
             }
         });
+        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 122, -1));
 
         txtFechaNacimiento.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         txtFechaNacimiento.setForeground(new java.awt.Color(109, 70, 107));
@@ -119,9 +133,11 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                 txtFechaNacimientoActionPerformed(evt);
             }
         });
+        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 122, -1));
 
         lblRFC.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblRFC.setText("RFC");
+        jPanel1.add(lblRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 178, -1, -1));
 
         txtNombre1.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         txtNombre1.setForeground(new java.awt.Color(109, 70, 107));
@@ -130,9 +146,11 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                 txtNombre1ActionPerformed(evt);
             }
         });
+        jPanel1.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 258, -1));
 
         lblCURP.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblCURP.setText("CURP");
+        jPanel1.add(lblCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
 
         txtCURP.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         txtCURP.setForeground(new java.awt.Color(109, 70, 107));
@@ -141,18 +159,23 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                 txtCURPActionPerformed(evt);
             }
         });
+        jPanel1.add(txtCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 220, -1));
 
         lblCuentaConAlgunaDiscapacidad.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblCuentaConAlgunaDiscapacidad.setText("¿Cuenta con alguna discapacidad?");
+        jPanel1.add(lblCuentaConAlgunaDiscapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
 
         lblNo.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblNo.setText("No");
+        jPanel1.add(lblNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, -1, -1));
 
         rbtnSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnSiActionPerformed(evt);
             }
         });
+        jPanel1.add(rbtnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, 20, -1));
+        jPanel1.add(rbtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(65, 34, 52));
         jButton1.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
@@ -163,115 +186,16 @@ public class SolicitarLicencia extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, 123, 31));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblDatosPersonales)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblSolicitarLicencia)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(lblApellidoPaterno)
-                                                .addGap(35, 35, 35))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lblFechaNacimiento)
-                                                    .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblApellidoMaterno)
-                                            .addComponent(lblTelefono)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblNombre)
-                                    .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRFC)
-                                    .addComponent(lblCURP)
-                                    .addComponent(txtCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCuentaConAlgunaDiscapacidad)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(lblSi)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(rbtnSi))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(lblNo)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(rbtnNo)))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(38, 38, 38))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addComponent(lblSolicitarLicencia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblDatosPersonales)
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(lblRFC))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblApellidoPaterno)
-                    .addComponent(lblApellidoMaterno)
-                    .addComponent(lblCURP))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCURP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFechaNacimiento)
-                    .addComponent(lblTelefono)
-                    .addComponent(lblCuentaConAlgunaDiscapacidad))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSi)
-                    .addComponent(rbtnSi))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNo)
-                    .addComponent(rbtnNo))
-                .addGap(50, 50, 50)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Solicitar licencia.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 480));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,6 +246,7 @@ public class SolicitarLicencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblApellidoMaterno;
     private javax.swing.JLabel lblApellidoPaterno;
