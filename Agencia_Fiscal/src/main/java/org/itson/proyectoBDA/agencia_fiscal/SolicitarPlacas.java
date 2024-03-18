@@ -86,7 +86,7 @@ public class SolicitarPlacas extends javax.swing.JFrame {
 
         lblVigencia1.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
         lblVigencia1.setText("•  $1,000");
-        jPanel2.add(lblVigencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 350, -1));
+        jPanel2.add(lblVigencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 320, -1));
 
         lblVigencia2.setFont(new java.awt.Font("Inter ExtraBold", 1, 15)); // NOI18N
         lblVigencia2.setText("Automovil usado");
@@ -175,7 +175,7 @@ public class SolicitarPlacas extends javax.swing.JFrame {
         jPanel2.add(lblVigencia17, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, 350, -1));
 
         lblVigencia18.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
-        lblVigencia18.setText("•  Costo:");
+        lblVigencia18.setText("Costo:");
         jPanel2.add(lblVigencia18, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 350, -1));
 
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
