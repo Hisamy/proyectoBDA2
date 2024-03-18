@@ -4,23 +4,13 @@ package org.itson.proyectoBDA.agencia_fiscal;
 
 public class Index extends javax.swing.JFrame {
 
-    String texto = "Lorem ipsum dolor sit amet consectetur adipiscing, "
-            + "elit maecenas montes vel habitasse duis aenean, "
-            + "interdum tempus litora curae id. Faucibus pretium "
-            + "sed erat ridiculus luctus semper torquent auctor libero tempus "
-            + "quam, nascetur odio porta sagittis tristique dictumst orci dui "
-            + "consequat lacus aptent magnis, aliquam potenti id purus "
-            + "rhoncus massa vel scelerisque pharetra vehicula.";
 
     public Index() {
         initComponents();
-        lblTexto.setText(StrToHTML(texto));
+       
     }
 
-    public String StrToHTML(String texto) {
-        return "<html><p>" + texto + "</p></html>";
-    }
-
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,13 +27,14 @@ public class Index extends javax.swing.JFrame {
         btnSolicitarPlacas = new javax.swing.JButton();
         btnSolicitarLicencia = new javax.swing.JButton();
         lblTexto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Index");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblAgenciaFiscal.setFont(new java.awt.Font("Inter ExtraBold", 0, 24)); // NOI18N
+        lblAgenciaFiscal.setFont(new java.awt.Font("Inter ExtraBold", 0, 36)); // NOI18N
         lblAgenciaFiscal.setForeground(new java.awt.Color(65, 34, 52));
         lblAgenciaFiscal.setText("Agencia Fiscal");
 
@@ -79,41 +70,46 @@ public class Index extends javax.swing.JFrame {
 
         lblTexto.setText("texto");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTexto)
-                            .addComponent(lblAgenciaFiscal)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnHistorialLicenciaPlacas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnSolicitarPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSolicitarLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(lblAgenciaFiscal))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(lblTexto))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(178, 178, 178)
+                .addComponent(btnSolicitarPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(btnSolicitarLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(178, 178, 178)
+                .addComponent(btnHistorialLicenciaPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(lblAgenciaFiscal)
-                .addGap(18, 18, 18)
-                .addComponent(lblTexto)
-                .addGap(94, 94, 94)
+                .addGap(91, 91, 91)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSolicitarPlacas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(lblAgenciaFiscal)))
+                .addGap(29, 29, 29)
+                .addComponent(lblTexto)
+                .addGap(151, 151, 151)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSolicitarPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSolicitarLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnHistorialLicenciaPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(btnHistorialLicenciaPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,6 +147,7 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JButton btnHistorialLicenciaPlacas;
     private javax.swing.JButton btnSolicitarLicencia;
     private javax.swing.JButton btnSolicitarPlacas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAgenciaFiscal;
     private javax.swing.JLabel lblTexto;
