@@ -32,7 +32,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="430" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" min="-2" pref="475" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -61,7 +64,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="70" y="30" width="560" height="370"/>
+              <AbsoluteConstraints x="70" y="70" width="560" height="350"/>
             </Constraint>
           </Constraints>
 
@@ -69,83 +72,96 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="txtFechaNacimiento" min="-2" pref="116" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="txtTelefono" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblFechaNacimiento" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblCURP1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="flechaIcon" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="lblCURP2" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                                                          <Component id="jButton1" min="-2" pref="123" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="1" attributes="0">
+                                                              <Component id="rbtnSi" min="-2" pref="20" max="-2" attributes="0"/>
+                                                              <Component id="rbtnNo" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                                      <Component id="lblCuentaConAlgunaDiscapacidad" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="txtApellidoPaterno" alignment="1" min="-2" pref="117" max="-2" attributes="0"/>
-                                  <Component id="lblFechaNacimiento" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="txtFechaNacimiento" min="-2" pref="108" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtTelefono" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="txtApellidoMaterno" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtApellidoPaterno" min="-2" pref="108" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblSolicitarLicencia" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblDatosPersonales" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lblApellidoPaterno" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
                                               <Component id="lblApellidoMaterno" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="txtApellidoMaterno" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblApellidoPaterno" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtNombre1" min="-2" pref="221" max="-2" attributes="0"/>
+                                              <Component id="lblDatosPersonales" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblSolicitarLicencia" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtNombre1" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblRFC" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblCURP" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblCuentaConAlgunaDiscapacidad" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblSi" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblNo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="rbtnSi" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="rbtnNo" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="49" max="32767" attributes="0"/>
-                                          <Component id="jButton1" min="-2" pref="123" max="-2" attributes="0"/>
-                                      </Group>
                                   </Group>
                               </Group>
-                              <Component id="txtRFC" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtCURP" alignment="0" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtCURP" min="-2" pref="212" max="-2" attributes="0"/>
+                                  <Component id="lblCURP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtRFC" min="-2" pref="212" max="-2" attributes="0"/>
+                                  <Component id="lblRFC" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="flechaIcon" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="43" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="lblSolicitarLicencia" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="lblDatosPersonales" min="-2" max="-2" attributes="0"/>
@@ -157,7 +173,7 @@
                           <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblRFC" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtNombre1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtCURP" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -168,38 +184,39 @@
                           <Component id="lblApellidoMaterno" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCURP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtApellidoMaterno" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtApellidoPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtRFC" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCuentaConAlgunaDiscapacidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblSi" alignment="0" min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Component id="rbtnSi" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtApellidoPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtApellidoMaterno" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtRFC" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCuentaConAlgunaDiscapacidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rbtnNo" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNo" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCURP1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="31" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="rbtnSi" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCURP2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbtnNo" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -208,7 +225,7 @@
             <Component class="javax.swing.JLabel" name="lblSolicitarLicencia">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="18" style="1"/>
+                  <Font name="Segoe UI" size="16" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="34" green="22" red="41" type="rgb"/>
@@ -219,7 +236,7 @@
             <Component class="javax.swing.JLabel" name="lblDatosPersonales">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="14" style="1"/>
+                  <Font name="Segoe UI" size="16" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Datos personales"/>
               </Properties>
@@ -227,7 +244,7 @@
             <Component class="javax.swing.JLabel" name="lblNombre">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nombre"/>
               </Properties>
@@ -235,7 +252,7 @@
             <Component class="javax.swing.JTextField" name="txtNombre1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="0"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6b" green="46" red="6d" type="rgb"/>
@@ -248,7 +265,7 @@
             <Component class="javax.swing.JTextField" name="txtRFC">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="0"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6b" green="46" red="6d" type="rgb"/>
@@ -261,7 +278,7 @@
             <Component class="javax.swing.JTextField" name="txtCURP">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="0"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6b" green="46" red="6d" type="rgb"/>
@@ -274,7 +291,7 @@
             <Component class="javax.swing.JLabel" name="lblCURP">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CURP"/>
               </Properties>
@@ -282,7 +299,7 @@
             <Component class="javax.swing.JTextField" name="txtApellidoMaterno">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="0"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6b" green="46" red="6d" type="rgb"/>
@@ -295,7 +312,7 @@
             <Component class="javax.swing.JLabel" name="lblApellidoMaterno">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Apellido materno"/>
               </Properties>
@@ -303,7 +320,7 @@
             <Component class="javax.swing.JTextField" name="txtApellidoPaterno">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="0"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6b" green="46" red="6d" type="rgb"/>
@@ -316,7 +333,7 @@
             <Component class="javax.swing.JLabel" name="lblApellidoPaterno">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Apellido paterno"/>
               </Properties>
@@ -324,38 +341,32 @@
             <Component class="javax.swing.JLabel" name="lblCuentaConAlgunaDiscapacidad">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#xbf;Cuenta con alguna discapacidad?"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtnSi">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="10" style="1"/>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnSiActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblSi">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Si"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JRadioButton" name="rbtnNo">
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblNo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="No"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTelefono">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="0"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6b" green="46" red="6d" type="rgb"/>
@@ -368,7 +379,7 @@
             <Component class="javax.swing.JTextField" name="txtFechaNacimiento">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="0"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6b" green="46" red="6d" type="rgb"/>
@@ -381,7 +392,7 @@
             <Component class="javax.swing.JLabel" name="lblFechaNacimiento">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Fecha de nacimiento"/>
               </Properties>
@@ -389,7 +400,7 @@
             <Component class="javax.swing.JLabel" name="lblTelefono">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
               </Properties>
@@ -397,7 +408,7 @@
             <Component class="javax.swing.JLabel" name="lblRFC">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="RFC"/>
               </Properties>
@@ -408,7 +419,7 @@
                   <Color blue="34" green="22" red="41" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Inter ExtraBold" size="12" style="1"/>
+                  <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -421,9 +432,28 @@
             </Component>
             <Component class="javax.swing.JLabel" name="flechaIcon">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="16" style="1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/flecha.jpg"/>
                 </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCURP1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="10" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Si"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCURP2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="10" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="No"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -436,7 +466,23 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="10" width="-1" height="-1"/>
+              <AbsoluteConstraints x="10" y="10" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCostoLicencia">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6b" green="46" red="6d" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Historial licencias y placas"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="520" y="30" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

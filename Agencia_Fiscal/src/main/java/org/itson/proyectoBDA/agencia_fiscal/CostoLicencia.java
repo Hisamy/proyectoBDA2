@@ -45,7 +45,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         flechaIcon = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Costo de licencias");
@@ -61,22 +61,22 @@ public class CostoLicencia extends javax.swing.JFrame {
         jLabel1.setText("____________________________________________________________________________________________");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
-        lblCostoLicencia.setFont(new java.awt.Font("Inter ExtraBold", 1, 18)); // NOI18N
+        lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(65, 34, 52));
         lblCostoLicencia.setText("Costo de licencias");
         jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
 
-        lblVigencia.setFont(new java.awt.Font("Inter ExtraBold", 1, 15)); // NOI18N
+        lblVigencia.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblVigencia.setForeground(new java.awt.Color(109, 70, 107));
         lblVigencia.setText("Vigencia");
         jPanel1.add(lblVigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 60, -1));
 
-        lblCosto1.setFont(new java.awt.Font("Inter ExtraBold", 1, 15)); // NOI18N
+        lblCosto1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblCosto1.setForeground(new java.awt.Color(109, 70, 107));
         lblCosto1.setText("Costo");
         jPanel1.add(lblCosto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 50, -1));
 
-        lblSeleccion.setFont(new java.awt.Font("Inter ExtraBold", 1, 15)); // NOI18N
+        lblSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblSeleccion.setForeground(new java.awt.Color(109, 70, 107));
         lblSeleccion.setText("Seleccion");
         jPanel1.add(lblSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 70, -1));
@@ -118,7 +118,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(65, 34, 52));
-        jButton1.setFont(new java.awt.Font("Inter ExtraBold", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Continuar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -128,13 +128,14 @@ public class CostoLicencia extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 123, 31));
 
+        flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
         jPanel1.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 40, 40));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 550, 330));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 550, 330));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,7 +145,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -160,7 +161,7 @@ public class CostoLicencia extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jbtn1anio;

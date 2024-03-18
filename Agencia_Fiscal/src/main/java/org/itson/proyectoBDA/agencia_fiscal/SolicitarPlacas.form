@@ -53,7 +53,7 @@
         <Component class="javax.swing.JLabel" name="lblAgenciaFiscal">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="25" style="1"/>
+              <Font name="Segoe UI" size="25" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="34" green="22" red="41" type="rgb"/>
@@ -81,7 +81,7 @@
         <Component class="javax.swing.JLabel" name="lblCostoLicencia">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="1"/>
+              <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6b" green="46" red="6d" type="rgb"/>
@@ -97,7 +97,7 @@
         <Component class="javax.swing.JLabel" name="lblCosto1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="15" style="1"/>
+              <Font name="Segoe UI" size="15" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6b" green="46" red="6d" type="rgb"/>
@@ -113,13 +113,13 @@
         <Component class="javax.swing.JLabel" name="lblSeleccion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="15" style="1"/>
+              <Font name="Segoe UI" size="15" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Automovil nuevo"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="480" y="240" width="120" height="-1"/>
+              <AbsoluteConstraints x="480" y="240" width="130" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -135,9 +135,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia1">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="&#x2022;  $1,000"/>
           </Properties>
           <Constraints>
@@ -149,7 +146,7 @@
         <Component class="javax.swing.JLabel" name="lblVigencia2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="15" style="1"/>
+              <Font name="Segoe UI" size="15" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Automovil usado"/>
           </Properties>
@@ -161,9 +158,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia3">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Si el autom&#xf3;vil del cual quiere tramitar placas es "/>
           </Properties>
           <Constraints>
@@ -174,9 +168,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia4">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="usado, es necesario cumplir con los siguientes "/>
           </Properties>
           <Constraints>
@@ -187,9 +178,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia5">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="requisitos:"/>
           </Properties>
           <Constraints>
@@ -200,9 +188,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia6">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="&#x2022;  Haber sido registrado previamente en el sistema."/>
           </Properties>
           <Constraints>
@@ -213,9 +198,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia7">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="&#x2022;  N&#xfa;mero de placas anteriores."/>
           </Properties>
           <Constraints>
@@ -226,9 +208,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia8">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="&#x2022;  Licencia vigente."/>
           </Properties>
           <Constraints>
@@ -239,9 +218,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia9">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Costo: "/>
           </Properties>
           <Constraints>
@@ -256,7 +232,7 @@
               <Color blue="34" green="22" red="41" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="1"/>
+              <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -278,7 +254,7 @@
               <Color blue="34" green="22" red="41" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="1"/>
+              <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -296,9 +272,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia10">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="&#x2022;  $1,500"/>
           </Properties>
           <Constraints>
@@ -309,9 +282,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia11">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Si el autom&#xf3;vil del cual quiere tramitar placas es "/>
           </Properties>
           <Constraints>
@@ -322,9 +292,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia12">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="nuevo, es necesario cumplir con los siguientes "/>
           </Properties>
           <Constraints>
@@ -335,9 +302,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia13">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="requisitos:"/>
           </Properties>
           <Constraints>
@@ -348,9 +312,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia14">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="&#x2022;  No haber sido registrado previamente."/>
           </Properties>
           <Constraints>
@@ -361,9 +322,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia15">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="&#x2022;  N&#xfa;mero de serie, marca, linea (a&#xf1;o), modelo del"/>
           </Properties>
           <Constraints>
@@ -374,9 +332,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia16">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="autom&#xf3;vil."/>
           </Properties>
           <Constraints>
@@ -387,9 +342,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia17">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="&#x2022;  Licencia vigente."/>
           </Properties>
           <Constraints>
@@ -400,9 +352,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblVigencia18">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="12" style="0"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Costo:"/>
           </Properties>
           <Constraints>
@@ -426,7 +375,7 @@
         <Component class="javax.swing.JLabel" name="lblCostoLicencia1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter ExtraBold" size="18" style="1"/>
+              <Font name="Segoe UI" size="18" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6b" green="46" red="6d" type="rgb"/>

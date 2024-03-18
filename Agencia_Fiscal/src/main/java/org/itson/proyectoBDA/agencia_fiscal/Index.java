@@ -36,13 +36,13 @@ public class Index extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(640, 480));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblAgenciaFiscal.setFont(new java.awt.Font("Inter ExtraBold", 1, 25)); // NOI18N
+        lblAgenciaFiscal.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         lblAgenciaFiscal.setForeground(new java.awt.Color(65, 34, 52));
         lblAgenciaFiscal.setText("Agencia Fiscal");
         jPanel2.add(lblAgenciaFiscal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
 
         btnHistorialLicenciaPlacas.setBackground(new java.awt.Color(65, 34, 52));
-        btnHistorialLicenciaPlacas.setFont(new java.awt.Font("Inter ExtraBold", 1, 12)); // NOI18N
+        btnHistorialLicenciaPlacas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnHistorialLicenciaPlacas.setForeground(new java.awt.Color(255, 255, 255));
         btnHistorialLicenciaPlacas.setText("Historial licencias y placas");
         btnHistorialLicenciaPlacas.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +53,7 @@ public class Index extends javax.swing.JFrame {
         jPanel2.add(btnHistorialLicenciaPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 290, 32));
 
         btnSolicitarPlacas.setBackground(new java.awt.Color(65, 34, 52));
-        btnSolicitarPlacas.setFont(new java.awt.Font("Inter ExtraBold", 1, 12)); // NOI18N
+        btnSolicitarPlacas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSolicitarPlacas.setForeground(new java.awt.Color(255, 255, 255));
         btnSolicitarPlacas.setText("Solicitar placas");
         btnSolicitarPlacas.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public class Index extends javax.swing.JFrame {
         jPanel2.add(btnSolicitarPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 135, 32));
 
         btnSolicitarLicencia.setBackground(new java.awt.Color(65, 34, 52));
-        btnSolicitarLicencia.setFont(new java.awt.Font("Inter ExtraBold", 1, 12)); // NOI18N
+        btnSolicitarLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSolicitarLicencia.setForeground(new java.awt.Color(255, 255, 255));
         btnSolicitarLicencia.setText("Solicitar licencia");
         btnSolicitarLicencia.addActionListener(new java.awt.event.ActionListener() {
