@@ -100,7 +100,9 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSolicitarLicenciaActionPerformed
 
     private void btnSolicitarPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarPlacasActionPerformed
-        // TODO add your handling code here:
+        SolicitarLicencia  solicitarLicencia = new SolicitarLicencia();
+        solicitarLicencia.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnSolicitarPlacasActionPerformed
 
     private void btnHistorialLicenciaPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialLicenciaPlacasActionPerformed
