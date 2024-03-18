@@ -26,65 +26,98 @@ public class CostoLicencia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jbtn1anio = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
         lblCostoLicencia = new javax.swing.JLabel();
-        lbl2anios = new javax.swing.JLabel();
-        lblSeleccion = new javax.swing.JLabel();
-        jbtn3anios = new javax.swing.JRadioButton();
-        lbl3anios = new javax.swing.JLabel();
-        lblCosto1 = new javax.swing.JLabel();
-        jbtn2anios = new javax.swing.JRadioButton();
-        lbl1anio1 = new javax.swing.JLabel();
         lblVigencia = new javax.swing.JLabel();
+        lblCosto1 = new javax.swing.JLabel();
+        lblSeleccion = new javax.swing.JLabel();
+        lbl1anio1 = new javax.swing.JLabel();
+        lbl2anios = new javax.swing.JLabel();
+        lbl3anios = new javax.swing.JLabel();
+        jbtn1anio = new javax.swing.JRadioButton();
+        lbl1anio2 = new javax.swing.JLabel();
+        lbl1anio3 = new javax.swing.JLabel();
+        lbl1anio4 = new javax.swing.JLabel();
+        jbtn2anios = new javax.swing.JRadioButton();
+        jbtn3anios = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        lblFondo = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Costo de licencias");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setOpaque(false);
-        jPanel1.setRequestFocusEnabled(false);
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jbtn1anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, -1, -1));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCostoLicencia.setFont(new java.awt.Font("Inter ExtraBold", 0, 18)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setText("____________________________________________________________________________________________");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+
+        lblCostoLicencia.setFont(new java.awt.Font("Inter ExtraBold", 1, 18)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(65, 34, 52));
         lblCostoLicencia.setText("Costo de licencias");
-        jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
+        jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
 
-        lbl2anios.setFont(new java.awt.Font("Inter ExtraBold", 0, 15)); // NOI18N
-        lbl2anios.setText("2 años");
-        jPanel1.add(lbl2anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 60, -1));
-
-        lblSeleccion.setFont(new java.awt.Font("Inter ExtraBold", 0, 15)); // NOI18N
-        lblSeleccion.setForeground(new java.awt.Color(65, 34, 52));
-        lblSeleccion.setText("Seleccion");
-        jPanel1.add(lblSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 100, -1));
-        jPanel1.add(jbtn3anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, -1, -1));
-
-        lbl3anios.setFont(new java.awt.Font("Inter ExtraBold", 0, 15)); // NOI18N
-        lbl3anios.setText("3 años");
-        jPanel1.add(lbl3anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 60, -1));
-
-        lblCosto1.setFont(new java.awt.Font("Inter ExtraBold", 0, 15)); // NOI18N
-        lblCosto1.setForeground(new java.awt.Color(65, 34, 52));
-        lblCosto1.setText("Costo");
-        jPanel1.add(lblCosto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 60, -1));
-        jPanel1.add(jbtn2anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, -1, -1));
-
-        lbl1anio1.setFont(new java.awt.Font("Inter ExtraBold", 0, 15)); // NOI18N
-        lbl1anio1.setText("1 año");
-        jPanel1.add(lbl1anio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 40, -1));
-
-        lblVigencia.setFont(new java.awt.Font("Inter ExtraBold", 0, 15)); // NOI18N
-        lblVigencia.setForeground(new java.awt.Color(65, 34, 52));
+        lblVigencia.setFont(new java.awt.Font("Inter ExtraBold", 1, 15)); // NOI18N
+        lblVigencia.setForeground(new java.awt.Color(109, 70, 107));
         lblVigencia.setText("Vigencia");
-        jPanel1.add(lblVigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 90, -1));
+        jPanel1.add(lblVigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 60, -1));
+
+        lblCosto1.setFont(new java.awt.Font("Inter ExtraBold", 1, 15)); // NOI18N
+        lblCosto1.setForeground(new java.awt.Color(109, 70, 107));
+        lblCosto1.setText("Costo");
+        jPanel1.add(lblCosto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 50, -1));
+
+        lblSeleccion.setFont(new java.awt.Font("Inter ExtraBold", 1, 15)); // NOI18N
+        lblSeleccion.setForeground(new java.awt.Color(109, 70, 107));
+        lblSeleccion.setText("Seleccion");
+        jPanel1.add(lblSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 70, -1));
+
+        lbl1anio1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl1anio1.setText("$1,100");
+        jPanel1.add(lbl1anio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+
+        lbl2anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl2anios.setText("2 años");
+        jPanel1.add(lbl2anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 50, -1));
+
+        lbl3anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl3anios.setText("3 años");
+        jPanel1.add(lbl3anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 50, -1));
+
+        jbtn1anio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jPanel1.add(jbtn1anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, -1));
+
+        lbl1anio2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl1anio2.setText("1 año");
+        jPanel1.add(lbl1anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 40, -1));
+
+        lbl1anio3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl1anio3.setText("$600");
+        jPanel1.add(lbl1anio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
+
+        lbl1anio4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl1anio4.setText("$900");
+        jPanel1.add(lbl1anio4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
+
+        jbtn2anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jPanel1.add(jbtn2anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, -1));
+
+        jbtn3anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jPanel1.add(jbtn3anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
+
+        jLabel2.setText("____________________________________________________________________________________________");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(65, 34, 52));
-        jButton1.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Inter ExtraBold", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Continuar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,20 +125,22 @@ public class CostoLicencia extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, 123, 31));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 123, 31));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/costo_de_licencias.png"))); // NOI18N
-        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 480));
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 550, 330));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -118,16 +153,22 @@ public class CostoLicencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jbtn1anio;
     private javax.swing.JRadioButton jbtn2anios;
     private javax.swing.JRadioButton jbtn3anios;
     private javax.swing.JLabel lbl1anio1;
+    private javax.swing.JLabel lbl1anio2;
+    private javax.swing.JLabel lbl1anio3;
+    private javax.swing.JLabel lbl1anio4;
     private javax.swing.JLabel lbl2anios;
     private javax.swing.JLabel lbl3anios;
     private javax.swing.JLabel lblCosto1;
     private javax.swing.JLabel lblCostoLicencia;
-    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblSeleccion;
     private javax.swing.JLabel lblVigencia;
     // End of variables declaration//GEN-END:variables
