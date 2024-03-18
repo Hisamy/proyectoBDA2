@@ -44,6 +44,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         jbtn3anios = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        flechaIcon = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,6 +128,9 @@ public class CostoLicencia extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 123, 31));
 
+        flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
+        jPanel1.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 40, 40));
+
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 550, 330));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
@@ -152,6 +156,7 @@ public class CostoLicencia extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel flechaIcon;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

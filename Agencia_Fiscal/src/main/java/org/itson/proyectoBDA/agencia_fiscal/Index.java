@@ -75,7 +75,7 @@ public class Index extends javax.swing.JFrame {
         jPanel2.add(btnSolicitarLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 140, 32));
 
         lblTexto.setText("texto");
-        jPanel2.add(lblTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 36, -1));
+        jPanel2.add(lblTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 30, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
