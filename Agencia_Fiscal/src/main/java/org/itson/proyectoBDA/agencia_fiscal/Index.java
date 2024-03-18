@@ -33,10 +33,13 @@ public class Index extends javax.swing.JFrame {
         setTitle("Index");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(640, 480));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAgenciaFiscal.setFont(new java.awt.Font("Inter ExtraBold", 0, 36)); // NOI18N
         lblAgenciaFiscal.setForeground(new java.awt.Color(65, 34, 52));
         lblAgenciaFiscal.setText("Agencia Fiscal");
+        jPanel2.add(lblAgenciaFiscal, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 91, -1, -1));
 
         btnHistorialLicenciaPlacas.setBackground(new java.awt.Color(65, 34, 52));
         btnHistorialLicenciaPlacas.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
@@ -47,6 +50,7 @@ public class Index extends javax.swing.JFrame {
                 btnHistorialLicenciaPlacasActionPerformed(evt);
             }
         });
+        jPanel2.add(btnHistorialLicenciaPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 385, 276, 32));
 
         btnSolicitarPlacas.setBackground(new java.awt.Color(65, 34, 52));
         btnSolicitarPlacas.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
@@ -57,6 +61,7 @@ public class Index extends javax.swing.JFrame {
                 btnSolicitarPlacasActionPerformed(evt);
             }
         });
+        jPanel2.add(btnSolicitarPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 347, 135, 32));
 
         btnSolicitarLicencia.setBackground(new java.awt.Color(65, 34, 52));
         btnSolicitarLicencia.setFont(new java.awt.Font("Inter ExtraBold", 0, 12)); // NOI18N
@@ -67,50 +72,13 @@ public class Index extends javax.swing.JFrame {
                 btnSolicitarLicenciaActionPerformed(evt);
             }
         });
+        jPanel2.add(btnSolicitarLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(319, 347, 135, 32));
 
         lblTexto.setText("texto");
+        jPanel2.add(lblTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 36, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(lblAgenciaFiscal))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(lblTexto))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(btnSolicitarPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnSolicitarLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(btnHistorialLicenciaPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(lblAgenciaFiscal)))
-                .addGap(29, 29, 29)
-                .addComponent(lblTexto)
-                .addGap(151, 151, 151)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSolicitarPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSolicitarLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(btnHistorialLicenciaPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 83, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
