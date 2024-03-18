@@ -46,6 +46,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         flechaIcon = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        lblCostoLicencia1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Costo de licencias");
@@ -137,6 +138,11 @@ public class CostoLicencia extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 50));
 
+        lblCostoLicencia1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCostoLicencia1.setForeground(new java.awt.Color(109, 70, 107));
+        lblCostoLicencia1.setText("Historial licencias y placas");
+        jPanel2.add(lblCostoLicencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,6 +181,7 @@ public class CostoLicencia extends javax.swing.JFrame {
     private javax.swing.JLabel lbl3anios;
     private javax.swing.JLabel lblCosto1;
     private javax.swing.JLabel lblCostoLicencia;
+    private javax.swing.JLabel lblCostoLicencia1;
     private javax.swing.JLabel lblSeleccion;
     private javax.swing.JLabel lblVigencia;
     // End of variables declaration//GEN-END:variables
