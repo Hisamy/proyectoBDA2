@@ -25,5 +25,15 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Agencia_Fiscal_Dominio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Agencia_Fiscal_Persistencia</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

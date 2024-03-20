@@ -11,7 +11,7 @@ public class Vehiculo_Nuevo extends Vehiculo implements Serializable {
     public Vehiculo_Nuevo() {
     }
 
-    public Vehiculo_Nuevo(String id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
+    public Vehiculo_Nuevo(Long id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
         super(id, modelo, color, marca, linea, licencia_vigente, CURP, numero_alfanumerico);
     }
 

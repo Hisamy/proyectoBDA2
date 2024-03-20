@@ -19,7 +19,7 @@ public class Vehiculo_Usado extends Vehiculo implements Serializable {
         this.num_Placas_antiguas = num_Placas_antiguas;
     }
 
-    public Vehiculo_Usado(String id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
+    public Vehiculo_Usado(Long id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
         super(id, modelo, color, marca, linea, licencia_vigente, CURP, numero_alfanumerico);
     }
 

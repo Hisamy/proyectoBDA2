@@ -20,7 +20,7 @@ public class Vehiculo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numero_serie")
-    private String id;
+    private Long id;
 
     @Column(name = "modelo", nullable = false, length = 20)
     private String modelo;
@@ -46,7 +46,7 @@ public class Vehiculo implements Serializable {
     public Vehiculo() {
     }
 
-    public Vehiculo(String id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
+    public Vehiculo(Long id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
         this.id = id;
         this.modelo = modelo;
         this.color = color;
@@ -57,11 +57,11 @@ public class Vehiculo implements Serializable {
         this.numero_alfanumerico = numero_alfanumerico;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -18,7 +18,7 @@ public class Persona implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CURP")
-    private String CURP;
+    private Long CURP;
 
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
@@ -45,7 +45,7 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-    public Persona(String CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento) {
+    public Persona(Long CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
@@ -56,11 +56,11 @@ public class Persona implements Serializable {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public String getCURP() {
+    public Long getCURP() {
         return CURP;
     }
 
-    public void setCURP(String CURP) {
+    public void setCURP(Long CURP) {
         this.CURP = CURP;
     }
 
