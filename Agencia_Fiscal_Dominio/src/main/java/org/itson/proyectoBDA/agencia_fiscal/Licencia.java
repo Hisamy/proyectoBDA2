@@ -1,58 +1,44 @@
 package org.itson.proyectoBDA.agencia_fiscal;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.Table;
 
 @Entity
-public class Licencia implements Serializable {
+@Table(name = "licencias")
+public class Licencia extends Tramite implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_licencia")
     private Long id;
-    
+
+    @Column(name = "vigencia", nullable = false, length = 5)
     private Integer vigencia;
-    private Float costo;
 
     public Licencia() {
     }
 
-    public Licencia(Integer vigencia, Float costo) {
-        this.vigencia = vigencia;
-        this.costo = costo;
+    public Licencia(Long id, Calendar fecha_expedicion, Float costo, String CURP) {
+        super(id, fecha_expedicion, costo, CURP);
     }
 
-    public Licencia(Long id, Integer vigencia, Float costo) {
+    public Licencia(Long id, Integer vigencia) {
         this.id = id;
         this.vigencia = vigencia;
-        this.costo = costo;
     }
-  
+
     public Integer getVigencia() {
         return vigencia;
     }
 
     public void setVigencia(Integer vigencia) {
         this.vigencia = vigencia;
-    }
-
-    public Float getCosto() {
-        return costo;
-    }
-
-    public void setCosto(Float costo) {
-        this.costo = costo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
@@ -79,5 +65,5 @@ public class Licencia implements Serializable {
     public String toString() {
         return "org.itson.proyectoBDA.agencia_fiscal.Licencia[ id=" + id + " ]";
     }
-    
+
 }

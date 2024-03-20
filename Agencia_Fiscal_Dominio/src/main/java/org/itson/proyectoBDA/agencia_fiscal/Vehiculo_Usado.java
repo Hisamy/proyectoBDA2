@@ -1,51 +1,65 @@
 package org.itson.proyectoBDA.agencia_fiscal;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.Table;
 
 @Entity
-public class Vehiculo_Usado implements Serializable {
+@Table(name = "vehiculos_usados")
+public class Vehiculo_Usado extends Vehiculo implements Serializable {
 
+    @Column(name = "num_Placas_antiguas", nullable = false)
+    private int num_Placas_antiguas;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    public Long getId() {
-        return id;
+    public Vehiculo_Usado() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Vehiculo_Usado(int num_Placas_antiguas) {
+        this.num_Placas_antiguas = num_Placas_antiguas;
+    }
+
+    public Vehiculo_Usado(String id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
+        super(id, modelo, color, marca, linea, licencia_vigente, CURP, numero_alfanumerico);
+    }
+
+    public int getNum_Placas_antiguas() {
+        return num_Placas_antiguas;
+    }
+
+    public void setNum_Placas_antiguas(int num_Placas_antiguas) {
+        this.num_Placas_antiguas = num_Placas_antiguas;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 5;
+        hash = 71 * hash + this.num_Placas_antiguas;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Vehiculo_Usado)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Vehiculo_Usado other = (Vehiculo_Usado) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Vehiculo_Usado other = (Vehiculo_Usado) obj;
+        return this.num_Placas_antiguas == other.num_Placas_antiguas;
     }
 
     @Override
     public String toString() {
-        return "org.itson.proyectoBDA.agencia_fiscal.Vehiculo_Usado[ id=" + id + " ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Vehiculo_Usado{");
+        sb.append("num_Placas_antiguas=").append(num_Placas_antiguas);
+        sb.append('}');
+        return sb.toString();
     }
-    
+
 }

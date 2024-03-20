@@ -1,51 +1,26 @@
-
 package org.itson.proyectoBDA.agencia_fiscal;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.Table;
 
 @Entity
-public class Vehiculo_Nuevo implements Serializable {
+@Table(name = "vehiculos_nuevos")
+public class Vehiculo_Nuevo extends Vehiculo implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    public Long getId() {
-        return id;
+    public Vehiculo_Nuevo() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Vehiculo_Nuevo)) {
-            return false;
-        }
-        Vehiculo_Nuevo other = (Vehiculo_Nuevo) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public Vehiculo_Nuevo(String id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
+        super(id, modelo, color, marca, linea, licencia_vigente, CURP, numero_alfanumerico);
     }
 
     @Override
     public String toString() {
-        return "org.itson.proyectoBDA.agencia_fiscal.Vehiculo_Nuevo[ id=" + id + " ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Vehiculo_Nuevo{");
+        sb.append('}');
+        return sb.toString();
     }
-    
+
 }

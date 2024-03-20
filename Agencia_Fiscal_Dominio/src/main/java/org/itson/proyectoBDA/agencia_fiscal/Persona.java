@@ -1,32 +1,50 @@
-
 package org.itson.proyectoBDA.agencia_fiscal;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
+@Table(name = "personas")
 public class Persona implements Serializable {
 
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CURP")
     private String CURP;
-    
+
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
+
+    @Column(name = "apellido_paterno", nullable = false, length = 50)
     private String apellido_paterno;
+
+    @Column(name = "apellido_materno", nullable = false, length = 50)
     private String apellido_materno;
+
+    @Column(name = "discapacidad", nullable = false)
     private boolean discapacidad;
+
+    @Column(name = "RFC", nullable = false, length = 20)
     private String RFC;
+
+    @Column(name = "telefono", nullable = false, length = 15)
     private String telefono;
+
+    @Column(name = "fecha_nacimiento", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Calendar fecha_nacimiento;
 
     public Persona() {
     }
 
-    
     public Persona(String CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento) {
         this.CURP = CURP;
         this.nombre = nombre;
@@ -102,8 +120,6 @@ public class Persona implements Serializable {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -128,5 +144,5 @@ public class Persona implements Serializable {
     public String toString() {
         return "org.itson.proyectoBDA.agencia_fiscal.Persona[ id=" + CURP + " ]";
     }
-    
+
 }
