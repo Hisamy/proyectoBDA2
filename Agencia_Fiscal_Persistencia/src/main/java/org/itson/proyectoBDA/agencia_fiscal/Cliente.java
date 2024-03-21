@@ -12,13 +12,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "personas")
-public class Persona implements Serializable {
+@Table(name = "clientes")
+public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CURP")
-    private Long CURP;
+    private Long id_cliente;
+    
+    @Column(name = "CURP", nullable = false, length = 50)
+    private String CURP;
 
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
@@ -42,10 +44,10 @@ public class Persona implements Serializable {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_nacimiento;
 
-    public Persona() {
+    public Cliente() {
     }
 
-    public Persona(Long CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento) {
+    public Cliente(String CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
@@ -56,11 +58,32 @@ public class Persona implements Serializable {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public Long getCURP() {
+    public Cliente(Long id_cliente, String CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento) {
+        this.id_cliente = id_cliente;
+        this.CURP = CURP;
+        this.nombre = nombre;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
+        this.discapacidad = discapacidad;
+        this.RFC = RFC;
+        this.telefono = telefono;
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+    
+
+    public Long getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(Long id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public String getCURP() {
         return CURP;
     }
 
-    public void setCURP(Long CURP) {
+    public void setCURP(String CURP) {
         this.CURP = CURP;
     }
 
@@ -123,18 +146,18 @@ public class Persona implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (CURP != null ? CURP.hashCode() : 0);
+        hash += (id_cliente != null ? id_cliente.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Persona)) {
+        if (!(object instanceof Cliente)) {
             return false;
         }
-        Persona other = (Persona) object;
-        if ((this.CURP == null && other.CURP != null) || (this.CURP != null && !this.CURP.equals(other.CURP))) {
+        Cliente other = (Cliente) object;
+        if ((this.id_cliente == null && other.id_cliente != null) || (this.id_cliente != null && !this.id_cliente.equals(other.id_cliente))) {
             return false;
         }
         return true;
@@ -142,7 +165,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "org.itson.proyectoBDA.agencia_fiscal.Persona[ id=" + CURP + " ]";
+        return "org.itson.proyectoBDA.agencia_fiscal.Persona[ id=" + id_cliente + " ]";
     }
 
 }
