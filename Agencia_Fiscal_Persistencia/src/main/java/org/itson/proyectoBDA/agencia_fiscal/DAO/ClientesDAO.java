@@ -19,21 +19,11 @@ public class ClientesDAO implements IClientesDAO{
        EntityManager entityManager = conexion.crearConexion();
        
        entityManager.getTransaction().begin();
-       Cliente cliente = new Cliente(
-               nuevoCliente.getCURP(),
-               nuevoCliente.getNombre(),
-               nuevoCliente.getApellido_paterno(),
-               nuevoCliente.getApellido_materno(),
-               nuevoCliente.isDiscapacidad(),
-               nuevoCliente.getRFC(),
-               nuevoCliente.getTelefono(),
-               nuevoCliente.getFecha_nacimiento()
-       );
-       entityManager.persist(cliente);
+       entityManager.persist(nuevoCliente);
        entityManager.getTransaction().commit();
        entityManager.close();
        
-       return cliente;
+       return nuevoCliente;
     }
 
     @Override

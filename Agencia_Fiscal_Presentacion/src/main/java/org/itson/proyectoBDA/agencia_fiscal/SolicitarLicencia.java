@@ -1,21 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.proyectoBDA.agencia_fiscal;
 
-/**
- *
- * @author hisam
- */
+import org.itson.proyectoBDA.agencia_fiscal.NEGOCIO.IRegistro_ClientesBO;
+
+
 public class SolicitarLicencia extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SolicitarLicencia
-     */
-    public SolicitarLicencia() {
+    private IRegistro_ClientesBO registro_clientes;
+
+    public SolicitarLicencia(IRegistro_ClientesBO registro_clientes) {
         initComponents();
+        this.registro_clientes = registro_clientes;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -324,7 +322,8 @@ public class SolicitarLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtRFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCActionPerformed
-        // TODO add your handling code here:
+        txtRFC.getText();
+        
     }//GEN-LAST:event_txtRFCActionPerformed
 
     private void txtApellidoMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMaternoActionPerformed
