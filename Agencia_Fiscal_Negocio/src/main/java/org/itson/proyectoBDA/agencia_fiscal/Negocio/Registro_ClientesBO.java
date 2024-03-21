@@ -1,7 +1,9 @@
 package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
 import java.util.logging.Logger;
+import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
@@ -9,14 +11,11 @@ import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
 
 public class Registro_ClientesBO implements IRegistro_ClientesBO {
 
-    private IClientesDAO clientesDAO;
     private final IConexion conexion;
-
-    
     static final Logger logger = Logger.getLogger(Registro_ClientesBO.class.getName());
 
-    public Registro_ClientesBO(IClientesDAO clientesDAO, IConexion conexion) {
-        this.clientesDAO = clientesDAO;
+    public Registro_ClientesBO(Conexion conexion) {
+        IClientesDAO clienteDAO = new ClientesDAO(conexion); 
         this.conexion = conexion;
        
     }
@@ -45,7 +44,7 @@ public class Registro_ClientesBO implements IRegistro_ClientesBO {
     @Override
     public Cliente registrarCliente(NuevoClienteDTO nuevoCliente) throws PersistenciaException {
         try {
-            validarClienteDTO(nuevoCliente);
+            validarCliente(nuevoCliente);
             Cliente clienteNuevo = clientesDAO.agregarCliente(
                     new Cliente(
                             nuevoCliente.getCURP(),
@@ -68,6 +67,7 @@ public class Registro_ClientesBO implements IRegistro_ClientesBO {
 
     @Override
     public NuevoClienteDTO transporteDatos(NuevoClienteDTO nuevoCliente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        
+        
+        }
 }

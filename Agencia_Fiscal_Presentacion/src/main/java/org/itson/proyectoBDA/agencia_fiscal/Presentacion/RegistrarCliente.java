@@ -6,8 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
-import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
@@ -24,15 +24,17 @@ public class RegistrarCliente extends javax.swing.JFrame {
     public RegistrarCliente(IRegistro_ClientesBO registro_clientes) {
         navegacion = new Navegacion();
         initComponents();
-
+        IConexion conexion = new Conexion();
+        I
         this.registro_clientes = registro_clientes;
-        Registro_ClientesBO cliente = new Registro_ClientesBO(clientesDAO);
+        
+        Registro_ClientesBO cliente = new Registro_ClientesBO(conexion);
     }
 
     //Regresa Clientes el metodo registrarClienteDTO (DUDA)
     //a lo mejor si va como interfaz, no se
     public Cliente registrarCliente() throws java.text.ParseException, PersistenciaException {
-        Cliente cliente = registro_clientes.registrarClienteDTO(new NuevoClienteDTO(
+        Cliente cliente = registro_clientes.registrarCliente(new NuevoClienteDTO(
                 txtCURP.getText(),
                 txtNombre.getText(),
                 txtApellidoPaterno.getText(),
