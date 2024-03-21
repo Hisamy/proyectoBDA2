@@ -1,8 +1,8 @@
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
 import javax.persistence.EntityManager;
-import org.itson.proyectoBDA.agencia_fiscal.CONEXION.IConexion;
-import org.itson.proyectoBDA.agencia_fiscal.ENTIDADES.Cliente;
+import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 
 public class ClientesDAO implements IClientesDAO {
 
