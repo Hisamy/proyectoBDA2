@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>org.itson.proyectoBDA.agencia_fiscal.ProyectoBDA_247164_245244</exec.mainClass>
+        <exec.mainClass>org.itson.proyectoBDA.agencia_fiscal.Presentacion.Agencia_Fiscal</exec.mainClass>
     </properties>
     <name>Agencia_Fiscal_Presentacion</name>
     <repositories>

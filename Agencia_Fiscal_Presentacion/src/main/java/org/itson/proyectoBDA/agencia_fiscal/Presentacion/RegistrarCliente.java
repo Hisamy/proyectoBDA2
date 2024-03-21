@@ -19,11 +19,11 @@ public class RegistrarCliente extends javax.swing.JFrame {
     INavegacion navegacion;
     private IRegistro_ClientesBO registro_clientes;
 
-    public RegistrarCliente(IConexion conexion) {
-        IRegistro_ClientesBO registro_clientes = new Registro_ClientesBO(conexion);
+    public RegistrarCliente(IRegistro_ClientesBO registroClienteBO) {
+        this.registro_clientes = registroClienteBO;
         navegacion = new Navegacion();
         initComponents();
-        this.registro_clientes = registro_clientes;
+        
     }
 
     //    //Regresa Clientes el metodo registrarClienteDTO (DUDA)
