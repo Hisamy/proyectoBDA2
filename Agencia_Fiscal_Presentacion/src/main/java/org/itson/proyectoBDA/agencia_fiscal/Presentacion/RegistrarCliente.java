@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
@@ -19,19 +21,17 @@ public class RegistrarCliente extends javax.swing.JFrame {
     INavegacion navegacion;
     private IRegistro_ClientesBO registro_clientes;
 
-    public RegistrarCliente() {
+    public RegistrarCliente(IRegistro_ClientesBO registro_clientes) {
         navegacion = new Navegacion();
         initComponents();
-    }
 
-    public RegistrarCliente(IRegistro_ClientesBO registro_clientes) {
-        initComponents();
         this.registro_clientes = registro_clientes;
+        Registro_ClientesBO cliente = new Registro_ClientesBO(clientesDAO);
     }
 
     //Regresa Clientes el metodo registrarClienteDTO (DUDA)
     //a lo mejor si va como interfaz, no se
-    public Cliente registrarCliente(Registro_ClientesBO registro_clientes) throws java.text.ParseException, PersistenciaException {
+    public Cliente registrarCliente() throws java.text.ParseException, PersistenciaException {
         Cliente cliente = registro_clientes.registrarClienteDTO(new NuevoClienteDTO(
                 txtCURP.getText(),
                 txtNombre.getText(),
@@ -405,49 +405,14 @@ public class RegistrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtnSiActionPerformed
 
     private void btnContiuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContiuarActionPerformed
-        Registro_ClientesBO cliente = new Registro_ClientesBO();
+
         try {
-            registrarCliente(cliente);
+            registrarCliente();
         } catch (ParseException | PersistenciaException ex) {
             Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnContiuarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new RegistrarCliente().setVisible(true);
-            }
-        });
-    }
 
     private void rbtnNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnNoActionPerformed
         // TODO add your handling code here:

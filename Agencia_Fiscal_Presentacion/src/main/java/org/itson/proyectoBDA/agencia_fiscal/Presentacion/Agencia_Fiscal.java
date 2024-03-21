@@ -3,6 +3,8 @@ package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
+import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 
 public class Agencia_Fiscal {
 
@@ -15,6 +17,11 @@ public class Agencia_Fiscal {
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();
+        
+        IConexion conexion = new Conexion(); 
+        RegistrarCliente registrarCliente = new RegistrarCliente(conexion);
+        registrarCliente.setVisible(true);
+        
 
     }
 

@@ -6,7 +6,9 @@ import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
 
 public interface IRegistro_ClientesBO {
 
-    public boolean validarClienteDTO(NuevoClienteDTO nuevoCliente) throws PersistenciaException;
+    public boolean validarCliente(NuevoClienteDTO nuevoCliente) throws PersistenciaException;
 
-    public Cliente registrarClienteDTO(NuevoClienteDTO nuevoCliente) throws PersistenciaException;
+    public Cliente registrarCliente(NuevoClienteDTO nuevoCliente) throws PersistenciaException;
+    
+    public NuevoClienteDTO transporteDatos (NuevoClienteDTO nuevoCliente);
 }

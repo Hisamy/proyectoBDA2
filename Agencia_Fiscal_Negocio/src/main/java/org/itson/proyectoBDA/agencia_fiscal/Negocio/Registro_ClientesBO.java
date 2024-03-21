@@ -1,6 +1,7 @@
 package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
 import java.util.logging.Logger;
+import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
@@ -8,14 +9,20 @@ import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
 
 public class Registro_ClientesBO implements IRegistro_ClientesBO {
 
-    private IClientesDAO cliente;
+    private IClientesDAO clientesDAO;
+    private final IConexion conexion;
+
+    
     static final Logger logger = Logger.getLogger(Registro_ClientesBO.class.getName());
 
-    public Registro_ClientesBO() {
+    public Registro_ClientesBO(IClientesDAO clientesDAO, IConexion conexion) {
+        this.clientesDAO = clientesDAO;
+        this.conexion = conexion;
+       
     }
 
     @Override
-    public boolean validarClienteDTO(NuevoClienteDTO nuevoCliente) throws PersistenciaException {
+    public boolean validarCliente(NuevoClienteDTO nuevoCliente) throws PersistenciaException {
         if (nuevoCliente.getNombre().isBlank()
                 && nuevoCliente.getApellido_paterno().isBlank()
                 && nuevoCliente.getApellido_materno().isBlank()
@@ -36,10 +43,10 @@ public class Registro_ClientesBO implements IRegistro_ClientesBO {
      * @throws PersistenciaException Por si no se puedo guardar correctamente el cliente.
      */
     @Override
-    public Cliente registrarClienteDTO(NuevoClienteDTO nuevoCliente) throws PersistenciaException {
+    public Cliente registrarCliente(NuevoClienteDTO nuevoCliente) throws PersistenciaException {
         try {
             validarClienteDTO(nuevoCliente);
-            Cliente clienteNuevo = cliente.agregarCliente(
+            Cliente clienteNuevo = clientesDAO.agregarCliente(
                     new Cliente(
                             nuevoCliente.getCURP(),
                             nuevoCliente.getNombre(),
@@ -55,5 +62,12 @@ public class Registro_ClientesBO implements IRegistro_ClientesBO {
             logger.warning("No se puedo registrar correctamente el cliente");
             throw e;
         }
+    }
+
+   
+
+    @Override
+    public NuevoClienteDTO transporteDatos(NuevoClienteDTO nuevoCliente) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

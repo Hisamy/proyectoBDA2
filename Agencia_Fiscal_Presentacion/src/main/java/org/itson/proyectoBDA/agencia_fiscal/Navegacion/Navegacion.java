@@ -66,8 +66,8 @@ public class Navegacion implements INavegacion {
     @Override
     public void cambiarFrmRegistrarCliente(JFrame ventana) {
         ventana.dispose();
-        RegistrarCliente opcionesCliente = new RegistrarCliente();
-        opcionesCliente.setVisible(true);
+//        RegistrarCliente opcionesCliente = new RegistrarCliente();
+//        opcionesCliente.setVisible(true);
     }
 
     @Override
