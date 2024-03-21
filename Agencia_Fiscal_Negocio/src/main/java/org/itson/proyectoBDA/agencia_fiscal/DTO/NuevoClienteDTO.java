@@ -1,5 +1,5 @@
 
-package org.itson.proyectoBDA.agencia_fiscal.DTO;
+package org.itson.proyectoBDA.agencia_fiscal.dto;
 
 import java.util.Calendar;
 
