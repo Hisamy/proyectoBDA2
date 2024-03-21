@@ -1,5 +1,5 @@
 
-package org.itson.proyectoBDA.agencia_fiscal;
+package org.itson.proyectoBDA.agencia_fiscal.PRESENTACION;
 
 
 public class SolicitarPlacas extends javax.swing.JFrame {

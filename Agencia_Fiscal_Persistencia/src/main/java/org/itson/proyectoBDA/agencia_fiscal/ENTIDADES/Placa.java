@@ -1,4 +1,4 @@
-package org.itson.proyectoBDA.agencia_fiscal;
+package org.itson.proyectoBDA.agencia_fiscal.ENTIDADES;
 
 import java.io.Serializable;
 import java.util.Calendar;

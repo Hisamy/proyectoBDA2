@@ -1,5 +1,5 @@
 
-package org.itson.proyectoBDA.agencia_fiscal;
+package org.itson.proyectoBDA.agencia_fiscal.PRESENTACION;
 
 
 public class HistorialLicencias extends javax.swing.JFrame {

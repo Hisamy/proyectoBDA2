@@ -1,4 +1,4 @@
-package org.itson.proyectoBDA.agencia_fiscal;
+package org.itson.proyectoBDA.agencia_fiscal.PRESENTACION;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

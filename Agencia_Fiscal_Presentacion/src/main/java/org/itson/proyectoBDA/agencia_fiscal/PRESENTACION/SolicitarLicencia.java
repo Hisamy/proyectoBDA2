@@ -1,9 +1,10 @@
-package org.itson.proyectoBDA.agencia_fiscal;
+package org.itson.proyectoBDA.agencia_fiscal.PRESENTACION;
 
-import com.google.protobuf.TextFormat.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import org.itson.proyectoBDA.agencia_fiscal.ENTIDADES.Cliente;
+import org.itson.proyectoBDA.agencia_fiscal.EXCEPCIONES.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.NEGOCIO.IRegistro_ClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.NEGOCIO.Registro_ClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
@@ -18,20 +19,18 @@ public class SolicitarLicencia extends javax.swing.JFrame {
     }
 
     //Regresa Clientes el metodo registrarClienteDTO (DUDA)
-//    public NuevoClienteDTO registrarCliente(Registro_ClientesBO registro_clientes) throws java.text.ParseException {
-//        NuevoClienteDTO cliente = registro_clientes.registrarClienteDTO(
-//        new NuevoClienteDTO(
-//                txtCURP.getText(), 
-//                txtNombre.getText(), 
-//                txtApellidoPaterno.getText(), 
-//                txtApellidoMaterno.getText(), 
-//                eleccionDiscapacidad(),
-//                txtRFC.getText(), 
-//                txtTelefono.getText(), 
-//                conversionFechaNacimiento()));
-//
-//        return cliente;
-//    }
+    public Cliente registrarCliente(Registro_ClientesBO registro_clientes) throws java.text.ParseException, PersistenciaException {
+        Cliente cliente = registro_clientes.registrarClienteDTO(new NuevoClienteDTO(
+                txtCURP.getText(),
+                txtNombre.getText(),
+                txtApellidoPaterno.getText(),
+                txtApellidoMaterno.getText(),
+                eleccionDiscapacidad(),
+                txtRFC.getText(),
+                txtTelefono.getText(),
+                conversionFechaNacimiento()));
+        return cliente;
+    }
 
     //Se hace la conversion aqui o en la capa negocios (DUDA)
     private Calendar conversionFechaNacimiento() throws java.text.ParseException {
@@ -391,7 +390,6 @@ public class SolicitarLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCURPActionPerformed
 
     private void rbtnSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnSiActionPerformed
-
 
     }//GEN-LAST:event_rbtnSiActionPerformed
 

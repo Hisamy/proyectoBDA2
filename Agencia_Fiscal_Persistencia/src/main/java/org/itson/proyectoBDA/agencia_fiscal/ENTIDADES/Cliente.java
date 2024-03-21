@@ -1,4 +1,4 @@
-package org.itson.proyectoBDA.agencia_fiscal;
+package org.itson.proyectoBDA.agencia_fiscal.ENTIDADES;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -18,7 +18,7 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_cliente;
-    
+
     @Column(name = "CURP", nullable = false, length = 50)
     private String CURP;
 
@@ -48,13 +48,13 @@ public class Cliente implements Serializable {
     }
 
     public Cliente(
-            String CURP, 
-            String nombre, 
-            String apellido_paterno, 
-            String apellido_materno, 
-            boolean discapacidad, 
-            String RFC, 
-            String telefono, 
+            String CURP,
+            String nombre,
+            String apellido_paterno,
+            String apellido_materno,
+            boolean discapacidad,
+            String RFC,
+            String telefono,
             Calendar fecha_nacimiento) {
         this.CURP = CURP;
         this.nombre = nombre;
@@ -67,14 +67,14 @@ public class Cliente implements Serializable {
     }
 
     public Cliente(
-            Long id_cliente, 
-            String CURP, 
-            String nombre, 
-            String apellido_paterno, 
-            String apellido_materno, 
-            boolean discapacidad, 
-            String RFC, 
-            String telefono, 
+            Long id_cliente,
+            String CURP,
+            String nombre,
+            String apellido_paterno,
+            String apellido_materno,
+            boolean discapacidad,
+            String RFC,
+            String telefono,
             Calendar fecha_nacimiento) {
         this.id_cliente = id_cliente;
         this.CURP = CURP;
@@ -86,7 +86,6 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
         this.fecha_nacimiento = fecha_nacimiento;
     }
-    
 
     public Long getId_cliente() {
         return id_cliente;

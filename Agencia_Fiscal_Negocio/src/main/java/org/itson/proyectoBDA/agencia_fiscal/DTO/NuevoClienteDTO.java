@@ -1,8 +1,6 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.dto;
 
 import java.util.Calendar;
-
 
 public class NuevoClienteDTO {
 
@@ -26,7 +24,6 @@ public class NuevoClienteDTO {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    
     public String getCURP() {
         return CURP;
     }
@@ -59,7 +56,4 @@ public class NuevoClienteDTO {
         return fecha_nacimiento;
     }
 
-  
-    
-    
 }

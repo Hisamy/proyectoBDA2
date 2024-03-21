@@ -1,13 +1,11 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
 import javax.persistence.EntityManager;
 import org.itson.proyectoBDA.agencia_fiscal.CONEXION.IConexion;
-import org.itson.proyectoBDA.agencia_fiscal.Cliente;
+import org.itson.proyectoBDA.agencia_fiscal.ENTIDADES.Cliente;
 
+public class ClientesDAO implements IClientesDAO {
 
-
-public class ClientesDAO implements IClientesDAO{
     final private IConexion conexion;
 
     public ClientesDAO(IConexion conexion) {
@@ -16,14 +14,14 @@ public class ClientesDAO implements IClientesDAO{
 
     @Override
     public Cliente agregarCliente(Cliente nuevoCliente) {
-       EntityManager entityManager = conexion.crearConexion();
-       
-       entityManager.getTransaction().begin();
-       entityManager.persist(nuevoCliente);
-       entityManager.getTransaction().commit();
-       entityManager.close();
-       
-       return nuevoCliente;
+        EntityManager entityManager = conexion.crearConexion();
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(nuevoCliente);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+        return nuevoCliente;
     }
 
     @Override
@@ -32,6 +30,6 @@ public class ClientesDAO implements IClientesDAO{
         Cliente cliente = entityManager.find(Cliente.class, CURP);
         entityManager.close();
         return cliente;
-         }
-    
+    }
+
 }
