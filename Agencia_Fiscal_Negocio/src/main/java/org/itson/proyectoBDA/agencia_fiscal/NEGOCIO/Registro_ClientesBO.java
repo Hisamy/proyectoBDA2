@@ -12,10 +12,16 @@ public class Registro_ClientesBO implements IRegistro_ClientesBO{
     private IClientesDAO cliente;
     static final Logger logger = Logger.getLogger(Registro_ClientesBO.class.getName());
 
+    public Registro_ClientesBO() {
+    }
+
+    
     public Registro_ClientesBO(IClientesDAO cliente) {
         this.cliente = cliente;
     }
 
+    
+    
     @Override
     public boolean validarClienteDTO(NuevoClienteDTO nuevoCliente) throws PersistenciaException{
         if(nuevoCliente.getNombre().isBlank()&&

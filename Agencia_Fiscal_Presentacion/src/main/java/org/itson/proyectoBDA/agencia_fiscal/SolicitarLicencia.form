@@ -90,7 +90,7 @@
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Group type="102" attributes="0">
                                                           <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                                                          <Component id="jButton1" min="-2" pref="123" max="-2" attributes="0"/>
+                                                          <Component id="btnContiuar" min="-2" pref="123" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <EmptySpace max="-2" attributes="0"/>
@@ -136,7 +136,7 @@
                                           <Component id="lblApellidoPaterno" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                               <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtNombre1" min="-2" pref="221" max="-2" attributes="0"/>
+                                              <Component id="txtNombre" min="-2" pref="221" max="-2" attributes="0"/>
                                               <Component id="lblDatosPersonales" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="lblSolicitarLicencia" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
@@ -175,7 +175,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtNombre1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtCURP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -205,7 +205,7 @@
                                   <Component id="lblCURP1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="btnContiuar" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="rbtnSi" min="-2" max="-2" attributes="0"/>
@@ -249,7 +249,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNombre1">
+            <Component class="javax.swing.JTextField" name="txtNombre">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="10" style="1"/>
@@ -259,7 +259,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombre1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtRFC">
@@ -362,6 +362,9 @@
                   <Font name="Segoe UI" size="10" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnNoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTelefono">
               <Properties>
@@ -413,7 +416,7 @@
                 <Property name="text" type="java.lang.String" value="RFC"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnContiuar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="34" green="22" red="41" type="rgb"/>
@@ -427,7 +430,7 @@
                 <Property name="text" type="java.lang.String" value="Continuar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnContiuarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="flechaIcon">

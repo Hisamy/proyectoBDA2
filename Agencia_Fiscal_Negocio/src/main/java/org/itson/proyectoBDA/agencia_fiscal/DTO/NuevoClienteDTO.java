@@ -15,6 +15,18 @@ public class NuevoClienteDTO {
     private String telefono;
     private Calendar fecha_nacimiento;
 
+    public NuevoClienteDTO(String CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento) {
+        this.CURP = CURP;
+        this.nombre = nombre;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
+        this.discapacidad = discapacidad;
+        this.RFC = RFC;
+        this.telefono = telefono;
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    
     public String getCURP() {
         return CURP;
     }
