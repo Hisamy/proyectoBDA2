@@ -1,13 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.proyectoBDA.agencia_fiscal.NEGOCIO;
 
-/**
- *
- * @author hisam
- */
-public class Consulta_ClientesBO {
+import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
+
+
+public class Consulta_ClientesBO implements IConsulta_ClientesBO{
+    private IClientesDAO clientesDAO;
+
+    public Consulta_ClientesBO(IClientesDAO clientesDAO) {
+        this.clientesDAO = clientesDAO;
+    }
+    
+    
     
 }
