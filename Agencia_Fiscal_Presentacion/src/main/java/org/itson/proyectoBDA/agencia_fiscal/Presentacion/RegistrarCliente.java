@@ -6,9 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
-import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
@@ -21,29 +19,38 @@ public class RegistrarCliente extends javax.swing.JFrame {
     INavegacion navegacion;
     private IRegistro_ClientesBO registro_clientes;
 
-    public RegistrarCliente(IRegistro_ClientesBO registro_clientes) {
+    public RegistrarCliente(IConexion conexion) {
+        IRegistro_ClientesBO registro_clientes = new Registro_ClientesBO(conexion);
         navegacion = new Navegacion();
         initComponents();
-        IConexion conexion = new Conexion();
-        I
         this.registro_clientes = registro_clientes;
-        
-        Registro_ClientesBO cliente = new Registro_ClientesBO(conexion);
     }
 
-    //Regresa Clientes el metodo registrarClienteDTO (DUDA)
-    //a lo mejor si va como interfaz, no se
-    public Cliente registrarCliente() throws java.text.ParseException, PersistenciaException {
-        Cliente cliente = registro_clientes.registrarCliente(new NuevoClienteDTO(
-                txtCURP.getText(),
-                txtNombre.getText(),
-                txtApellidoPaterno.getText(),
-                txtApellidoMaterno.getText(),
-                eleccionDiscapacidad(),
-                txtRFC.getText(),
-                txtTelefono.getText(),
-                conversionFechaNacimiento()));
-        return cliente;
+    //    //Regresa Clientes el metodo registrarClienteDTO (DUDA)
+//    public Cliente registrarCliente() throws java.text.ParseException, PersistenciaException {
+//        Cliente cliente = registro_clientes.registrarCliente(new NuevoClienteDTO(
+//                txtCURP.getText(),
+//                txtNombre.getText(),
+//                txtApellidoPaterno.getText(),
+//                txtApellidoMaterno.getText(),
+//                eleccionDiscapacidad(),
+//                txtRFC.getText(),
+//                txtTelefono.getText(),
+//                conversionFechaNacimiento()));
+//        return cliente;
+//    }
+    public NuevoClienteDTO transporteDatos() throws java.text.ParseException, PersistenciaException {
+        NuevoClienteDTO nuevoCliente = registro_clientes.transporteDatos(
+                new NuevoClienteDTO(
+                        txtCURP.getText(),
+                        txtNombre.getText(),
+                        txtApellidoPaterno.getText(),
+                        txtApellidoMaterno.getText(),
+                        eleccionDiscapacidad(),
+                        txtRFC.getText(),
+                        txtTelefono.getText(),
+                        conversionFechaNacimiento()));
+        return nuevoCliente;
     }
 
     //Se hace la conversion aqui o en la capa negocios (DUDA)
@@ -407,9 +414,8 @@ public class RegistrarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtnSiActionPerformed
 
     private void btnContiuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContiuarActionPerformed
-
         try {
-            registrarCliente();
+            transporteDatos();
         } catch (ParseException | PersistenciaException ex) {
             Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
