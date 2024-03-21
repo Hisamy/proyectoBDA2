@@ -8,7 +8,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Cliente;
 
 
 public class ClientesDAO implements IClientesDAO{
-    private IConexion conexion;
+    final private IConexion conexion;
 
     public ClientesDAO(IConexion conexion) {
         this.conexion = conexion;
