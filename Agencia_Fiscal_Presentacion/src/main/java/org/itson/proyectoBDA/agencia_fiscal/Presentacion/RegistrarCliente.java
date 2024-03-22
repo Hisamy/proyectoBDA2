@@ -6,12 +6,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroClientesBO;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
 
 public class RegistrarCliente extends javax.swing.JFrame {
