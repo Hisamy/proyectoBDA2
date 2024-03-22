@@ -60,6 +60,7 @@ public class RegistroClientesBO implements IRegistroClientesBO {
         try {
             registrarCliente(nuevoCliente);
         } catch (PersistenciaException e) {
+            logger.warning("Error al transportar los datos");
         }
         return nuevoCliente;
     }
