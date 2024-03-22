@@ -21,8 +21,6 @@ public class RegistroClientesBO implements IRegistroClientesBO {
 
     @Override
     public boolean validarCliente(NuevoClienteDTO nuevoCliente) throws PersistenciaException {
-   
-        
         return true;
     }
 

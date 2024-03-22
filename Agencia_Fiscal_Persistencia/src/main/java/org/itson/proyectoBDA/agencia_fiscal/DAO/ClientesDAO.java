@@ -1,6 +1,8 @@
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 
@@ -24,11 +26,26 @@ public class ClientesDAO implements IClientesDAO {
         return nuevoCliente;
     }
 
+//    @Override
+//    public Cliente consultarCliente(String RFC) {
+//        EntityManager entityManager = conexion.crearConexion();
+//        Cliente cliente = entityManager.find(Cliente.class, RFC);
+//        entityManager.close();
+//        return cliente;
+//    }
     @Override
     public Cliente consultarCliente(String RFC) {
         EntityManager entityManager = conexion.crearConexion();
-        Cliente cliente = entityManager.find(Cliente.class, RFC);
-        entityManager.close();
+        TypedQuery<Cliente> query = entityManager.createQuery("SELECT c FROM Cliente c WHERE c.RFC = :RFC", Cliente.class);
+        query.setParameter("RFC", RFC);
+        Cliente cliente = null;
+        try {
+            cliente = query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("No Cliente found for RFC: " + RFC);
+        } finally {
+            entityManager.close();
+        }
         return cliente;
     }
 

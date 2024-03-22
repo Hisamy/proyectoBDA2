@@ -13,42 +13,75 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
 
     private IClientesDAO clienteDAO;
     static final Logger logger = Logger.getLogger(RegistroClientesBO.class.getName());
-    
 
     public ConsultaClientesBO() {
         IConexion conexion = new Conexion();
         this.clienteDAO = new ClientesDAO(conexion);
     }
 
- 
-
-
+    /**
+     * Metodo el cual regresa los datos del cliente con el RFC encontrado a la capa de presentación mediante la DTO.
+     *
+     * @param cliente
+     * @return
+     * @throws FindException
+     */
     @Override
-    public ClienteDTO consultarClienteDTOPorRFC(Cliente cliente) throws FindException{
-           ClienteDTO clienteDTO = new ClienteDTO(
-                   cliente.getCURP(),
-                   cliente.getNombre(),
-                   cliente.getApellido_paterno(),
-                   cliente.getApellido_materno(),
-                   cliente.isDiscapacidad(),
-                   cliente.getRFC(),
-                   cliente.getTelefono(),
-                   cliente.getFecha_nacimiento());
-           return clienteDTO;
-      }
-
-    @Override
-    public void consultarClientePorRFC(String RFC) throws FindException{
-        Cliente cliente = clienteDAO.consultarCliente(RFC);  
-        consultarClienteDTOPorRFC(cliente);
+    public ClienteDTO consultarClienteDTOPorRFC(Cliente cliente) throws FindException {
+        ClienteDTO clienteDTO = new ClienteDTO(
+                cliente.getCURP(),
+                cliente.getNombre(),
+                cliente.getApellido_paterno(),
+                cliente.getApellido_materno(),
+                cliente.isDiscapacidad(),
+                cliente.getRFC(),
+                cliente.getTelefono(),
+                cliente.getFecha_nacimiento());;
+        return clienteDTO;
     }
-        
-     
+
+    /**
+     * Recibe el RFC que se envió desde la presentación mediante la DTO y luego se conecta mediante clienteDAO para consultar al cliente en la base de datos, el cliente con el RFC encontrado se manda al metodo consultarClienteDTOPorRFC de tipo DTO.
+     *
+     * @param RFC
+     * @return
+     * @throws FindException
+     */
+    @Override
+    public Cliente consultarClientePorRFC(String RFC) throws FindException {
+        Cliente cliente = clienteDAO.consultarCliente(RFC);
+        consultarClienteDTOPorRFC(cliente);
+        Cliente clienteDTOFEKA = new Cliente(
+                cliente.getCURP(),
+                cliente.getNombre(),
+                cliente.getApellido_paterno(),
+                cliente.getApellido_materno(),
+                cliente.isDiscapacidad(),
+                cliente.getRFC(),
+                cliente.getTelefono(),
+                cliente.getFecha_nacimiento());
+        return clienteDTOFEKA;
+    }
+
+    /**
+     * Se hizo un metodo transporteDatos() para mandar el RFC al metodo consultarClientePorRFC()
+     *
+     * @param RFC
+     * @return
+     * @throws FindException
+     */
+    @Override
+    public ClienteDTO transporteDatos(String RFC) throws FindException {
+        Cliente cliente = consultarClientePorRFC(RFC);
+        ClienteDTO clienteDTO = new ClienteDTO(
+                cliente.getCURP(),
+                cliente.getNombre(),
+                cliente.getApellido_paterno(),
+                cliente.getApellido_materno(),
+                cliente.isDiscapacidad(),
+                cliente.getRFC(),
+                cliente.getTelefono(),
+                cliente.getFecha_nacimiento());
+        return clienteDTO;
+    }
 }
-
-   
-    
-    
-    
-    
-

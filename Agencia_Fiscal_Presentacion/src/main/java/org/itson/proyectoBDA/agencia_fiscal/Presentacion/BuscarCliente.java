@@ -1,30 +1,27 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaClientesBO;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroClientesBO;
-
-
 
 public class BuscarCliente extends javax.swing.JFrame {
 
     INavegacion navegacion;
     private IConsultaClientesBO consultaClientes;
-    
+
+    public BuscarCliente() {
+        initComponents();
+    }
+
     public BuscarCliente(IConsultaClientesBO consultaClienteBO) {
         this.consultaClientes = consultaClienteBO;
         navegacion = new Navegacion();
         initComponents();
     }
-            
-            
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -117,13 +114,14 @@ public class BuscarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-           try {
-            consultaClientes.consultarClientePorRFC(txtRFC.getText());
-            navegacion.cambiarFrmTramites(this);
+        try {
+            ClienteDTO cliente = consultaClientes.transporteDatos(txtRFC.getText());
+            MostrarDatos mostrarDatos = new MostrarDatos(cliente);
+            mostrarDatos.setVisible(true);
         } catch (FindException ex) {
             JOptionPane.showMessageDialog(
-                    rootPane, 
-                    "No se encontró el cliente", 
+                    rootPane,
+                    "No se encontró el cliente",
                     "Cliente no encontrado", HEIGHT);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -138,10 +136,9 @@ public class BuscarCliente extends javax.swing.JFrame {
 
     private void txtRFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCActionPerformed
         txtRFC.getText();
-      
+
     }//GEN-LAST:event_txtRFCActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

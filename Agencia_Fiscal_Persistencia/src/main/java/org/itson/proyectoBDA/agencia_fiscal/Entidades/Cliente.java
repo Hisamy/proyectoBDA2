@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,7 +34,7 @@ public class Cliente implements Serializable {
     @Column(name = "apellido_materno", nullable = false, length = 50)
     private String apellido_materno;
 
-    @Column(name = "discapacidad", nullable = false)
+    @Column(name = "discapacidad", nullable = true)
     private boolean discapacidad;
 
     @Column(name = "RFC", nullable = false, length = 20)

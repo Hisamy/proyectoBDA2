@@ -15,7 +15,7 @@ public class ClienteDTO {
 
     public ClienteDTO(String RFC) {
         this.RFC = RFC;
-     
+
     }
 
     public ClienteDTO(String CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento) {
@@ -61,5 +61,4 @@ public class ClienteDTO {
         return fecha_nacimiento;
     }
 
-    
 }

@@ -63,18 +63,18 @@ public class Tramites extends javax.swing.JFrame {
         lblCosto1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblCosto1.setForeground(new java.awt.Color(109, 70, 107));
         lblCosto1.setText("Trámites");
-        jPanel2.add(lblCosto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 70, -1));
+        jPanel2.add(lblCosto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 70, -1));
 
         lblSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblSeleccion.setText("Licencia");
-        jPanel2.add(lblSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 70, -1));
+        jPanel2.add(lblSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 70, -1));
 
         jLabel2.setText("______________________________________________________________________________________________________");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, 20));
 
         lblVigencia2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblVigencia2.setText("Placas");
-        jPanel2.add(lblVigencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 50, -1));
+        jPanel2.add(lblVigencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 50, -1));
 
         btnSolicitarLicencia.setBackground(new java.awt.Color(65, 34, 52));
         btnSolicitarLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -85,7 +85,7 @@ public class Tramites extends javax.swing.JFrame {
                 btnSolicitarLicenciaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSolicitarLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 140, 32));
+        jPanel2.add(btnSolicitarLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 140, 32));
 
         btnSolicitarLicencia1.setBackground(new java.awt.Color(65, 34, 52));
         btnSolicitarLicencia1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -96,10 +96,10 @@ public class Tramites extends javax.swing.JFrame {
                 btnSolicitarLicencia1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSolicitarLicencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 140, 32));
+        jPanel2.add(btnSolicitarLicencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 140, 32));
 
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
-        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 40, 40));
+        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 40, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
