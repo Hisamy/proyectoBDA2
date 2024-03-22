@@ -1,5 +1,6 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
@@ -20,6 +21,24 @@ public class BuscarCliente extends javax.swing.JFrame {
         this.consultaClientes = consultaClienteBO;
         navegacion = new Navegacion();
         initComponents();
+    }
+
+    public boolean validarCampos(ClienteDTO cliente) {
+        try {
+            if (!esMayorDeEdad(cliente.getFecha_nacimiento())) {
+                return false;
+            }
+        } catch (Exception e) {
+        }
+        // Validar la fecha de nacimiento
+        return true;
+    }
+
+    private boolean esMayorDeEdad(Calendar fechaNacimiento) {
+        Calendar hace18Anios = Calendar.getInstance();
+        hace18Anios.add(Calendar.YEAR, -18); // Restar 18 años
+
+        return fechaNacimiento.before(hace18Anios);
     }
 
     @SuppressWarnings("unchecked")
@@ -116,9 +135,16 @@ public class BuscarCliente extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             ClienteDTO cliente = consultaClientes.transporteDatos(txtRFC.getText());
-            MostrarDatos mostrarDatos = new MostrarDatos(cliente);
-            this.dispose();
-            mostrarDatos.setVisible(true);
+            if (validarCampos(cliente)) {
+                MostrarDatos mostrarDatos = new MostrarDatos(cliente);
+                this.dispose();
+                mostrarDatos.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(
+                        rootPane,
+                        "Cliente menor de edad",
+                        "Error", HEIGHT);
+            }
         } catch (FindException ex) {
             JOptionPane.showMessageDialog(
                     rootPane,

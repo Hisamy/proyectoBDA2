@@ -4,24 +4,18 @@
  */
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
-
 import org.itson.proyectoBDA.agencia_fiscal.DTO.LicenciaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.DTO.TramiteDTO;
-
 import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
-
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.ITramitesBO;
-
 
 public class CostoLicencia extends javax.swing.JFrame {
 
     INavegacion navegacion;
-     private TramiteDTO licenciaDTO;
+    private TramiteDTO licenciaDTO;
     ClienteDTO clienteDTO;
 
-    
     public CostoLicencia(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
         initComponents();
@@ -30,12 +24,12 @@ public class CostoLicencia extends javax.swing.JFrame {
 
     public CostoLicencia(LicenciaDTO licenciaDTO) {
         this.licenciaDTO = licenciaDTO;
-         initComponents();
-         setearDatosLicencia();
+        initComponents();
+        setearDatosLicencia();
     }
-    
-    private void setearDatosLicencia(){
-      
+
+    private void setearDatosLicencia() {
+        lblCostoAnio1.setText(licenciaDTO.getCosto().toString());
     }
 
     /**
@@ -53,13 +47,13 @@ public class CostoLicencia extends javax.swing.JFrame {
         lblVigencia = new javax.swing.JLabel();
         lblCosto1 = new javax.swing.JLabel();
         lblSeleccion = new javax.swing.JLabel();
-        lbl1anio1 = new javax.swing.JLabel();
+        lblCostoAnio3 = new javax.swing.JLabel();
         lbl2anios = new javax.swing.JLabel();
         lbl3anios = new javax.swing.JLabel();
         jbtn1anio = new javax.swing.JRadioButton();
         lbl1anio = new javax.swing.JLabel();
-        lbl1anio3 = new javax.swing.JLabel();
-        lbl1anio4 = new javax.swing.JLabel();
+        lblCostoAnio1 = new javax.swing.JLabel();
+        lblCostoAnio2 = new javax.swing.JLabel();
         jbtn2anios = new javax.swing.JRadioButton();
         jbtn3anios = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
@@ -67,6 +61,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         flechaIcon = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblCostoLicencia1 = new javax.swing.JLabel();
+        lblNombreCliente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Costo de licencias");
@@ -102,9 +97,9 @@ public class CostoLicencia extends javax.swing.JFrame {
         lblSeleccion.setText("Seleccion");
         jPanel1.add(lblSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 70, -1));
 
-        lbl1anio1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbl1anio1.setText("$1,100");
-        jPanel1.add(lbl1anio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        lblCostoAnio3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCostoAnio3.setText("$1,100");
+        jPanel1.add(lblCostoAnio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         lbl2anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl2anios.setText("2 años");
@@ -127,13 +122,13 @@ public class CostoLicencia extends javax.swing.JFrame {
         lbl1anio.setText("1 año");
         jPanel1.add(lbl1anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 40, -1));
 
-        lbl1anio3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbl1anio3.setText("$600");
-        jPanel1.add(lbl1anio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
+        lblCostoAnio1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCostoAnio1.setText("$600");
+        jPanel1.add(lblCostoAnio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
-        lbl1anio4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbl1anio4.setText("$900");
-        jPanel1.add(lbl1anio4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
+        lblCostoAnio2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCostoAnio2.setText("$900");
+        jPanel1.add(lblCostoAnio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
 
         buttonGroup1.add(jbtn2anios);
         jbtn2anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -171,6 +166,10 @@ public class CostoLicencia extends javax.swing.JFrame {
         lblCostoLicencia1.setText("Historial licencias y placas");
         jPanel2.add(lblCostoLicencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
+        lblNombreCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNombreCliente.setForeground(new java.awt.Color(109, 70, 107));
+        jPanel2.add(lblNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 190, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,7 +190,7 @@ public class CostoLicencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbtn1anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn1anioActionPerformed
-       
+
     }//GEN-LAST:event_jbtn1anioActionPerformed
 
 
@@ -208,14 +207,15 @@ public class CostoLicencia extends javax.swing.JFrame {
     private javax.swing.JRadioButton jbtn2anios;
     private javax.swing.JRadioButton jbtn3anios;
     private javax.swing.JLabel lbl1anio;
-    private javax.swing.JLabel lbl1anio1;
-    private javax.swing.JLabel lbl1anio3;
-    private javax.swing.JLabel lbl1anio4;
     private javax.swing.JLabel lbl2anios;
     private javax.swing.JLabel lbl3anios;
     private javax.swing.JLabel lblCosto1;
+    private javax.swing.JLabel lblCostoAnio1;
+    private javax.swing.JLabel lblCostoAnio2;
+    private javax.swing.JLabel lblCostoAnio3;
     private javax.swing.JLabel lblCostoLicencia;
     private javax.swing.JLabel lblCostoLicencia1;
+    private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblSeleccion;
     private javax.swing.JLabel lblVigencia;
     // End of variables declaration//GEN-END:variables

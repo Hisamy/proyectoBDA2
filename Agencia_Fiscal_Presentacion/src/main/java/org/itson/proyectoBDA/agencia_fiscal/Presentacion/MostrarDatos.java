@@ -6,9 +6,7 @@ package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
-import static org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite_.cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 

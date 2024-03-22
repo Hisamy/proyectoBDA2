@@ -25,6 +25,7 @@ public class Tramites extends javax.swing.JFrame {
     public Tramites(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
         initComponents();
+        lblNombreCliente.setText("Cliente: " + clienteDTO.getNombre() + "" + clienteDTO.getApellido_paterno() + " " + clienteDTO.getApellido_materno());
         navegacion = new Navegacion();
     }
 
@@ -46,6 +47,7 @@ public class Tramites extends javax.swing.JFrame {
         btnSolicitarLicencia = new javax.swing.JButton();
         btnSolicitarLicencia1 = new javax.swing.JButton();
         flechaIcon = new javax.swing.JLabel();
+        lblNombreCliente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +108,10 @@ public class Tramites extends javax.swing.JFrame {
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
         jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 40, 40));
 
+        lblNombreCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNombreCliente.setForeground(new java.awt.Color(109, 70, 107));
+        jPanel2.add(lblNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 190, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,6 +153,7 @@ public class Tramites extends javax.swing.JFrame {
     private javax.swing.JLabel lblAgenciaFiscal;
     private javax.swing.JLabel lblCosto1;
     private javax.swing.JLabel lblCostoLicencia;
+    private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblSeleccion;
     private javax.swing.JLabel lblVigencia2;
     // End of variables declaration//GEN-END:variables

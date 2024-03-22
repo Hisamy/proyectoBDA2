@@ -1,11 +1,9 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.DTO;
 
 import java.util.Calendar;
 
+public class LicenciaDTO extends TramiteDTO {
 
-public class LicenciaDTO extends TramiteDTO{
-    
     private Integer vigencia;
 
     public LicenciaDTO(Integer vigencia, Calendar fecha_expedicion, Float costo) {
@@ -16,7 +14,5 @@ public class LicenciaDTO extends TramiteDTO{
     public Integer getVigencia() {
         return vigencia;
     }
-     
-    
-    
+
 }
