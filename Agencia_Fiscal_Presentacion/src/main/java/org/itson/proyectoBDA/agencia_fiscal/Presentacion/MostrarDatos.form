@@ -367,6 +367,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnSiActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="rbtnSi.setEnabled(false);"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbtnNo">
               <Properties>
@@ -380,6 +383,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnNoActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="rbtnNo.setEnabled(false);"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txtTelefono">
               <Properties>

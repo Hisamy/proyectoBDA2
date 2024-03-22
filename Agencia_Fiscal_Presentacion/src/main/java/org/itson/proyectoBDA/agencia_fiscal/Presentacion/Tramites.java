@@ -4,6 +4,7 @@
  */
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 
@@ -14,13 +15,17 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 public class Tramites extends javax.swing.JFrame {
 
     INavegacion navegacion;
+    ClienteDTO clienteDTO;
 
     /**
      * Creates new form Tramites
+     *
+     * @param clienteDTO
      */
-    public Tramites() {
-        navegacion = new Navegacion();
+    public Tramites(ClienteDTO clienteDTO) {
+        this.clienteDTO = clienteDTO;
         initComponents();
+        navegacion = new Navegacion();
     }
 
     /**
@@ -121,7 +126,9 @@ public class Tramites extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSolicitarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarLicenciaActionPerformed
-        navegacion.cambiarFrmSolicitarPlacas(this);
+        CostoLicencia costoLicencia = new CostoLicencia(clienteDTO);
+        this.dispose();
+        costoLicencia.setVisible(true);
 
     }//GEN-LAST:event_btnSolicitarLicenciaActionPerformed
 
