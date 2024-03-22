@@ -1,4 +1,3 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
 import java.util.List;
@@ -10,21 +9,19 @@ import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 
+public class ConsultaClientesBO implements IConsultaClientesBO {
 
-public class ConsultaClientesBO implements IConsultaClientesBO{
     private IClientesDAO clienteDAO;
     static final Logger logger = Logger.getLogger(RegistroClientesBO.class.getName());
-    
+
     public ConsultaClientesBO() {
-         IConexion conexion = new Conexion();
+        IConexion conexion = new Conexion();
         this.clienteDAO = new ClientesDAO(conexion);
     }
 
     @Override
-    public ClienteDTO consultarCliente(String RFC,  List<Cliente> listaClientes) {
-        
+    public ClienteDTO consultarCliente(String RFC, List<Cliente> listaClientes) {
+
     }
-    
-    
-    
+
 }

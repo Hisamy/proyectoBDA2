@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,6 +45,10 @@ public class Tramite implements Serializable {
     @Column(name = "CURP", nullable = false, length = 20)
     private String CURP;
 
+    @ManyToOne()
+    @JoinColumn(name = "id_cliente", nullable = false)
+    private Cliente cliente;
+
     public Tramite() {
     }
 
@@ -51,6 +57,14 @@ public class Tramite implements Serializable {
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
         this.CURP = CURP;
+    }
+
+    public Tramite(Long id, Calendar fecha_expedicion, Float costo, String CURP, Cliente cliente) {
+        this.id = id;
+        this.fecha_expedicion = fecha_expedicion;
+        this.costo = costo;
+        this.CURP = CURP;
+        this.cliente = cliente;
     }
 
     public Long getId() {
@@ -83,6 +97,14 @@ public class Tramite implements Serializable {
 
     public void setCURP(String CURP) {
         this.CURP = CURP;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

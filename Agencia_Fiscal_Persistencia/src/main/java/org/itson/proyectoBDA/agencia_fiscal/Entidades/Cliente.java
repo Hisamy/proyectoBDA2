@@ -2,11 +2,16 @@ package org.itson.proyectoBDA.agencia_fiscal.Entidades;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,6 +48,9 @@ public class Cliente implements Serializable {
     @Column(name = "fecha_nacimiento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Calendar fecha_nacimiento;
+
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "cliente")
+    private List<Tramite> tramites;
 
     public Cliente() {
     }
@@ -85,6 +93,18 @@ public class Cliente implements Serializable {
         this.RFC = RFC;
         this.telefono = telefono;
         this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    public Cliente(String CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento, List<Tramite> tramites) {
+        this.CURP = CURP;
+        this.nombre = nombre;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
+        this.discapacidad = discapacidad;
+        this.RFC = RFC;
+        this.telefono = telefono;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.tramites = tramites;
     }
 
     public Long getId_cliente() {
@@ -157,6 +177,14 @@ public class Cliente implements Serializable {
 
     public void setFecha_nacimiento(Calendar fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+    public List<Tramite> getTramites() {
+        return tramites;
+    }
+
+    public void setTramites(List<Tramite> tramites) {
+        this.tramites = tramites;
     }
 
     @Override
