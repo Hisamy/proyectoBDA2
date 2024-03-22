@@ -35,7 +35,6 @@ public class Cliente implements Serializable {
     private String apellido_materno;
 
     @Column(name = "discapacidad", nullable = true)
-    @Type()
     private boolean discapacidad;
 
     @Column(name = "RFC", nullable = false, length = 20)

@@ -1,10 +1,14 @@
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite;
 
 public class ClientesDAO implements IClientesDAO {
 
@@ -22,6 +26,15 @@ public class ClientesDAO implements IClientesDAO {
         entityManager.persist(nuevoCliente);
         entityManager.getTransaction().commit();
         entityManager.close();
+        
+//        List<Tramite> licencias = new ArrayList<>();
+//        nuevoCliente.getTramites().forEach(licencia -> {
+//            licencias.add(
+//                    new Licencia()
+//                    )
+//                    )
+//            );
+//        });
 
         return nuevoCliente;
     }

@@ -36,7 +36,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
                 cliente.isDiscapacidad(),
                 cliente.getRFC(),
                 cliente.getTelefono(),
-                cliente.getFecha_nacimiento());;
+                cliente.getFecha_nacimiento());
         return clienteDTO;
     }
 
@@ -51,7 +51,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     public Cliente consultarClientePorRFC(String RFC) throws FindException {
         Cliente cliente = clienteDAO.consultarCliente(RFC);
         consultarClienteDTOPorRFC(cliente);
-        Cliente clienteDTOFEKA = new Cliente(
+        Cliente getCliente = new Cliente(
                 cliente.getCURP(),
                 cliente.getNombre(),
                 cliente.getApellido_paterno(),
@@ -60,7 +60,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
                 cliente.getRFC(),
                 cliente.getTelefono(),
                 cliente.getFecha_nacimiento());
-        return clienteDTOFEKA;
+        return getCliente;
     }
 
     /**

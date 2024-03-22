@@ -24,6 +24,11 @@ public class Licencia extends Tramite implements Serializable {
     public Licencia() {
     }
 
+    public Licencia(Integer vigencia, Calendar fecha_expedicion, Float costo) {
+        super(fecha_expedicion, costo);
+        this.vigencia = vigencia;
+    }
+
     public Licencia(Long id, Calendar fecha_expedicion, Float costo, String CURP) {
         super(id, fecha_expedicion, costo, CURP);
     }
@@ -39,6 +44,14 @@ public class Licencia extends Tramite implements Serializable {
 
     public void setVigencia(Integer vigencia) {
         this.vigencia = vigencia;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

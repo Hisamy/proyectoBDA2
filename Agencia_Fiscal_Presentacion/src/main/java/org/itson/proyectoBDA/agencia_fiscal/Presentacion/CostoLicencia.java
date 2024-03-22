@@ -4,23 +4,31 @@
  */
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import org.itson.proyectoBDA.agencia_fiscal.DTO.LicenciaDTO;
+import org.itson.proyectoBDA.agencia_fiscal.DTO.TramiteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.ITramitesBO;
 
-/**
- *
- * @author hisam
- */
+
 public class CostoLicencia extends javax.swing.JFrame {
 
     INavegacion navegacion;
-
-    /**
-     * Creates new form CostoLicencia
-     */
+     private TramiteDTO licenciaDTO;
+   
     public CostoLicencia() {
         navegacion = new Navegacion();
         initComponents();
+    }
+
+    public CostoLicencia(LicenciaDTO licenciaDTO) {
+        this.licenciaDTO = licenciaDTO;
+         initComponents();
+         setearDatosLicencia();
+    }
+    
+    private void setearDatosLicencia(){
+      
     }
 
     /**
@@ -30,6 +38,7 @@ public class CostoLicencia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -41,7 +50,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         lbl2anios = new javax.swing.JLabel();
         lbl3anios = new javax.swing.JLabel();
         jbtn1anio = new javax.swing.JRadioButton();
-        lbl1anio2 = new javax.swing.JLabel();
+        lbl1anio = new javax.swing.JLabel();
         lbl1anio3 = new javax.swing.JLabel();
         lbl1anio4 = new javax.swing.JLabel();
         jbtn2anios = new javax.swing.JRadioButton();
@@ -74,7 +83,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         lblVigencia.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblVigencia.setForeground(new java.awt.Color(109, 70, 107));
         lblVigencia.setText("Vigencia");
-        jPanel1.add(lblVigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 60, -1));
+        jPanel1.add(lblVigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 70, -1));
 
         lblCosto1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblCosto1.setForeground(new java.awt.Color(109, 70, 107));
@@ -98,12 +107,18 @@ public class CostoLicencia extends javax.swing.JFrame {
         lbl3anios.setText("3 años");
         jPanel1.add(lbl3anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 50, -1));
 
+        buttonGroup1.add(jbtn1anio);
         jbtn1anio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jbtn1anio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn1anioActionPerformed(evt);
+            }
+        });
         jPanel1.add(jbtn1anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, -1));
 
-        lbl1anio2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbl1anio2.setText("1 año");
-        jPanel1.add(lbl1anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 40, -1));
+        lbl1anio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl1anio.setText("1 año");
+        jPanel1.add(lbl1anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 40, -1));
 
         lbl1anio3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl1anio3.setText("$600");
@@ -113,9 +128,11 @@ public class CostoLicencia extends javax.swing.JFrame {
         lbl1anio4.setText("$900");
         jPanel1.add(lbl1anio4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
 
+        buttonGroup1.add(jbtn2anios);
         jbtn2anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jPanel1.add(jbtn2anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, -1));
 
+        buttonGroup1.add(jbtn3anios);
         jbtn3anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jPanel1.add(jbtn3anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
 
@@ -166,8 +183,13 @@ public class CostoLicencia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jbtn1anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn1anioActionPerformed
+       
+    }//GEN-LAST:event_jbtn1anioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel flechaIcon;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -178,8 +200,8 @@ public class CostoLicencia extends javax.swing.JFrame {
     private javax.swing.JRadioButton jbtn1anio;
     private javax.swing.JRadioButton jbtn2anios;
     private javax.swing.JRadioButton jbtn3anios;
+    private javax.swing.JLabel lbl1anio;
     private javax.swing.JLabel lbl1anio1;
-    private javax.swing.JLabel lbl1anio2;
     private javax.swing.JLabel lbl1anio3;
     private javax.swing.JLabel lbl1anio4;
     private javax.swing.JLabel lbl2anios;

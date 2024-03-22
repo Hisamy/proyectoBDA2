@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.proyectoBDA.agencia_fiscal.Entidades;
 
 import java.io.Serializable;
@@ -20,10 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author Ramosz
- */
+
 @Entity
 @Table(name = "tramites")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -42,8 +36,6 @@ public class Tramite implements Serializable {
     @Column(name = "costo", nullable = false, length = 50)
     private Float costo;
 
-    @Column(name = "CURP", nullable = false, length = 20)
-    private String CURP;
 
     @ManyToOne()
     @JoinColumn(name = "id_cliente", nullable = false)
@@ -56,14 +48,20 @@ public class Tramite implements Serializable {
         this.id = id;
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
-        this.CURP = CURP;
+   
     }
+
+    public Tramite(Calendar fecha_expedicion, Float costo) {
+        this.fecha_expedicion = fecha_expedicion;
+        this.costo = costo;
+    }
+    
+    
 
     public Tramite(Long id, Calendar fecha_expedicion, Float costo, String CURP, Cliente cliente) {
         this.id = id;
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
-        this.CURP = CURP;
         this.cliente = cliente;
     }
 
@@ -89,14 +87,6 @@ public class Tramite implements Serializable {
 
     public void setCosto(Float costo) {
         this.costo = costo;
-    }
-
-    public String getCURP() {
-        return CURP;
-    }
-
-    public void setCURP(String CURP) {
-        this.CURP = CURP;
     }
 
     public Cliente getCliente() {
