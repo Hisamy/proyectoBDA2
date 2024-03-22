@@ -4,8 +4,8 @@ package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 import java.util.logging.Logger;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ILicenciasDAO;
-import org.itson.proyectoBDA.agencia_fiscal.DTO.LicenciaDTO;
-import org.itson.proyectoBDA.agencia_fiscal.DTO.TramiteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
 
 

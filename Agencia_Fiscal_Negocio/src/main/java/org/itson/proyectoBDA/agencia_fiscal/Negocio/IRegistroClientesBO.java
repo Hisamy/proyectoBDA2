@@ -2,7 +2,7 @@ package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
-import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.NuevoClienteDTO;
 
 public interface IRegistroClientesBO {
 

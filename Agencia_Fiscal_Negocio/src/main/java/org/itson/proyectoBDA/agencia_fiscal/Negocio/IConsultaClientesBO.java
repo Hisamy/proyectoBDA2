@@ -1,6 +1,6 @@
 package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
-import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 

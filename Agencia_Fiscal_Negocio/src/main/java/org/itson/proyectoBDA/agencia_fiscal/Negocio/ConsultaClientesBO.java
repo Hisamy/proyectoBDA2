@@ -5,7 +5,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
-import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 

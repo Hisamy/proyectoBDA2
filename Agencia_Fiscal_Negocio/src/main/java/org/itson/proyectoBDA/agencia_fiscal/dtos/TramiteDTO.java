@@ -1,4 +1,4 @@
-package org.itson.proyectoBDA.agencia_fiscal.DTO;
+package org.itson.proyectoBDA.agencia_fiscal.dtos;
 
 import java.util.Calendar;
 

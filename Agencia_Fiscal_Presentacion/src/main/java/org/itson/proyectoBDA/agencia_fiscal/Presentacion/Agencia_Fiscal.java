@@ -25,7 +25,7 @@ public class Agencia_Fiscal {
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();
-        LocalDate fechaActual = LocalDate.now();
+        
 
        
 

@@ -7,7 +7,7 @@ import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
-import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.NuevoClienteDTO;
 
 public class RegistroClientesBO implements IRegistroClientesBO {
 

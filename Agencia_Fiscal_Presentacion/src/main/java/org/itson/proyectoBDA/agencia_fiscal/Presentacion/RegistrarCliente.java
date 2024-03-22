@@ -10,7 +10,9 @@ import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroClientesBO;
-import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.NuevoClienteDTO;
+
+
 
 public class RegistrarCliente extends javax.swing.JFrame {
 
