@@ -24,19 +24,6 @@ public class RegistrarCliente extends javax.swing.JFrame {
 
     }
 
-    //    //Regresa Clientes el metodo registrarClienteDTO (DUDA)
-//    public Cliente registrarCliente() throws java.text.ParseException, PersistenciaException {
-//        Cliente cliente = registro_clientes.registrarCliente(new NuevoClienteDTO(
-//                txtCURP.getText(),
-//                txtNombre.getText(),
-//                txtApellidoPaterno.getText(),
-//                txtApellidoMaterno.getText(),
-//                eleccionDiscapacidad(),
-//                txtRFC.getText(),
-//                txtTelefono.getText(),
-//                conversionFechaNacimiento()));
-//        return cliente;
-//    }
     public NuevoClienteDTO transporteDatos() throws java.text.ParseException, PersistenciaException {
         NuevoClienteDTO nuevoCliente = registro_clientes.transporteDatos(
                 new NuevoClienteDTO(

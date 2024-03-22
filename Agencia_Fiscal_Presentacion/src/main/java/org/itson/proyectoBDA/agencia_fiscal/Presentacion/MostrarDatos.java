@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
+import static org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite_.cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 
@@ -35,7 +36,7 @@ public class MostrarDatos extends javax.swing.JFrame {
         txtRFC.setText(clienteDTO.getRFC());
         txtTelefono.setText(clienteDTO.getTelefono());
         rbtnSi.setSelected(clienteDTO.isDiscapacidad());
-        rbtnNo.setSelected(clienteDTO.isDiscapacidad());
+        rbtnNo.setSelected(!clienteDTO.isDiscapacidad());
 
         // Convertir Calendar a Date
         Calendar fechaNacimientoCalendar = clienteDTO.getFecha_nacimiento();
@@ -158,12 +159,14 @@ public class MostrarDatos extends javax.swing.JFrame {
 
         buttonGroup1.add(rbtnSi);
         rbtnSi.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        rbtnSi.setEnabled(false);
         rbtnSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnSiActionPerformed(evt);
             }
         });
 
+        rbtnNo.setEnabled(false);
         buttonGroup1.add(rbtnNo);
         rbtnNo.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         rbtnNo.addActionListener(new java.awt.event.ActionListener() {
@@ -400,7 +403,9 @@ public class MostrarDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
     private void btnContiuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContiuarActionPerformed
-
+        Tramites mostrarDatos = new Tramites(clienteDTO);
+        this.dispose();
+        mostrarDatos.setVisible(true);
     }//GEN-LAST:event_btnContiuarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

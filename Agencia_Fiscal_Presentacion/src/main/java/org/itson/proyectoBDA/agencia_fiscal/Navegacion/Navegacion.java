@@ -37,8 +37,8 @@ public class Navegacion implements INavegacion {
     @Override
     public void cambiarFrmCostoLicencia(JFrame ventana) {
         ventana.dispose();
-        CostoLicencia opcionesCliente = new CostoLicencia();
-        opcionesCliente.setVisible(true);
+//        CostoLicencia opcionesCliente = new CostoLicencia();
+//        opcionesCliente.setVisible(true);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class Navegacion implements INavegacion {
     @Override
     public void cambiarFrmTramites(JFrame ventana) {
         ventana.dispose();
-        Tramites opcionesCliente = new Tramites();
-        opcionesCliente.setVisible(true);
+//        Tramites opcionesCliente = new Tramites();
+//        opcionesCliente.setVisible(true);
     }
 }

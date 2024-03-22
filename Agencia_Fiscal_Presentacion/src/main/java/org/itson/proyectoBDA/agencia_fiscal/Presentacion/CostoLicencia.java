@@ -4,8 +4,12 @@
  */
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+
 import org.itson.proyectoBDA.agencia_fiscal.DTO.LicenciaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.DTO.TramiteDTO;
+
+import org.itson.proyectoBDA.agencia_fiscal.DTO.ClienteDTO;
+
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ITramitesBO;
@@ -14,11 +18,23 @@ import org.itson.proyectoBDA.agencia_fiscal.Negocio.ITramitesBO;
 public class CostoLicencia extends javax.swing.JFrame {
 
     INavegacion navegacion;
+
      private TramiteDTO licenciaDTO;
    
     public CostoLicencia() {
         navegacion = new Navegacion();
+
+    ClienteDTO clienteDTO;
+
+    /**
+     * Creates new form CostoLicencia
+     *
+     * @param clienteDTO
+     */
+    public CostoLicencia(ClienteDTO clienteDTO) {
+        this.clienteDTO = clienteDTO;
         initComponents();
+        navegacion = new Navegacion();
     }
 
     public CostoLicencia(LicenciaDTO licenciaDTO) {
