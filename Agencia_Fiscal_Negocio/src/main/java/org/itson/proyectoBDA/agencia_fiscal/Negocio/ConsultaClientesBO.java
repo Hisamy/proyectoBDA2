@@ -25,6 +25,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
  
 
 
+    @Override
     public Cliente consultarClientePorRFC(String RFC) {
           Cliente cliente = clienteDAO.consultarCliente(RFC);
               

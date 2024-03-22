@@ -6,12 +6,11 @@ package org.itson.proyectoBDA.agencia_fiscal.Navegacion;
 
 import javax.swing.JFrame;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.BuscarAutomovil;
-import org.itson.proyectoBDA.agencia_fiscal.Presentacion.ClienteRegistrado;
+import org.itson.proyectoBDA.agencia_fiscal.Presentacion.BuscarCliente;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.CostoLicencia;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.DatosAutomovil;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.HistorialLicencias;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.Index;
-import org.itson.proyectoBDA.agencia_fiscal.Presentacion.RegistrarCliente;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.SolicitarPlacas;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.Tramites;
 
@@ -31,7 +30,7 @@ public class Navegacion implements INavegacion {
     @Override
     public void cambiarFrmClienteRegistrado(JFrame ventana) {
         ventana.dispose();
-        ClienteRegistrado opcionesCliente = new ClienteRegistrado();
+        BuscarCliente opcionesCliente = new BuscarCliente();
         opcionesCliente.setVisible(true);
     }
 
