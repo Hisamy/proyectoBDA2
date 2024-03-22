@@ -10,16 +10,16 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistro_ClientesBO;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.Registro_ClientesBO;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroClientesBO;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
 
 public class RegistrarCliente extends javax.swing.JFrame {
 
     INavegacion navegacion;
-    private IRegistro_ClientesBO registro_clientes;
+    private IRegistroClientesBO registro_clientes;
 
-    public RegistrarCliente(IRegistro_ClientesBO registroClienteBO) {
+    public RegistrarCliente(IRegistroClientesBO registroClienteBO) {
         this.registro_clientes = registroClienteBO;
         navegacion = new Navegacion();
         initComponents();
@@ -80,6 +80,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        radGroupDiscapacitado = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblSolicitarLicencia = new javax.swing.JLabel();
@@ -116,6 +117,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setRequestFocusEnabled(false);
 
         lblSolicitarLicencia.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblSolicitarLicencia.setForeground(new java.awt.Color(65, 34, 52));
@@ -179,6 +181,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
         lblCuentaConAlgunaDiscapacidad.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblCuentaConAlgunaDiscapacidad.setText("¿Cuenta con alguna discapacidad?");
 
+        radGroupDiscapacitado.add(rbtnSi);
         rbtnSi.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         rbtnSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +189,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
             }
         });
 
+        radGroupDiscapacitado.add(rbtnNo);
         rbtnNo.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         rbtnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -445,6 +449,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lblRFC;
     private javax.swing.JLabel lblSolicitarLicencia;
     private javax.swing.JLabel lblTelefono;
+    private javax.swing.ButtonGroup radGroupDiscapacitado;
     private javax.swing.JRadioButton rbtnNo;
     private javax.swing.JRadioButton rbtnSi;
     private javax.swing.JTextField txtApellidoMaterno;

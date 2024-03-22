@@ -1,24 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroClientesBO;
 
-/**
- *
- * @author Ramosz
- */
-public class ClienteRegistrado extends javax.swing.JFrame {
+
+
+public class BuscarCliente extends javax.swing.JFrame {
 
     INavegacion navegacion;
-
-    /**
-     * Creates new form ClienteRegistrado
-     */
-    public ClienteRegistrado() {
+    private IRegistroClientesBO registro_clientes;
+    
+    public BuscarCliente(IRegistroClientesBO registroClienteBO) {
+        this.registro_clientes = registroClienteBO;
         navegacion = new Navegacion();
         initComponents();
     }
@@ -33,7 +28,7 @@ public class ClienteRegistrado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblCostoLicencia1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtRFC = new javax.swing.JTextField();
         lbl1anio2 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         flechaIcon = new javax.swing.JLabel();
@@ -53,10 +48,16 @@ public class ClienteRegistrado extends javax.swing.JFrame {
         lblCostoLicencia1.setForeground(new java.awt.Color(109, 70, 107));
         lblCostoLicencia1.setText("Buscar cliente");
         jPanel2.add(lblCostoLicencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 440, -1));
+
+        txtRFC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRFCActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 440, -1));
 
         lbl1anio2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbl1anio2.setText("CURP");
+        lbl1anio2.setText("RFC");
         jPanel2.add(lbl1anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 100, -1));
 
         btnBuscar.setBackground(new java.awt.Color(65, 34, 52));
@@ -123,40 +124,12 @@ public class ClienteRegistrado extends javax.swing.JFrame {
         navegacion.cambiarFrmIndex(this);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void txtRFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCActionPerformed
+        txtRFC.getText();
+      
+    }//GEN-LAST:event_txtRFCActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ClienteRegistrado().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -164,9 +137,9 @@ public class ClienteRegistrado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl1anio2;
     private javax.swing.JLabel lblCostoLicencia;
     private javax.swing.JLabel lblCostoLicencia1;
+    private javax.swing.JTextField txtRFC;
     // End of variables declaration//GEN-END:variables
 }

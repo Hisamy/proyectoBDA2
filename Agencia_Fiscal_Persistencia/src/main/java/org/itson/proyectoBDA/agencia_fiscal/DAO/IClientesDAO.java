@@ -6,5 +6,5 @@ public interface IClientesDAO {
 
     public Cliente agregarCliente(Cliente nuevoCliente);
 
-    public Cliente consultarCliente(String CURP);
+    public Cliente consultarCliente(String RFC);
 }

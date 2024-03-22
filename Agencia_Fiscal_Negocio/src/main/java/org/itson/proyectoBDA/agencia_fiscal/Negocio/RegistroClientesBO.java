@@ -9,27 +9,20 @@ import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.dto.NuevoClienteDTO;
 
-public class Registro_ClientesBO implements IRegistro_ClientesBO {
+public class RegistroClientesBO implements IRegistroClientesBO {
 
     private IClientesDAO clienteDAO;
-    static final Logger logger = Logger.getLogger(Registro_ClientesBO.class.getName());
+    static final Logger logger = Logger.getLogger(RegistroClientesBO.class.getName());
 
-    public Registro_ClientesBO() {
+    public RegistroClientesBO() {
         IConexion conexion = new Conexion();
         this.clienteDAO = new ClientesDAO(conexion);
     }
 
     @Override
     public boolean validarCliente(NuevoClienteDTO nuevoCliente) throws PersistenciaException {
-        if (nuevoCliente.getNombre().isBlank()
-                && nuevoCliente.getApellido_paterno().isBlank()
-                && nuevoCliente.getApellido_materno().isBlank()
-                && nuevoCliente.getFecha_nacimiento().toString().isBlank()
-                && nuevoCliente.getCURP().isBlank()
-                && nuevoCliente.getRFC().isBlank()
-                && nuevoCliente.getTelefono().isBlank()) {
-            return false;
-        }
+   
+        
         return true;
     }
 

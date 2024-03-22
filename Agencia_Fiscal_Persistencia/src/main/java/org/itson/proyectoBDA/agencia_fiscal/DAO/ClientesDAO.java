@@ -25,9 +25,9 @@ public class ClientesDAO implements IClientesDAO {
     }
 
     @Override
-    public Cliente consultarCliente(String CURP) {
+    public Cliente consultarCliente(String RFC) {
         EntityManager entityManager = conexion.crearConexion();
-        Cliente cliente = entityManager.find(Cliente.class, CURP);
+        Cliente cliente = entityManager.find(Cliente.class, RFC);
         entityManager.close();
         return cliente;
     }

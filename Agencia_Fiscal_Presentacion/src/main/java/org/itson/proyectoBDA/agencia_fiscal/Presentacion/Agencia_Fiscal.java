@@ -5,7 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistro_ClientesBO;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.Registro_ClientesBO;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroClientesBO;
 
 public class Agencia_Fiscal {
 
@@ -21,7 +21,7 @@ public class Agencia_Fiscal {
         entityManager.close();
         entityManagerFactory.close();
 
-        IRegistro_ClientesBO registroClientesBO = new Registro_ClientesBO();
+        IRegistro_ClientesBO registroClientesBO = new RegistroClientesBO();
         RegistrarCliente registrarCliente = new RegistrarCliente(registroClientesBO);
         registrarCliente.setVisible(true);
     }
