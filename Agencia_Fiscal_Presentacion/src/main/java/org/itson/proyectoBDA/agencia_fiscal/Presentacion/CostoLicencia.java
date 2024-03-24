@@ -4,13 +4,12 @@
  */
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite_.fecha_expedicion;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
@@ -29,8 +28,8 @@ public class CostoLicencia extends javax.swing.JFrame {
     final static Float COSTO2ANIODISCAPACITADO = 500f;
     final static Float COSTO3ANIODISCAPACITADO = 700f;
 
+    private boolean discapacidad;
     INavegacion navegacion;
-    private IConsultaTramitesBO consulta_licencia;
     IRegistroLicenciasBO registro_licencia;
     ClienteDTO clienteDTO;
     LicenciaDTO licenciaDTO;
@@ -38,6 +37,7 @@ public class CostoLicencia extends javax.swing.JFrame {
     public CostoLicencia(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
         initComponents();
+        discapacidad();
         setearDatosLicencia();
         navegacion = new Navegacion();
     }
@@ -48,8 +48,12 @@ public class CostoLicencia extends javax.swing.JFrame {
         setearDatosLicencia();
     }
 
+    public void discapacidad() {
+        this.discapacidad = clienteDTO.isDiscapacidad() != false;
+    }
+
     private void setearDatosLicencia() {
-        if (clienteDTO.isDiscapacidad() == false) {
+        if (discapacidad == false) {
             lblCosto.setText("Costo normal");
             lblCostoAnio1.setText("$" + String.valueOf(COSTO1ANIONORMAL));
             lblCostoAnio2.setText("$" + String.valueOf(COSTO2ANIONORMAL));
@@ -60,6 +64,57 @@ public class CostoLicencia extends javax.swing.JFrame {
             lblCostoAnio2.setText("$" + String.valueOf(COSTO2ANIODISCAPACITADO));
             lblCostoAnio3.setText("$" + String.valueOf(COSTO3ANIODISCAPACITADO));
         }
+    }
+
+    public LicenciaDTO transporteDatos() throws java.text.ParseException, PersistenciaException {
+        LicenciaDTO licencia;
+
+        // Obtener la fecha actual como Calendar
+        Calendar fechaActual = Calendar.getInstance();
+
+        // Definir el formato de la fecha
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Seleccionar el costo según las condiciones
+        float costo = 0;
+        int vigencia = 0;
+
+        if (!discapacidad) {
+            if (jbtn1anio.isSelected()) {
+                vigencia = 1;
+                costo = COSTO1ANIONORMAL;
+            } else if (jbtn2anio.isSelected()) {
+                vigencia = 2;
+                costo = COSTO2ANIONORMAL;
+            } else if (jbtn3anio.isSelected()) {
+                vigencia = 3;
+                costo = COSTO3ANIONORMAL;
+            }
+        } else {
+            if (jbtn1anio.isSelected()) {
+                vigencia = 1;
+                costo = COSTO1ANIODISCAPACITADO;
+            } else if (jbtn2anio.isSelected()) {
+                vigencia = 2;
+                costo = COSTO2ANIODISCAPACITADO;
+            } else if (jbtn3anio.isSelected()) {
+                vigencia = 3;
+                costo = COSTO3ANIODISCAPACITADO;
+            }
+        }
+
+        // Crear la licencia con la fecha actual y el costo
+        // Convertir fechaActual a Date
+        Date fechaActualDate = fechaActual.getTime();
+
+        // Crear un nuevo objeto Calendar y establecer la fecha actual
+        Calendar fechaActualCalendar = Calendar.getInstance();
+        fechaActualCalendar.setTime(fechaActualDate);
+
+        // Crear la licencia con la fecha actual y el costo
+        licencia = registro_licencia.transporteDatos(new LicenciaDTO(vigencia, fechaActualCalendar, costo));
+
+        return licencia;
     }
 
     /**
@@ -216,32 +271,10 @@ public class CostoLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Obtener la fecha de nacimiento del usuario
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-        // Convertir la fecha de nacimiento a un objeto Calendar
-        Calendar calendar = Calendar.getInstance();
-
-        // Establecer la fecha actual
-        Calendar fechaActual = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, fechaActual.get(Calendar.YEAR));
-        calendar.set(Calendar.MONTH, fechaActual.get(Calendar.MONTH));
-        calendar.set(Calendar.DAY_OF_MONTH, fechaActual.get(Calendar.DAY_OF_MONTH));
-
-        if (jbtn1anio.isSelected()) {
-            if (clienteDTO.isDiscapacidad() == false) {
-                try {
-                    LicenciaDTO licencia = registro_licencia.transporteDatos(new LicenciaDTO(1, fechaActual, COSTO1ANIONORMAL));
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(CostoLicencia.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-
-            }
-        } else if (jbtn2anio.isSelected()) {
-
-        } else if (jbtn3anio.isSelected()) {
-
+        try {
+            transporteDatos();
+        } catch (ParseException | PersistenciaException ex) {
+            Logger.getLogger(CostoLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
