@@ -24,12 +24,12 @@ public class Licencia extends Tramite implements Serializable {
     public Licencia() {
     }
 
-    public Licencia(Calendar fecha_expedicion, Float costo, Cliente cliente) {
-        super(fecha_expedicion, costo, cliente);
+    public Licencia(Calendar fecha_expedicion, Float costo, Long id_cliente) {
+        super(fecha_expedicion, costo, id_cliente);
     }
 
-    public Licencia(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
-        super(id, fecha_expedicion, costo, cliente);
+    public Licencia(Long id, Calendar fecha_expedicion, Float costo, Long id_cliente) {
+        super(id, fecha_expedicion, costo, id_cliente);
     }
 
     public Licencia(Long id, Integer vigencia) {
@@ -49,9 +49,7 @@ public class Licencia extends Tramite implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     @Override
     public int hashCode() {

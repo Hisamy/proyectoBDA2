@@ -10,18 +10,17 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ILicenciasDAO;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 
-/**
- *
- * @author Ramosz
- */
+
 public class RegistroLicenciasBO implements IRegistroLicenciasBO {
 
     private IClientesDAO clienteDAO;
     private ILicenciasDAO licenciaDAO;
+    private Cliente cliente;
     static final Logger logger = Logger.getLogger(RegistroClientesBO.class.getName());
 
     public RegistroLicenciasBO() {
@@ -31,7 +30,10 @@ public class RegistroLicenciasBO implements IRegistroLicenciasBO {
 
     @Override
     public Licencia registrarLicencia(LicenciaDTO nuevoLicencia) throws PersistenciaException {
-        Licencia nuevaLicencia = licenciaDAO.agregarLicencia(new Licencia(nuevoLicencia.getFecha_expedicion(), nuevoLicencia.getCosto(), Cliente));
+        Licencia nuevaLicencia = licenciaDAO.agregarLicencia(new Licencia(
+                        nuevoLicencia.getFecha_expedicion(), 
+                        nuevoLicencia.getCosto(), 
+                         cliente.getId_cliente()));
         return nuevaLicencia;
     }
 

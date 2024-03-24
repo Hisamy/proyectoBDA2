@@ -37,7 +37,9 @@ public class ClientesDAO implements IClientesDAO {
     @Override
     public Cliente consultarCliente(String RFC) {
         EntityManager entityManager = conexion.crearConexion();
-        TypedQuery<Cliente> query = entityManager.createQuery("SELECT c FROM Cliente c WHERE c.RFC = :RFC", Cliente.class);
+        TypedQuery<Cliente> query = entityManager.createQuery(
+                "SELECT c FROM Cliente c WHERE c.RFC = :RFC", 
+                Cliente.class);
         query.setParameter("RFC", RFC);
         Cliente cliente = null;
         try {

@@ -28,15 +28,14 @@ public class RegistroClientesBO implements IRegistroClientesBO {
      * Registra un cliente. Convierte el NuevoClienteDTO a cliente para poder mandar los datos del cliente a la capa de persistencia.
      *
      * @param nuevoCliente nuevo cliente que se está registrando
-     * @return una variable de tipo Cliente
+     * @return una variable de tipo id_cliente
      * @throws PersistenciaException Por si no se puedo guardar correctamente el cliente.
      */
     @Override
     public Cliente registrarCliente(NuevoClienteDTO nuevoCliente) throws PersistenciaException {
         try {
             validarCliente(nuevoCliente);
-            Cliente clienteNuevo = clienteDAO.agregarCliente(
-                    new Cliente(
+            Cliente clienteNuevo = clienteDAO.agregarCliente(new Cliente(
                             nuevoCliente.getCURP(),
                             nuevoCliente.getNombre(),
                             nuevoCliente.getApellido_paterno(),
