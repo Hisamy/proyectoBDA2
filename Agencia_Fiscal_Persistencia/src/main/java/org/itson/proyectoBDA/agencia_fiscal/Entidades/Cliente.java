@@ -93,7 +93,15 @@ public class Cliente implements Serializable {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public Cliente(String CURP, String nombre, String apellido_paterno, String apellido_materno, boolean discapacidad, String RFC, String telefono, Calendar fecha_nacimiento, List<Tramite> tramites) {
+    public Cliente(String CURP, 
+            String nombre, 
+            String apellido_paterno, 
+            String apellido_materno, 
+            boolean discapacidad, 
+            String RFC, 
+            String telefono,
+            Calendar fecha_nacimiento, 
+            List<Tramite> tramites) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
