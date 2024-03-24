@@ -73,15 +73,15 @@ public class Tramites extends javax.swing.JFrame {
         jPanel2.add(lblCosto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 70, -1));
 
         lblSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        lblSeleccion.setText("Licencia");
+        lblSeleccion.setText("Placas");
         jPanel2.add(lblSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 70, -1));
 
         jLabel2.setText("______________________________________________________________________________________________________");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, 20));
 
         lblVigencia2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        lblVigencia2.setText("Placas");
-        jPanel2.add(lblVigencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 50, -1));
+        lblVigencia2.setText("Licencia");
+        jPanel2.add(lblVigencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 60, -1));
 
         btnSolicitarLicencia.setBackground(new java.awt.Color(65, 34, 52));
         btnSolicitarLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

@@ -12,8 +12,6 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.NuevoClienteDTO;
 
-
-
 public class RegistrarCliente extends javax.swing.JFrame {
 
     INavegacion navegacion;

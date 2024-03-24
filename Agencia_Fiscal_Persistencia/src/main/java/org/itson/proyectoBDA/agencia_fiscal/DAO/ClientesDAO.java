@@ -1,14 +1,10 @@
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
-import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
-import org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite;
 
 public class ClientesDAO implements IClientesDAO {
 
@@ -26,7 +22,7 @@ public class ClientesDAO implements IClientesDAO {
         entityManager.persist(nuevoCliente);
         entityManager.getTransaction().commit();
         entityManager.close();
-        
+
 //        List<Tramite> licencias = new ArrayList<>();
 //        nuevoCliente.getTramites().forEach(licencia -> {
 //            licencias.add(
@@ -35,17 +31,9 @@ public class ClientesDAO implements IClientesDAO {
 //                    )
 //            );
 //        });
-
         return nuevoCliente;
     }
 
-//    @Override
-//    public Cliente consultarCliente(String RFC) {
-//        EntityManager entityManager = conexion.crearConexion();
-//        Cliente cliente = entityManager.find(Cliente.class, RFC);
-//        entityManager.close();
-//        return cliente;
-//    }
     @Override
     public Cliente consultarCliente(String RFC) {
         EntityManager entityManager = conexion.crearConexion();
@@ -61,5 +49,4 @@ public class ClientesDAO implements IClientesDAO {
         }
         return cliente;
     }
-
 }

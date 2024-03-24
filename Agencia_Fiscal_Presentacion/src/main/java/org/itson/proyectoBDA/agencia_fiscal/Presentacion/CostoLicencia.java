@@ -4,21 +4,41 @@
  */
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite_.fecha_expedicion;
+import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
-import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaTramitesBO;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroLicenciasBO;
 
 public class CostoLicencia extends javax.swing.JFrame {
 
+    final static Float COSTO1ANIONORMAL = 600f;
+    final static Float COSTO2ANIONORMAL = 900f;
+    final static Float COSTO3ANIONORMAL = 1100f;
+
+    final static Float COSTO1ANIODISCAPACITADO = 200f;
+    final static Float COSTO2ANIODISCAPACITADO = 500f;
+    final static Float COSTO3ANIODISCAPACITADO = 700f;
+
     INavegacion navegacion;
-    private TramiteDTO licenciaDTO;
+    private IConsultaTramitesBO consulta_licencia;
+    IRegistroLicenciasBO registro_licencia;
     ClienteDTO clienteDTO;
+    LicenciaDTO licenciaDTO;
 
     public CostoLicencia(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
         initComponents();
+        setearDatosLicencia();
         navegacion = new Navegacion();
     }
 
@@ -29,7 +49,17 @@ public class CostoLicencia extends javax.swing.JFrame {
     }
 
     private void setearDatosLicencia() {
-        lblCostoAnio1.setText(licenciaDTO.getCosto().toString());
+        if (clienteDTO.isDiscapacidad() == false) {
+            lblCosto.setText("Costo normal");
+            lblCostoAnio1.setText("$" + String.valueOf(COSTO1ANIONORMAL));
+            lblCostoAnio2.setText("$" + String.valueOf(COSTO2ANIONORMAL));
+            lblCostoAnio3.setText("$" + String.valueOf(COSTO3ANIONORMAL));
+        } else {
+            lblCosto.setText("Costo discapacitados");
+            lblCostoAnio1.setText("$" + String.valueOf(COSTO1ANIODISCAPACITADO));
+            lblCostoAnio2.setText("$" + String.valueOf(COSTO2ANIODISCAPACITADO));
+            lblCostoAnio3.setText("$" + String.valueOf(COSTO3ANIODISCAPACITADO));
+        }
     }
 
     /**
@@ -45,7 +75,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblCostoLicencia = new javax.swing.JLabel();
         lblVigencia = new javax.swing.JLabel();
-        lblCosto1 = new javax.swing.JLabel();
+        lblCosto = new javax.swing.JLabel();
         lblSeleccion = new javax.swing.JLabel();
         lblCostoAnio3 = new javax.swing.JLabel();
         lbl2anios = new javax.swing.JLabel();
@@ -54,8 +84,8 @@ public class CostoLicencia extends javax.swing.JFrame {
         lbl1anio = new javax.swing.JLabel();
         lblCostoAnio1 = new javax.swing.JLabel();
         lblCostoAnio2 = new javax.swing.JLabel();
-        jbtn2anios = new javax.swing.JRadioButton();
-        jbtn3anios = new javax.swing.JRadioButton();
+        jbtn2anio = new javax.swing.JRadioButton();
+        jbtn3anio = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         flechaIcon = new javax.swing.JLabel();
@@ -87,10 +117,10 @@ public class CostoLicencia extends javax.swing.JFrame {
         lblVigencia.setText("Vigencia");
         jPanel1.add(lblVigencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 70, -1));
 
-        lblCosto1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        lblCosto1.setForeground(new java.awt.Color(109, 70, 107));
-        lblCosto1.setText("Costo");
-        jPanel1.add(lblCosto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 50, -1));
+        lblCosto.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        lblCosto.setForeground(new java.awt.Color(109, 70, 107));
+        lblCosto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 200, 20));
 
         lblSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblSeleccion.setForeground(new java.awt.Color(109, 70, 107));
@@ -130,13 +160,13 @@ public class CostoLicencia extends javax.swing.JFrame {
         lblCostoAnio2.setText("$900");
         jPanel1.add(lblCostoAnio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
 
-        buttonGroup1.add(jbtn2anios);
-        jbtn2anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jPanel1.add(jbtn2anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, -1));
+        buttonGroup1.add(jbtn2anio);
+        jbtn2anio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jPanel1.add(jbtn2anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, -1, -1));
 
-        buttonGroup1.add(jbtn3anios);
-        jbtn3anios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jPanel1.add(jbtn3anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
+        buttonGroup1.add(jbtn3anio);
+        jbtn3anio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jPanel1.add(jbtn3anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
 
         jLabel2.setText("____________________________________________________________________________________________");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
@@ -186,7 +216,33 @@ public class CostoLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // Obtener la fecha de nacimiento del usuario
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Convertir la fecha de nacimiento a un objeto Calendar
+        Calendar calendar = Calendar.getInstance();
+
+        // Establecer la fecha actual
+        Calendar fechaActual = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, fechaActual.get(Calendar.YEAR));
+        calendar.set(Calendar.MONTH, fechaActual.get(Calendar.MONTH));
+        calendar.set(Calendar.DAY_OF_MONTH, fechaActual.get(Calendar.DAY_OF_MONTH));
+
+        if (jbtn1anio.isSelected()) {
+            if (clienteDTO.isDiscapacidad() == false) {
+                try {
+                    LicenciaDTO licencia = registro_licencia.transporteDatos(new LicenciaDTO(1, fechaActual, COSTO1ANIONORMAL));
+                } catch (PersistenciaException ex) {
+                    Logger.getLogger(CostoLicencia.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+
+            }
+        } else if (jbtn2anio.isSelected()) {
+
+        } else if (jbtn3anio.isSelected()) {
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbtn1anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn1anioActionPerformed
@@ -204,12 +260,12 @@ public class CostoLicencia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jbtn1anio;
-    private javax.swing.JRadioButton jbtn2anios;
-    private javax.swing.JRadioButton jbtn3anios;
+    private javax.swing.JRadioButton jbtn2anio;
+    private javax.swing.JRadioButton jbtn3anio;
     private javax.swing.JLabel lbl1anio;
     private javax.swing.JLabel lbl2anios;
     private javax.swing.JLabel lbl3anios;
-    private javax.swing.JLabel lblCosto1;
+    private javax.swing.JLabel lblCosto;
     private javax.swing.JLabel lblCostoAnio1;
     private javax.swing.JLabel lblCostoAnio2;
     private javax.swing.JLabel lblCostoAnio3;

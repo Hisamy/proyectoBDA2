@@ -24,13 +24,12 @@ public class Licencia extends Tramite implements Serializable {
     public Licencia() {
     }
 
-    public Licencia(Integer vigencia, Calendar fecha_expedicion, Float costo) {
-        super(fecha_expedicion, costo);
-        this.vigencia = vigencia;
+    public Licencia(Calendar fecha_expedicion, Float costo, Cliente cliente) {
+        super(fecha_expedicion, costo, cliente);
     }
 
-    public Licencia(Long id, Calendar fecha_expedicion, Float costo, String CURP) {
-        super(id, fecha_expedicion, costo, CURP);
+    public Licencia(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
+        super(id, fecha_expedicion, costo, cliente);
     }
 
     public Licencia(Long id, Integer vigencia) {

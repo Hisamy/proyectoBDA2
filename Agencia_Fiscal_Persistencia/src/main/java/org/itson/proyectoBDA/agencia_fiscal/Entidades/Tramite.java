@@ -1,4 +1,3 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.Entidades;
 
 import java.io.Serializable;
@@ -16,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 
 @Entity
 @Table(name = "tramites")
@@ -36,7 +34,6 @@ public class Tramite implements Serializable {
     @Column(name = "costo", nullable = false, length = 50)
     private Float costo;
 
-
     @ManyToOne()
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
@@ -44,21 +41,13 @@ public class Tramite implements Serializable {
     public Tramite() {
     }
 
-    public Tramite(Long id, Calendar fecha_expedicion, Float costo, String CURP) {
-        this.id = id;
+    public Tramite(Calendar fecha_expedicion, Float costo, Cliente cliente) {
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
-   
+        this.cliente = cliente;
     }
 
-    public Tramite(Calendar fecha_expedicion, Float costo) {
-        this.fecha_expedicion = fecha_expedicion;
-        this.costo = costo;
-    }
-    
-    
-
-    public Tramite(Long id, Calendar fecha_expedicion, Float costo, String CURP, Cliente cliente) {
+    public Tramite(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
         this.id = id;
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;

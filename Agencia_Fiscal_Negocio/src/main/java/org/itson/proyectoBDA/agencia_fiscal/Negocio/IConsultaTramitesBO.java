@@ -5,7 +5,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
 
 
-public interface ITramitesBO {
+public interface IConsultaTramitesBO {
     
     public LicenciaDTO consultarInformacionLicencia(Licencia licencia);
     
