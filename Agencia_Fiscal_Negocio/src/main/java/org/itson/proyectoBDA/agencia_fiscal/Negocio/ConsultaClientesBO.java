@@ -20,7 +20,8 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     }
 
     /**
-     * Metodo el cual regresa los datos del cliente con el RFC encontrado a la capa de presentación mediante la DTO.
+     * Metodo el cual regresa los datos 
+     * del cliente con el RFC encontrado a la capa de presentación mediante la DTO.
      *
      * @param cliente
      * @return

@@ -36,22 +36,22 @@ public class Tramite implements Serializable {
 
     @ManyToOne()
     @JoinColumn(name = "id_cliente", nullable = false)
-    protected Long id_cliente;
+    protected Cliente cliente;
 
     public Tramite() {
     }
 
-    public Tramite(Calendar fecha_expedicion, Float costo, Long id_cliente) {
+    public Tramite(Calendar fecha_expedicion, Float costo, Cliente Cliente) {
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
-        this.id_cliente = id_cliente;
+        this.cliente = cliente;
     }
 
-    public Tramite(Long id, Calendar fecha_expedicion, Float costo, Long id_cliente) {
+    public Tramite(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
         this.id = id;
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
-        this.id_cliente = id_cliente;
+        this.cliente = cliente;
     }
 
     public Long getId() {
@@ -78,12 +78,12 @@ public class Tramite implements Serializable {
         this.costo = costo;
     }
 
-    public Long getCliente() {
-        return id_cliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setCliente(Long cliente) {
-        this.id_cliente = cliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

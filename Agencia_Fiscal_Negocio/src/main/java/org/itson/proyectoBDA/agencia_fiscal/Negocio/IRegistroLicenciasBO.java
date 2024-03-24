@@ -14,7 +14,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
  */
 public interface IRegistroLicenciasBO {
 
-    Licencia registrarLicencia(LicenciaDTO nuevoLicencia) throws PersistenciaException;
+    Licencia registrarLicencia(LicenciaDTO nuevoLicencia,String RFC) throws PersistenciaException;
 
     LicenciaDTO transporteDatos(LicenciaDTO nuevaLicencia) throws PersistenciaException;
 }

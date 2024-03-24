@@ -40,8 +40,8 @@ public class Placa extends Tramite implements Serializable {
         this.numero_serie = numero_serie;
     }
 
-    public Placa(Long id, Calendar fecha_expedicion, Float costo, Long id_cliente) {
-        super(id, fecha_expedicion, costo, id_cliente);
+    public Placa(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
+        super(id, fecha_expedicion, costo, cliente);
     }
 
     public String getNumero_alfanumerico() {

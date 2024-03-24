@@ -49,7 +49,11 @@ public class CostoLicencia extends javax.swing.JFrame {
     }
 
     public void discapacidad() {
-        this.discapacidad = clienteDTO.isDiscapacidad() != false;
+        if (clienteDTO.isDiscapacidad() == true) {
+            this.discapacidad = true;
+        } else {
+            this.discapacidad = false;
+        }
     }
 
     private void setearDatosLicencia() {
