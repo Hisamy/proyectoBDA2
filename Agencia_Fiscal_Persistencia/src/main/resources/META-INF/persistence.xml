@@ -8,7 +8,7 @@
     <class>org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo</class>
     <class>org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo_Nuevo</class>
     <class>org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo_Usado</class>
-    <class>org.itson.proyectoBDA.agencia_fiscal.Entidades.id_cliente</class>
+    <class>org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/agencia_fiscal?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

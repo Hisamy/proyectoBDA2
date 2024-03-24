@@ -16,5 +16,5 @@ public interface IRegistroLicenciasBO {
 
     Licencia registrarLicencia(LicenciaDTO nuevoLicencia,String RFC) throws PersistenciaException;
 
-    LicenciaDTO transporteDatos(LicenciaDTO nuevaLicencia) throws PersistenciaException;
+    LicenciaDTO transporteDatos(LicenciaDTO nuevaLicencia, String RFC) throws PersistenciaException;
 }

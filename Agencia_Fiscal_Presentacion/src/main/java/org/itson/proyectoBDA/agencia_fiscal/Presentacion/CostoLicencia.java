@@ -15,7 +15,6 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroLicenciasBO;
 
 public class CostoLicencia extends javax.swing.JFrame {
@@ -29,13 +28,14 @@ public class CostoLicencia extends javax.swing.JFrame {
     final static Float COSTO3ANIODISCAPACITADO = 700f;
 
     private boolean discapacidad;
-    INavegacion navegacion;
-    IRegistroLicenciasBO registro_licencia;
-    ClienteDTO clienteDTO;
-    LicenciaDTO licenciaDTO;
+    private INavegacion navegacion;
+    private IRegistroLicenciasBO registro_licencia;
+    private ClienteDTO clienteDTO;
+    private LicenciaDTO licenciaDTO;
 
-    public CostoLicencia(ClienteDTO clienteDTO) {
+    public CostoLicencia(ClienteDTO clienteDTO, IRegistroLicenciasBO registro_licencia) {
         this.clienteDTO = clienteDTO;
+        this.registro_licencia = registro_licencia;
         initComponents();
         discapacidad();
         setearDatosLicencia();
@@ -116,7 +116,12 @@ public class CostoLicencia extends javax.swing.JFrame {
         fechaActualCalendar.setTime(fechaActualDate);
 
         // Crear la licencia con la fecha actual y el costo
-        licencia = registro_licencia.transporteDatos(new LicenciaDTO(vigencia, fechaActualCalendar, costo));
+        licencia = registro_licencia.transporteDatos(
+                new LicenciaDTO(
+                        vigencia, 
+                        fechaActualCalendar, 
+                        costo),
+                clienteDTO.getRFC());
 
         return licencia;
     }

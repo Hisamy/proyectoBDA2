@@ -34,14 +34,14 @@ public class Tramite implements Serializable {
     @Column(name = "costo", nullable = false, length = 50)
     private Float costo;
 
-    @ManyToOne()
-    @JoinColumn(name = "id_cliente", nullable = false)
-    protected Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+    private Cliente cliente;
 
     public Tramite() {
     }
 
-    public Tramite(Calendar fecha_expedicion, Float costo, Cliente Cliente) {
+    public Tramite(Calendar fecha_expedicion, Float costo, Cliente cliente) {
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
         this.cliente = cliente;
