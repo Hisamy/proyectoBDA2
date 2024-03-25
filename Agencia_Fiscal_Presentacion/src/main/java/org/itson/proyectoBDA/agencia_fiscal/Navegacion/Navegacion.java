@@ -9,6 +9,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Presentacion.BuscarAutomovil;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.BuscarCliente;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.CostoLicencia;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.DatosAutomovil;
+import org.itson.proyectoBDA.agencia_fiscal.Presentacion.ExitoLicencia;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.HistorialLicencias;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.Index;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.SolicitarPlacas;
@@ -79,7 +80,14 @@ public class Navegacion implements INavegacion {
     @Override
     public void cambiarFrmTramites(JFrame ventana) {
         ventana.dispose();
-//        Tramites opcionesCliente = new Tramites();
-//        opcionesCliente.setVisible(true);
+        Tramites opcionesCliente = new Tramites();
+        opcionesCliente.setVisible(true);
     }
+
+    @Override
+    public void cambiarFrmExitoLicencia(JFrame ventana) {
+//        ventana.dispose();
+//        ExitoLicencia exitoLicencia = new ExitoLicencia();
+//        exitoLicencia.setVisible(true);
+        }
 }

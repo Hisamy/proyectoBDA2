@@ -37,6 +37,10 @@ public class Tramites extends javax.swing.JFrame {
         lblNombreCliente.setText("Cliente: " + clienteDTO.getNombre() + "" + clienteDTO.getApellido_paterno() + " " + clienteDTO.getApellido_materno());
         navegacion = new Navegacion();
     }
+
+    public Tramites() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 
     /**

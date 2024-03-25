@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package org.itson.proyectoBDA.agencia_fiscal.Navegacion;
 
 import javax.swing.JFrame;
 
-/**
- *
- * @author Ramosz
- */
+
 public interface INavegacion {
 
     public void cambiarFrmBuscarAutomovil(JFrame ventana);
@@ -29,4 +23,6 @@ public interface INavegacion {
     public void cambiarFrmSolicitarPlacas(JFrame ventana);
 
     public void cambiarFrmTramites(JFrame ventana);
+    
+    public void cambiarFrmExitoLicencia(JFrame ventana);
 }

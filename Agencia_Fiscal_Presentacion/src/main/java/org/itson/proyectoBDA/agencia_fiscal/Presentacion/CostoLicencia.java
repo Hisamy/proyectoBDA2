@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import java.text.ParseException;
@@ -16,8 +12,9 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroLicenciasBO;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroLicenciasBO;
 
-public class CostoLicencia extends javax.swing.JFrame {
+public final class CostoLicencia extends javax.swing.JFrame {
 
     final static Float COSTO1ANIONORMAL = 600f;
     final static Float COSTO2ANIONORMAL = 900f;
@@ -29,14 +26,14 @@ public class CostoLicencia extends javax.swing.JFrame {
 
     private boolean discapacidad;
     private INavegacion navegacion;
-    private IRegistroLicenciasBO registro_licencia;
+    private IRegistroLicenciasBO registroLicenciasBO;
     private ClienteDTO clienteDTO;
     private LicenciaDTO licenciaDTO;
 
     public CostoLicencia(ClienteDTO clienteDTO, IRegistroLicenciasBO registro_licencia) {
-        this.clienteDTO = clienteDTO;
-        this.registro_licencia = registro_licencia;
         initComponents();
+        this.clienteDTO = clienteDTO;
+        this.registroLicenciasBO = new RegistroLicenciasBO(); 
         discapacidad();
         setearDatosLicencia();
         navegacion = new Navegacion();
@@ -71,8 +68,6 @@ public class CostoLicencia extends javax.swing.JFrame {
     }
 
     public LicenciaDTO transporteDatos() throws java.text.ParseException, PersistenciaException {
-        LicenciaDTO licencia;
-
         // Obtener la fecha actual como Calendar
         Calendar fechaActual = Calendar.getInstance();
 
@@ -116,14 +111,14 @@ public class CostoLicencia extends javax.swing.JFrame {
         fechaActualCalendar.setTime(fechaActualDate);
 
         // Crear la licencia con la fecha actual y el costo
-        licencia = registro_licencia.transporteDatos(
+        licenciaDTO = registroLicenciasBO.transporteDatos(
                 new LicenciaDTO(
                         vigencia, 
                         fechaActualCalendar, 
                         costo),
                 clienteDTO.getRFC());
 
-        return licencia;
+        return licenciaDTO;
     }
 
     /**
@@ -151,7 +146,7 @@ public class CostoLicencia extends javax.swing.JFrame {
         jbtn2anio = new javax.swing.JRadioButton();
         jbtn3anio = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnContinuar = new javax.swing.JButton();
         flechaIcon = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblCostoLicencia1 = new javax.swing.JLabel();
@@ -235,16 +230,16 @@ public class CostoLicencia extends javax.swing.JFrame {
         jLabel2.setText("____________________________________________________________________________________________");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(65, 34, 52));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Continuar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnContinuar.setBackground(new java.awt.Color(65, 34, 52));
+        btnContinuar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnContinuar.setForeground(new java.awt.Color(255, 255, 255));
+        btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnContinuarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 123, 31));
+        jPanel1.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 123, 31));
 
         flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
@@ -279,13 +274,17 @@ public class CostoLicencia extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         try {
             transporteDatos();
+            ExitoLicencia exitoLicencia = new ExitoLicencia(registroLicenciasBO, licenciaDTO);
+            exitoLicencia.setVisible(true);
+            dispose();
         } catch (ParseException | PersistenciaException ex) {
             Logger.getLogger(CostoLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void jbtn1anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn1anioActionPerformed
 
@@ -293,9 +292,9 @@ public class CostoLicencia extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnContinuar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel flechaIcon;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

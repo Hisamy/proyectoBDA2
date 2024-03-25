@@ -18,9 +18,12 @@ public class Licencia extends Tramite implements Serializable {
     public Licencia() {
     }
 
-    public Licencia(Calendar fecha_expedicion, Float costo, Cliente cliente) {
+    public Licencia(Integer vigencia, Calendar fecha_expedicion, Float costo, Cliente cliente) {
         super(fecha_expedicion, costo, cliente);
+        this.vigencia = vigencia;
     }
+
+    
 
     public Licencia(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
         super(id, fecha_expedicion, costo, cliente);
