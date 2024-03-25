@@ -135,21 +135,23 @@ public class BuscarCliente extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             ClienteDTO cliente = consultaClientes.transporteDatos(txtRFC.getText());
-            if (validarCampos(cliente)) {
+            if (cliente != null && validarCampos(cliente)) {
                 MostrarDatos mostrarDatos = new MostrarDatos(cliente);
                 this.dispose();
                 mostrarDatos.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(
                         rootPane,
-                        "Cliente menor de edad",
-                        "Error", HEIGHT);
+                        "Cliente menor de edad o no encontrado",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         } catch (FindException ex) {
             JOptionPane.showMessageDialog(
                     rootPane,
-                    "No se encontró el cliente",
-                    "Cliente no encontrado", HEIGHT);
+                    "Cliente no encontrado",
+                    "Cliente no encontrado",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 

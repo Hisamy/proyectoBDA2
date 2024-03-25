@@ -20,8 +20,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     }
 
     /**
-     * Metodo el cual regresa los datos 
-     * del cliente con el RFC encontrado a la capa de presentación mediante la DTO.
+     * Metodo el cual regresa los datos del cliente con el RFC encontrado a la capa de presentación mediante la DTO.
      *
      * @param cliente
      * @return
@@ -51,17 +50,21 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     @Override
     public Cliente consultarClientePorRFC(String RFC) throws FindException {
         Cliente cliente = clienteDAO.consultarCliente(RFC);
-        consultarClienteDTOPorRFC(cliente);
-        Cliente getCliente = new Cliente(
-                cliente.getCURP(),
-                cliente.getNombre(),
-                cliente.getApellido_paterno(),
-                cliente.getApellido_materno(),
-                cliente.isDiscapacidad(),
-                cliente.getRFC(),
-                cliente.getTelefono(),
-                cliente.getFecha_nacimiento());
-        return getCliente;
+        if (cliente != null) {
+
+            consultarClienteDTOPorRFC(cliente);
+            Cliente getCliente = new Cliente(
+                    cliente.getCURP(),
+                    cliente.getNombre(),
+                    cliente.getApellido_paterno(),
+                    cliente.getApellido_materno(),
+                    cliente.isDiscapacidad(),
+                    cliente.getRFC(),
+                    cliente.getTelefono(),
+                    cliente.getFecha_nacimiento());
+            return getCliente;
+        }
+        return null;
     }
 
     /**
@@ -74,15 +77,18 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     @Override
     public ClienteDTO transporteDatos(String RFC) throws FindException {
         Cliente cliente = consultarClientePorRFC(RFC);
-        ClienteDTO clienteDTO = new ClienteDTO(
-                cliente.getCURP(),
-                cliente.getNombre(),
-                cliente.getApellido_paterno(),
-                cliente.getApellido_materno(),
-                cliente.isDiscapacidad(),
-                cliente.getRFC(),
-                cliente.getTelefono(),
-                cliente.getFecha_nacimiento());
-        return clienteDTO;
+        if (cliente != null) {
+            ClienteDTO clienteDTO = new ClienteDTO(
+                    cliente.getCURP(),
+                    cliente.getNombre(),
+                    cliente.getApellido_paterno(),
+                    cliente.getApellido_materno(),
+                    cliente.isDiscapacidad(),
+                    cliente.getRFC(),
+                    cliente.getTelefono(),
+                    cliente.getFecha_nacimiento());
+            return clienteDTO;
+        }
+        return null;
     }
 }
