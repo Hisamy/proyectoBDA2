@@ -14,8 +14,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 
 public class ConsultaClientesBO implements IConsultaClientesBO {
 
-    private IClientesDAO clienteDAO;
-    static final Logger logger = Logger.getLogger(RegistroClientesBO.class.getName());
+    private final IClientesDAO clienteDAO;
 
     public ConsultaClientesBO() {
         IConexion conexion = new Conexion();
