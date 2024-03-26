@@ -23,12 +23,10 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     }
 
     /**
-     * Metodo el cual regresa los datos del cliente con el RFC encontrado a la
-     * capa de presentación mediante la DTO.
-     *
-     * @param cliente
-     * @return
-     * @throws FindException
+     * Consulta los datos de un cliente por su RFC y los retorna en formato DTO.
+     * @param cliente El cliente a consultar.
+     * @return ClienteDTO con los datos del cliente.
+     * @throws FindException Si ocurre un error durante la consulta.
      */
     @Override
     public ClienteDTO consultarClienteDTOPorRFC(Cliente cliente) throws FindException {
@@ -48,14 +46,10 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     }
 
     /**
-     * Recibe el RFC que se envió desde la presentación mediante la DTO y luego
-     * se conecta mediante clienteDAO para consultar al cliente en la base de
-     * datos, el cliente con el RFC encontrado se manda al metodo
-     * consultarClienteDTOPorRFC de tipo DTO.
-     *
-     * @param RFC
-     * @return
-     * @throws FindException
+     * Consulta un cliente por su RFC.
+     * @param RFC El RFC del cliente a consultar.
+     * @return Cliente con los datos del cliente.
+     * @throws FindException Si ocurre un error durante la consulta.
      */
     @Override
     public Cliente consultarClientePorRFC(String RFC) throws FindException {
@@ -79,12 +73,10 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     }
 
     /**
-     * Se hizo un metodo transporteDatos() para mandar el RFC al metodo
-     * consultarClientePorRFC()
-     *
-     * @param RFC
-     * @return
-     * @throws FindException
+     * Realiza el transporte de datos de un cliente a través del RFC.
+     * @param RFC El RFC del cliente a consultar.
+     * @return ClienteDTO con los datos del cliente.
+     * @throws FindException Si ocurre un error durante la consulta.
      */
     @Override
     public ClienteDTO transporteDatos(String RFC) throws FindException {
@@ -101,6 +93,11 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
         return clienteDTO;
     }
 
+    /**
+     * Valida la edad del cliente.
+     * @param cliente El cliente a validar.
+     * @throws FindException Si el cliente es menor de edad.
+     */
     @Override
     public void validarEdad(Cliente cliente) throws FindException {
         if (calcularEdad(cliente) < 18) {
@@ -110,6 +107,11 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
 
     }
 
+    /**
+     * Calcula la edad de un cliente en base a su fecha de nacimiento.
+     * @param cliente El cliente del cual se calcula la edad.
+     * @return La edad del cliente.
+     */
     @Override
     public Integer calcularEdad(Cliente cliente) {
         Calendar fechaNacimiento = cliente.getFecha_nacimiento();
