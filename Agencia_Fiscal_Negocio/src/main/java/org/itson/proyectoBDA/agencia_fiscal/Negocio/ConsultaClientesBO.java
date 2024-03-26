@@ -2,7 +2,6 @@ package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.logging.Logger;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
