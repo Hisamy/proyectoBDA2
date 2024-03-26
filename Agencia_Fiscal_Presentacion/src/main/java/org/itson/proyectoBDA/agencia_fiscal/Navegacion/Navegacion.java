@@ -5,7 +5,6 @@
 package org.itson.proyectoBDA.agencia_fiscal.Navegacion;
 
 import javax.swing.JFrame;
-import org.itson.proyectoBDA.agencia_fiscal.Presentacion.BuscarAutomovil;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.BuscarCliente;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.CostoLicencia;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.DatosAutomovil;
@@ -24,8 +23,8 @@ public class Navegacion implements INavegacion {
     @Override
     public void cambiarFrmBuscarAutomovil(JFrame ventana) {
         ventana.dispose();
-        BuscarAutomovil opcionesCliente = new BuscarAutomovil();
-        opcionesCliente.setVisible(true);
+//        BuscarAutomovil opcionesCliente = new BuscarAutomovil();
+//        opcionesCliente.setVisible(true);
     }
 
     @Override

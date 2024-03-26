@@ -1,6 +1,8 @@
 package org.itson.proyectoBDA.agencia_fiscal.Entidades;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -9,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,11 +24,14 @@ public class Vehiculo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "numero_serie")
+    @Column(name = "id")
     private Long id;
+    
+    @Column(name = "numero_serie")
+    private String numero_serie;
 
     @Column(name = "modelo", nullable = false, length = 20)
-    private String modelo;
+    private Integer modelo;
 
     @Column(name = "color", nullable = false, length = 20)
     private String color;
@@ -37,25 +45,44 @@ public class Vehiculo implements Serializable {
     @Column(name = "licencia_vigente", nullable = false)
     private boolean licencia_vigente;
 
-    @Column(name = "CURP", nullable = false, length = 20)
-    private String CURP;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+    private Cliente cliente;
 
-    @Column(name = "numero_alfanumerico", nullable = false, length = 10)
-    private String numero_alfanumerico;
+    @OneToMany (cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "placa")
+    private List<Placa>placas;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(Long id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
-        this.id = id;
+    public Vehiculo(
+            String numero_serie, 
+            Integer modelo, 
+            String color,
+            String marca, 
+            String linea, 
+            boolean licencia_vigente) {
+        this.numero_serie = numero_serie;
         this.modelo = modelo;
         this.color = color;
         this.marca = marca;
         this.linea = linea;
         this.licencia_vigente = licencia_vigente;
-        this.CURP = CURP;
-        this.numero_alfanumerico = numero_alfanumerico;
     }
+
+    public Vehiculo(Long id, String numero_serie, Integer modelo, String color, String marca, String linea, boolean licencia_vigente, Cliente cliente, List<Placa> placas) {
+        this.id = id;
+        this.numero_serie = numero_serie;
+        this.modelo = modelo;
+        this.color = color;
+        this.marca = marca;
+        this.linea = linea;
+        this.licencia_vigente = licencia_vigente;
+        this.cliente = cliente;
+        this.placas = placas;
+    }
+
+   
 
     public Long getId() {
         return id;
@@ -65,11 +92,20 @@ public class Vehiculo implements Serializable {
         this.id = id;
     }
 
-    public String getModelo() {
+    public String getNumero_serie() {
+        return numero_serie;
+    }
+
+    public void setNumero_serie(String numero_serie) {
+        this.numero_serie = numero_serie;
+    }
+
+    
+    public Integer getModelo() {
         return modelo;
     }
 
-    public void setModelo(String modelo) {
+    public void setModelo(Integer modelo) {
         this.modelo = modelo;
     }
 
@@ -105,21 +141,24 @@ public class Vehiculo implements Serializable {
         this.licencia_vigente = licencia_vigente;
     }
 
-    public String getCURP() {
-        return CURP;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setCURP(String CURP) {
-        this.CURP = CURP;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public String getNumero_alfanumerico() {
-        return numero_alfanumerico;
+    public List<Placa> getPlacas() {
+        return placas;
     }
 
-    public void setNumero_alfanumerico(String numero_alfanumerico) {
-        this.numero_alfanumerico = numero_alfanumerico;
+    public void setPlacas(List<Placa> placas) {
+        this.placas = placas;
     }
+
+    
+    
 
     @Override
     public int hashCode() {

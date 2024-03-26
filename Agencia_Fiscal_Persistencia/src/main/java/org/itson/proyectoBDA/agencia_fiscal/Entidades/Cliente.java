@@ -49,6 +49,9 @@ public class Cliente implements Serializable {
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "cliente")
     private List<Tramite> tramites;
+    
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "cliente")
+    private List<Vehiculo> vehiculos;
 
     public Cliente() {
     }
@@ -93,15 +96,17 @@ public class Cliente implements Serializable {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public Cliente(String CURP, 
+    public Cliente(
+            String CURP, 
             String nombre, 
             String apellido_paterno, 
-            String apellido_materno, 
+            String apellido_materno,
             boolean discapacidad, 
             String RFC, 
-            String telefono,
+            String telefono, 
             Calendar fecha_nacimiento, 
-            List<Tramite> tramites) {
+            List<Tramite> tramites, 
+            List<Vehiculo> vehiculos) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
@@ -111,7 +116,10 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
         this.fecha_nacimiento = fecha_nacimiento;
         this.tramites = tramites;
+        this.vehiculos = vehiculos;
     }
+
+    
 
     public Long getId_cliente() {
         return id_cliente;
@@ -192,6 +200,15 @@ public class Cliente implements Serializable {
     public void setTramites(List<Tramite> tramites) {
         this.tramites = tramites;
     }
+
+    public List<Vehiculo> getVehiculos() {
+        return vehiculos;
+    }
+
+    public void setVehiculos(List<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+    
 
     @Override
     public int hashCode() {

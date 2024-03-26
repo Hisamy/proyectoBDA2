@@ -11,16 +11,11 @@ public class Vehiculo_Nuevo extends Vehiculo implements Serializable {
     public Vehiculo_Nuevo() {
     }
 
-    public Vehiculo_Nuevo(Long id, String modelo, String color, String marca, String linea, boolean licencia_vigente, String CURP, String numero_alfanumerico) {
-        super(id, modelo, color, marca, linea, licencia_vigente, CURP, numero_alfanumerico);
+    public Vehiculo_Nuevo(String numero_serie, Integer modelo, String color, String marca, String linea, boolean licencia_vigente) {
+        super(numero_serie, modelo, color, marca, linea, licencia_vigente);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Vehiculo_Nuevo{");
-        sb.append('}');
-        return sb.toString();
-    }
+    
 
+ 
 }

@@ -1,8 +1,5 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
@@ -118,10 +115,10 @@ public class BuscarCliente extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
-        ClienteDTO cliente;
+        ClienteDTO clienteDTO;
         try {
-            cliente = consultaClientes.transporteDatos(txtRFC.getText());
-            MostrarDatos mostrarDatos = new MostrarDatos(cliente);
+            clienteDTO = consultaClientes.transporteDatos(txtRFC.getText());
+            MostrarDatos mostrarDatos = new MostrarDatos(clienteDTO);
             this.dispose();
             mostrarDatos.setVisible(true);
         } catch (FindException ex) {
