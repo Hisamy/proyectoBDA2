@@ -5,6 +5,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
+import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 
 public class ClientesDAO implements IClientesDAO {
 
@@ -35,7 +36,7 @@ public class ClientesDAO implements IClientesDAO {
     }
 
     @Override
-    public Cliente consultarCliente(String RFC) {
+    public Cliente consultarCliente(String RFC) throws PersistenciaException{
         EntityManager entityManager = conexion.crearConexion();
         TypedQuery<Cliente> query = entityManager.createQuery(
                 "SELECT c FROM Cliente c WHERE c.RFC = :RFC", 
@@ -45,7 +46,7 @@ public class ClientesDAO implements IClientesDAO {
         try {
             cliente = query.getSingleResult();
         } catch (NoResultException e) {
-            System.out.println("No Cliente found for RFC: " + RFC);
+            throw new PersistenciaException("No existe un cliente con esa RFC.");
         } finally {
             entityManager.close();
         }

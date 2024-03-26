@@ -1,6 +1,8 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
@@ -21,24 +23,6 @@ public class BuscarCliente extends javax.swing.JFrame {
         this.consultaClientes = consultaClienteBO;
         navegacion = new Navegacion();
         initComponents();
-    }
-
-    public boolean validarCampos(ClienteDTO cliente) {
-        try {
-            if (!esMayorDeEdad(cliente.getFecha_nacimiento())) {
-                return false;
-            }
-        } catch (Exception e) {
-        }
-        // Validar la fecha de nacimiento
-        return true;
-    }
-
-    private boolean esMayorDeEdad(Calendar fechaNacimiento) {
-        Calendar hace18Anios = Calendar.getInstance();
-        hace18Anios.add(Calendar.YEAR, -18); // Restar 18 años
-
-        return fechaNacimiento.before(hace18Anios);
     }
 
     @SuppressWarnings("unchecked")
@@ -133,26 +117,21 @@ public class BuscarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+        ClienteDTO cliente;
         try {
-            ClienteDTO cliente = consultaClientes.transporteDatos(txtRFC.getText());
-            if (cliente != null && validarCampos(cliente)) {
-                MostrarDatos mostrarDatos = new MostrarDatos(cliente);
-                this.dispose();
-                mostrarDatos.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(
-                        rootPane,
-                        "Cliente menor de edad o no encontrado",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
+            cliente = consultaClientes.transporteDatos(txtRFC.getText());
+            MostrarDatos mostrarDatos = new MostrarDatos(cliente);
+            this.dispose();
+            mostrarDatos.setVisible(true);
         } catch (FindException ex) {
             JOptionPane.showMessageDialog(
-                    rootPane,
-                    "Cliente no encontrado",
-                    "Cliente no encontrado",
+                    null,
+                    ex.getMessage(),
+                    "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
