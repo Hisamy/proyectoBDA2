@@ -11,9 +11,9 @@ public interface IConsultaClientesBO {
     public Cliente consultarClientePorRFC(String RFC) throws FindException;
 
     public ClienteDTO transporteDatos(String RFC) throws FindException;
-    
+
     public void validarEdad(Cliente cliente) throws FindException;
-    
+
     public Integer calcularEdad(Cliente cliente);
 
 }

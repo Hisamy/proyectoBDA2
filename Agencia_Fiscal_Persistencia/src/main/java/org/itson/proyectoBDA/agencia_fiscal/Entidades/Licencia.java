@@ -10,8 +10,6 @@ import javax.persistence.Table;
 @Table(name = "licencias")
 public class Licencia extends Tramite implements Serializable {
 
-
-
     @Column(name = "vigencia", nullable = false, length = 5)
     private Integer vigencia;
 
@@ -22,8 +20,6 @@ public class Licencia extends Tramite implements Serializable {
         super(fecha_expedicion, costo, cliente);
         this.vigencia = vigencia;
     }
-
-    
 
     public Licencia(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
         super(id, fecha_expedicion, costo, cliente);
@@ -41,6 +37,5 @@ public class Licencia extends Tramite implements Serializable {
     public void setVigencia(Integer vigencia) {
         this.vigencia = vigencia;
     }
-
 
 }

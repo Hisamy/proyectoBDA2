@@ -30,19 +30,13 @@ public final class CostoLicencia extends javax.swing.JFrame {
     private ClienteDTO clienteDTO;
     private LicenciaDTO licenciaDTO;
 
-    public CostoLicencia(ClienteDTO clienteDTO, IRegistroLicenciasBO registro_licencia) {
+    public CostoLicencia(ClienteDTO clienteDTO) {
         initComponents();
         this.clienteDTO = clienteDTO;
-        this.registroLicenciasBO = new RegistroLicenciasBO(); 
+        this.registroLicenciasBO = new RegistroLicenciasBO();
         discapacidad();
         setearDatosLicencia();
         navegacion = new Navegacion();
-    }
-
-    public CostoLicencia(LicenciaDTO licenciaDTO) {
-        this.licenciaDTO = licenciaDTO;
-        initComponents();
-        setearDatosLicencia();
     }
 
     public void discapacidad() {
@@ -113,8 +107,8 @@ public final class CostoLicencia extends javax.swing.JFrame {
         // Crear la licencia con la fecha actual y el costo
         licenciaDTO = registroLicenciasBO.transporteDatos(
                 new LicenciaDTO(
-                        vigencia, 
-                        fechaActualCalendar, 
+                        vigencia,
+                        fechaActualCalendar,
                         costo),
                 clienteDTO.getRFC());
 
@@ -277,13 +271,13 @@ public final class CostoLicencia extends javax.swing.JFrame {
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         try {
             transporteDatos();
-            ExitoLicencia exitoLicencia = new ExitoLicencia(registroLicenciasBO, licenciaDTO);
+            ExitoLicencia exitoLicencia = new ExitoLicencia(licenciaDTO);
             exitoLicencia.setVisible(true);
             dispose();
         } catch (ParseException | PersistenciaException ex) {
             Logger.getLogger(CostoLicencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void jbtn1anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn1anioActionPerformed

@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaClientesBO;
 
@@ -80,18 +81,20 @@ public class Agencia_Fiscal {
                 "687211913",
                 new GregorianCalendar(2012, 4, 12));
 
-//        entityManager.persist(cliente1);
-//      entityManager.persist(cliente2);
-//      entityManager.persist(cliente3);
-//       entityManager.persist(cliente4);
-//       entityManager.persist(cliente5);
-//      entityManager.persist(cliente6);
+        Vehiculo vehiculo1 = new Vehiculo("Rojo", 1920, "", "", "", true);
+
+        entityManager.persist(vehiculo1);
+        entityManager.persist(cliente1);
+        entityManager.persist(cliente2);
+        entityManager.persist(cliente3);
+        entityManager.persist(cliente4);
+        entityManager.persist(cliente5);
+        entityManager.persist(cliente6);
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();
 
-        IConsultaClientesBO consultaClientes = new ConsultaClientesBO();
-        BuscarCliente buscarCliente = new BuscarCliente(consultaClientes);
+        BuscarCliente buscarCliente = new BuscarCliente();
         buscarCliente.setVisible(true);
     }
 }

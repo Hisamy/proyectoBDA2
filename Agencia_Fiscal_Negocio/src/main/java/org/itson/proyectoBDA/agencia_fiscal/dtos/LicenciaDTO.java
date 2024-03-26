@@ -14,5 +14,4 @@ public class LicenciaDTO extends TramiteDTO {
     public Integer getVigencia() {
         return vigencia;
     }
-
 }

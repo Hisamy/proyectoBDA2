@@ -1,8 +1,7 @@
 package org.itson.proyectoBDA.agencia_fiscal.dtos;
 
-
 public class VehiculoDTO {
- 
+
     private String numero_serie;
     private Integer modelo;
     private String color;
@@ -14,11 +13,11 @@ public class VehiculoDTO {
     }
 
     public VehiculoDTO(
-            String numero_serie, 
-            Integer modelo, 
-            String color, 
-            String marca, 
-            String linea, 
+            String numero_serie,
+            Integer modelo,
+            String color,
+            String marca,
+            String linea,
             boolean licencia_vigente) {
         this.numero_serie = numero_serie;
         this.modelo = modelo;
@@ -28,7 +27,6 @@ public class VehiculoDTO {
         this.licencia_vigente = licencia_vigente;
     }
 
-    
     public String getNumero_serie() {
         return numero_serie;
     }
@@ -52,6 +50,5 @@ public class VehiculoDTO {
     public boolean isLicencia_vigente() {
         return licencia_vigente;
     }
-    
-    
+
 }

@@ -6,13 +6,10 @@ package org.itson.proyectoBDA.agencia_fiscal.Navegacion;
 
 import javax.swing.JFrame;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.BuscarCliente;
-import org.itson.proyectoBDA.agencia_fiscal.Presentacion.CostoLicencia;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.DatosAutomovil;
-import org.itson.proyectoBDA.agencia_fiscal.Presentacion.ExitoLicencia;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.HistorialLicencias;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.Index;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.SolicitarPlacas;
-import org.itson.proyectoBDA.agencia_fiscal.Presentacion.Tramites;
 
 /**
  *
@@ -72,15 +69,15 @@ public class Navegacion implements INavegacion {
     @Override
     public void cambiarFrmSolicitarPlacas(JFrame ventana) {
         ventana.dispose();
-        SolicitarPlacas opcionesCliente = new SolicitarPlacas();
-        opcionesCliente.setVisible(true);
+//        SolicitarPlacas opcionesCliente = new SolicitarPlacas();
+//        opcionesCliente.setVisible(true);
     }
 
     @Override
     public void cambiarFrmTramites(JFrame ventana) {
         ventana.dispose();
-        Tramites opcionesCliente = new Tramites();
-        opcionesCliente.setVisible(true);
+//        Tramites opcionesCliente = new Tramites();
+//        opcionesCliente.setVisible(true);
     }
 
     @Override
@@ -88,5 +85,5 @@ public class Navegacion implements INavegacion {
 //        ventana.dispose();
 //        ExitoLicencia exitoLicencia = new ExitoLicencia();
 //        exitoLicencia.setVisible(true);
-        }
+    }
 }

@@ -5,6 +5,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaClientesBO;
 
 public class BuscarCliente extends javax.swing.JFrame {
@@ -13,11 +14,7 @@ public class BuscarCliente extends javax.swing.JFrame {
     private IConsultaClientesBO consultaClientes;
 
     public BuscarCliente() {
-        initComponents();
-    }
-
-    public BuscarCliente(IConsultaClientesBO consultaClienteBO) {
-        this.consultaClientes = consultaClienteBO;
+        this.consultaClientes = new ConsultaClientesBO();
         navegacion = new Navegacion();
         initComponents();
     }
@@ -114,7 +111,6 @@ public class BuscarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
         ClienteDTO clienteDTO;
         try {
             clienteDTO = consultaClientes.transporteDatos(txtRFC.getText());
@@ -128,7 +124,6 @@ public class BuscarCliente extends javax.swing.JFrame {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked

@@ -1,25 +1,28 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import javax.swing.JOptionPane;
+import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaVehiculosBO;
 
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaVehiculosBO;
-
+import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
 public class BuscarVehiculo extends javax.swing.JFrame {
 
     INavegacion navegacion;
     private IConsultaVehiculosBO consultaVehiculos;
+    private ClienteDTO clienteDTO;
 
-   
-    public BuscarVehiculo(IConsultaVehiculosBO consultaVehiculos) {
-        this.consultaVehiculos = consultaVehiculos;
+    public BuscarVehiculo(ClienteDTO clienteDTO) {
+        this.clienteDTO = clienteDTO;
+        this.consultaVehiculos = new ConsultaVehiculosBO();
         navegacion = new Navegacion();
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,7 +30,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblCostoLicencia1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNumSerie = new javax.swing.JTextField();
         lbl1anio2 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         flechaIcon = new javax.swing.JLabel();
@@ -48,12 +51,12 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         lblCostoLicencia1.setText("Buscar Vehículo");
         jPanel2.add(lblCostoLicencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNumSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNumSerieActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 440, -1));
+        jPanel2.add(txtNumSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 440, -1));
 
         lbl1anio2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl1anio2.setText("Número de serie");
@@ -111,21 +114,32 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
-        
+        VehiculoDTO vehiculoDTO;
+        try {
+            vehiculoDTO = consultaVehiculos.transporteDatos(txtNumSerie.getText());
+            SolicitarPlacas mostrarDatos = new SolicitarPlacas(clienteDTO);
+            this.dispose();
+            mostrarDatos.setVisible(true);
+        } catch (FindException ex) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
-       
+
     }//GEN-LAST:event_lblCostoLicenciaMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-    
+
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNumSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumSerieActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNumSerieActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -134,9 +148,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbl1anio2;
     private javax.swing.JLabel lblCostoLicencia;
     private javax.swing.JLabel lblCostoLicencia1;
+    private javax.swing.JTextField txtNumSerie;
     // End of variables declaration//GEN-END:variables
 }

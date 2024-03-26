@@ -22,6 +22,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
 
     /**
      * Consulta los datos de un cliente por su RFC y los retorna en formato DTO.
+     *
      * @param cliente El cliente a consultar.
      * @return ClienteDTO con los datos del cliente.
      * @throws FindException Si ocurre un error durante la consulta.
@@ -40,11 +41,11 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
                 cliente.getTelefono(),
                 cliente.getFecha_nacimiento());
         return clienteDTO;
-
     }
 
     /**
      * Consulta un cliente por su RFC.
+     *
      * @param RFC El RFC del cliente a consultar.
      * @return Cliente con los datos del cliente.
      * @throws FindException Si ocurre un error durante la consulta.
@@ -72,6 +73,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
 
     /**
      * Realiza el transporte de datos de un cliente a través del RFC.
+     *
      * @param RFC El RFC del cliente a consultar.
      * @return ClienteDTO con los datos del cliente.
      * @throws FindException Si ocurre un error durante la consulta.
@@ -93,6 +95,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
 
     /**
      * Valida la edad del cliente.
+     *
      * @param cliente El cliente a validar.
      * @throws FindException Si el cliente es menor de edad.
      */
@@ -100,13 +103,12 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     public void validarEdad(Cliente cliente) throws FindException {
         if (calcularEdad(cliente) < 18) {
             throw new FindException("El cliente es menor de edad.");
-
         }
-
     }
 
     /**
      * Calcula la edad de un cliente en base a su fecha de nacimiento.
+     *
      * @param cliente El cliente del cual se calcula la edad.
      * @return La edad del cliente.
      */

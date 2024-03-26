@@ -5,7 +5,6 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
 import static org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite_.id;
 
-
 public class LicenciasDAO implements ILicenciasDAO {
 
     final private IConexion conexion;

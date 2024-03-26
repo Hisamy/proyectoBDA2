@@ -1,18 +1,40 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroPlacasBO;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroPlacasBO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.NuevoClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
 
 public class DatosAutomovil extends javax.swing.JFrame {
 
     INavegacion navegacion;
+    private IRegistroPlacasBO registro_placas;
 
     /**
      * Creates new form DatosAutomóvil
      */
     public DatosAutomovil() {
         navegacion = new Navegacion();
+        registro_placas = new RegistroPlacasBO();
         initComponents();
+    }
+
+    public PlacaDTO transporteDatos() throws java.text.ParseException, PersistenciaException {
+        PlacaDTO nuevaPlaca = new PlacaDTO(fecha_expedicion, TOP_ALIGNMENT);
+        PlacaDTO nuevaPlaca = registro_placas.transporteDatos(
+                new NuevoClienteDTO(
+                        txtCURP.getText(),
+                        txtNombre.getText(),
+                        txtMarca.getText(),
+                        txtAño.getText(),
+                        eleccionDiscapacidad(),
+                        txtColor.getText(),
+                        txtTelefono.getText(),
+                        conversionFechaNacimiento()));
+        return nuevoCliente;
     }
 
     /**
@@ -26,20 +48,20 @@ public class DatosAutomovil extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblSolicitarLicencia = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
-        txtNombre1 = new javax.swing.JTextField();
-        txtRFC = new javax.swing.JTextField();
+        txtNumSerie = new javax.swing.JTextField();
+        txtColor = new javax.swing.JTextField();
         txtCURP = new javax.swing.JTextField();
         lblCURP = new javax.swing.JLabel();
-        txtApellidoMaterno = new javax.swing.JTextField();
+        txtAño = new javax.swing.JTextField();
         lblApellidoMaterno = new javax.swing.JLabel();
-        txtApellidoPaterno = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
         lblApellidoPaterno = new javax.swing.JLabel();
-        txtFechaNacimiento = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
         lblFechaNacimiento = new javax.swing.JLabel();
         lblRFC = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        flechaIcon = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        btnContinuar = new javax.swing.JButton();
+        btnAtras = new javax.swing.JLabel();
+        btnLogo = new javax.swing.JLabel();
         lblCostoLicencia = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,23 +82,23 @@ public class DatosAutomovil extends javax.swing.JFrame {
         lblNombre.setText("Número de serie");
         jPanel2.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 91, -1, -1));
 
-        txtNombre1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtNombre1.setForeground(new java.awt.Color(109, 70, 107));
-        txtNombre1.addActionListener(new java.awt.event.ActionListener() {
+        txtNumSerie.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtNumSerie.setForeground(new java.awt.Color(109, 70, 107));
+        txtNumSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombre1ActionPerformed(evt);
+                txtNumSerieActionPerformed(evt);
             }
         });
-        jPanel2.add(txtNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 111, 221, -1));
+        jPanel2.add(txtNumSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 111, 221, -1));
 
-        txtRFC.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtRFC.setForeground(new java.awt.Color(109, 70, 107));
-        txtRFC.addActionListener(new java.awt.event.ActionListener() {
+        txtColor.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtColor.setForeground(new java.awt.Color(109, 70, 107));
+        txtColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRFCActionPerformed(evt);
+                txtColorActionPerformed(evt);
             }
         });
-        jPanel2.add(txtRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 163, 212, -1));
+        jPanel2.add(txtColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 163, 212, -1));
 
         txtCURP.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         txtCURP.setForeground(new java.awt.Color(109, 70, 107));
@@ -91,40 +113,40 @@ public class DatosAutomovil extends javax.swing.JFrame {
         lblCURP.setText("Color");
         jPanel2.add(lblCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 143, -1, -1));
 
-        txtApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtApellidoMaterno.setForeground(new java.awt.Color(109, 70, 107));
-        txtApellidoMaterno.addActionListener(new java.awt.event.ActionListener() {
+        txtAño.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtAño.setForeground(new java.awt.Color(109, 70, 107));
+        txtAño.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoMaternoActionPerformed(evt);
+                txtAñoActionPerformed(evt);
             }
         });
-        jPanel2.add(txtApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 163, 107, -1));
+        jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 163, 107, -1));
 
         lblApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblApellidoMaterno.setText("Línea (año)");
         jPanel2.add(lblApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 143, -1, -1));
 
-        txtApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtApellidoPaterno.setForeground(new java.awt.Color(109, 70, 107));
-        txtApellidoPaterno.addActionListener(new java.awt.event.ActionListener() {
+        txtMarca.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtMarca.setForeground(new java.awt.Color(109, 70, 107));
+        txtMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoPaternoActionPerformed(evt);
+                txtMarcaActionPerformed(evt);
             }
         });
-        jPanel2.add(txtApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 163, 108, -1));
+        jPanel2.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 163, 108, -1));
 
         lblApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblApellidoPaterno.setText("Marca");
         jPanel2.add(lblApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 143, -1, -1));
 
-        txtFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtFechaNacimiento.setForeground(new java.awt.Color(109, 70, 107));
-        txtFechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
+        txtModelo.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtModelo.setForeground(new java.awt.Color(109, 70, 107));
+        txtModelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaNacimientoActionPerformed(evt);
+                txtModeloActionPerformed(evt);
             }
         });
-        jPanel2.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 209, 221, -1));
+        jPanel2.add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 209, 221, -1));
 
         lblFechaNacimiento.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblFechaNacimiento.setText("Modelo");
@@ -134,25 +156,25 @@ public class DatosAutomovil extends javax.swing.JFrame {
         lblRFC.setText("CURP");
         jPanel2.add(lblRFC, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 91, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(65, 34, 52));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Continuar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnContinuar.setBackground(new java.awt.Color(65, 34, 52));
+        btnContinuar.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        btnContinuar.setForeground(new java.awt.Color(255, 255, 255));
+        btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnContinuarActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 209, 123, 31));
+        jPanel2.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 209, 123, 31));
 
-        flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
-        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 33, -1, 40));
+        btnAtras.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
+        jPanel2.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 33, -1, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 560, 290));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        btnLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        jPanel1.add(btnLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(109, 70, 107));
@@ -178,39 +200,39 @@ public class DatosAutomovil extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre1ActionPerformed
+    private void txtNumSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumSerieActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombre1ActionPerformed
+    }//GEN-LAST:event_txtNumSerieActionPerformed
 
-    private void txtRFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCActionPerformed
+    private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtRFCActionPerformed
+    }//GEN-LAST:event_txtColorActionPerformed
 
     private void txtCURPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCURPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCURPActionPerformed
 
-    private void txtApellidoMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMaternoActionPerformed
+    private void txtAñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAñoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoMaternoActionPerformed
+    }//GEN-LAST:event_txtAñoActionPerformed
 
-    private void txtApellidoPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPaternoActionPerformed
+    private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoPaternoActionPerformed
+    }//GEN-LAST:event_txtMarcaActionPerformed
 
-    private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
+    private void txtModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtModeloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaNacimientoActionPerformed
+    }//GEN-LAST:event_txtModeloActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnContinuarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel flechaIcon;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel btnAtras;
+    private javax.swing.JButton btnContinuar;
+    private javax.swing.JLabel btnLogo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblApellidoMaterno;
@@ -221,11 +243,11 @@ public class DatosAutomovil extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRFC;
     private javax.swing.JLabel lblSolicitarLicencia;
-    private javax.swing.JTextField txtApellidoMaterno;
-    private javax.swing.JTextField txtApellidoPaterno;
+    private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtCURP;
-    private javax.swing.JTextField txtFechaNacimiento;
-    private javax.swing.JTextField txtNombre1;
-    private javax.swing.JTextField txtRFC;
+    private javax.swing.JTextField txtColor;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtNumSerie;
     // End of variables declaration//GEN-END:variables
 }

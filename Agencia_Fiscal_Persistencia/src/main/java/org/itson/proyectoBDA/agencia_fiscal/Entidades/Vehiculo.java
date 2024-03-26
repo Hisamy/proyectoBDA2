@@ -24,9 +24,9 @@ public class Vehiculo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_vehiculo")
     private Long id;
-    
+
     @Column(name = "numero_serie")
     private String numero_serie;
 
@@ -49,18 +49,18 @@ public class Vehiculo implements Serializable {
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     private Cliente cliente;
 
-    @OneToMany (cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "placa")
-    private List<Placa>placas;
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "vehiculo")
+    private List<Placa> placa;
 
     public Vehiculo() {
     }
 
     public Vehiculo(
-            String numero_serie, 
-            Integer modelo, 
+            String numero_serie,
+            Integer modelo,
             String color,
-            String marca, 
-            String linea, 
+            String marca,
+            String linea,
             boolean licencia_vigente) {
         this.numero_serie = numero_serie;
         this.modelo = modelo;
@@ -79,10 +79,8 @@ public class Vehiculo implements Serializable {
         this.linea = linea;
         this.licencia_vigente = licencia_vigente;
         this.cliente = cliente;
-        this.placas = placas;
+        this.placa = placas;
     }
-
-   
 
     public Long getId() {
         return id;
@@ -100,7 +98,6 @@ public class Vehiculo implements Serializable {
         this.numero_serie = numero_serie;
     }
 
-    
     public Integer getModelo() {
         return modelo;
     }
@@ -149,16 +146,13 @@ public class Vehiculo implements Serializable {
         this.cliente = cliente;
     }
 
-    public List<Placa> getPlacas() {
-        return placas;
+    public List<Placa> getPlaca() {
+        return placa;
     }
 
-    public void setPlacas(List<Placa> placas) {
-        this.placas = placas;
+    public void setPlaca(List<Placa> placa) {
+        this.placa = placa;
     }
-
-    
-    
 
     @Override
     public int hashCode() {

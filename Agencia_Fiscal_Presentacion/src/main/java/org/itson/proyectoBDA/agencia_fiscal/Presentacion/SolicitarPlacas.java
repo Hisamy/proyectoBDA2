@@ -2,16 +2,23 @@ package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
 public class SolicitarPlacas extends javax.swing.JFrame {
 
     INavegacion navegacion;
+    private ClienteDTO clienteDTO;
+    private VehiculoDTO vehiculoDTO;
 
     /**
      *
      * Creates new form SolicitarPlacas
+     *
+     * @param clienteDTO
      */
-    public SolicitarPlacas() {
+    public SolicitarPlacas(ClienteDTO clienteDTO) {
+        this.clienteDTO = clienteDTO;
         navegacion = new Navegacion();
         initComponents();
     }
@@ -188,7 +195,8 @@ public class SolicitarPlacas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSolicitarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarLicenciaActionPerformed
-        // TODO add your handling code here:
+        BuscarVehiculo buscarCliente = new BuscarVehiculo(clienteDTO);
+        buscarCliente.setVisible(true);
     }//GEN-LAST:event_btnSolicitarLicenciaActionPerformed
 
     private void btnSolicitarLicencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarLicencia1ActionPerformed

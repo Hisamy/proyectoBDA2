@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +27,10 @@ public class Placa extends Tramite implements Serializable {
 
     @Column(name = "numero_serie", nullable = false, length = 7)
     private String numero_serie;
+
+    @ManyToOne
+    @JoinColumn(name = "id_vehiculo", referencedColumnName = "id_vehiculo")
+    private Vehiculo vehiculo;
 
     public Placa() {
     }
@@ -74,6 +80,14 @@ public class Placa extends Tramite implements Serializable {
 
     public void setNumero_serie(String numero_serie) {
         this.numero_serie = numero_serie;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     @Override
