@@ -7,8 +7,6 @@ import javax.persistence.Persistence;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaClientesBO;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaClientesBO;
 
 public class Agencia_Fiscal {
 
@@ -83,13 +81,13 @@ public class Agencia_Fiscal {
 
         Vehiculo vehiculo1 = new Vehiculo("Rojo", 1920, "", "", "", true);
 
-        entityManager.persist(vehiculo1);
-        entityManager.persist(cliente1);
-        entityManager.persist(cliente2);
-        entityManager.persist(cliente3);
-        entityManager.persist(cliente4);
-        entityManager.persist(cliente5);
-        entityManager.persist(cliente6);
+//        entityManager.persist(vehiculo1);
+//        entityManager.persist(cliente1);
+//        entityManager.persist(cliente2);
+//        entityManager.persist(cliente3);
+//        entityManager.persist(cliente4);
+//        entityManager.persist(cliente5);
+//        entityManager.persist(cliente6);
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();

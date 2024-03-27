@@ -15,6 +15,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     INavegacion navegacion;
     private IConsultaVehiculosBO consultaVehiculos;
     private ClienteDTO clienteDTO;
+    private VehiculoDTO vehiculoDTO;
 
     public BuscarVehiculo(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
@@ -117,9 +118,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         VehiculoDTO vehiculoDTO;
         try {
             vehiculoDTO = consultaVehiculos.transporteDatos(txtNumSerie.getText());
-            SolicitarPlacas mostrarDatos = new SolicitarPlacas(clienteDTO);
+            DatosAutomovil datosAutomovil = new DatosAutomovil(clienteDTO, vehiculoDTO);
             this.dispose();
-            mostrarDatos.setVisible(true);
+            datosAutomovil.setVisible(true);
         } catch (FindException ex) {
             JOptionPane.showMessageDialog(
                     null,

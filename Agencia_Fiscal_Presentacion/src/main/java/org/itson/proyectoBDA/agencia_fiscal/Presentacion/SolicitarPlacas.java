@@ -195,12 +195,13 @@ public class SolicitarPlacas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSolicitarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarLicenciaActionPerformed
-        BuscarVehiculo buscarCliente = new BuscarVehiculo(clienteDTO);
-        buscarCliente.setVisible(true);
+        BuscarVehiculo buscarVehiculo = new BuscarVehiculo(clienteDTO);
+        buscarVehiculo.setVisible(true);
     }//GEN-LAST:event_btnSolicitarLicenciaActionPerformed
 
     private void btnSolicitarLicencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarLicencia1ActionPerformed
-        // TODO add your handling code here:
+        DatosAutomovil datosAutomovil = new DatosAutomovil(clienteDTO);
+        datosAutomovil.setVisible(true);
     }//GEN-LAST:event_btnSolicitarLicencia1ActionPerformed
 
 
