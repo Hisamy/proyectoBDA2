@@ -60,8 +60,8 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         jPanel2.add(txtNumSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 440, -1));
 
         lbl1anio2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbl1anio2.setText("Número de serie");
-        jPanel2.add(lbl1anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 100, -1));
+        lbl1anio2.setText("Número alfanumerico");
+        jPanel2.add(lbl1anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 130, -1));
 
         btnBuscar.setBackground(new java.awt.Color(65, 34, 52));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -118,7 +118,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         VehiculoDTO vehiculoDTO;
         try {
             vehiculoDTO = consultaVehiculos.transporteDatos(txtNumSerie.getText());
-            DatosAutomovil datosAutomovil = new DatosAutomovil(clienteDTO, vehiculoDTO);
+            DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO, vehiculoDTO);
             this.dispose();
             datosAutomovil.setVisible(true);
         } catch (FindException ex) {

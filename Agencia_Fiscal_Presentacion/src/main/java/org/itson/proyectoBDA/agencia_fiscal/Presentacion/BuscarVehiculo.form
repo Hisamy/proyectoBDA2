@@ -96,11 +96,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="N&#xfa;mero de serie"/>
+                <Property name="text" type="java.lang.String" value="N&#xfa;mero alfanumerico"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="40" y="80" width="100" height="-1"/>
+                  <AbsoluteConstraints x="40" y="80" width="130" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

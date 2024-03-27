@@ -200,7 +200,7 @@ public class SolicitarPlacas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSolicitarLicenciaActionPerformed
 
     private void btnSolicitarLicencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarLicencia1ActionPerformed
-        DatosAutomovil datosAutomovil = new DatosAutomovil(clienteDTO);
+        DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO);
         datosAutomovil.setVisible(true);
     }//GEN-LAST:event_btnSolicitarLicencia1ActionPerformed
 

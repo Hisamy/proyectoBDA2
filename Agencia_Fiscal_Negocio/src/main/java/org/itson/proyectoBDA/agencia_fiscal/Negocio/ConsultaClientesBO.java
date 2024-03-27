@@ -68,7 +68,6 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
         } catch (PersistenciaException e) {
             throw new FindException(e.getMessage());
         }
-
     }
 
     /**
@@ -123,9 +122,6 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
                 && fechaNacimiento.get(Calendar.DAY_OF_MONTH) > fechaActual.get(Calendar.DAY_OF_MONTH))) {
             edad--;
         }
-
         return edad;
-
     }
-
 }

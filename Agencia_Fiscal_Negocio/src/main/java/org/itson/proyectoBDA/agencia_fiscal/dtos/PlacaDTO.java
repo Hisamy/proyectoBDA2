@@ -23,6 +23,15 @@ public class PlacaDTO extends TramiteDTO {
         super(fecha_expedicion, costo);
     }
 
+    public PlacaDTO(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, String numero_serie, Vehiculo vehiculo, Calendar fecha_expedicion, Float costo) {
+        super(fecha_expedicion, costo);
+        this.numero_alfanumerico = numero_alfanumerico;
+        this.fecha_recepcion = fecha_recepcion;
+        this.activacion = activacion;
+        this.numero_serie = numero_serie;
+        this.vehiculo = vehiculo;
+    }
+
     public String getNumero_alfanumerico() {
         return numero_alfanumerico;
     }

@@ -2,8 +2,8 @@ package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
 import javax.persistence.EntityManager;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
-import static org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite_.id;
 
 public class LicenciasDAO implements ILicenciasDAO {
 
@@ -14,9 +14,9 @@ public class LicenciasDAO implements ILicenciasDAO {
     }
 
     @Override
-    public Licencia consultarDatosLicencia() {
+    public Licencia consultarDatosLicencia(Cliente cliente) {
         EntityManager entityManager = conexion.crearConexion();
-        Licencia licencia = entityManager.find(Licencia.class, id);
+        Licencia licencia = entityManager.find(Licencia.class, cliente.getId_cliente());
         entityManager.close();
         return licencia;
     }

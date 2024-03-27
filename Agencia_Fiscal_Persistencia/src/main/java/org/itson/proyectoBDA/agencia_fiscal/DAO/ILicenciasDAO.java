@@ -1,11 +1,12 @@
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
 
 public interface ILicenciasDAO {
 
     public Licencia agregarLicencia(Licencia nuevaLicencia);
 
-    public Licencia consultarDatosLicencia();
+    public Licencia consultarDatosLicencia(Cliente cliente);
 
 }

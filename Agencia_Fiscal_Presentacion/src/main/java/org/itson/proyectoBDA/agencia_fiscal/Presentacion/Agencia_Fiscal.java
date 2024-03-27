@@ -79,7 +79,7 @@ public class Agencia_Fiscal {
                 "687211913",
                 new GregorianCalendar(2012, 4, 12));
 
-        Vehiculo vehiculo1 = new Vehiculo("Rojo", 1920, "", "", "", true);
+        Vehiculo vehiculo1 = new Vehiculo("num_serie", 1920, "Rojo", "Chevrolet", "Sierra", true);
 
 //        entityManager.persist(vehiculo1);
 //        entityManager.persist(cliente1);
