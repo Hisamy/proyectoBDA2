@@ -1,34 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.proyectoBDA.agencia_fiscal.dtos;
 
 import java.util.Calendar;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 
-/**
- *
- * @author Ramosz
- */
+
 public class PlacaDTO extends TramiteDTO {
 
     private String numero_alfanumerico;
     private Calendar fecha_recepcion;
     private boolean activacion;
-    private String numero_serie;
     private Vehiculo vehiculo;
 
     public PlacaDTO(Calendar fecha_expedicion, Float costo) {
         super(fecha_expedicion, costo);
     }
 
-    public PlacaDTO(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, String numero_serie, Vehiculo vehiculo, Calendar fecha_expedicion, Float costo) {
+    public PlacaDTO(Vehiculo vehiculo, Calendar fecha_expedicion, Float costo) {
+        super(fecha_expedicion, costo);
+        this.vehiculo = vehiculo;
+    }
+
+    
+    public PlacaDTO(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, Vehiculo vehiculo, Calendar fecha_expedicion, Float costo) {
         super(fecha_expedicion, costo);
         this.numero_alfanumerico = numero_alfanumerico;
         this.fecha_recepcion = fecha_recepcion;
         this.activacion = activacion;
-        this.numero_serie = numero_serie;
         this.vehiculo = vehiculo;
     }
 
@@ -56,13 +54,6 @@ public class PlacaDTO extends TramiteDTO {
         this.activacion = activacion;
     }
 
-    public String getNumero_serie() {
-        return numero_serie;
-    }
-
-    public void setNumero_serie(String numero_serie) {
-        this.numero_serie = numero_serie;
-    }
 
     public Vehiculo getVehiculo() {
         return vehiculo;

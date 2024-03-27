@@ -15,6 +15,12 @@ public class ClientesDAO implements IClientesDAO {
         this.conexion = conexion;
     }
 
+    /**
+     * Agrega un nuevo cliente a la base de datos.
+     *
+     * @param nuevoCliente El objeto Cliente que se va a agregar.
+     * @return El cliente recién agregado.
+     */
     @Override
     public Cliente agregarCliente(Cliente nuevoCliente) {
         EntityManager entityManager = conexion.crearConexion();
@@ -35,6 +41,15 @@ public class ClientesDAO implements IClientesDAO {
         return nuevoCliente;
     }
 
+    /**
+     * Consulta un cliente en la base de datos utilizando su RFC como criterio
+     * de búsqueda.
+     *
+     * @param RFC El RFC del cliente que se desea consultar.
+     * @return El cliente correspondiente al RFC proporcionado.
+     * @throws PersistenciaException Si no se encuentra ningún cliente con el
+     * RFC proporcionado.
+     */
     @Override
     public Cliente consultarCliente(String RFC) throws PersistenciaException {
         EntityManager entityManager = conexion.crearConexion();

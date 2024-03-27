@@ -1,15 +1,16 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroPlacasBO;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroVehiculosBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroPlacasBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
@@ -21,8 +22,11 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private ClienteDTO clienteDTO;
     private VehiculoDTO vehiculoDTO;
     private IRegistroPlacasBO registroPlacasBO;
+    private IRegistroVehiculosBO registroVehiculosBO;
     private IConsultaTramitesBO consultaTramitesBO;
+    Logger logger = Logger.getLogger(getClass().getName());
 
+    private static Float costo = 0f;
     /**
      * Creates new form DatosAutomóvil
      *
@@ -33,6 +37,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
         this.registroPlacasBO = new RegistroPlacasBO();
         this.consultaTramitesBO = new ConsultaTramitesBO();
         navegacion = new Navegacion();
+        this.costo = 1500f;
         initComponents();
     }
 
@@ -40,6 +45,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
         this.clienteDTO = clienteDTO;
         this.vehiculoDTO = vehiculoDTO;
         navegacion = new Navegacion();
+        this.costo = 1000f;
         initComponents();
         setearDatos();
     }
@@ -51,34 +57,58 @@ public class DatosVehiculo extends javax.swing.JFrame {
         txtCURP.setEditable(false);
         txtMarca.setText(vehiculoDTO.getMarca());
         txtMarca.setEditable(false);
-        txtAño.setText(vehiculoDTO.getLinea());
-        txtAño.setEditable(false);
+        txtLinea.setText(vehiculoDTO.getLinea());
+        txtLinea.setEditable(false);
         txtModelo.setText(vehiculoDTO.getModelo().toString());
         txtModelo.setEditable(false);
         txtColor.setText(vehiculoDTO.getColor());
         txtColor.setEditable(false);
     }
 
-    public PlacaDTO transporteDatos() throws java.text.ParseException, PersistenciaException {
-        Vehiculo vehiculo = new Vehiculo(txtNumSerie.getText(), Integer.valueOf(txtModelo.getText()), txtColor.getText(), txtMarca.getText(), txtAño.getText(), consultaTramitesBO.transporteDatos(clienteDTO));
+    public void transporteDatosVehiculo() throws PersistenciaException {
+        try {
 
-        Calendar fechaActual = Calendar.getInstance();
+            Integer modelo = Integer.valueOf(txtModelo.getText());
+            VehiculoDTO nuevoVehiculo = registroVehiculosBO.transporteDatos(
+                    new VehiculoDTO(
+                    txtNumSerie.getText(),
+                    modelo,
+                    txtColor.getText(),
+                    txtMarca.getText(),
+                    txtLinea.getText(),
+                    consultaTramitesBO.transporteDatos(clienteDTO))
+                    );
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-        Date fechaActualDate = fechaActual.getTime();
-
-        Calendar fechaActualCalendar = Calendar.getInstance();
-        fechaActualCalendar.setTime(fechaActualDate);
-
-        // Pendiente
-        PlacaDTO nuevaPlacaTest = new PlacaDTO("", fechaActualCalendar, true, "", vehiculo, fechaActualCalendar, 4f);
-        PlacaDTO nuevaPlaca = registroPlacasBO.transporteDatos(nuevaPlacaTest, clienteDTO.getRFC());
-        return nuevaPlaca;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Ingrese un modelo válido.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+             logger.log(Level.SEVERE, "Error al convertir el modelo a entero", e);
+        }
+       
     }
 
+    public PlacaDTO transporteDatosPlaca() throws java.text.ParseException, PersistenciaException {
+        //Se calcula la fecha de expedicion la cual es de 5 años
+        Calendar horaSistema = registroPlacasBO.getFechaRecepcion();
+        horaSistema.add(Calendar.YEAR, 5);
+
+        PlacaDTO nuevaPlaca = registroPlacasBO.transporteDatos(
+                new PlacaDTO(
+                        horaSistema, 
+                        costo), 
+                clienteDTO);
+        return nuevaPlaca;
+    }
+    
+   
+
     /**
-     * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -92,7 +122,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
         txtColor = new javax.swing.JTextField();
         txtCURP = new javax.swing.JTextField();
         lblCURP = new javax.swing.JLabel();
-        txtAño = new javax.swing.JTextField();
+        txtLinea = new javax.swing.JTextField();
         lblApellidoMaterno = new javax.swing.JLabel();
         txtMarca = new javax.swing.JTextField();
         lblApellidoPaterno = new javax.swing.JLabel();
@@ -153,14 +183,14 @@ public class DatosVehiculo extends javax.swing.JFrame {
         lblCURP.setText("Color");
         jPanel2.add(lblCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 143, -1, -1));
 
-        txtAño.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtAño.setForeground(new java.awt.Color(109, 70, 107));
-        txtAño.addActionListener(new java.awt.event.ActionListener() {
+        txtLinea.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtLinea.setForeground(new java.awt.Color(109, 70, 107));
+        txtLinea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAñoActionPerformed(evt);
+                txtLineaActionPerformed(evt);
             }
         });
-        jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 163, 107, -1));
+        jPanel2.add(txtLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 163, 107, -1));
 
         lblApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblApellidoMaterno.setText("Línea (año)");
@@ -252,9 +282,9 @@ public class DatosVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCURPActionPerformed
 
-    private void txtAñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAñoActionPerformed
+    private void txtLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLineaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAñoActionPerformed
+    }//GEN-LAST:event_txtLineaActionPerformed
 
     private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
         // TODO add your handling code here:
@@ -283,9 +313,9 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRFC;
     private javax.swing.JLabel lblSolicitarLicencia;
-    private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtCURP;
     private javax.swing.JTextField txtColor;
+    private javax.swing.JTextField txtLinea;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNumSerie;
