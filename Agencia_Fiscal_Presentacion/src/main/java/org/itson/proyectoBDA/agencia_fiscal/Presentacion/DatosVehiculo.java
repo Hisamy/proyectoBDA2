@@ -1,5 +1,6 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -93,28 +94,19 @@ public class DatosVehiculo extends javax.swing.JFrame {
      * @throws PersistenciaException Si ocurre un error durante el proceso de
      * transporte de datos.
      */
-    public void transporteDatosVehiculo() throws PersistenciaException {
-        try {
+    public VehiculoDTO transporteDatosVehiculo() throws PersistenciaException {
 
-            Integer modelo = Integer.valueOf(txtLinea.getText());
-            VehiculoDTO nuevoVehiculo = registroVehiculosBO.transporteDatos(
-                    new VehiculoDTO(
-                            txtNumSerie.getText(),
-                            modelo,
-                            txtColor.getText(),
-                            txtMarca.getText(),
-                            txtModelo.getText(),
-                            consultaTramitesBO.transporteDatos(clienteDTO))
-            );
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Ingrese un modelo válido.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            logger.log(Level.SEVERE, "Error al convertir el modelo a entero", e);
-        }
+        Integer modelo = Integer.valueOf(txtLinea.getText());
+        VehiculoDTO nuevoVehiculo = registroVehiculosBO.transporteDatos(
+                new VehiculoDTO(
+                        txtNumSerie.getText(),
+                        modelo,
+                        txtColor.getText(),
+                        txtMarca.getText(),
+                        txtModelo.getText(),
+                        consultaTramitesBO.transporteDatos(clienteDTO))
+        );
+        return nuevoVehiculo;
 
     }
 
@@ -315,7 +307,13 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLineaActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        // TODO add your handling code here:
+        try {
+            transporteDatosPlaca();
+        } catch (ParseException ex) {
+            Logger.getLogger(DatosVehiculo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(DatosVehiculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnContinuarActionPerformed
 
 

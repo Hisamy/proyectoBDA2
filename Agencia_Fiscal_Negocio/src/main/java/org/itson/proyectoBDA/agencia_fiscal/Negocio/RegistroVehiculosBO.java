@@ -1,5 +1,7 @@
 package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.VehiculosDAO;
@@ -47,16 +49,13 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
      * persistencia.
      */
     @Override
-    public VehiculoDTO transporteDatos(VehiculoDTO nuevoVehiculo) throws PersistenciaException {
-        VehiculoDTO vehiculoDTO = new VehiculoDTO(
-                nuevoVehiculo.getNumero_serie(),
-                nuevoVehiculo.getModelo(),
-                nuevoVehiculo.getColor(),
-                nuevoVehiculo.getMarca(),
-                nuevoVehiculo.getLinea(),
-                true);
-        registrarVehiculo(vehiculoDTO);
-        return vehiculoDTO;
+    public VehiculoDTO transporteDatos(VehiculoDTO nuevoVehiculo){
+        try {
+            registrarVehiculo(nuevoVehiculo);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(RegistroVehiculosBO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nuevoVehiculo;
     }
 
 }

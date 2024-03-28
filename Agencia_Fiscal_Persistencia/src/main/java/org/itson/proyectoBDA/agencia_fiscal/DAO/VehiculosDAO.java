@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
 import javax.persistence.EntityManager;
@@ -11,10 +8,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 
-/**
- *
- * @author Ramosz
- */
+
 public class VehiculosDAO implements IVehiculosDAO {
 
     final private IConexion conexion;
@@ -32,14 +26,6 @@ public class VehiculosDAO implements IVehiculosDAO {
         entityManager.getTransaction().commit();
         entityManager.close();
 
-//        List<Tramite> licencias = new ArrayList<>();
-//        nuevoCliente.getTramites().forEach(licencia -> {
-//            licencias.add(
-//                    new Licencia()
-//                    )
-//                    )
-//            );
-//        });
         return nuevoVehiculo;
     }
 

@@ -8,5 +8,5 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 public interface IRegistroVehiculosBO {
     Vehiculo registrarVehiculo(VehiculoDTO nuevoVehiculo) throws PersistenciaException;
 
-    VehiculoDTO transporteDatos(VehiculoDTO nuevoVehiculo) throws PersistenciaException;
+    VehiculoDTO transporteDatos(VehiculoDTO nuevoVehiculo);
 }
