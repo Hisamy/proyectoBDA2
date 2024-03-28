@@ -8,7 +8,9 @@ public interface IConsultaVehiculosBO {
 
     public Vehiculo consultarVehiculoNumSerie(String numero_serie) throws FindException;
 
-    public VehiculoDTO transporteDatos(String numero_serie) throws FindException;
+    public Boolean transporteDatos(String numero_serie) throws FindException;
 
-    public VehiculoDTO consultarVehiculoDTONumSerie(Vehiculo vehiculo) throws FindException;
+    public VehiculoDTO regresaVehiculoConsultado (Vehiculo vehiculo) throws FindException;
+    
+    
 }

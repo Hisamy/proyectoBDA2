@@ -13,13 +13,13 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 public class BuscarVehiculo extends javax.swing.JFrame {
 
     INavegacion navegacion;
-    private IConsultaVehiculosBO consultaVehiculos;
+    private IConsultaVehiculosBO consultaVehiculosBO;
     private ClienteDTO clienteDTO;
     private VehiculoDTO vehiculoDTO;
 
     public BuscarVehiculo(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
-        this.consultaVehiculos = new ConsultaVehiculosBO();
+        this.consultaVehiculosBO = new ConsultaVehiculosBO();
         navegacion = new Navegacion();
         initComponents();
     }
@@ -33,8 +33,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         lblCostoLicencia1 = new javax.swing.JLabel();
         txtNumSerie = new javax.swing.JTextField();
         lbl1anio2 = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
+        btnRegistrarVehiculoNuevo = new javax.swing.JButton();
         flechaIcon = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
         lblCostoLicencia = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -60,8 +61,22 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         jPanel2.add(txtNumSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 440, -1));
 
         lbl1anio2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbl1anio2.setText("Número alfanumerico");
+        lbl1anio2.setText("Numero de serie");
         jPanel2.add(lbl1anio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 130, -1));
+
+        btnRegistrarVehiculoNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegistrarVehiculoNuevo.setForeground(new java.awt.Color(65, 34, 52));
+        btnRegistrarVehiculoNuevo.setText("Vehiculo nuevo");
+        btnRegistrarVehiculoNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarVehiculoNuevoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnRegistrarVehiculoNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 120, 30));
+
+        flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
+        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 40, 40));
 
         btnBuscar.setBackground(new java.awt.Color(65, 34, 52));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -73,10 +88,6 @@ public class BuscarVehiculo extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 120, 30));
-
-        flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
-        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 40, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 530, 230));
 
@@ -114,21 +125,11 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        VehiculoDTO vehiculoDTO;
-        try {
-            vehiculoDTO = consultaVehiculos.transporteDatos(txtNumSerie.getText());
-            DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO, vehiculoDTO);
-            this.dispose();
-            datosAutomovil.setVisible(true);
-        } catch (FindException ex) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    ex.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    private void btnRegistrarVehiculoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVehiculoNuevoActionPerformed
+        DatosVehiculo datosVehiculo = new DatosVehiculo(clienteDTO);
+        datosVehiculo.setVisible(true);
+
+    }//GEN-LAST:event_btnRegistrarVehiculoNuevoActionPerformed
 
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
 
@@ -142,9 +143,32 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumSerieActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        try {
+            Boolean buscarVehiculo = consultaVehiculosBO.transporteDatos(txtNumSerie.getText());
+            if (buscarVehiculo) {
+                DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO, vehiculoDTO);
+                this.dispose();
+                datosAutomovil.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "El vehiculo no se ha registrado",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (FindException ex) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnRegistrarVehiculoNuevo;
     private javax.swing.JLabel flechaIcon;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

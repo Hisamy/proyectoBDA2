@@ -24,14 +24,14 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
      *
      * @param numero_serie numero de serie del vehículo
      * @return el vehiculo registrado.
-     * @throws FindException Si ocurre un error al recuperar el vehiculo
-     * con el numero de serie.
+     * @throws FindException Si ocurre un error al recuperar el vehiculo con el
+     * numero de serie.
      */
     @Override
     public Vehiculo consultarVehiculoNumSerie(String numero_serie) throws FindException {
         try {
             Vehiculo vehiculo = vehiculoDAO.consultarVehiculo(numero_serie);
-            consultarVehiculoDTONumSerie(vehiculo);
+            regresaVehiculoConsultado(vehiculo);
             Vehiculo getVehiculo = new Vehiculo(
                     vehiculo.getNumero_serie(),
                     vehiculo.getModelo(),
@@ -56,7 +56,7 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
      * VehiculoDTO.
      */
     @Override
-    public VehiculoDTO consultarVehiculoDTONumSerie(Vehiculo vehiculo) throws FindException {
+    public VehiculoDTO regresaVehiculoConsultado(Vehiculo vehiculo) throws FindException {
         VehiculoDTO vehiculoDTO = new VehiculoDTO(
                 vehiculo.getNumero_serie(),
                 vehiculo.getModelo(),
@@ -80,15 +80,13 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
      * VehiculoDTO.
      */
     @Override
-    public VehiculoDTO transporteDatos(String numero_serie) throws FindException {
+    public Boolean transporteDatos(String numero_serie) throws FindException {
         Vehiculo vehiculo = consultarVehiculoNumSerie(numero_serie);
-        VehiculoDTO vehiculoDTO = new VehiculoDTO(
-                vehiculo.getNumero_serie(),
-                vehiculo.getModelo(),
-                vehiculo.getColor(),
-                vehiculo.getMarca(),
-                vehiculo.getLinea(),
-                vehiculo.isLicencia_vigente());
-        return vehiculoDTO;
+        if (vehiculo != null) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }

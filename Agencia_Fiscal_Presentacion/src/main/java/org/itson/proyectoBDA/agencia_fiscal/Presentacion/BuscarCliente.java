@@ -114,7 +114,8 @@ public class BuscarCliente extends javax.swing.JFrame {
         ClienteDTO clienteDTO;
         try {
             clienteDTO = consultaClientes.transporteDatos(txtRFC.getText());
-            MostrarDatos mostrarDatos = new MostrarDatos(clienteDTO);
+            DatosCliente mostrarDatos = new DatosCliente(clienteDTO);
+            
             this.dispose();
             mostrarDatos.setVisible(true);
         } catch (FindException ex) {

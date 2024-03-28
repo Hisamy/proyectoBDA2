@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import java.text.SimpleDateFormat;
@@ -10,17 +7,15 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 
-/**
- *
- * @author Ramosz
- */
-public class MostrarDatos extends javax.swing.JFrame {
+
+public class DatosCliente extends javax.swing.JFrame {
 
     INavegacion navegacion;
     ClienteDTO clienteDTO;
 
-    public MostrarDatos(ClienteDTO clienteDTO) {
+    public DatosCliente(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
+        
         initComponents();
         setearDatos();
         navegacion = new Navegacion();
@@ -401,9 +396,9 @@ public class MostrarDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechaNacimientoActionPerformed
 
     private void btnContiuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContiuarActionPerformed
-        Tramites mostrarDatos = new Tramites(clienteDTO);
+        Tramites tramites = new Tramites(clienteDTO);
         this.dispose();
-        mostrarDatos.setVisible(true);
+        tramites.setVisible(true);
     }//GEN-LAST:event_btnContiuarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

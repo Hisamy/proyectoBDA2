@@ -41,7 +41,6 @@ public class SolicitarPlacas extends javax.swing.JFrame {
         lblVigencia7 = new javax.swing.JLabel();
         lblVigencia8 = new javax.swing.JLabel();
         lblVigencia9 = new javax.swing.JLabel();
-        btnSolicitarPlacaVehiculoUsado = new javax.swing.JButton();
         btnSolicitarPlacaAutomovilNuevo = new javax.swing.JButton();
         lblVigencia10 = new javax.swing.JLabel();
         lblVigencia11 = new javax.swing.JLabel();
@@ -113,17 +112,6 @@ public class SolicitarPlacas extends javax.swing.JFrame {
         lblVigencia9.setText("Costo: ");
         jPanel2.add(lblVigencia9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 350, -1));
 
-        btnSolicitarPlacaVehiculoUsado.setBackground(new java.awt.Color(65, 34, 52));
-        btnSolicitarPlacaVehiculoUsado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSolicitarPlacaVehiculoUsado.setForeground(new java.awt.Color(255, 255, 255));
-        btnSolicitarPlacaVehiculoUsado.setText("Continuar");
-        btnSolicitarPlacaVehiculoUsado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSolicitarPlacaVehiculoUsadoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnSolicitarPlacaVehiculoUsado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, 140, 32));
-
         btnSolicitarPlacaAutomovilNuevo.setBackground(new java.awt.Color(65, 34, 52));
         btnSolicitarPlacaAutomovilNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSolicitarPlacaAutomovilNuevo.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,7 +121,7 @@ public class SolicitarPlacas extends javax.swing.JFrame {
                 btnSolicitarPlacaAutomovilNuevoActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSolicitarPlacaAutomovilNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 490, 140, 32));
+        jPanel2.add(btnSolicitarPlacaAutomovilNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 140, 32));
 
         lblVigencia10.setText("•  $1,500");
         jPanel2.add(lblVigencia10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 450, 350, -1));
@@ -189,20 +177,15 @@ public class SolicitarPlacas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSolicitarPlacaVehiculoUsadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarPlacaVehiculoUsadoActionPerformed
-        BuscarVehiculo buscarVehiculo = new BuscarVehiculo(clienteDTO);
-        buscarVehiculo.setVisible(true);
-    }//GEN-LAST:event_btnSolicitarPlacaVehiculoUsadoActionPerformed
-
     private void btnSolicitarPlacaAutomovilNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarPlacaAutomovilNuevoActionPerformed
-        DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO);
-        datosAutomovil.setVisible(true);
+     BuscarVehiculo buscarVehiculo = new BuscarVehiculo(clienteDTO);
+     buscarVehiculo.setVisible(true);
+     dispose();
     }//GEN-LAST:event_btnSolicitarPlacaAutomovilNuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSolicitarPlacaAutomovilNuevo;
-    private javax.swing.JButton btnSolicitarPlacaVehiculoUsado;
     private javax.swing.JLabel flechaIcon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

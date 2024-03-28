@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
@@ -9,10 +6,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroLicenciasBO;
 
-/**
- *
- * @author Ramosz
- */
+
 public class Tramites extends javax.swing.JFrame {
 
     INavegacion navegacion;
@@ -43,10 +37,8 @@ public class Tramites extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblCostoLicencia = new javax.swing.JLabel();
         lblCosto1 = new javax.swing.JLabel();
-        lblSeleccion = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lblVigencia2 = new javax.swing.JLabel();
-        btnSolicitarLicencia = new javax.swing.JButton();
+        Licencia = new javax.swing.JButton();
         btnSolicitarLicencia1 = new javax.swing.JButton();
         flechaIcon = new javax.swing.JLabel();
         lblNombreCliente = new javax.swing.JLabel();
@@ -72,43 +64,35 @@ public class Tramites extends javax.swing.JFrame {
         lblCosto1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblCosto1.setForeground(new java.awt.Color(109, 70, 107));
         lblCosto1.setText("Trámites");
-        jPanel2.add(lblCosto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 70, -1));
-
-        lblSeleccion.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        lblSeleccion.setText("Placas");
-        jPanel2.add(lblSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 70, -1));
+        jPanel2.add(lblCosto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 70, -1));
 
         jLabel2.setText("______________________________________________________________________________________________________");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, 20));
 
-        lblVigencia2.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        lblVigencia2.setText("Licencia");
-        jPanel2.add(lblVigencia2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 60, -1));
-
-        btnSolicitarLicencia.setBackground(new java.awt.Color(65, 34, 52));
-        btnSolicitarLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSolicitarLicencia.setForeground(new java.awt.Color(255, 255, 255));
-        btnSolicitarLicencia.setText("Continuar");
-        btnSolicitarLicencia.addActionListener(new java.awt.event.ActionListener() {
+        Licencia.setBackground(new java.awt.Color(65, 34, 52));
+        Licencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Licencia.setForeground(new java.awt.Color(255, 255, 255));
+        Licencia.setText("Licencia");
+        Licencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSolicitarLicenciaActionPerformed(evt);
+                LicenciaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSolicitarLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 140, 32));
+        jPanel2.add(Licencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 140, 32));
 
         btnSolicitarLicencia1.setBackground(new java.awt.Color(65, 34, 52));
         btnSolicitarLicencia1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSolicitarLicencia1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSolicitarLicencia1.setText("Continuar");
+        btnSolicitarLicencia1.setText("Placa");
         btnSolicitarLicencia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSolicitarLicencia1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSolicitarLicencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 140, 32));
+        jPanel2.add(btnSolicitarLicencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 140, 32));
 
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
-        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, 40, 40));
+        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 40, 40));
 
         lblNombreCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombreCliente.setForeground(new java.awt.Color(109, 70, 107));
@@ -133,11 +117,11 @@ public class Tramites extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSolicitarLicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarLicenciaActionPerformed
+    private void LicenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LicenciaActionPerformed
         CostoLicencia costoLicencia = new CostoLicencia(clienteDTO);
         this.dispose();
         costoLicencia.setVisible(true);
-    }//GEN-LAST:event_btnSolicitarLicenciaActionPerformed
+    }//GEN-LAST:event_LicenciaActionPerformed
 
     private void btnSolicitarLicencia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarLicencia1ActionPerformed
         SolicitarPlacas solicitarPlacas = new SolicitarPlacas(clienteDTO);
@@ -148,7 +132,7 @@ public class Tramites extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSolicitarLicencia;
+    private javax.swing.JButton Licencia;
     private javax.swing.JButton btnSolicitarLicencia1;
     private javax.swing.JLabel flechaIcon;
     private javax.swing.JLabel jLabel1;
@@ -158,7 +142,5 @@ public class Tramites extends javax.swing.JFrame {
     private javax.swing.JLabel lblCosto1;
     private javax.swing.JLabel lblCostoLicencia;
     private javax.swing.JLabel lblNombreCliente;
-    private javax.swing.JLabel lblSeleccion;
-    private javax.swing.JLabel lblVigencia2;
     // End of variables declaration//GEN-END:variables
 }
