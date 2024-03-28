@@ -13,6 +13,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroPlacasBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroVehiculosBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroPlacasBO;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroVehiculosBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
@@ -41,6 +42,8 @@ public class DatosVehiculo extends javax.swing.JFrame {
         this.clienteDTO = clienteDTO;
         this.registroPlacasBO = new RegistroPlacasBO();
         this.consultaTramitesBO = new ConsultaTramitesBO();
+        this.registroVehiculosBO = new RegistroVehiculosBO();
+                
         navegacion = new Navegacion();
         this.costo = 1500f;
         initComponents();
@@ -96,15 +99,17 @@ public class DatosVehiculo extends javax.swing.JFrame {
      */
     public VehiculoDTO transporteDatosVehiculo() throws PersistenciaException {
 
-        Integer modelo = Integer.valueOf(txtLinea.getText());
+        Integer modelo = Integer.valueOf(txtModelo.getText());
         VehiculoDTO nuevoVehiculo = registroVehiculosBO.transporteDatos(
                 new VehiculoDTO(
                         txtNumSerie.getText(),
                         modelo,
                         txtColor.getText(),
                         txtMarca.getText(),
-                        txtModelo.getText(),
-                        consultaTramitesBO.transporteDatos(clienteDTO))
+                        txtLinea.getText(),
+                        consultaTramitesBO.transporteDatos(clienteDTO),
+                        )
+                
         );
         return nuevoVehiculo;
 
@@ -308,12 +313,11 @@ public class DatosVehiculo extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         try {
+            transporteDatosVehiculo();
             transporteDatosPlaca();
-        } catch (ParseException ex) {
+        } catch (ParseException | PersistenciaException ex) {
             Logger.getLogger(DatosVehiculo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (PersistenciaException ex) {
-            Logger.getLogger(DatosVehiculo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }//GEN-LAST:event_btnContinuarActionPerformed
 
 

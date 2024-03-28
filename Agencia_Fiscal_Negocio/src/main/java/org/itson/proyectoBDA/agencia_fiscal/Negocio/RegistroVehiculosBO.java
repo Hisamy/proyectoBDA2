@@ -7,12 +7,19 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.VehiculosDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
+import static org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroClientesBO.logger;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
 public class RegistroVehiculosBO implements IRegistroVehiculosBO {
 
-    IConexion conexion = new Conexion();
-    VehiculosDAO vehiculoDAO = new VehiculosDAO(conexion);
+   
+    private final VehiculosDAO vehiculoDAO;
+
+    public RegistroVehiculosBO() {
+        IConexion conexion = new Conexion();
+        this.vehiculoDAO = new VehiculosDAO(conexion);
+    }
+    
 
     /**
      * Registra un nuevo vehículo en el sistema utilizando los datos
@@ -26,6 +33,7 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
      */
     @Override
     public Vehiculo registrarVehiculo(VehiculoDTO nuevoVehiculo) throws PersistenciaException {
+        try {
         Vehiculo vehiculo = new Vehiculo(
                 nuevoVehiculo.getNumero_serie(),
                 nuevoVehiculo.getModelo(),
@@ -35,6 +43,10 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
                 true);
         vehiculoDAO.agregarVehiculo(vehiculo);
         return vehiculo;
+         } catch (PersistenciaException e) {
+            logger.warning("No se puedo registrar correctamente el cliente");
+            throw e;
+        }
     }
 
     /**
@@ -45,9 +57,7 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
      * nuevo vehículo a registrar.
      * @return El objeto VehiculoDTO transportado, que contiene los mismos datos
      * que el vehículo registrado.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de
-     * persistencia.
-     */
+     **/
     @Override
     public VehiculoDTO transporteDatos(VehiculoDTO nuevoVehiculo){
         try {

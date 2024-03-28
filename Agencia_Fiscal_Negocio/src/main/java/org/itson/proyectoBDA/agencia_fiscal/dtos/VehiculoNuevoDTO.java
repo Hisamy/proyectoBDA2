@@ -1,5 +1,7 @@
 package org.itson.proyectoBDA.agencia_fiscal.dtos;
 
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
+
 public class VehiculoNuevoDTO extends VehiculoDTO {
 
     public VehiculoNuevoDTO(
@@ -8,8 +10,9 @@ public class VehiculoNuevoDTO extends VehiculoDTO {
             String color,
             String marca,
             String linea,
-            boolean licencia_vigente) {
-        super(numero_serie, modelo, color, marca, linea, licencia_vigente);
+            boolean licencia_vigente,
+            Cliente cliente) {
+        super(numero_serie, modelo, color, marca, linea, licencia_vigente,cliente);
     }
 
 }

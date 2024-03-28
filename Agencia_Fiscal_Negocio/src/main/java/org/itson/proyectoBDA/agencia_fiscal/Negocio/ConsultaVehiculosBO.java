@@ -63,7 +63,8 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
                 vehiculo.getColor(),
                 vehiculo.getMarca(),
                 vehiculo.getLinea(),
-                vehiculo.isLicencia_vigente());
+                vehiculo.isLicencia_vigente(),
+                );
         return vehiculoDTO;
     }
 

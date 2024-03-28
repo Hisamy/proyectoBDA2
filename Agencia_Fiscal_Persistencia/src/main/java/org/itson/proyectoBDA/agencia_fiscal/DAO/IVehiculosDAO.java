@@ -9,7 +9,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 
 public interface IVehiculosDAO {
 
-    public Vehiculo agregarVehiculo(Vehiculo nuevoVehiculo);
+    public Vehiculo agregarVehiculo(Vehiculo nuevoVehiculo) throws PersistenciaException;
 
     public Vehiculo consultarVehiculo(String numero_serie) throws PersistenciaException;
 }

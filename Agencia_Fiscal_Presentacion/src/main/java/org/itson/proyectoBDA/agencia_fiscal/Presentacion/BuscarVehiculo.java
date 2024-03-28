@@ -128,6 +128,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private void btnRegistrarVehiculoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVehiculoNuevoActionPerformed
         DatosVehiculo datosVehiculo = new DatosVehiculo(clienteDTO);
         datosVehiculo.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_btnRegistrarVehiculoNuevoActionPerformed
 

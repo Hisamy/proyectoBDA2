@@ -18,7 +18,7 @@ public class VehiculosDAO implements IVehiculosDAO {
     }
 
     @Override
-    public Vehiculo agregarVehiculo(Vehiculo nuevoVehiculo) {
+    public Vehiculo agregarVehiculo(Vehiculo nuevoVehiculo) throws PersistenciaException {
         EntityManager entityManager = conexion.crearConexion();
 
         entityManager.getTransaction().begin();

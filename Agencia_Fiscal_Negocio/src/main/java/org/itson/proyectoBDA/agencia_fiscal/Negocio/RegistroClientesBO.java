@@ -11,7 +11,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.NuevoClienteDTO;
 
 public class RegistroClientesBO implements IRegistroClientesBO {
 
-    private IClientesDAO clienteDAO;
+    private final IClientesDAO clienteDAO;
     static final Logger logger = Logger.getLogger(RegistroClientesBO.class.getName());
 
     public RegistroClientesBO() {
@@ -47,7 +47,7 @@ public class RegistroClientesBO implements IRegistroClientesBO {
                     ));
             return clienteNuevo;
         } catch (PersistenciaException e) {
-            logger.warning("No se puedo registrar correctamente el cliente");
+            logger.warning("No se puedo registrar correctamente el vehiculo");
             throw e;
         }
     }
