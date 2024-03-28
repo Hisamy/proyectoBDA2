@@ -1,12 +1,9 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
 import javax.persistence.EntityManager;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
 import static org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite_.id;
-
-
 
 public class PlacasDAO implements IPlacasDAO {
 
@@ -31,7 +28,7 @@ public class PlacasDAO implements IPlacasDAO {
     @Override
     public Placa consultarDatosPlaca() {
         EntityManager entityManager = conexion.crearConexion();
-        Placa placa = entityManager.find(Placa.class,id );
+        Placa placa = entityManager.find(Placa.class, id);
         entityManager.close();
         return placa;
     }

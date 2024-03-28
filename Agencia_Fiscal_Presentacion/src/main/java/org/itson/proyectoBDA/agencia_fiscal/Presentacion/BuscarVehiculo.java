@@ -146,8 +146,8 @@ public class BuscarVehiculo extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            Boolean buscarVehiculo = consultaVehiculosBO.transporteDatos(txtNumSerie.getText());
-            if (buscarVehiculo) {
+            VehiculoDTO buscarVehiculo = consultaVehiculosBO.transporteDatos(txtNumSerie.getText());
+            if (buscarVehiculo != null) {
                 DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO, vehiculoDTO);
                 this.dispose();
                 datosAutomovil.setVisible(true);

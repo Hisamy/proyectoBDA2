@@ -7,9 +7,11 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
 public class RegistroPlacasBO implements IRegistroPlacasBO {
 
@@ -17,42 +19,42 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     ClientesDAO clienteDAO = new ClientesDAO(conexion);
 
     /**
-     * Registra una nueva placa en el sistema utilizando los datos
-     * proporcionados en un objeto PlacaDTO.
+     * Registra una nueva placa en el sistema utilizando los datos proporcionados en un objeto PlacaDTO.
      *
-     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva
-     * placa a registrar.
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente
-     * asociado a la placa.
+     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
+     * @param clienteDTO
+     * @param vehiculo
      * @return El objeto Placa recién registrado.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de
-     * persistencia.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
      */
     @Override
-    public Placa registrarPlaca(PlacaDTO nuevaPlaca, ClienteDTO clienteDTO) throws PersistenciaException {
+    public Placa registrarPlaca(PlacaDTO nuevaPlaca, ClienteDTO clienteDTO, Vehiculo vehiculo) throws PersistenciaException {
         Placa placaNueva = new Placa(
                 nuevaPlaca.getNumero_alfanumerico(),
                 nuevaPlaca.getFecha_recepcion(),
                 true,
-                nuevaPlaca.getVehiculo(),
+                vehiculo,
                 nuevaPlaca.getFecha_expedicion(),
                 nuevaPlaca.getCosto(),
                 clienteDAO.consultarCliente(clienteDTO.getRFC()));
         return placaNueva;
     }
 
+    @Override
+    public VehiculoDTO conversorVehiculoDTO(PlacaDTO nuevaPlaca, ClienteDTO clienteDTO) throws PersistenciaException {
+        VehiculoDTO vehiculoDTO = nuevaPlaca.getVehiculo();
+        Vehiculo nuevoVehiculo = new Vehiculo(vehiculoDTO.getNumero_serie(), vehiculoDTO.getModelo(), vehiculoDTO.getColor(), vehiculoDTO.getMarca(), vehiculoDTO.getLinea(), true);
+        registrarPlaca(nuevaPlaca, clienteDTO, nuevoVehiculo);
+        return vehiculoDTO;
+    }
+
     /**
-     * Transporta los datos de una nueva placa y registra la placa en el
-     * sistema.
+     * Transporta los datos de una nueva placa y registra la placa en el sistema.
      *
-     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva
-     * placa a registrar.
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente
-     * asociado a la placa.
-     * @return El objeto PlacaDTO transportado, que contiene los mismos datos
-     * que la placa registrada.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de
-     * persistencia.
+     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
+     * @param clienteDTO
+     * @return El objeto PlacaDTO transportado, que contiene los mismos datos que la placa registrada.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
      */
     @Override
     public PlacaDTO transporteDatos(PlacaDTO nuevaPlaca, ClienteDTO clienteDTO) throws PersistenciaException {
@@ -64,18 +66,16 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
                 nuevaPlaca.getVehiculo(),
                 nuevaPlaca.getFecha_expedicion(),
                 nuevaPlaca.getCosto());
-        registrarPlaca(placaDTO, clienteDTO);
+        conversorVehiculoDTO(placaDTO, clienteDTO);
 
         return placaDTO;
 
     }
 
     /**
-     * Genera y devuelve un número alfanumérico único que puede ser utilizado
-     * como número de placa.
+     * Genera y devuelve un número alfanumérico único que puede ser utilizado como número de placa.
      *
-     * @return Un número alfanumérico único que representa una placa de
-     * vehículo.
+     * @return Un número alfanumérico único que representa una placa de vehículo.
      */
     private String generarNumeroAlfanumerico() {
         char[] caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
@@ -94,8 +94,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     /**
      * Obtiene la fecha y hora actuales del sistema en un objeto Calendar.
      *
-     * @return Un objeto Calendar que representa la fecha y hora actuales del
-     * sistema.
+     * @return Un objeto Calendar que representa la fecha y hora actuales del sistema.
      */
     @Override
     public Calendar getFechaRecepcion() {

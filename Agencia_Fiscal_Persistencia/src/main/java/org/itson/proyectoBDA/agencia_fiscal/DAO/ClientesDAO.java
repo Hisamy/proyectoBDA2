@@ -42,13 +42,11 @@ public class ClientesDAO implements IClientesDAO {
     }
 
     /**
-     * Consulta un cliente en la base de datos utilizando su RFC como criterio
-     * de búsqueda.
+     * Consulta un cliente en la base de datos utilizando su RFC como criterio de búsqueda.
      *
      * @param RFC El RFC del cliente que se desea consultar.
      * @return El cliente correspondiente al RFC proporcionado.
-     * @throws PersistenciaException Si no se encuentra ningún cliente con el
-     * RFC proporcionado.
+     * @throws PersistenciaException Si no se encuentra ningún cliente con el RFC proporcionado.
      */
     @Override
     public Cliente consultarCliente(String RFC) throws PersistenciaException {

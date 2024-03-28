@@ -2,7 +2,6 @@ package org.itson.proyectoBDA.agencia_fiscal.Entidades;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -25,15 +24,12 @@ public class Placa extends Tramite implements Serializable {
     @Column(name = "activacion", nullable = false)
     private boolean activacion;
 
-
     @ManyToOne
     @JoinColumn(name = "id_vehiculo", referencedColumnName = "id_vehiculo")
     private Vehiculo vehiculo;
 
     public Placa() {
     }
-
-
 
     public Placa(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, Vehiculo vehiculo, Calendar fecha_expedicion, Float costo, Cliente cliente) {
         super(fecha_expedicion, costo, cliente);
@@ -42,8 +38,6 @@ public class Placa extends Tramite implements Serializable {
         this.activacion = activacion;
         this.vehiculo = vehiculo;
     }
-
-    
 
     public Placa(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
         super(id, fecha_expedicion, costo, cliente);
@@ -80,7 +74,5 @@ public class Placa extends Tramite implements Serializable {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-
-
 
 }

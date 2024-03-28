@@ -1,4 +1,3 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
 import javax.persistence.EntityManager;
@@ -7,7 +6,6 @@ import javax.persistence.TypedQuery;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
-
 
 public class VehiculosDAO implements IVehiculosDAO {
 

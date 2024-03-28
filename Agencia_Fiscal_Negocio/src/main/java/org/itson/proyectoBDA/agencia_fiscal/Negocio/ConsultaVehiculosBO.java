@@ -19,13 +19,11 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
     }
 
     /**
-     * Método que consulta con el numero de serie el vehiculo si existe en la
-     * base de datos.
+     * Método que consulta con el numero de serie el vehiculo si existe en la base de datos.
      *
      * @param numero_serie numero de serie del vehículo
      * @return el vehiculo registrado.
-     * @throws FindException Si ocurre un error al recuperar el vehiculo con el
-     * numero de serie.
+     * @throws FindException Si ocurre un error al recuperar el vehiculo con el numero de serie.
      */
     @Override
     public Vehiculo consultarVehiculoNumSerie(String numero_serie) throws FindException {
@@ -48,12 +46,9 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
     /**
      * Recupera un objeto VehiculoDTO basado en el número de serie del vehículo.
      *
-     * @param vehiculo El objeto Vehiculo que contiene el número de serie a
-     * buscar.
-     * @return Un objeto VehiculoDTO que contiene información sobre el vehículo
-     * con el número de serie especificado.
-     * @throws FindException Si ocurre un error al recuperar el objeto
-     * VehiculoDTO.
+     * @param vehiculo El objeto Vehiculo que contiene el número de serie a buscar.
+     * @return Un objeto VehiculoDTO que contiene información sobre el vehículo con el número de serie especificado.
+     * @throws FindException Si ocurre un error al recuperar el objeto VehiculoDTO.
      */
     @Override
     public VehiculoDTO regresaVehiculoConsultado(Vehiculo vehiculo) throws FindException {
@@ -63,31 +58,21 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
                 vehiculo.getColor(),
                 vehiculo.getMarca(),
                 vehiculo.getLinea(),
-                vehiculo.isLicencia_vigente(),
-                );
+                vehiculo.isLicencia_vigente()
+        );
         return vehiculoDTO;
     }
 
     /**
-     * Recupera un objeto VehiculoDTO basado en el número de serie del vehículo.
-     * Este método actúa como una capa de transporte para obtener datos del
-     * vehículo basados en el número de serie.
+     * Recupera un objeto VehiculoDTO basado en el número de serie del vehículo. Este método actúa como una capa de transporte para obtener datos del vehículo basados en el número de serie.
      *
-     * @param numero_serie El número de serie del vehículo del cual se desea
-     * obtener los datos.
-     * @return Un objeto VehiculoDTO que contiene información sobre el vehículo
-     * con el número de serie especificado.
-     * @throws FindException Si ocurre un error mientras se recupera el objeto
-     * VehiculoDTO.
+     * @param numero_serie El número de serie del vehículo del cual se desea obtener los datos.
+     * @return Un objeto VehiculoDTO que contiene información sobre el vehículo con el número de serie especificado.
+     * @throws FindException Si ocurre un error mientras se recupera el objeto VehiculoDTO.
      */
     @Override
-    public Boolean transporteDatos(String numero_serie) throws FindException {
+    public VehiculoDTO transporteDatos(String numero_serie) throws FindException {
         Vehiculo vehiculo = consultarVehiculoNumSerie(numero_serie);
-        if (vehiculo != null) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return null;
     }
 }

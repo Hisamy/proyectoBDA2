@@ -1,28 +1,24 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.dtos;
 
 import java.util.Calendar;
-import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
-
 
 public class PlacaDTO extends TramiteDTO {
 
     private String numero_alfanumerico;
     private Calendar fecha_recepcion;
     private boolean activacion;
-    private Vehiculo vehiculo;
+    private VehiculoDTO vehiculo;
 
     public PlacaDTO(Calendar fecha_expedicion, Float costo) {
         super(fecha_expedicion, costo);
     }
 
-    public PlacaDTO(Vehiculo vehiculo, Calendar fecha_expedicion, Float costo) {
+    public PlacaDTO(VehiculoDTO vehiculo, Calendar fecha_expedicion, Float costo) {
         super(fecha_expedicion, costo);
         this.vehiculo = vehiculo;
     }
 
-    
-    public PlacaDTO(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, Vehiculo vehiculo, Calendar fecha_expedicion, Float costo) {
+    public PlacaDTO(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, VehiculoDTO vehiculo, Calendar fecha_expedicion, Float costo) {
         super(fecha_expedicion, costo);
         this.numero_alfanumerico = numero_alfanumerico;
         this.fecha_recepcion = fecha_recepcion;
@@ -54,12 +50,11 @@ public class PlacaDTO extends TramiteDTO {
         this.activacion = activacion;
     }
 
-
-    public Vehiculo getVehiculo() {
+    public VehiculoDTO getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
+    public void setVehiculo(VehiculoDTO vehiculo) {
         this.vehiculo = vehiculo;
     }
 
