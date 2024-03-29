@@ -1,26 +1,40 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ILicenciasDAO;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.ITramitesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.LicenciasDAO;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.TramitesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
-
+import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
 public class ConsultaTramitesBO implements IConsultaTramitesBO {
 
     private final ILicenciasDAO licenciaDAO;
+    private final ITramitesDAO tramiteDAO;
 
     public ConsultaTramitesBO() {
         Conexion conexion = new Conexion();
         this.licenciaDAO = new LicenciasDAO(conexion);
+        this.tramiteDAO = new TramitesDAO(conexion);
     }
 
+    /**
+     * Consulta la licencia asociada al cliente especificado.
+     *
+     * @param cliente El cliente para el cual se desea consultar la licencia.
+     * @return La licencia asociada al cliente.
+     * @throws FindException Si hay algún error al intentar encontrar la
+     * licencia en la base de datos.
+     */
     @Override
     public Licencia consultarLicencia(Cliente cliente) throws FindException {
         Licencia licencia = licenciaDAO.consultarDatosLicencia(cliente);
@@ -32,6 +46,17 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
         return getLicencia;
     }
 
+    /**
+     * Transporta los datos de un objeto ClienteDTO a un objeto Cliente y
+     * consulta su licencia asociada.
+     *
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
+     * @return El objeto Cliente correspondiente con los datos transportados y
+     * consultada su licencia.
+     * @throws FindException Si hay algún error al intentar encontrar la
+     * licencia asociada al cliente.
+     */
     @Override
     public Cliente transporteDatosConsultarCliente(ClienteDTO clienteDTO) throws FindException {
         Cliente cliente = new Cliente(
@@ -47,13 +72,46 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
         return cliente;
     }
 
+    /**
+     * Transporta los datos de un objeto ClienteDTO y consulta su licencia
+     * asociada. Este método solo ejecuta el método
+     * transporteDatosConsultarCliente, atrapando cualquier excepción y
+     * registrándola.
+     *
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
+     * @return true si la operación de transporte de datos y consulta de
+     * licencia se realiza correctamente, de lo contrario, retorna false.
+     */
     @Override
-    public Boolean transporteDatos(ClienteDTO cienteDTO) {
+    public Boolean transporteDatos(ClienteDTO clienteDTO) {
         try {
-            transporteDatosConsultarCliente(cienteDTO);
+            transporteDatosConsultarCliente(clienteDTO);
+            return true;
         } catch (FindException ex) {
             Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-        return null;
+    }
+
+    /**
+     * Consulta el historial de trámites y lo convierte a una lista de objetos
+     * TramiteDTO.
+     *
+     * @return Una lista de objetos TramiteDTO que representa el historial de
+     * trámites.
+     */
+    @Override
+    public List<TramiteDTO> historialTramite() {
+        List<Tramite> tramites = tramiteDAO.consultarTramites();
+        List<TramiteDTO> tramitesDTO = new ArrayList<>();
+        for (Tramite tramite : tramites) {
+            TramiteDTO tramiteDTO = new TramiteDTO(
+                    tramite.getFecha_expedicion(),
+                    tramite.getCosto());
+
+            tramitesDTO.add(tramiteDTO);
+        }
+        return tramitesDTO;
     }
 }

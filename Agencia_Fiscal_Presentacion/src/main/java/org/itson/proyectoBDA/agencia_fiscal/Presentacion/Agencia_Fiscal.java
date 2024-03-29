@@ -92,7 +92,7 @@ public class Agencia_Fiscal {
         entityManager.close();
         entityManagerFactory.close();
 
-        BuscarCliente buscarCliente = new BuscarCliente();
-        buscarCliente.setVisible(true);
+        Index index = new Index();
+        index.setVisible(true);
     }
 }
