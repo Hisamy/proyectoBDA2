@@ -2,6 +2,7 @@ package org.itson.proyectoBDA.agencia_fiscal.Entidades;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -24,7 +25,7 @@ public class Placa extends Tramite implements Serializable {
     @Column(name = "activacion", nullable = false)
     private boolean activacion;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_vehiculo", referencedColumnName = "id_vehiculo")
     private Vehiculo vehiculo;
 

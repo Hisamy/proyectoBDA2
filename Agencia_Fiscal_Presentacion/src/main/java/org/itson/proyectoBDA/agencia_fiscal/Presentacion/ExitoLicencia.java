@@ -96,12 +96,12 @@ public class ExitoLicencia extends javax.swing.JFrame {
         lblVigencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel2.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 560, 350));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 560, 350));
 
         lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(109, 70, 107));
         lblCostoLicencia.setText("Historial licencias y placas");
-        jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
+        jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,9 +126,7 @@ public class ExitoLicencia extends javax.swing.JFrame {
         Index index = new Index();
         index.setVisible(true);
         dispose();
-
     }//GEN-LAST:event_btnContiuarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContiuar;

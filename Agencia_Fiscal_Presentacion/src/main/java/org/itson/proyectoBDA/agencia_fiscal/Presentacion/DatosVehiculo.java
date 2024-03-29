@@ -55,6 +55,9 @@ public class DatosVehiculo extends javax.swing.JFrame {
     public DatosVehiculo(ClienteDTO clienteDTO, VehiculoDTO vehiculoDTO) {
         this.clienteDTO = clienteDTO;
         this.vehiculoDTO = vehiculoDTO;
+        this.registroPlacasBO = new RegistroPlacasBO();
+        this.consultaTramitesBO = new ConsultaTramitesBO();
+        this.registroVehiculosBO = new RegistroVehiculosBO();
         navegacion = new Navegacion();
         this.costo = 1000f;
         initComponents();
@@ -87,6 +90,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
         Integer modelo = Integer.valueOf(txtModelo.getText());
 
         Boolean licenciaVigente = consultaTramitesBO.transporteDatos(clienteDTO);
+        System.out.println(licenciaVigente);
 
         VehiculoNuevoDTO nuevoVehiculo = registroVehiculosBO.transporteDatos(
                 new VehiculoNuevoDTO(txtNumSerie.getText(), modelo, txtColor.getText(), txtMarca.getText(), txtLinea.getText(), licenciaVigente, clienteDTO)
@@ -284,6 +288,9 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         try {
             transporteDatosPlaca();
+            ExitoPlacas exitoPlacas = new ExitoPlacas(costo);
+            this.dispose();
+            exitoPlacas.setVisible(true);
         } catch (ParseException | PersistenciaException ex) {
             Logger.getLogger(DatosVehiculo.class.getName()).log(Level.SEVERE, null, ex);
         }

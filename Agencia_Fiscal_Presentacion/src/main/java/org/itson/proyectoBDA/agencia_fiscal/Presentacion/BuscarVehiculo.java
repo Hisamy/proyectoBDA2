@@ -129,7 +129,6 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         DatosVehiculo datosVehiculo = new DatosVehiculo(clienteDTO);
         datosVehiculo.setVisible(true);
         dispose();
-
     }//GEN-LAST:event_btnRegistrarVehiculoNuevoActionPerformed
 
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
@@ -147,8 +146,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             VehiculoDTO buscarVehiculo = consultaVehiculosBO.transporteDatos(txtNumSerie.getText());
+
             if (buscarVehiculo != null) {
-                DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO, vehiculoDTO);
+                DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO, buscarVehiculo);
                 this.dispose();
                 datosAutomovil.setVisible(true);
             } else {

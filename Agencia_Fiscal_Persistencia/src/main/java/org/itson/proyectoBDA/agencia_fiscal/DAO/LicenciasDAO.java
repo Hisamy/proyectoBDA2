@@ -1,6 +1,7 @@
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
@@ -16,8 +17,18 @@ public class LicenciasDAO implements ILicenciasDAO {
     @Override
     public Licencia consultarDatosLicencia(Cliente cliente) {
         EntityManager entityManager = conexion.crearConexion();
-        Licencia licencia = entityManager.find(Licencia.class, cliente.getId_cliente());
+        System.out.println(cliente.toString());
+
+        // Consultar la licencia asociada al cliente
+        TypedQuery<Licencia> query = entityManager.createQuery(
+                "SELECT l FROM Licencia l WHERE l.cliente = :cliente", Licencia.class);
+        query.setParameter("cliente", cliente);
+
+        // Obtener la licencia asociada al cliente
+        Licencia licencia = query.getSingleResult();
+
         entityManager.close();
+
         return licencia;
     }
 

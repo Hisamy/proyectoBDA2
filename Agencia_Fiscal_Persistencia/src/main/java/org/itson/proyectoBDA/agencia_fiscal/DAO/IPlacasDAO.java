@@ -12,7 +12,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
  */
 public interface IPlacasDAO {
 
-    public Placa agregarLicencia(Placa nuevaPlaca);
+    public Placa agregarPlaca(Placa nuevaPlaca);
 
     public Placa consultarDatosPlaca();
 }

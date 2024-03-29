@@ -14,7 +14,7 @@ public class PlacasDAO implements IPlacasDAO {
     }
 
     @Override
-    public Placa agregarLicencia(Placa nuevaPlaca) {
+    public Placa agregarPlaca(Placa nuevaPlaca) {
         EntityManager entityManager = conexion.crearConexion();
 
         entityManager.getTransaction().begin();

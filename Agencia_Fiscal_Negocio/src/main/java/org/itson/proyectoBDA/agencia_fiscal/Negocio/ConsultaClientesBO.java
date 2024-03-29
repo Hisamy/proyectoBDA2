@@ -29,7 +29,6 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
      */
     @Override
     public ClienteDTO consultarClienteDTOPorRFC(Cliente cliente) throws FindException {
-
         validarEdad(cliente);
         ClienteDTO clienteDTO = new ClienteDTO(
                 cliente.getCURP(),

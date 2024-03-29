@@ -64,15 +64,22 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
     }
 
     /**
-     * Recupera un objeto VehiculoDTO basado en el número de serie del vehículo. Este método actúa como una capa de transporte para obtener datos del vehículo basados en el número de serie.
+     * Recupera un objeto VehiculoDTO basado en el número de serie del vehículo.Este método actúa como una capa de transporte para obtener datos del vehículo basados en el número de serie.
      *
      * @param numero_serie El número de serie del vehículo del cual se desea obtener los datos.
-     * @return Un objeto VehiculoDTO que contiene información sobre el vehículo con el número de serie especificado.
+     * @return
      * @throws FindException Si ocurre un error mientras se recupera el objeto VehiculoDTO.
      */
     @Override
     public VehiculoDTO transporteDatos(String numero_serie) throws FindException {
         Vehiculo vehiculo = consultarVehiculoNumSerie(numero_serie);
-        return null;
+        VehiculoDTO vehiculoDTO = new VehiculoDTO(
+                vehiculo.getNumero_serie(),
+                vehiculo.getModelo(),
+                vehiculo.getColor(),
+                vehiculo.getMarca(),
+                vehiculo.getLinea(),
+                vehiculo.isLicencia_vigente());
+        return vehiculoDTO;
     }
 }

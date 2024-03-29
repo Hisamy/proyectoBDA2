@@ -81,13 +81,13 @@ public class Agencia_Fiscal {
 
         Vehiculo vehiculo1 = new Vehiculo("num_serie", 1920, "Rojo", "Chevrolet", "Sierra", true);
 
-//        entityManager.persist(vehiculo1);
-//        entityManager.persist(cliente1);
-//        entityManager.persist(cliente2);
-//        entityManager.persist(cliente3);
-//        entityManager.persist(cliente4);
-//        entityManager.persist(cliente5);
-//        entityManager.persist(cliente6);
+        entityManager.persist(vehiculo1);
+        entityManager.persist(cliente1);
+        entityManager.persist(cliente2);
+        entityManager.persist(cliente3);
+        entityManager.persist(cliente4);
+        entityManager.persist(cliente5);
+        entityManager.persist(cliente6);
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();

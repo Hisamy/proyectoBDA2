@@ -6,6 +6,8 @@ import java.util.TimeZone;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.IPlacasDAO;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.PlacasDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
@@ -17,6 +19,12 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
 
     IConexion conexion = new Conexion();
     ClientesDAO clienteDAO = new ClientesDAO(conexion);
+    private IPlacasDAO placaDAO;
+
+    public RegistroPlacasBO() {
+        IConexion conexion = new Conexion();
+        this.placaDAO = new PlacasDAO(conexion);
+    }
 
     /**
      * Registra una nueva placa en el sistema utilizando los datos proporcionados en un objeto PlacaDTO.
@@ -29,14 +37,14 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
      */
     @Override
     public Placa registrarPlaca(PlacaDTO nuevaPlaca, ClienteDTO clienteDTO, Vehiculo vehiculo) throws PersistenciaException {
-        Placa placaNueva = new Placa(
+        Placa placaNueva = placaDAO.agregarPlaca(new Placa(
                 nuevaPlaca.getNumero_alfanumerico(),
                 nuevaPlaca.getFecha_recepcion(),
                 true,
                 vehiculo,
                 nuevaPlaca.getFecha_expedicion(),
                 nuevaPlaca.getCosto(),
-                clienteDAO.consultarCliente(clienteDTO.getRFC()));
+                clienteDAO.consultarCliente(clienteDTO.getRFC())));
         return placaNueva;
     }
 
