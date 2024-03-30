@@ -113,7 +113,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
         VehiculoDTO vehiculoDTO = transporteDatosVehiculo();
 
         PlacaDTO nuevaPlaca = registroPlacasBO.transporteDatos(
-                new PlacaDTO(vehiculoDTO, horaSistema, costo), clienteDTO);
+                new PlacaDTO(vehiculoDTO, horaSistema, costo, clienteDTO));
         return nuevaPlaca;
     }
 

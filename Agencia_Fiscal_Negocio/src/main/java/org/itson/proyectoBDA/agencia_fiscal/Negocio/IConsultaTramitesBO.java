@@ -16,5 +16,5 @@ public interface IConsultaTramitesBO {
 
     public Boolean transporteDatos(ClienteDTO cienteDTO);
     
-    public List<TramiteDTO> historialTramite();
+    public List<TramiteDTO> historialTramite() throws FindException;
 }

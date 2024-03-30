@@ -6,11 +6,13 @@ public class TramiteDTO {
 
     private Calendar fecha_expedicion;
     private Float costo;
+    private ClienteDTO clienteDTO;
 
     
-    public TramiteDTO(Calendar fecha_expedicion, Float costo) {
+    public TramiteDTO(Calendar fecha_expedicion, Float costo, ClienteDTO clienteDTO) {
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
+        this.clienteDTO = clienteDTO;
     }
 
     public Calendar getFecha_expedicion() {
@@ -20,6 +22,11 @@ public class TramiteDTO {
     public Float getCosto() {
         return costo;
     }
+
+    public ClienteDTO getClienteDTO() {
+        return clienteDTO;
+    }
+    
 
 
 }

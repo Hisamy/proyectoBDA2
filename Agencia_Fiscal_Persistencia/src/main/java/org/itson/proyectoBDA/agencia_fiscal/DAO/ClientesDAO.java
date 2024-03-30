@@ -1,10 +1,15 @@
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
+import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 
 public class ClientesDAO implements IClientesDAO {
@@ -22,7 +27,7 @@ public class ClientesDAO implements IClientesDAO {
      * @return El cliente recién agregado.
      */
     @Override
-    public Cliente agregarCliente(Cliente nuevoCliente) {
+    public Cliente agregarCliente(Cliente nuevoCliente) throws PersistenciaException{
         EntityManager entityManager = conexion.crearConexion();
 
         entityManager.getTransaction().begin();
@@ -65,4 +70,43 @@ public class ClientesDAO implements IClientesDAO {
         }
         return cliente;
     }
+
+    @Override
+    public List<Cliente> historialClientes() throws FindException {
+        EntityManager entityManager = conexion.crearConexion();
+        List<Object[]>  consultas= null;
+        List<Cliente> historialClientes = new ArrayList<>();
+        
+        Query query  = entityManager.createQuery(
+                "SELECT c.CURP, c.RFC, c.apellido_materno, c.apellido_paterno, c.discapacidad, c.fecha_nacimiento, c.nombre, c.telefono FROM clientes c ");
+        consultas = query.getResultList();
+        
+        for(Object[] consulta : consultas){
+            String CURP = (String) consulta[0];
+            String RFC = (String) consulta[1];
+            String apellido_materno = (String) consulta[2];
+            String apellido_paterno = (String) consulta[3];
+            Boolean discapacidad = (Boolean) consulta[4];
+            Calendar fecha_nacimiento = (Calendar) consulta[5];
+            String nombre = (String) consulta[6];
+            String telefono = (String) consulta[7];
+            
+            
+            Cliente cliente = new Cliente();
+            cliente.setCURP(CURP);
+            cliente.setRFC(RFC);
+            cliente.setApellido_materno(apellido_materno);
+            cliente.setApellido_paterno(apellido_paterno);
+            cliente.setDiscapacidad(discapacidad);
+            cliente.setFecha_nacimiento(fecha_nacimiento);
+            cliente.setNombre(nombre);
+            cliente.setTelefono(telefono);
+            
+            
+            
+            historialClientes.add(cliente);
+        }
+        
+        return historialClientes;
+         }
 }

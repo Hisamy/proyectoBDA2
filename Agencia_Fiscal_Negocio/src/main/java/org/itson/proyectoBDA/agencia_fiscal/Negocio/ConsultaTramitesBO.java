@@ -38,7 +38,8 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
      *
      * @param cliente El cliente para el cual se desea consultar la licencia.
      * @return La licencia asociada al cliente.
-     * @throws FindException Si hay algún error al intentar encontrar la licencia en la base de datos.
+     * @throws FindException Si hay algún error al intentar encontrar la
+     * licencia en la base de datos.
      */
     @Override
     public Licencia consultarLicencia(Cliente cliente) throws FindException {
@@ -57,11 +58,14 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     }
 
     /**
-     * Transporta los datos de un objeto ClienteDTO a un objeto Cliente y consulta su licencia asociada.
+     * Transporta los datos de un objeto ClienteDTO a un objeto Cliente y
+     * consulta su licencia asociada.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
      * @return
-     * @throws FindException Si hay algún error al intentar encontrar la licencia asociada al cliente.
+     * @throws FindException Si hay algún error al intentar encontrar la
+     * licencia asociada al cliente.
      */
     @Override
     public Cliente transporteDatosConsultarCliente(ClienteDTO clienteDTO) throws FindException {
@@ -79,10 +83,15 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     }
 
     /**
-     * Transporta los datos de un objeto ClienteDTO y consulta su licencia asociada. Este método solo ejecuta el método transporteDatosConsultarCliente, atrapando cualquier excepción y registrándola.
+     * Transporta los datos de un objeto ClienteDTO y consulta su licencia
+     * asociada. Este método solo ejecuta el método
+     * transporteDatosConsultarCliente, atrapando cualquier excepción y
+     * registrándola.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
-     * @return true si la operación de transporte de datos y consulta de licencia se realiza correctamente, de lo contrario, retorna false.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
+     * @return true si la operación de transporte de datos y consulta de
+     * licencia se realiza correctamente, de lo contrario, retorna false.
      */
     @Override
     public Boolean transporteDatos(ClienteDTO clienteDTO) {
@@ -97,21 +106,49 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     }
 
     /**
-     * Consulta el historial de trámites y lo convierte a una lista de objetos TramiteDTO.
+     * Consulta el historial de trámites y lo convierte a una lista de objetos
+     * TramiteDTO.
      *
-     * @return Una lista de objetos TramiteDTO que representa el historial de trámites.
+     * @return Una lista de objetos TramiteDTO que representa el historial de
+     * trámites.
      */
     @Override
-    public List<TramiteDTO> historialTramite() {
-        List<Tramite> tramites = tramiteDAO.consultarTramites();
-        List<TramiteDTO> tramitesDTO = new ArrayList<>();
-        for (Tramite tramite : tramites) {
-            TramiteDTO tramiteDTO = new TramiteDTO(
-                    tramite.getFecha_expedicion(),
-                    tramite.getCosto());
+    public List<TramiteDTO> historialTramite() throws FindException {
+        try {
+            List<Tramite> tramites = tramiteDAO.consultarTramites();
+            List<TramiteDTO> tramitesDTO = new ArrayList<>();
+            for (Tramite tramite : tramites) {
+                TramiteDTO tramiteDTO = new TramiteDTO(
+                        tramite.getFecha_expedicion(),
+                        tramite.getCosto(),
+                        convertirClienteADTO(tramite.getCliente()));
+                //persona
 
-            tramitesDTO.add(tramiteDTO);
+                tramitesDTO.add(tramiteDTO);
+            }
+            return tramitesDTO;
+        } catch (FindException ex) {
+            Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new FindException(ex.getMessage());
         }
-        return tramitesDTO;
+
+    }
+
+    /**
+     * Convierte un objeto Cliente a un objeto ClienteDTO.
+     *
+     * @param cliente Objeto Cliente que se va a convertir a ClienteDTO.
+     * @return Objeto ClienteDTO que representa al cliente convertido.
+     */
+    public ClienteDTO convertirClienteADTO(Cliente cliente) {
+        return new ClienteDTO(
+                cliente.getCURP(),
+                cliente.getNombre(),
+                cliente.getApellido_paterno(),
+                cliente.getApellido_materno(),
+                cliente.isDiscapacidad(),
+                cliente.getRFC(),
+                cliente.getTelefono(),
+                cliente.getFecha_nacimiento());
     }
 }

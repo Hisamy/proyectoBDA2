@@ -9,17 +9,31 @@ public class PlacaDTO extends TramiteDTO {
     private boolean activacion;
     private VehiculoDTO vehiculo;
 
-    public PlacaDTO(Calendar fecha_expedicion, Float costo) {
-        super(fecha_expedicion, costo);
+    public PlacaDTO(
+            Calendar fecha_expedicion, 
+            Float costo, 
+            ClienteDTO clienteDTO) {
+        super(fecha_expedicion, costo, clienteDTO);
     }
 
-    public PlacaDTO(VehiculoDTO vehiculo, Calendar fecha_expedicion, Float costo) {
-        super(fecha_expedicion, costo);
+    public PlacaDTO(
+            VehiculoDTO vehiculo, 
+            Calendar fecha_expedicion, 
+            Float costo, 
+            ClienteDTO clienteDTO) {
+        super(fecha_expedicion, costo, clienteDTO);
         this.vehiculo = vehiculo;
     }
 
-    public PlacaDTO(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, VehiculoDTO vehiculo, Calendar fecha_expedicion, Float costo) {
-        super(fecha_expedicion, costo);
+    public PlacaDTO(
+            String numero_alfanumerico, 
+            Calendar fecha_recepcion, 
+            boolean activacion, 
+            VehiculoDTO vehiculo, 
+            Calendar fecha_expedicion,
+            Float costo,
+            ClienteDTO clienteDTO) {
+        super(fecha_expedicion, costo, clienteDTO);
         this.numero_alfanumerico = numero_alfanumerico;
         this.fecha_recepcion = fecha_recepcion;
         this.activacion = activacion;

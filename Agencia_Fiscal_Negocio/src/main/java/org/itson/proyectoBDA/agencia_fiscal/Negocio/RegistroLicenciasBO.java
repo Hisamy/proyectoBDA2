@@ -26,19 +26,19 @@ public class RegistroLicenciasBO implements IRegistroLicenciasBO {
     }
 
     @Override
-    public Licencia registrarLicencia(LicenciaDTO nuevoLicencia, String RFC) throws PersistenciaException {
+    public Licencia registrarLicencia(LicenciaDTO nuevoLicencia) throws PersistenciaException {
         Licencia nuevaLicencia = licenciaDAO.agregarLicencia(new Licencia(
                         nuevoLicencia.getVigencia(),
                         nuevoLicencia.getFecha_expedicion(), 
                         nuevoLicencia.getCosto(), 
-                         clienteDAO.consultarCliente(RFC)));
+                        clienteDAO.consultarCliente(nuevoLicencia.getClienteDTO().getRFC())));
         return nuevaLicencia;
     }
 
     @Override
-    public LicenciaDTO transporteDatos(LicenciaDTO nuevaLicencia, String RFC) throws PersistenciaException {
+    public LicenciaDTO transporteDatos(LicenciaDTO nuevaLicencia) throws PersistenciaException {
         try {
-            registrarLicencia(nuevaLicencia, RFC);
+            registrarLicencia(nuevaLicencia);
         } catch (PersistenciaException e) {
             logger.warning("Error al transportar los datos");
         }

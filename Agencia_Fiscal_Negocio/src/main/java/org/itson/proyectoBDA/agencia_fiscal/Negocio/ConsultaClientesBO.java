@@ -1,15 +1,21 @@
 package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
 public class ConsultaClientesBO implements IConsultaClientesBO {
 
@@ -123,4 +129,31 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
         }
         return edad;
     }
+
+    @Override
+    public List<ClienteDTO> historialCliente() throws FindException {
+        try {
+            List<Cliente> clientes = clienteDAO.historialClientes();
+            List<ClienteDTO> clientesDTO = new ArrayList<>();
+            for (Cliente cliente : clientes) {
+                ClienteDTO clienteDTO = new ClienteDTO(
+                        cliente.getCURP(),
+                        cliente.getNombre(),
+                        cliente.getApellido_paterno(), 
+                        cliente.getApellido_materno(), 
+                        cliente.isDiscapacidad(), 
+                        cliente.getRFC(), 
+                        cliente.getTelefono(), 
+                cliente.getFecha_nacimiento());
+                clientesDTO.add(clienteDTO);
+            }
+            return clientesDTO;
+        } catch (FindException ex) {
+            Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new FindException(ex.getMessage());
+        }
+
+         }
+    
+    
 }

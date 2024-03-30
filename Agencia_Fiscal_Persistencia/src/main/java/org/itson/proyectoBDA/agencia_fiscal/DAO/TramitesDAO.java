@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite;
+import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 
 
 public class TramitesDAO implements ITramitesDAO {
@@ -20,7 +21,7 @@ public class TramitesDAO implements ITramitesDAO {
     }
     
     @Override
-    public List<Tramite> consultarTramites() {
+    public List<Tramite> consultarTramites() throws FindException{
         EntityManager entityManager = conexion.crearConexion();
         List<Object[]>  consultas= null;
         List<Tramite> historialTramites = new ArrayList<>();
@@ -30,7 +31,7 @@ public class TramitesDAO implements ITramitesDAO {
         
         for(Object[] consulta : consultas){
             String tipo = (String) consulta[0];
-            Float costo = (Float) consulta[1];
+            Float costo =+ (Float) consulta[1];
             Calendar fechaExpedicion = (Calendar) consulta[2];
             Cliente cliente = (Cliente) consulta[3];
             

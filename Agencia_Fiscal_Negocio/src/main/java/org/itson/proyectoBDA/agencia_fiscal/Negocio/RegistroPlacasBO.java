@@ -36,7 +36,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
      * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
      */
     @Override
-    public Placa registrarPlaca(PlacaDTO nuevaPlaca, ClienteDTO clienteDTO, Vehiculo vehiculo) throws PersistenciaException {
+    public Placa registrarPlaca(PlacaDTO nuevaPlaca, Vehiculo vehiculo) throws PersistenciaException {
         Placa placaNueva = placaDAO.agregarPlaca(new Placa(
                 nuevaPlaca.getNumero_alfanumerico(),
                 nuevaPlaca.getFecha_recepcion(),
@@ -44,15 +44,15 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
                 vehiculo,
                 nuevaPlaca.getFecha_expedicion(),
                 nuevaPlaca.getCosto(),
-                clienteDAO.consultarCliente(clienteDTO.getRFC())));
+                clienteDAO.consultarCliente(nuevaPlaca.getClienteDTO().getRFC())));
         return placaNueva;
     }
 
     @Override
-    public VehiculoDTO conversorVehiculoDTO(PlacaDTO nuevaPlaca, ClienteDTO clienteDTO) throws PersistenciaException {
+    public VehiculoDTO conversorVehiculoDTO(PlacaDTO nuevaPlaca) throws PersistenciaException {
         VehiculoDTO vehiculoDTO = nuevaPlaca.getVehiculo();
         Vehiculo nuevoVehiculo = new Vehiculo(vehiculoDTO.getNumero_serie(), vehiculoDTO.getModelo(), vehiculoDTO.getColor(), vehiculoDTO.getMarca(), vehiculoDTO.getLinea(), true);
-        registrarPlaca(nuevaPlaca, clienteDTO, nuevoVehiculo);
+        registrarPlaca(nuevaPlaca, nuevoVehiculo);
         return vehiculoDTO;
     }
 
@@ -65,7 +65,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
      * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
      */
     @Override
-    public PlacaDTO transporteDatos(PlacaDTO nuevaPlaca, ClienteDTO clienteDTO) throws PersistenciaException {
+    public PlacaDTO transporteDatos(PlacaDTO nuevaPlaca) throws PersistenciaException {
 
         PlacaDTO placaDTO = new PlacaDTO(
                 generarNumeroAlfanumerico(),
@@ -73,8 +73,9 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
                 true,
                 nuevaPlaca.getVehiculo(),
                 nuevaPlaca.getFecha_expedicion(),
-                nuevaPlaca.getCosto());
-        conversorVehiculoDTO(placaDTO, clienteDTO);
+                nuevaPlaca.getCosto(),
+                nuevaPlaca.getClienteDTO());
+        conversorVehiculoDTO(placaDTO);
 
         return placaDTO;
 

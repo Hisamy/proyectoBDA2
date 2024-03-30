@@ -109,8 +109,9 @@ public final class CostoLicencia extends javax.swing.JFrame {
                 new LicenciaDTO(
                         vigencia,
                         fechaActualCalendar,
-                        costo),
-                clienteDTO.getRFC());
+                        costo,
+                        clienteDTO));
+                
 
         return licenciaDTO;
     }
