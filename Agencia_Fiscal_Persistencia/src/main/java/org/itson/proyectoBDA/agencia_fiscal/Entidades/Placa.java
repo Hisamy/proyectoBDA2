@@ -22,9 +22,6 @@ public class Placa extends Tramite implements Serializable {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_recepcion;
 
-    @Column(name = "activacion", nullable = false)
-    private boolean activacion;
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_vehiculo", referencedColumnName = "id_vehiculo")
     private Vehiculo vehiculo;
@@ -32,36 +29,63 @@ public class Placa extends Tramite implements Serializable {
     public Placa() {
     }
 
-    public Placa(Long id, Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
-        super(id, fecha_expedicion, tipo_tramite, costo, cliente);
+    public Placa(
+            Long id, 
+            Calendar fecha_expedicion, 
+            String tipo_tramite, 
+            Float costo, 
+            Cliente cliente, 
+            Boolean estado,
+            Calendar fecha_emision) {
+        super(id, fecha_expedicion, tipo_tramite, costo, cliente, estado, fecha_emision);
     }
+    
 
-    public Placa(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, Vehiculo vehiculo, Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
-        super(fecha_expedicion, tipo_tramite, costo, cliente);
+    public Placa(
+            String numero_alfanumerico, 
+            Calendar fecha_recepcion, 
+            Vehiculo vehiculo, 
+            Calendar fecha_expedicion, 
+            String tipo_tramite, 
+            Float costo, 
+            Cliente cliente, 
+            Boolean estado,
+            Calendar fecha_emision) {
+        super(fecha_expedicion, tipo_tramite, costo, cliente, estado, fecha_emision);
         this.numero_alfanumerico = numero_alfanumerico;
         this.fecha_recepcion = fecha_recepcion;
-        this.activacion = activacion;
+        this.vehiculo = vehiculo;
+    }
+    
+   
+    public Placa(String numero_alfanumerico, Calendar fecha_recepcion, Vehiculo vehiculo) {
+        this.numero_alfanumerico = numero_alfanumerico;
+        this.fecha_recepcion = fecha_recepcion;
+        this.vehiculo = vehiculo;
+    }
+    
+
+    public Placa(
+            String numero_alfanumerico, 
+            Calendar fecha_recepcion, 
+            Vehiculo vehiculo, 
+            Calendar fecha_expedicion, 
+            Float costo, 
+            Cliente cliente, 
+            Boolean estado,
+            Calendar fecha_emision) {
+        super(fecha_expedicion, costo, cliente, estado, fecha_emision);
+        this.numero_alfanumerico = numero_alfanumerico;
+        this.fecha_recepcion = fecha_recepcion;
         this.vehiculo = vehiculo;
     }
 
-    public Placa(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, Vehiculo vehiculo) {
-        this.numero_alfanumerico = numero_alfanumerico;
-        this.fecha_recepcion = fecha_recepcion;
-        this.activacion = activacion;
-        this.vehiculo = vehiculo;
+    public Placa(Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente, Boolean estado, Calendar fecha_emision) {
+        super(fecha_expedicion, tipo_tramite, costo, cliente, estado, fecha_emision);
     }
+    
+    
 
-    public Placa(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, Vehiculo vehiculo, Calendar fecha_expedicion, Float costo, Cliente cliente) {
-        super(fecha_expedicion, costo, cliente);
-        this.numero_alfanumerico = numero_alfanumerico;
-        this.fecha_recepcion = fecha_recepcion;
-        this.activacion = activacion;
-        this.vehiculo = vehiculo;
-    }
-
-    public Placa(Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
-        super(fecha_expedicion, tipo_tramite, costo, cliente);
-    }
 
     public String getNumero_alfanumerico() {
         return numero_alfanumerico;
@@ -79,13 +103,6 @@ public class Placa extends Tramite implements Serializable {
         this.fecha_recepcion = fecha_recepcion;
     }
 
-    public boolean isActivacion() {
-        return activacion;
-    }
-
-    public void setActivacion(boolean activacion) {
-        this.activacion = activacion;
-    }
 
     public Vehiculo getVehiculo() {
         return vehiculo;

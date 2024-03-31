@@ -8,11 +8,14 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ILicenciasDAO;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.IPlacasDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ITramitesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.LicenciasDAO;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.PlacasDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.TramitesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
@@ -22,12 +25,14 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 public class ConsultaTramitesBO implements IConsultaTramitesBO {
 
     private final ILicenciasDAO licenciaDAO;
+    private final IPlacasDAO placaDAO;
     private final IClientesDAO clienteDAO;
     private final ITramitesDAO tramiteDAO;
 
     public ConsultaTramitesBO() {
         Conexion conexion = new Conexion();
         this.licenciaDAO = new LicenciasDAO(conexion);
+        this.placaDAO = new PlacasDAO(conexion);
         this.tramiteDAO = new TramitesDAO(conexion);
         this.clienteDAO = new ClientesDAO(conexion);
     }
@@ -37,7 +42,8 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
      *
      * @param cliente El cliente para el cual se desea consultar la licencia.
      * @return La licencia asociada al cliente.
-     * @throws FindException Si hay algún error al intentar encontrar la licencia en la base de datos.
+     * @throws FindException Si hay algún error al intentar encontrar la
+     * licencia en la base de datos.
      */
     @Override
     public Licencia consultarLicencia(Cliente cliente) throws FindException {
@@ -52,16 +58,38 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
                 licencia.getFecha_expedicion(),
                 licencia.getTipo_tramite(),
                 licencia.getCosto(),
-                cliente);
+                cliente,
+                licencia.getEstado(),
+        licencia.getFecha_emision());
         return getLicencia;
     }
 
+    @Override
+    public Placa consultarPlaca(Cliente cliente) throws FindException {
+        Placa placa = null;
+        placa = placaDAO.consultarDatosPlaca(cliente);
+        Placa getPlaca = new Placa(
+                placa.getNumero_alfanumerico(),
+                placa.getFecha_recepcion(),
+                placa.getVehiculo(),
+                placa.getFecha_expedicion(),
+                placa.getTipo_tramite(),
+                placa.getCosto(),
+                placa.getCliente(),
+                placa.getEstado(),
+                placa.getFecha_emision());
+        return placa;
+    }
+
     /**
-     * Transporta los datos de un objeto ClienteDTO a un objeto Cliente y consulta su licencia asociada.
+     * Transporta los datos de un objeto ClienteDTO a un objeto Cliente y
+     * consulta su licencia asociada.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
      * @return
-     * @throws FindException Si hay algún error al intentar encontrar la licencia asociada al cliente.
+     * @throws FindException Si hay algún error al intentar encontrar la
+     * licencia asociada al cliente.
      */
     @Override
     public Cliente transporteDatosConsultarCliente(ClienteDTO clienteDTO) throws FindException {
@@ -79,10 +107,15 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     }
 
     /**
-     * Transporta los datos de un objeto ClienteDTO y consulta su licencia asociada. Este método solo ejecuta el método transporteDatosConsultarCliente, atrapando cualquier excepción y registrándola.
+     * Transporta los datos de un objeto ClienteDTO y consulta su licencia
+     * asociada. Este método solo ejecuta el método
+     * transporteDatosConsultarCliente, atrapando cualquier excepción y
+     * registrándola.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
-     * @return true si la operación de transporte de datos y consulta de licencia se realiza correctamente, de lo contrario, retorna false.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
+     * @return true si la operación de transporte de datos y consulta de
+     * licencia se realiza correctamente, de lo contrario, retorna false.
      */
     @Override
     public Boolean transporteDatos(ClienteDTO clienteDTO) {
@@ -97,9 +130,11 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     }
 
     /**
-     * Consulta el historial de trámites y lo convierte a una lista de objetos TramiteDTO.
+     * Consulta el historial de trámites y lo convierte a una lista de objetos
+     * TramiteDTO.
      *
-     * @return Una lista de objetos TramiteDTO que representa el historial de trámites.
+     * @return Una lista de objetos TramiteDTO que representa el historial de
+     * trámites.
      */
     @Override
     public List<TramiteDTO> historialTramite() throws FindException {
@@ -110,9 +145,12 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
                 TramiteDTO tramiteDTO = new TramiteDTO(
                         tramite.getFecha_expedicion(),
                         tramite.getCosto(),
-                        convertirClienteADTO(tramite.getCliente()));
-                //persona
+                        convertirClienteADTO(tramite.getCliente()),
+                        tramite.getEstado(),
+                        tramite.getTipo_tramite(),
+                        tramite.getFecha_emision());
 
+                //persona
                 tramitesDTO.add(tramiteDTO);
             }
             return tramitesDTO;
@@ -140,4 +178,5 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
                 cliente.getTelefono(),
                 cliente.getFecha_nacimiento());
     }
+
 }

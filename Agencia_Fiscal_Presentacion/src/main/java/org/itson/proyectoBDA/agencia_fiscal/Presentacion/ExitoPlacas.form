@@ -101,16 +101,14 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblVigencia">
+            <Component class="javax.swing.JLabel" name="lblPlaca">
               <Properties>
-                <Property name="text" type="java.lang.String" value="El tr&#xe1;mite de licencia con duraci&#xf3;n de _____ se ha concretado con &#xe9;xito, se "/>
+                <Property name="text" type="java.lang.String" value="Texto 1" postCode="lblPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);"/>
+                <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="lblVigencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);"/>
-              </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="90" y="150" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="250" y="120" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -136,16 +134,29 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblCosto">
+            <Component class="javax.swing.JLabel" name="lblFechas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="cobrar&#xe1; ____ de tu m&#xe9;todo de pago seleccionado."/>
+                <Property name="text" type="java.lang.String" value="Texto 2"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="lblVigencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="lblPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="150" y="180" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="250" y="210" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCosto">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Texto 2"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="lblPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="250" y="160" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>

@@ -38,6 +38,7 @@ public class Vehiculo implements Serializable {
 
     @Column(name = "linea", nullable = false, length = 100)
     private String linea;
+ 
 
     @Column(name = "licencia_vigente", nullable = false)
     private boolean licencia_vigente;

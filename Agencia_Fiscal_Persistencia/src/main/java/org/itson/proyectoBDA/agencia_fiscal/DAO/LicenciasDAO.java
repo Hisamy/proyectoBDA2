@@ -18,13 +18,9 @@ public class LicenciasDAO implements ILicenciasDAO {
     public Licencia consultarDatosLicencia(Cliente cliente) {
         EntityManager entityManager = conexion.crearConexion();
         System.out.println(cliente.toString());
-
-        // Consultar la licencia asociada al cliente
         TypedQuery<Licencia> query = entityManager.createQuery(
                 "SELECT l FROM Licencia l WHERE l.cliente = :cliente", Licencia.class);
         query.setParameter("cliente", cliente);
-
-        // Obtener la licencia asociada al cliente
         Licencia licencia = query.getSingleResult();
 
         entityManager.close();

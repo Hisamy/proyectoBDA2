@@ -91,7 +91,7 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnHistorialLicenciaPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialLicenciaPlacasActionPerformed
-        HistorialTramites historialLicencias = new HistorialTramites();
+        ConsultaClientes historialLicencias = new ConsultaClientes();
         historialLicencias.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnHistorialLicenciaPlacasActionPerformed

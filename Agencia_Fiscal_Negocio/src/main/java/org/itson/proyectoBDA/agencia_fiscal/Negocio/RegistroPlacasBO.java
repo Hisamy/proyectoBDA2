@@ -22,6 +22,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     IConexion conexion = new Conexion();
     ClientesDAO clienteDAO = new ClientesDAO(conexion);
     IVehiculosDAO vehiculoDAO;
+    private String tipo = "Placa";
     private IPlacasDAO placaDAO;
 
     public RegistroPlacasBO() {
@@ -31,12 +32,15 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
-     * Registra una nueva placa en el sistema utilizando los datos proporcionados en un objeto PlacaDTO.
+     * Registra una nueva placa en el sistema utilizando los datos
+     * proporcionados en un objeto PlacaDTO.
      *
-     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
+     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva
+     * placa a registrar.
      * @param vehiculo
      * @return El objeto Placa recién registrado.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de
+     * persistencia.
      */
     @Override
     public Placa registrarPlaca(PlacaDTO nuevaPlaca, Vehiculo vehiculo) throws PersistenciaException {
@@ -45,11 +49,12 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
         Placa placa = new Placa(
                 generarNumeroAlfanumerico(),
                 getFechaRecepcion(),
-                true,
                 vehiculo,
                 nuevaPlaca.getFecha_expedicion(),
                 nuevaPlaca.getCosto(),
-                cliente);
+                cliente,
+                true,
+                nuevaPlaca.getFecha_emision());
 
         Vehiculo vehiculoID = vehiculoDAO.consultarVehiculo(placa.getVehiculo().getNumero_serie());
         placa.getVehiculo().setId(vehiculoID.getId());
@@ -74,23 +79,29 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
-     * Transporta los datos de una nueva placa y registra la placa en el sistema.
+     * Transporta los datos de una nueva placa y registra la placa en el
+     * sistema.
      *
-     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
-     * @return El objeto PlacaDTO transportado, que contiene los mismos datos que la placa registrada.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
+     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva
+     * placa a registrar.
+     * @return El objeto PlacaDTO transportado, que contiene los mismos datos
+     * que la placa registrada.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de
+     * persistencia.
      */
     @Override
     public PlacaDTO transporteDatos(PlacaDTO nuevaPlaca) throws PersistenciaException {
-
+        Calendar fechaActual = Calendar.getInstance();
         PlacaDTO placaDTO = new PlacaDTO(
                 generarNumeroAlfanumerico(),
                 getFechaRecepcion(),
-                true,
                 nuevaPlaca.getVehiculo(),
                 nuevaPlaca.getFecha_expedicion(),
                 nuevaPlaca.getCosto(),
-                nuevaPlaca.getClienteDTO());
+                nuevaPlaca.getClienteDTO(),
+                true,
+                tipo,
+                fechaActual);
         conversorVehiculoDTO(placaDTO);
 
         return placaDTO;
@@ -98,28 +109,36 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
-     * Genera y devuelve un número alfanumérico único que puede ser utilizado como número de placa.
+     * Genera y devuelve un número alfanumérico único que puede ser utilizado
+     * como número de placa.
      *
-     * @return Un número alfanumérico único que representa una placa de vehículo.
+     * @return Un número alfanumérico único que representa una placa de
+     * vehículo.
      */
     private String generarNumeroAlfanumerico() {
-        char[] caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+        StringBuilder placa = new StringBuilder();
         Random random = new Random();
-        String placa;
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < 7; i++) {
-            int indice = random.nextInt(caracteres.length);
-            builder.append(caracteres[indice]);
-        }
-        placa = builder.toString();
 
-        return placa;
+        for (int i = 0; i < 3; i++) {
+            char letra = (char) ('A' + random.nextInt(26)); // Generar una letra aleatoria entre A y Z
+            placa.append(letra);
+        }
+
+        placa.append("-");
+
+        for (int i = 0; i < 3; i++) {
+            int digito = random.nextInt(10); // Generar un dígito aleatorio entre 0 y 9
+            placa.append(digito);
+        }
+
+        return placa.toString();
     }
 
     /**
      * Obtiene la fecha y hora actuales del sistema en un objeto Calendar.
      *
-     * @return Un objeto Calendar que representa la fecha y hora actuales del sistema.
+     * @return Un objeto Calendar que representa la fecha y hora actuales del
+     * sistema.
      */
     @Override
     public Calendar getFechaRecepcion() {

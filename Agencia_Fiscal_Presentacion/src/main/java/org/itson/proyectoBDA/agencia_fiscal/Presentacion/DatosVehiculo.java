@@ -23,19 +23,23 @@ public class DatosVehiculo extends javax.swing.JFrame {
     INavegacion navegacion;
     private boolean vehiculoEncontrado;
     private ClienteDTO clienteDTO;
+    private PlacaDTO placaDTO;
     private VehiculoDTO vehiculoDTO;
     private IRegistroPlacasBO registroPlacasBO;
     private IRegistroVehiculosBO registroVehiculosBO;
-    private IConsultaVehiculosBO consultaVehiculosBO;
     private IConsultaTramitesBO consultaTramitesBO;
     Logger logger = Logger.getLogger(getClass().getName());
 
     private static Float costo = 0f;
+    private String tipo = "Placas";
 
     /**
-     * Crea una nueva instancia de DatosVehiculo con el clienteDTO proporcionado. Este constructor inicializa los objetos de negocio necesarios y establece el costo en 1500.
+     * Crea una nueva instancia de DatosVehiculo con el clienteDTO
+     * proporcionado. Este constructor inicializa los objetos de negocio
+     * necesarios y establece el costo en 1500.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
      */
     public DatosVehiculo(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
@@ -50,9 +54,13 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Crea una nueva instancia de DatosVehiculo con el clienteDTO y vehiculoDTO proporcionados.Este constructor inicializa los objetos de negocio necesarios, establece el costo en 1000 y establece los datos del vehículo en los campos correspondientes de la interfaz gráfica.
+     * Crea una nueva instancia de DatosVehiculo con el clienteDTO y vehiculoDTO
+     * proporcionados.Este constructor inicializa los objetos de negocio
+     * necesarios, establece el costo en 1000 y establece los datos del vehículo
+     * en los campos correspondientes de la interfaz gráfica.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
      * @param vehiculoDTO
      */
     public DatosVehiculo(ClienteDTO clienteDTO, VehiculoDTO vehiculoDTO) {
@@ -69,7 +77,9 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Establece los datos del vehículo en los campos de la interfaz gráfica. Este método se llama automáticamente después de la inicialización del objeto para mostrar los datos del vehículo en la interfaz.
+     * Establece los datos del vehículo en los campos de la interfaz gráfica.
+     * Este método se llama automáticamente después de la inicialización del
+     * objeto para mostrar los datos del vehículo en la interfaz.
      */
     public final void setearDatos() {
         txtNumSerie.setText(vehiculoDTO.getNumero_serie());
@@ -80,16 +90,23 @@ public class DatosVehiculo extends javax.swing.JFrame {
         txtLinea.setEditable(false);
         txtModelo.setText(vehiculoDTO.getModelo().toString());
         txtModelo.setEditable(false);
+        txtMarca.setText(vehiculoDTO.getMarca());
+        txtMarca.setEditable(false);
         txtColor.setText(vehiculoDTO.getColor());
         txtColor.setEditable(false);
 
     }
 
     /**
-     * Transporta los datos del vehículo ingresados por el usuario al sistema.Este método convierte el modelo del vehículo a un entero, luego transporta los datos del vehículo al sistema utilizando objetos de negocio y maneja cualquier excepción que pueda ocurrir durante el proceso.
+     * Transporta los datos del vehículo ingresados por el usuario al
+     * sistema.Este método convierte el modelo del vehículo a un entero, luego
+     * transporta los datos del vehículo al sistema utilizando objetos de
+     * negocio y maneja cualquier excepción que pueda ocurrir durante el
+     * proceso.
      *
      * @return
-     * @throws PersistenciaException Si ocurre un error durante el proceso de transporte de datos.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de
+     * transporte de datos.
      */
     public VehiculoDTO transporteDatosVehiculo() throws PersistenciaException {
         Integer modelo = Integer.valueOf(txtModelo.getText());
@@ -103,11 +120,11 @@ public class DatosVehiculo extends javax.swing.JFrame {
             nuevoVehiculo = registroVehiculosBO.transporteDatos(
                     new VehiculoDTO(
                             txtNumSerie.getText(),
-                            modelo, 
-                            txtColor.getText(), 
-                            txtMarca.getText(), 
-                            txtLinea.getText(), 
-                            tipoVehiculo, 
+                            modelo,
+                            txtColor.getText(),
+                            txtMarca.getText(),
+                            txtLinea.getText(),
+                            tipoVehiculo,
                             licenciaVigente,
                             clienteDTO)
             );
@@ -116,26 +133,42 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Transporta los datos de la placa al sistema y devuelve el objeto PlacaDTO resultante. Este método calcula la fecha de expedición de la placa, transporta los datos de la placa al sistema utilizando objetos de negocio y maneja cualquier excepción que pueda ocurrir durante el proceso.
+     * Transporta los datos de la placa al sistema y devuelve el objeto PlacaDTO
+     * resultante. Este método calcula la fecha de expedición de la placa,
+     * transporta los datos de la placa al sistema utilizando objetos de negocio
+     * y maneja cualquier excepción que pueda ocurrir durante el proceso.
      *
-     * @return El objeto PlacaDTO transportado que contiene los datos de la placa.
-     * @throws ParseException Si ocurre un error durante el análisis de la fecha de expedición.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de transporte de datos.
+     * @return El objeto PlacaDTO transportado que contiene los datos de la
+     * placa.
+     * @throws ParseException Si ocurre un error durante el análisis de la fecha
+     * de expedición.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de
+     * transporte de datos.
      */
     public PlacaDTO transporteDatosPlaca() throws java.text.ParseException, PersistenciaException {
         //Se calcula la fecha de expedicion la cual es de 5 años
-        Calendar horaSistema = registroPlacasBO.getFechaRecepcion();
-        horaSistema.add(Calendar.YEAR, 5);
+        Calendar fechaEmision = Calendar.getInstance();
+        Calendar fechaExpedicion = fechaEmision;
+        fechaExpedicion.add(Calendar.YEAR, 5);
 
         VehiculoDTO vehiculoDTO = transporteDatosVehiculo();
 
-        PlacaDTO nuevaPlaca = registroPlacasBO.transporteDatos(
-                new PlacaDTO(vehiculoDTO, horaSistema, costo, clienteDTO));
-        return nuevaPlaca;
+        placaDTO = registroPlacasBO.transporteDatos(
+                new PlacaDTO(
+                        vehiculoDTO,
+                        fechaExpedicion,
+                        costo,
+                        clienteDTO,
+                        true, 
+                        tipo,
+                        fechaEmision));
+        return placaDTO;
     }
 
     /**
-     * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -315,7 +348,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         try {
             transporteDatosPlaca();
-            ExitoPlacas exitoPlacas = new ExitoPlacas(costo);
+            ExitoPlacas exitoPlacas = new ExitoPlacas(placaDTO);
             this.dispose();
             exitoPlacas.setVisible(true);
         } catch (ParseException | PersistenciaException ex) {

@@ -7,7 +7,7 @@ package org.itson.proyectoBDA.agencia_fiscal.Navegacion;
 import javax.swing.JFrame;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.BuscarCliente;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.DatosVehiculo;
-import org.itson.proyectoBDA.agencia_fiscal.Presentacion.HistorialTramites;
+import org.itson.proyectoBDA.agencia_fiscal.Presentacion.ConsultaClientes;
 import org.itson.proyectoBDA.agencia_fiscal.Presentacion.Index;
 
 /**
@@ -47,7 +47,7 @@ public class Navegacion implements INavegacion {
     @Override
     public void cambiarFrmHistorialLicencias(JFrame ventana) {
         ventana.dispose();
-        HistorialTramites opcionesCliente = new HistorialTramites();
+        ConsultaClientes opcionesCliente = new ConsultaClientes();
         opcionesCliente.setVisible(true);
     }
 

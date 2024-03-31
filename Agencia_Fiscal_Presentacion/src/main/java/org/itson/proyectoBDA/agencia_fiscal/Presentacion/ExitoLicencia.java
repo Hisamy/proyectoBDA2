@@ -6,19 +6,14 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 
 public class ExitoLicencia extends javax.swing.JFrame {
 
-    private IRegistroLicenciasBO registroLicenciasBO;
     private INavegacion navegacion;
-    private LicenciaDTO licenciaDTO;
+    private final LicenciaDTO licenciaDTO;
 
     private String mensajeVigencia;
     private final String mensajeCosto
             = "cobrará %.2f de tu método de pago seleccionado.";
 
-    /**
-     * Constructor de la clase ExitoLicencia.
-     *
-     * @param licenciaDTO Objeto que contiene los datos de la licencia tramitada con éxito.
-     */
+  
     public ExitoLicencia(LicenciaDTO licenciaDTO) {
         this.licenciaDTO = licenciaDTO;
         initComponents();

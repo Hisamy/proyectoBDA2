@@ -30,12 +30,19 @@ public class Tramite implements Serializable {
     @Column(name = "fecha_expedicion", nullable = false)
     @Temporal(TemporalType.DATE)
     private Calendar fecha_expedicion;
+    
+    @Column(name = "fecha_emision", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Calendar fecha_emision;
 
     @Column(name = "tipo_tramite", nullable = false, length = 20)
     private String tipo_tramite;
 
     @Column(name = "costo", nullable = false, length = 50)
     private Float costo;
+    
+    @Column(name = "estado")
+    private Boolean estado;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
@@ -44,25 +51,49 @@ public class Tramite implements Serializable {
     public Tramite() {
     }
 
-    public Tramite(Long id, Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
+    public Tramite(
+            Long id, 
+            Calendar fecha_expedicion, 
+            String tipo_tramite,
+            Float costo, 
+            Cliente cliente, 
+            Boolean estado,
+            Calendar fecha_emision) {
         this.id = id;
         this.fecha_expedicion = fecha_expedicion;
         this.tipo_tramite = tipo_tramite;
         this.costo = costo;
         this.cliente = cliente;
+        this.estado = estado;
+        this.fecha_emision = fecha_emision;
     }
 
-    public Tramite(Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
+    public Tramite(
+            Calendar fecha_expedicion, 
+            String tipo_tramite, 
+            Float costo, 
+            Cliente cliente, 
+            Boolean estado,
+            Calendar fecha_emision) {
         this.fecha_expedicion = fecha_expedicion;
         this.tipo_tramite = tipo_tramite;
         this.costo = costo;
         this.cliente = cliente;
+        this.estado = estado;
+        this.fecha_emision = fecha_emision;
     }
 
-    public Tramite(Calendar fecha_expedicion, Float costo, Cliente cliente) {
+    public Tramite(
+            Calendar fecha_expedicion, 
+            Float costo, 
+            Cliente cliente, 
+            Boolean estado,
+            Calendar fecha_emision) {
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
         this.cliente = cliente;
+        this.estado = estado;
+        this.fecha_emision = fecha_emision;
     }
 
     public Long getId() {
@@ -104,6 +135,23 @@ public class Tramite implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public Calendar getFecha_emision() {
+        return fecha_emision;
+    }
+
+    public void setFecha_emision(Calendar fecha_emision) {
+        this.fecha_emision = fecha_emision;
+    }
+    
 
     @Override
     public int hashCode() {
