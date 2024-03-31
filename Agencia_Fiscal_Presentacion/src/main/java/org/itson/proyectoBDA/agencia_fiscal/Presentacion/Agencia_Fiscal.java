@@ -71,7 +71,6 @@ public class Agencia_Fiscal {
 
         Vehiculo vehiculo1 = new Vehiculo("num_serie", "tipo", 1980, "color", "marca", "linea", true);
 
-        entityManager.persist(vehiculo1);
         entityManager.persist(cliente1);
         entityManager.persist(cliente2);
         entityManager.persist(cliente3);

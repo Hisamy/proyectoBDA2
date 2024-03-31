@@ -59,8 +59,8 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
                 vehiculo.getColor(),
                 vehiculo.getMarca(),
                 vehiculo.getLinea(),
-                vehiculo.isLicencia_vigente()
-        );
+                vehiculo.getTipo(),
+                vehiculo.isLicencia_vigente());
         return vehiculoDTO;
     }
 
@@ -80,6 +80,7 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
                 vehiculo.getColor(),
                 vehiculo.getMarca(),
                 vehiculo.getLinea(),
+                vehiculo.getTipo(),
                 vehiculo.isLicencia_vigente());
         return vehiculoDTO;
     }

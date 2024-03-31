@@ -22,6 +22,7 @@ public class VehiculosDAO implements IVehiculosDAO {
         entityManager.getTransaction().begin();
         entityManager.persist(nuevoVehiculo);
         entityManager.getTransaction().commit();
+        nuevoVehiculo = consultarVehiculo(nuevoVehiculo.getNumero_serie());
         entityManager.close();
 
         return nuevoVehiculo;
@@ -44,5 +45,4 @@ public class VehiculosDAO implements IVehiculosDAO {
         }
         return vehiculo;
     }
-
 }

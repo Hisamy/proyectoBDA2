@@ -47,7 +47,7 @@ public class Vehiculo implements Serializable {
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     private Cliente cliente;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "vehiculo")
+    @OneToMany(cascade = {}, mappedBy = "vehiculo")
     private List<Placa> placa;
 
     public Vehiculo() {
@@ -74,6 +74,17 @@ public class Vehiculo implements Serializable {
         this.marca = marca;
         this.linea = linea;
         this.licencia_vigente = licencia_vigente;
+    }
+
+    public Vehiculo(String numero_serie, String tipo, Integer modelo, String color, String marca, String linea, boolean licencia_vigente, Cliente cliente) {
+        this.numero_serie = numero_serie;
+        this.tipo = tipo;
+        this.modelo = modelo;
+        this.color = color;
+        this.marca = marca;
+        this.linea = linea;
+        this.licencia_vigente = licencia_vigente;
+        this.cliente = cliente;
     }
 
     public Long getId() {

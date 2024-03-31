@@ -25,12 +25,13 @@ public class VehiculoDTO {
         this.clienteDTO = clienteDTO;
     }
 
-    public VehiculoDTO(String numero_serie, Integer modelo, String color, String marca, String tipo, boolean licencia_vigente) {
+    public VehiculoDTO(String numero_serie, Integer modelo, String color, String marca, String tipo, String linea, boolean licencia_vigente) {
         this.numero_serie = numero_serie;
         this.modelo = modelo;
         this.color = color;
         this.marca = marca;
         this.tipo = tipo;
+        this.linea = linea;
         this.licencia_vigente = licencia_vigente;
     }
 

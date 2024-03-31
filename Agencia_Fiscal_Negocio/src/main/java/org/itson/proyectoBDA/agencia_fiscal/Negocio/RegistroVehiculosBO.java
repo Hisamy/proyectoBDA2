@@ -2,21 +2,28 @@ package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.PersistenceException;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.VehiculosDAO;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import static org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroClientesBO.logger;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
 public class RegistroVehiculosBO implements IRegistroVehiculosBO {
 
     private final VehiculosDAO vehiculoDAO;
+    private final IClientesDAO clienteDAO;
 
     public RegistroVehiculosBO() {
         IConexion conexion = new Conexion();
         this.vehiculoDAO = new VehiculosDAO(conexion);
+        this.clienteDAO = new ClientesDAO(conexion);
     }
 
     /**
@@ -36,8 +43,9 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
                     nuevoVehiculo.getColor(),
                     nuevoVehiculo.getMarca(),
                     nuevoVehiculo.getLinea(),
-                    true);
-            vehiculoDAO.agregarVehiculo(vehiculo);
+                    true,
+                    clienteDAO.consultarCliente(nuevoVehiculo.getClienteDTO().getRFC()));
+            vehiculo = vehiculoDAO.agregarVehiculo(vehiculo);
             return vehiculo;
         } catch (PersistenciaException e) {
             logger.warning("No se puedo registrar correctamente el cliente");
@@ -53,7 +61,7 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
      *
      */
     @Override
-    public VehiculoDTO transporteDatos(VehiculoDTO nuevoVehiculo) {
+    public VehiculoDTO transporteDatos(VehiculoDTO nuevoVehiculo) throws PersistenceException {
         try {
             registrarVehiculo(nuevoVehiculo);
         } catch (PersistenciaException ex) {
@@ -62,4 +70,16 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
         return nuevoVehiculo;
     }
 
+    @Override
+    public Cliente convertirClienteADTO(ClienteDTO clienteDTO) throws PersistenciaException {
+        return new Cliente(
+                clienteDTO.getCURP(),
+                clienteDTO.getNombre(),
+                clienteDTO.getApellido_paterno(),
+                clienteDTO.getApellido_materno(),
+                clienteDTO.isDiscapacidad(),
+                clienteDTO.getRFC(),
+                clienteDTO.getTelefono(),
+                clienteDTO.getFecha_nacimiento());
+    }
 }

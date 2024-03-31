@@ -7,7 +7,9 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IPlacasDAO;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.IVehiculosDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.PlacasDAO;
+import org.itson.proyectoBDA.agencia_fiscal.DAO.VehiculosDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
@@ -18,11 +20,13 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
 
     IConexion conexion = new Conexion();
     ClientesDAO clienteDAO = new ClientesDAO(conexion);
+    IVehiculosDAO vehiculoDAO;
     private IPlacasDAO placaDAO;
 
     public RegistroPlacasBO() {
         IConexion conexion = new Conexion();
         this.placaDAO = new PlacasDAO(conexion);
+        this.vehiculoDAO = new VehiculosDAO(conexion);
     }
 
     /**
@@ -65,7 +69,6 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
      * Transporta los datos de una nueva placa y registra la placa en el sistema.
      *
      * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
-     * @param clienteDTO
      * @return El objeto PlacaDTO transportado, que contiene los mismos datos que la placa registrada.
      * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
      */

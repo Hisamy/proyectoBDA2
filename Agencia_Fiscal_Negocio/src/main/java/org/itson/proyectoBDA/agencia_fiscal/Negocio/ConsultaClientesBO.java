@@ -12,10 +12,8 @@ import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
-import org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
-import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
 public class ConsultaClientesBO implements IConsultaClientesBO {
 
@@ -139,12 +137,12 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
                 ClienteDTO clienteDTO = new ClienteDTO(
                         cliente.getCURP(),
                         cliente.getNombre(),
-                        cliente.getApellido_paterno(), 
-                        cliente.getApellido_materno(), 
-                        cliente.isDiscapacidad(), 
-                        cliente.getRFC(), 
-                        cliente.getTelefono(), 
-                cliente.getFecha_nacimiento());
+                        cliente.getApellido_paterno(),
+                        cliente.getApellido_materno(),
+                        cliente.isDiscapacidad(),
+                        cliente.getRFC(),
+                        cliente.getTelefono(),
+                        cliente.getFecha_nacimiento());
                 clientesDTO.add(clienteDTO);
             }
             return clientesDTO;
@@ -153,7 +151,6 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
             throw new FindException(ex.getMessage());
         }
 
-         }
-    
-    
+    }
+
 }
