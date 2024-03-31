@@ -18,7 +18,7 @@ public class PlacasDAO implements IPlacasDAO {
         EntityManager entityManager = conexion.crearConexion();
 
         entityManager.getTransaction().begin();
-        entityManager.persist(nuevaPlaca);
+        entityManager.merge(nuevaPlaca);
         entityManager.getTransaction().commit();
         entityManager.close();
 

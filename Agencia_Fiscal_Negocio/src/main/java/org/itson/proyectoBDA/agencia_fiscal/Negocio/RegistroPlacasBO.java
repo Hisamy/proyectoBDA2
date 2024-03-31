@@ -10,6 +10,7 @@ import org.itson.proyectoBDA.agencia_fiscal.DAO.IPlacasDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IVehiculosDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.PlacasDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.VehiculosDAO;
+import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
@@ -39,14 +40,18 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
      */
     @Override
     public Placa registrarPlaca(PlacaDTO nuevaPlaca, Vehiculo vehiculo) throws PersistenciaException {
-        Placa placaNueva = placaDAO.agregarPlaca(new Placa(
+        Cliente cliente = clienteDAO.consultarCliente(nuevaPlaca.getClienteDTO().getRFC());
+        
+        Placa placa = new Placa(
                 generarNumeroAlfanumerico(),
                 getFechaRecepcion(),
                 true,
                 vehiculo,
                 nuevaPlaca.getFecha_expedicion(),
                 nuevaPlaca.getCosto(),
-                clienteDAO.consultarCliente(nuevaPlaca.getClienteDTO().getRFC())));
+                cliente);
+        placa.getVehiculo().setCliente(cliente);
+        Placa placaNueva = placaDAO.agregarPlaca(placa);
         return placaNueva;
     }
 
