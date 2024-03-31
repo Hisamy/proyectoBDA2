@@ -134,7 +134,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        lblSolicitarLicencia = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         lblNumeroSerie = new javax.swing.JLabel();
         txtNumSerie = new javax.swing.JTextField();
         txtColor = new javax.swing.JTextField();
@@ -161,10 +161,10 @@ public class DatosVehiculo extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblSolicitarLicencia.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        lblSolicitarLicencia.setForeground(new java.awt.Color(65, 34, 52));
-        lblSolicitarLicencia.setText("Datos del automóvil");
-        jPanel2.add(lblSolicitarLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 33, -1, -1));
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(65, 34, 52));
+        lblTitulo.setText("Datos del vehiculo");
+        jPanel2.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 33, -1, -1));
 
         lblNumeroSerie.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblNumeroSerie.setText("Número de serie");
@@ -337,7 +337,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel lblMarca1;
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblNumeroSerie;
-    private javax.swing.JLabel lblSolicitarLicencia;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtLinea;
     private javax.swing.JTextField txtMarca1;
