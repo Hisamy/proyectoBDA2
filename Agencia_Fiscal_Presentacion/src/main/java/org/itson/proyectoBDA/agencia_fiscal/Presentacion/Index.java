@@ -28,6 +28,7 @@ public class Index extends javax.swing.JFrame {
         btnBuscarCliente = new javax.swing.JButton();
         lblTexto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        btnReporteTramites = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Index");
@@ -50,7 +51,7 @@ public class Index extends javax.swing.JFrame {
                 btnHistorialLicenciaPlacasActionPerformed(evt);
             }
         });
-        jPanel2.add(btnHistorialLicenciaPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 290, 32));
+        jPanel2.add(btnHistorialLicenciaPlacas, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 180, 32));
 
         btnBuscarCliente.setBackground(new java.awt.Color(65, 34, 52));
         btnBuscarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -61,13 +62,24 @@ public class Index extends javax.swing.JFrame {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 290, 32));
+        jPanel2.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 370, 32));
 
         lblTexto.setText("texto");
         jPanel2.add(lblTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 30, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
+
+        btnReporteTramites.setBackground(new java.awt.Color(65, 34, 52));
+        btnReporteTramites.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReporteTramites.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporteTramites.setText("Reporte de trámites");
+        btnReporteTramites.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteTramitesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnReporteTramites, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 180, 32));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,6 +108,10 @@ public class Index extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnHistorialLicenciaPlacasActionPerformed
 
+    private void btnReporteTramitesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteTramitesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReporteTramitesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -103,6 +119,7 @@ public class Index extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnHistorialLicenciaPlacas;
+    private javax.swing.JButton btnReporteTramites;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAgenciaFiscal;
