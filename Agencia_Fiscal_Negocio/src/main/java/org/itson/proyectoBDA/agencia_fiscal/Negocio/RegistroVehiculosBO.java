@@ -44,7 +44,7 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
                     nuevoVehiculo.getMarca(),
                     nuevoVehiculo.getLinea(),
                     true,
-                    clienteDAO.consultarCliente(nuevoVehiculo.getClienteDTO().getRFC()));
+                    clienteDAO.consultarClienteRFC(nuevoVehiculo.getClienteDTO().getRFC()));
             vehiculo = vehiculoDAO.agregarVehiculo(vehiculo);
             return vehiculo;
         } catch (PersistenciaException e) {

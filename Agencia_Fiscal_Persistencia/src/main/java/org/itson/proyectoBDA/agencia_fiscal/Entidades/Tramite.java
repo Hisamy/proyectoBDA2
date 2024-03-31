@@ -25,7 +25,7 @@ public class Tramite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tramite")
-    private Long id;
+    public Long id;
 
     @Column(name = "fecha_expedicion", nullable = false)
     @Temporal(TemporalType.DATE)

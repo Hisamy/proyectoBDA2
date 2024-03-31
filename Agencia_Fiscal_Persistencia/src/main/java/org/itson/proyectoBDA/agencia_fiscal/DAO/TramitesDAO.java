@@ -31,7 +31,7 @@ public class TramitesDAO implements ITramitesDAO {
         
         for(Object[] consulta : consultas){
             String tipo = (String) consulta[0];
-            Float costo =+ (Float) consulta[1];
+            Float costo = (Float) consulta[1];
             Calendar fechaExpedicion = (Calendar) consulta[2];
             Cliente cliente = (Cliente) consulta[3];
             

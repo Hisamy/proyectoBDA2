@@ -43,7 +43,7 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     public Licencia consultarLicencia(Cliente cliente) throws FindException {
         Licencia licencia = null;
         try {
-            licencia = licenciaDAO.consultarDatosLicencia(clienteDAO.consultarCliente(cliente.getRFC()));
+            licencia = licenciaDAO.consultarDatosLicencia(clienteDAO.consultarClienteRFC(cliente.getRFC()));
         } catch (PersistenciaException ex) {
             Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
         }

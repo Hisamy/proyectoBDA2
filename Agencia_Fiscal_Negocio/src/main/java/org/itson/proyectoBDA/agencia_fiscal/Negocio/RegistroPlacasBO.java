@@ -40,7 +40,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
      */
     @Override
     public Placa registrarPlaca(PlacaDTO nuevaPlaca, Vehiculo vehiculo) throws PersistenciaException {
-        Cliente cliente = clienteDAO.consultarCliente(nuevaPlaca.getClienteDTO().getRFC());
+        Cliente cliente = clienteDAO.consultarClienteRFC(nuevaPlaca.getClienteDTO().getRFC());
 
         Placa placa = new Placa(
                 generarNumeroAlfanumerico(),

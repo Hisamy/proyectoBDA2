@@ -1,15 +1,31 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.EventObject;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
 public class HistorialTramites extends javax.swing.JFrame {
@@ -17,29 +33,45 @@ public class HistorialTramites extends javax.swing.JFrame {
     INavegacion navegacion;
     private IConsultaClientesBO consultaClientesBO;
     List<ClienteDTO> clientes;
+    private ClienteDTO clienteDTO;
+
 
     /**
-     * Creates new form HistorialLicencias
+     * Constructor de la clase HistorialTramites. Inicializa los componentes de
+     * la interfaz gráfica y llena la tabla con el historial de clientes.
      */
-    public HistorialTramites() {
+    public HistorialTramites(ClienteDTO clienteDTO) {
         navegacion = new Navegacion();
         consultaClientesBO = new ConsultaClientesBO();
+        this.clienteDTO = clienteDTO;
+  
         try {
             this.clientes = consultaClientesBO.historialCliente();
         } catch (FindException ex) {
             Logger.getLogger(HistorialTramites.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
+
         llenarTabla(clientes);
+
     }
 
+    /**
+     * Llena la tabla con el historial de clientes.
+     *
+     * @param clientesDTO Lista de objetos ClienteDTO que representan el
+     * historial de clientes.
+     */
     private void llenarTabla(List<ClienteDTO> clientesDTO) {
         DefaultTableModel clientesEncontrados = new DefaultTableModel();
         clientesEncontrados.addColumn("Nombre");
         clientesEncontrados.addColumn("Apellido paterno");
         clientesEncontrados.addColumn("Apellido materno");
         clientesEncontrados.addColumn("CURP");
+        clientesEncontrados.addColumn("RFC");
         clientesEncontrados.addColumn("Fecha nacimiento");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()); // Define el formato de fecha deseado
 
         for (ClienteDTO cliente : clientes) {
             Object[] fila = {
@@ -47,14 +79,64 @@ public class HistorialTramites extends javax.swing.JFrame {
                 cliente.getApellido_paterno(),
                 cliente.getApellido_materno(),
                 cliente.getCURP(),
-                cliente.getFecha_nacimiento()
+                cliente.getRFC(),
+                dateFormat.format(cliente.getFecha_nacimiento().getTime()) // Formatea la fecha y la agrega a la tabla
             };
-               clientesEncontrados.addRow(fila);
+            clientesEncontrados.addRow(fila);
         }
-        jTable1.setModel(clientesEncontrados);
+        jTPersonas.setModel(clientesEncontrados);
     }
 
-    
+    private void buscarPorNombre(String nombre) {
+        try {
+            List<ClienteDTO> clientesDTO = consultaClientesBO.consultarClientePorNombre(nombre);
+            if (clientesDTO != null && !clientesDTO.isEmpty()) {
+                clientes.clear();
+                clientes.addAll(clientesDTO);
+
+                llenarTabla(clientesDTO);
+            }
+
+        } catch (FindException ex) {
+            Logger.getLogger(HistorialTramites.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+
+    private void buscarPorFechaNacimiento(int anioNacimiento) {
+        try {
+
+            List<ClienteDTO> clientesDTO = consultaClientesBO.consultarClientePorFechaNacimiento(anioNacimiento);
+            if (clientesDTO != null && !clientesDTO.isEmpty()) {
+                clientes.clear();
+                clientes.addAll(clientesDTO);
+                llenarTabla(clientesDTO);
+            }
+        } catch (FindException ex) {
+            Logger.getLogger(HistorialTramites.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+
+    private void buscarPorRFC(String rfc) {
+        try {
+            ClienteDTO clienteDTO = consultaClientesBO.transporteDatos(rfc);
+            if (clienteDTO != null) {
+                clientes.clear();
+                clientes.add(clienteDTO);
+                llenarTabla(clientes);
+
+            }
+        } catch (FindException ex) {
+            Logger.getLogger(HistorialTramites.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,7 +155,7 @@ public class HistorialTramites extends javax.swing.JFrame {
         flechaIcon = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTPersonas = new javax.swing.JTable();
         txtBuscador = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         lblCostoLicencia = new javax.swing.JLabel();
@@ -88,7 +170,7 @@ public class HistorialTramites extends javax.swing.JFrame {
 
         lblSolicitarLicencia.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblSolicitarLicencia.setForeground(new java.awt.Color(65, 34, 52));
-        lblSolicitarLicencia.setText("Historial de licencias y placas");
+        lblSolicitarLicencia.setText("Historial de clientes");
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblNombre.setText("Buscar por:");
@@ -106,14 +188,14 @@ public class HistorialTramites extends javax.swing.JFrame {
         flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "CURP", "Año de nacimiento" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "RFC", "Año de nacimiento" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -124,7 +206,7 @@ public class HistorialTramites extends javax.swing.JFrame {
                 "Nombre", "Apellido Paterno", "Apellido Materno", "CURP"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTPersonas);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -203,14 +285,130 @@ public class HistorialTramites extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+        String busqueda = txtBuscador.getText().trim();
+        String opcionSeleccionada = (String) jComboBox1.getSelectedItem();
+
+        if (opcionSeleccionada.equalsIgnoreCase("Nombre")) {
+            buscarPorNombre(busqueda);
+        } else if (opcionSeleccionada.equalsIgnoreCase("RFC")) {
+            buscarPorRFC(busqueda);
+        } else {
+            Calendar fechaNacimiento = convertirAFecha(busqueda);
+            buscarPorFechaNacimiento(fechaNacimiento.get(Calendar.YEAR));
+        }
+
+
     }//GEN-LAST:event_btnBuscarActionPerformed
+    private Calendar convertirAFecha(String fechaStr) {
+        Calendar calendar = Calendar.getInstance();
+        try {
+            int year = Integer.parseInt(fechaStr);
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, Calendar.JANUARY);
+            calendar.set(Calendar.DAY_OF_MONTH, 1);
+
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(HistorialTramites.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+        return calendar;
+    }
+
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private class JButtonCellEditor implements TableCellEditor {
 
+        private final JButton button;
+        private int row;
+        private ActionListener actionListener;
+
+        public JButtonCellEditor(String text, ActionListener actionListener) {
+            this.button = new JButton(text);
+            this.button.setBackground(new Color(65, 6, 36));
+            this.button.setForeground(new Color(242, 242, 242));
+            this.actionListener = actionListener;
+            this.button.addActionListener((ActionEvent evt) -> {
+                this.actionListener.actionPerformed(
+                        new ActionEvent(this.button, ActionEvent.ACTION_PERFORMED, this.row + "")
+                );
+            });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            this.row = row;
+            return this.button;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return true;
+        }
+
+        @Override
+        public boolean isCellEditable(EventObject anEvent) {
+            return true;
+        }
+
+        @Override
+        public boolean shouldSelectCell(EventObject anEvent) {
+            return true;
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+            return true;
+        }
+
+        @Override
+        public void cancelCellEditing() {
+        }
+
+        @Override
+        public void addCellEditorListener(CellEditorListener l) {
+        }
+
+        @Override
+        public void removeCellEditorListener(CellEditorListener l) {
+        }
+    }
+
+    private class JButtonRenderer implements TableCellRenderer {
+
+        private final JButton button;
+
+        public JButtonRenderer(String text) {
+            this.button = new JButton(text);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            return this.button;
+        }
+//DUDAS
+        private ActionListener botonVerReporte() {
+        ActionListener validarListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TramiteDTO tramiteSelec = clienteDTO.getTramitesDTO().get(tablaTramites.getSelectedRow()) ;
+                if (tramiteSelec instanceof PlacaDTO) {
+                    PlacaDTO placaSelec = (PlacaDTO)tramiteSelec ;
+                    dispose() ;
+                    ExitoPlacas frmPlaca = new ExitoPlacas (placaSelec.getCosto());
+                } else if (tramiteSelec instanceof LicenciaDTO) {
+                    LicenciaDTO licenciaSelec = (LicenciaDTO) tramiteSelec ;
+                    dispose() ;
+                    ExitoLicencia frmLicencia = new ExitoLicencia(licenciaSelec);
+                }
+            }
+        } ;
+        
+        return validarListener ;
+    }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel flechaIcon;
@@ -219,7 +417,7 @@ public class HistorialTramites extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTPersonas;
     private javax.swing.JLabel lblCostoLicencia;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblSolicitarLicencia;

@@ -1,5 +1,6 @@
 package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
+import java.util.Calendar;
 import java.util.List;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
@@ -16,7 +17,11 @@ public interface IConsultaClientesBO {
     public void validarEdad(Cliente cliente) throws FindException;
 
     public Integer calcularEdad(Cliente cliente);
-    
+
     public List<ClienteDTO> historialCliente() throws FindException;
+
+    public List<ClienteDTO> consultarClientePorNombre(String nombre_apellido) throws FindException;
+
+    public List<ClienteDTO> consultarClientePorFechaNacimiento(int anio) throws FindException;
 
 }

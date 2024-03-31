@@ -74,8 +74,8 @@ public class DatosVehiculo extends javax.swing.JFrame {
     public final void setearDatos() {
         txtNumSerie.setText(vehiculoDTO.getNumero_serie());
         txtNumSerie.setEditable(false);
-        txtTipo.setText(vehiculoDTO.getMarca());
-        txtTipo.setEditable(false);
+        jcbTipoVehiculo.setSelectedItem(vehiculoDTO.getTipo());
+        jcbTipoVehiculo.setEditable(false);
         txtLinea.setText(vehiculoDTO.getLinea());
         txtLinea.setEditable(false);
         txtModelo.setText(vehiculoDTO.getModelo().toString());
@@ -99,8 +99,17 @@ public class DatosVehiculo extends javax.swing.JFrame {
         System.out.println(licenciaVigente);
 
         if (vehiculoEncontrado == false) {
+            String tipoVehiculo = (String) jcbTipoVehiculo.getSelectedItem();
             nuevoVehiculo = registroVehiculosBO.transporteDatos(
-                    new VehiculoDTO(txtNumSerie.getText(), modelo, txtColor.getText(), txtTipo.getText(), txtTipo.getText(), txtLinea.getText(), licenciaVigente, clienteDTO)
+                    new VehiculoDTO(
+                            txtNumSerie.getText(),
+                            modelo, 
+                            txtColor.getText(), 
+                            txtMarca.getText(), 
+                            txtLinea.getText(), 
+                            tipoVehiculo, 
+                            licenciaVigente,
+                            clienteDTO)
             );
         }
         return nuevoVehiculo;
@@ -141,14 +150,14 @@ public class DatosVehiculo extends javax.swing.JFrame {
         lblColor = new javax.swing.JLabel();
         txtModelo = new javax.swing.JTextField();
         lblLinea = new javax.swing.JLabel();
-        txtTipo = new javax.swing.JTextField();
         lblMarca = new javax.swing.JLabel();
         txtLinea = new javax.swing.JTextField();
         lblModelo = new javax.swing.JLabel();
         btnContinuar = new javax.swing.JButton();
         btnAtras = new javax.swing.JLabel();
         lblMarca1 = new javax.swing.JLabel();
-        txtMarca1 = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
+        jcbTipoVehiculo = new javax.swing.JComboBox<>();
         btnLogo = new javax.swing.JLabel();
         lblCostoLicencia = new javax.swing.JLabel();
 
@@ -205,15 +214,6 @@ public class DatosVehiculo extends javax.swing.JFrame {
         lblLinea.setText("Línea");
         jPanel2.add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
-        txtTipo.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtTipo.setForeground(new java.awt.Color(109, 70, 107));
-        txtTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTipoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 108, -1));
-
         lblMarca.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblMarca.setText("Tipo");
         jPanel2.add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
@@ -250,14 +250,22 @@ public class DatosVehiculo extends javax.swing.JFrame {
         lblMarca1.setText("Marca");
         jPanel2.add(lblMarca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
-        txtMarca1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtMarca1.setForeground(new java.awt.Color(109, 70, 107));
-        txtMarca1.addActionListener(new java.awt.event.ActionListener() {
+        txtMarca.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtMarca.setForeground(new java.awt.Color(109, 70, 107));
+        txtMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMarca1ActionPerformed(evt);
+                txtMarcaActionPerformed(evt);
             }
         });
-        jPanel2.add(txtMarca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 108, -1));
+        jPanel2.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 108, -1));
+
+        jcbTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Automovil" }));
+        jcbTipoVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbTipoVehiculoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jcbTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 560, 290));
 
@@ -300,10 +308,6 @@ public class DatosVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtModeloActionPerformed
 
-    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTipoActionPerformed
-
     private void txtLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLineaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLineaActionPerformed
@@ -319,9 +323,13 @@ public class DatosVehiculo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnContinuarActionPerformed
 
-    private void txtMarca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarca1ActionPerformed
+    private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMarca1ActionPerformed
+    }//GEN-LAST:event_txtMarcaActionPerformed
+
+    private void jcbTipoVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoVehiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbTipoVehiculoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -330,6 +338,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel btnLogo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JComboBox<String> jcbTipoVehiculo;
     private javax.swing.JLabel lblColor;
     private javax.swing.JLabel lblCostoLicencia;
     private javax.swing.JLabel lblLinea;
@@ -340,9 +349,8 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtLinea;
-    private javax.swing.JTextField txtMarca1;
+    private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNumSerie;
-    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }

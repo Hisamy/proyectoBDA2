@@ -2,7 +2,6 @@ package org.itson.proyectoBDA.agencia_fiscal.Entidades;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +21,7 @@ public class Vehiculo implements Serializable {
     @Column(name = "id_vehiculo")
     private Long id;
 
-    @Column(name = "numero_serie")
+    @Column(name = "numero_serie", unique = true)
     private String numero_serie;
 
     @Column(name = "tipo", nullable = false, length = 50)
@@ -53,7 +52,17 @@ public class Vehiculo implements Serializable {
     public Vehiculo() {
     }
 
-    public Vehiculo(Long id, String numero_serie, String tipo, Integer modelo, String color, String marca, String linea, boolean licencia_vigente, Cliente cliente, List<Placa> placa) {
+    public Vehiculo(
+            Long id,
+            String numero_serie, 
+            String tipo, 
+            Integer modelo, 
+            String color, 
+            String marca, 
+            String linea, 
+            boolean licencia_vigente, 
+            Cliente cliente, 
+            List<Placa> placa) {
         this.id = id;
         this.numero_serie = numero_serie;
         this.tipo = tipo;
@@ -66,7 +75,14 @@ public class Vehiculo implements Serializable {
         this.placa = placa;
     }
 
-    public Vehiculo(String numero_serie, String tipo, Integer modelo, String color, String marca, String linea, boolean licencia_vigente) {
+    public Vehiculo(
+            String numero_serie, 
+            String tipo, 
+            Integer modelo, 
+            String color, 
+            String marca, 
+            String linea, 
+            boolean licencia_vigente) {
         this.numero_serie = numero_serie;
         this.tipo = tipo;
         this.modelo = modelo;
@@ -76,7 +92,15 @@ public class Vehiculo implements Serializable {
         this.licencia_vigente = licencia_vigente;
     }
 
-    public Vehiculo(String numero_serie, String tipo, Integer modelo, String color, String marca, String linea, boolean licencia_vigente, Cliente cliente) {
+    public Vehiculo(
+            String numero_serie, 
+            String tipo, 
+            Integer modelo, 
+            String color, 
+            String marca, 
+            String linea, 
+            boolean licencia_vigente, 
+            Cliente cliente) {
         this.numero_serie = numero_serie;
         this.tipo = tipo;
         this.modelo = modelo;

@@ -30,7 +30,7 @@ public class RegistroLicenciasBO implements IRegistroLicenciasBO {
                 nuevoLicencia.getVigencia(),
                 nuevoLicencia.getFecha_expedicion(),
                 nuevoLicencia.getCosto(),
-                clienteDAO.consultarCliente(nuevoLicencia.getClienteDTO().getRFC())));
+                clienteDAO.consultarClienteRFC(nuevoLicencia.getClienteDTO().getRFC())));
         return nuevaLicencia;
     }
 

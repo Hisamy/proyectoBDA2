@@ -1,6 +1,7 @@
 
 package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 
+import java.util.Calendar;
 import java.util.List;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
@@ -17,4 +18,7 @@ public interface IConsultaTramitesBO {
     public Boolean transporteDatos(ClienteDTO cienteDTO);
     
     public List<TramiteDTO> historialTramite() throws FindException;
+    
+   
+    
 }

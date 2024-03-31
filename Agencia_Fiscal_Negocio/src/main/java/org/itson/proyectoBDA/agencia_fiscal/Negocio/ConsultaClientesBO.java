@@ -45,6 +45,37 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
                 cliente.getFecha_nacimiento());
         return clienteDTO;
     }
+   
+    
+     /**
+     * Consulta clientes en la base de datos que tengan una fecha de nacimiento específica.
+     *
+     * @return Una lista de clientes que tienen la fecha de nacimiento especificada.
+     * @throws FindException Si no se encuentran clientes con la fecha de nacimiento especificada.
+     */
+    @Override
+    public List<ClienteDTO> consultarClientePorFechaNacimiento(int anio) throws FindException {
+        try {
+            List<Cliente> clientes = clienteDAO.consultarClientePorAnioNacimiento(anio);
+            List<ClienteDTO> clientesDTO = new ArrayList<>();
+            for (Cliente cliente : clientes) {
+                ClienteDTO clienteDTO = new ClienteDTO(
+                        cliente.getCURP(),
+                        cliente.getNombre(),
+                        cliente.getApellido_paterno(),
+                        cliente.getApellido_materno(),
+                        cliente.isDiscapacidad(),
+                        cliente.getRFC(),
+                        cliente.getTelefono(),
+                        cliente.getFecha_nacimiento());
+                clientesDTO.add(clienteDTO);
+            }
+            return clientesDTO;
+        } catch (FindException ex) {
+            Logger.getLogger(ConsultaClientesBO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new FindException(ex.getMessage());
+        }
+    }
 
     /**
      * Consulta un cliente por su RFC.
@@ -56,7 +87,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     @Override
     public Cliente consultarClientePorRFC(String RFC) throws FindException {
         try {
-            Cliente cliente = clienteDAO.consultarCliente(RFC);
+            Cliente cliente = clienteDAO.consultarClienteRFC(RFC);
             consultarClienteDTOPorRFC(cliente);
             Cliente getCliente = new Cliente(
                     cliente.getCURP(),
@@ -149,8 +180,39 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
         } catch (FindException ex) {
             Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
             throw new FindException(ex.getMessage());
+        }}
+        
+         /**
+     * Consulta clientes en la base de datos que coincidan con un nombre.
+     *
+     * @param nombre nombre del cliente
+     * @return Una lista de clientes que coinciden con el criterio de búsqueda.
+     * @throws FindException Si no se encuentran clientes que coincidan con el criterio de búsqueda.
+     */
+    @Override
+    public List<ClienteDTO> consultarClientePorNombre(String nombre) throws FindException {
+        try {
+            List<Cliente> clientes = clienteDAO.consultarClientePorNombre(nombre);
+            List<ClienteDTO> clientesDTO = new ArrayList<>();
+            for (Cliente cliente : clientes) {
+                ClienteDTO clienteDTO = new ClienteDTO(
+                        cliente.getCURP(),
+                        cliente.getNombre(),
+                        cliente.getApellido_paterno(),
+                        cliente.getApellido_materno(),
+                        cliente.isDiscapacidad(),
+                        cliente.getRFC(),
+                        cliente.getTelefono(),
+                        cliente.getFecha_nacimiento());
+                clientesDTO.add(clienteDTO);
+            }
+            return clientesDTO;
+        } catch (FindException ex) {
+            Logger.getLogger(ConsultaClientesBO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new FindException(ex.getMessage());
         }
-
     }
+
+    
 
 }
