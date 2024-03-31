@@ -11,7 +11,6 @@ import org.itson.proyectoBDA.agencia_fiscal.DAO.PlacasDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
-import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
@@ -30,7 +29,6 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
      * Registra una nueva placa en el sistema utilizando los datos proporcionados en un objeto PlacaDTO.
      *
      * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
-     * @param clienteDTO
      * @param vehiculo
      * @return El objeto Placa recién registrado.
      * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
@@ -38,8 +36,8 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     @Override
     public Placa registrarPlaca(PlacaDTO nuevaPlaca, Vehiculo vehiculo) throws PersistenciaException {
         Placa placaNueva = placaDAO.agregarPlaca(new Placa(
-                nuevaPlaca.getNumero_alfanumerico(),
-                nuevaPlaca.getFecha_recepcion(),
+                generarNumeroAlfanumerico(),
+                getFechaRecepcion(),
                 true,
                 vehiculo,
                 nuevaPlaca.getFecha_expedicion(),
@@ -51,7 +49,14 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     @Override
     public VehiculoDTO conversorVehiculoDTO(PlacaDTO nuevaPlaca) throws PersistenciaException {
         VehiculoDTO vehiculoDTO = nuevaPlaca.getVehiculo();
-        Vehiculo nuevoVehiculo = new Vehiculo(vehiculoDTO.getNumero_serie(), vehiculoDTO.getModelo(), vehiculoDTO.getColor(), vehiculoDTO.getMarca(), vehiculoDTO.getLinea(), true);
+        Vehiculo nuevoVehiculo = new Vehiculo(
+                vehiculoDTO.getNumero_serie(),
+                vehiculoDTO.getTipo(),
+                vehiculoDTO.getModelo(),
+                vehiculoDTO.getColor(),
+                vehiculoDTO.getMarca(),
+                vehiculoDTO.getLinea(),
+                true);
         registrarPlaca(nuevaPlaca, nuevoVehiculo);
         return vehiculoDTO;
     }

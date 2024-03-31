@@ -32,6 +32,25 @@ public class Placa extends Tramite implements Serializable {
     public Placa() {
     }
 
+    public Placa(Long id, Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
+        super(id, fecha_expedicion, tipo_tramite, costo, cliente);
+    }
+
+    public Placa(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, Vehiculo vehiculo, Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
+        super(fecha_expedicion, tipo_tramite, costo, cliente);
+        this.numero_alfanumerico = numero_alfanumerico;
+        this.fecha_recepcion = fecha_recepcion;
+        this.activacion = activacion;
+        this.vehiculo = vehiculo;
+    }
+
+    public Placa(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, Vehiculo vehiculo) {
+        this.numero_alfanumerico = numero_alfanumerico;
+        this.fecha_recepcion = fecha_recepcion;
+        this.activacion = activacion;
+        this.vehiculo = vehiculo;
+    }
+
     public Placa(String numero_alfanumerico, Calendar fecha_recepcion, boolean activacion, Vehiculo vehiculo, Calendar fecha_expedicion, Float costo, Cliente cliente) {
         super(fecha_expedicion, costo, cliente);
         this.numero_alfanumerico = numero_alfanumerico;
@@ -40,8 +59,8 @@ public class Placa extends Tramite implements Serializable {
         this.vehiculo = vehiculo;
     }
 
-    public Placa(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
-        super(id, fecha_expedicion, costo, cliente);
+    public Placa(Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
+        super(fecha_expedicion, tipo_tramite, costo, cliente);
     }
 
     public String getNumero_alfanumerico() {

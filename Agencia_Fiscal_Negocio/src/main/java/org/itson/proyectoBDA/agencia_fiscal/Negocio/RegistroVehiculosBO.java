@@ -8,7 +8,7 @@ import org.itson.proyectoBDA.agencia_fiscal.DAO.VehiculosDAO;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import static org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroClientesBO.logger;
-import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoNuevoDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
 public class RegistroVehiculosBO implements IRegistroVehiculosBO {
 
@@ -27,10 +27,11 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
      * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
      */
     @Override
-    public Vehiculo registrarVehiculo(VehiculoNuevoDTO nuevoVehiculo) throws PersistenciaException {
+    public Vehiculo registrarVehiculo(VehiculoDTO nuevoVehiculo) throws PersistenciaException {
         try {
             Vehiculo vehiculo = new Vehiculo(
                     nuevoVehiculo.getNumero_serie(),
+                    nuevoVehiculo.getTipo(),
                     nuevoVehiculo.getModelo(),
                     nuevoVehiculo.getColor(),
                     nuevoVehiculo.getMarca(),
@@ -52,7 +53,7 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
      *
      */
     @Override
-    public VehiculoNuevoDTO transporteDatos(VehiculoNuevoDTO nuevoVehiculo) {
+    public VehiculoDTO transporteDatos(VehiculoDTO nuevoVehiculo) {
         try {
             registrarVehiculo(nuevoVehiculo);
         } catch (PersistenciaException ex) {

@@ -18,8 +18,8 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tramites")
+@DiscriminatorColumn(name = "tipo_tramite")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipo")
 public class Tramite implements Serializable {
 
     @Id
@@ -31,6 +31,9 @@ public class Tramite implements Serializable {
     @Temporal(TemporalType.DATE)
     private Calendar fecha_expedicion;
 
+    @Column(name = "tipo_tramite", nullable = false, length = 20)
+    private String tipo_tramite;
+
     @Column(name = "costo", nullable = false, length = 50)
     private Float costo;
 
@@ -41,14 +44,22 @@ public class Tramite implements Serializable {
     public Tramite() {
     }
 
-    public Tramite(Calendar fecha_expedicion, Float costo, Cliente cliente) {
+    public Tramite(Long id, Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
+        this.id = id;
         this.fecha_expedicion = fecha_expedicion;
+        this.tipo_tramite = tipo_tramite;
         this.costo = costo;
         this.cliente = cliente;
     }
 
-    public Tramite(Long id, Calendar fecha_expedicion, Float costo, Cliente cliente) {
-        this.id = id;
+    public Tramite(Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente) {
+        this.fecha_expedicion = fecha_expedicion;
+        this.tipo_tramite = tipo_tramite;
+        this.costo = costo;
+        this.cliente = cliente;
+    }
+
+    public Tramite(Calendar fecha_expedicion, Float costo, Cliente cliente) {
         this.fecha_expedicion = fecha_expedicion;
         this.costo = costo;
         this.cliente = cliente;
@@ -68,6 +79,14 @@ public class Tramite implements Serializable {
 
     public void setFecha_expedicion(Calendar fecha_expedicion) {
         this.fecha_expedicion = fecha_expedicion;
+    }
+
+    public String getTipo_tramite() {
+        return tipo_tramite;
+    }
+
+    public void setTipo_tramite(String tipo_tramite) {
+        this.tipo_tramite = tipo_tramite;
     }
 
     public Float getCosto() {

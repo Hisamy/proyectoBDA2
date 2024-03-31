@@ -32,6 +32,7 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
             regresaVehiculoConsultado(vehiculo);
             Vehiculo getVehiculo = new Vehiculo(
                     vehiculo.getNumero_serie(),
+                    vehiculo.getTipo(),
                     vehiculo.getModelo(),
                     vehiculo.getColor(),
                     vehiculo.getMarca(),

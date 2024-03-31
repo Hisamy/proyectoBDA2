@@ -50,16 +50,6 @@ public class Agencia_Fiscal {
                 new GregorianCalendar(2004, 8, 02));
 
         Cliente cliente4 = new Cliente(
-                "CAMG040802",
-                "Gael",
-                "Catro",
-                "Molina",
-                true,
-                "GETO18921",
-                "6441699800",
-                new GregorianCalendar(2004, 8, 02));
-
-        Cliente cliente5 = new Cliente(
                 "VEBV040902",
                 "Victoria",
                 "Vega",
@@ -69,7 +59,7 @@ public class Agencia_Fiscal {
                 "6871741035",
                 new GregorianCalendar(2004, 9, 02));
 
-        Cliente cliente6 = new Cliente(
+        Cliente cliente5 = new Cliente(
                 "CICA120412",
                 "Angel",
                 "Cinco",
@@ -79,7 +69,7 @@ public class Agencia_Fiscal {
                 "687211913",
                 new GregorianCalendar(2012, 4, 12));
 
-        Vehiculo vehiculo1 = new Vehiculo("num_serie", 1920, "Rojo", "Chevrolet", "Sierra", true);
+        Vehiculo vehiculo1 = new Vehiculo("num_serie", "tipo", 1980, "color", "marca", "linea", true);
 
         entityManager.persist(vehiculo1);
         entityManager.persist(cliente1);
@@ -87,7 +77,6 @@ public class Agencia_Fiscal {
         entityManager.persist(cliente3);
         entityManager.persist(cliente4);
         entityManager.persist(cliente5);
-        entityManager.persist(cliente6);
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();

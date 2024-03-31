@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vehiculos")
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipo")
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Vehiculo implements Serializable {
 
     @Id
@@ -29,6 +30,9 @@ public class Vehiculo implements Serializable {
 
     @Column(name = "numero_serie")
     private String numero_serie;
+
+    @Column(name = "tipo", nullable = false, length = 50)
+    private String tipo;
 
     @Column(name = "modelo", nullable = false, length = 20)
     private Integer modelo;
@@ -55,31 +59,27 @@ public class Vehiculo implements Serializable {
     public Vehiculo() {
     }
 
-    public Vehiculo(
-            String numero_serie,
-            Integer modelo,
-            String color,
-            String marca,
-            String linea,
-            boolean licencia_vigente) {
-        this.numero_serie = numero_serie;
-        this.modelo = modelo;
-        this.color = color;
-        this.marca = marca;
-        this.linea = linea;
-        this.licencia_vigente = licencia_vigente;
-    }
-
-    public Vehiculo(Long id, String numero_serie, Integer modelo, String color, String marca, String linea, boolean licencia_vigente, Cliente cliente, List<Placa> placas) {
+    public Vehiculo(Long id, String numero_serie, String tipo, Integer modelo, String color, String marca, String linea, boolean licencia_vigente, Cliente cliente, List<Placa> placa) {
         this.id = id;
         this.numero_serie = numero_serie;
+        this.tipo = tipo;
         this.modelo = modelo;
         this.color = color;
         this.marca = marca;
         this.linea = linea;
         this.licencia_vigente = licencia_vigente;
         this.cliente = cliente;
-        this.placa = placas;
+        this.placa = placa;
+    }
+
+    public Vehiculo(String numero_serie, String tipo, Integer modelo, String color, String marca, String linea, boolean licencia_vigente) {
+        this.numero_serie = numero_serie;
+        this.tipo = tipo;
+        this.modelo = modelo;
+        this.color = color;
+        this.marca = marca;
+        this.linea = linea;
+        this.licencia_vigente = licencia_vigente;
     }
 
     public Long getId() {
@@ -96,6 +96,14 @@ public class Vehiculo implements Serializable {
 
     public void setNumero_serie(String numero_serie) {
         this.numero_serie = numero_serie;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Integer getModelo() {

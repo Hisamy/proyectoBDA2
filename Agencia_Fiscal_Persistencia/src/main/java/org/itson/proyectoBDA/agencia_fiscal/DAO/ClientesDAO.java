@@ -25,9 +25,10 @@ public class ClientesDAO implements IClientesDAO {
      *
      * @param nuevoCliente El objeto Cliente que se va a agregar.
      * @return El cliente recién agregado.
+     * @throws org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException
      */
     @Override
-    public Cliente agregarCliente(Cliente nuevoCliente) throws PersistenciaException{
+    public Cliente agregarCliente(Cliente nuevoCliente) throws PersistenciaException {
         EntityManager entityManager = conexion.crearConexion();
 
         entityManager.getTransaction().begin();
@@ -74,14 +75,14 @@ public class ClientesDAO implements IClientesDAO {
     @Override
     public List<Cliente> historialClientes() throws FindException {
         EntityManager entityManager = conexion.crearConexion();
-        List<Object[]>  consultas= null;
+        List<Object[]> consultas = null;
         List<Cliente> historialClientes = new ArrayList<>();
-        
-        Query query  = entityManager.createQuery(
+
+        Query query = entityManager.createQuery(
                 "SELECT c.CURP, c.RFC, c.apellido_materno, c.apellido_paterno, c.discapacidad, c.fecha_nacimiento, c.nombre, c.telefono FROM clientes c ");
         consultas = query.getResultList();
-        
-        for(Object[] consulta : consultas){
+
+        for (Object[] consulta : consultas) {
             String CURP = (String) consulta[0];
             String RFC = (String) consulta[1];
             String apellido_materno = (String) consulta[2];
@@ -90,8 +91,7 @@ public class ClientesDAO implements IClientesDAO {
             Calendar fecha_nacimiento = (Calendar) consulta[5];
             String nombre = (String) consulta[6];
             String telefono = (String) consulta[7];
-            
-            
+
             Cliente cliente = new Cliente();
             cliente.setCURP(CURP);
             cliente.setRFC(RFC);
@@ -101,12 +101,10 @@ public class ClientesDAO implements IClientesDAO {
             cliente.setFecha_nacimiento(fecha_nacimiento);
             cliente.setNombre(nombre);
             cliente.setTelefono(telefono);
-            
-            
-            
+
             historialClientes.add(cliente);
         }
-        
+
         return historialClientes;
-         }
+    }
 }

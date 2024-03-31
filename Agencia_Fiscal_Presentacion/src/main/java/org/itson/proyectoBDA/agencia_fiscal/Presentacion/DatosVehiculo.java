@@ -9,6 +9,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaTramitesBO;
+import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaVehiculosBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroPlacasBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroVehiculosBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroPlacasBO;
@@ -16,15 +17,16 @@ import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroVehiculosBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
-import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoNuevoDTO;
 
 public class DatosVehiculo extends javax.swing.JFrame {
 
     INavegacion navegacion;
+    private boolean vehiculoEncontrado;
     private ClienteDTO clienteDTO;
     private VehiculoDTO vehiculoDTO;
     private IRegistroPlacasBO registroPlacasBO;
     private IRegistroVehiculosBO registroVehiculosBO;
+    private IConsultaVehiculosBO consultaVehiculosBO;
     private IConsultaTramitesBO consultaTramitesBO;
     Logger logger = Logger.getLogger(getClass().getName());
 
@@ -44,13 +46,14 @@ public class DatosVehiculo extends javax.swing.JFrame {
         navegacion = new Navegacion();
         this.costo = 1500f;
         initComponents();
+        vehiculoEncontrado = false;
     }
 
     /**
-     * Crea una nueva instancia de DatosVehiculo con el clienteDTO y vehiculoDTO proporcionados. Este constructor inicializa los objetos de negocio necesarios, establece el costo en 1000 y establece los datos del vehículo en los campos correspondientes de la interfaz gráfica.
+     * Crea una nueva instancia de DatosVehiculo con el clienteDTO y vehiculoDTO proporcionados.Este constructor inicializa los objetos de negocio necesarios, establece el costo en 1000 y establece los datos del vehículo en los campos correspondientes de la interfaz gráfica.
      *
      * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
-     * @param vehiculoDTO El objeto VehiculoDTO que contiene los datos del vehículo.
+     * @param vehiculoDTO
      */
     public DatosVehiculo(ClienteDTO clienteDTO, VehiculoDTO vehiculoDTO) {
         this.clienteDTO = clienteDTO;
@@ -61,6 +64,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
         navegacion = new Navegacion();
         this.costo = 1000f;
         initComponents();
+        vehiculoEncontrado = true;
         setearDatos();
     }
 
@@ -70,14 +74,15 @@ public class DatosVehiculo extends javax.swing.JFrame {
     public final void setearDatos() {
         txtNumSerie.setText(vehiculoDTO.getNumero_serie());
         txtNumSerie.setEditable(false);
-        txtMarca.setText(vehiculoDTO.getMarca());
-        txtMarca.setEditable(false);
+        txtTipo.setText(vehiculoDTO.getMarca());
+        txtTipo.setEditable(false);
         txtLinea.setText(vehiculoDTO.getLinea());
         txtLinea.setEditable(false);
         txtModelo.setText(vehiculoDTO.getModelo().toString());
         txtModelo.setEditable(false);
         txtColor.setText(vehiculoDTO.getColor());
         txtColor.setEditable(false);
+
     }
 
     /**
@@ -88,13 +93,16 @@ public class DatosVehiculo extends javax.swing.JFrame {
      */
     public VehiculoDTO transporteDatosVehiculo() throws PersistenciaException {
         Integer modelo = Integer.valueOf(txtModelo.getText());
+        VehiculoDTO nuevoVehiculo = null;
 
         Boolean licenciaVigente = consultaTramitesBO.transporteDatos(clienteDTO);
         System.out.println(licenciaVigente);
 
-        VehiculoNuevoDTO nuevoVehiculo = registroVehiculosBO.transporteDatos(
-                new VehiculoNuevoDTO(txtNumSerie.getText(), modelo, txtColor.getText(), txtMarca.getText(), txtLinea.getText(), licenciaVigente, clienteDTO)
-        );
+        if (vehiculoEncontrado == false) {
+            nuevoVehiculo = registroVehiculosBO.transporteDatos(
+                    new VehiculoDTO(txtNumSerie.getText(), modelo, txtColor.getText(), txtTipo.getText(), txtTipo.getText(), txtLinea.getText(), licenciaVigente, clienteDTO)
+            );
+        }
         return nuevoVehiculo;
     }
 
@@ -133,12 +141,14 @@ public class DatosVehiculo extends javax.swing.JFrame {
         lblColor = new javax.swing.JLabel();
         txtModelo = new javax.swing.JTextField();
         lblLinea = new javax.swing.JLabel();
-        txtMarca = new javax.swing.JTextField();
+        txtTipo = new javax.swing.JTextField();
         lblMarca = new javax.swing.JLabel();
         txtLinea = new javax.swing.JTextField();
         lblModelo = new javax.swing.JLabel();
         btnContinuar = new javax.swing.JButton();
         btnAtras = new javax.swing.JLabel();
+        lblMarca1 = new javax.swing.JLabel();
+        txtMarca1 = new javax.swing.JTextField();
         btnLogo = new javax.swing.JLabel();
         lblCostoLicencia = new javax.swing.JLabel();
 
@@ -195,18 +205,18 @@ public class DatosVehiculo extends javax.swing.JFrame {
         lblLinea.setText("Línea");
         jPanel2.add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
-        txtMarca.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtMarca.setForeground(new java.awt.Color(109, 70, 107));
-        txtMarca.addActionListener(new java.awt.event.ActionListener() {
+        txtTipo.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtTipo.setForeground(new java.awt.Color(109, 70, 107));
+        txtTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMarcaActionPerformed(evt);
+                txtTipoActionPerformed(evt);
             }
         });
-        jPanel2.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 108, -1));
+        jPanel2.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 108, -1));
 
         lblMarca.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        lblMarca.setText("Marca");
-        jPanel2.add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        lblMarca.setText("Tipo");
+        jPanel2.add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
 
         txtLinea.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         txtLinea.setForeground(new java.awt.Color(109, 70, 107));
@@ -235,6 +245,19 @@ public class DatosVehiculo extends javax.swing.JFrame {
         btnAtras.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
         jPanel2.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 33, -1, 40));
+
+        lblMarca1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        lblMarca1.setText("Marca");
+        jPanel2.add(lblMarca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        txtMarca1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtMarca1.setForeground(new java.awt.Color(109, 70, 107));
+        txtMarca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMarca1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtMarca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 108, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 560, 290));
 
@@ -277,9 +300,9 @@ public class DatosVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtModeloActionPerformed
 
-    private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
+    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMarcaActionPerformed
+    }//GEN-LAST:event_txtTipoActionPerformed
 
     private void txtLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLineaActionPerformed
         // TODO add your handling code here:
@@ -296,6 +319,10 @@ public class DatosVehiculo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnContinuarActionPerformed
 
+    private void txtMarca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarca1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMarca1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnAtras;
@@ -307,13 +334,15 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel lblCostoLicencia;
     private javax.swing.JLabel lblLinea;
     private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblMarca1;
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblNumeroSerie;
     private javax.swing.JLabel lblSolicitarLicencia;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtLinea;
-    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtMarca1;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNumSerie;
+    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }

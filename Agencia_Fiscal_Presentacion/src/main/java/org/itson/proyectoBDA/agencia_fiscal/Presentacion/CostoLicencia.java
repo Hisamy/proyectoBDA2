@@ -111,8 +111,6 @@ public final class CostoLicencia extends javax.swing.JFrame {
                         fechaActualCalendar,
                         costo,
                         clienteDTO));
-                
-
         return licenciaDTO;
     }
 
