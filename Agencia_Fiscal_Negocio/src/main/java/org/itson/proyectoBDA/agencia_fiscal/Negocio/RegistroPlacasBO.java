@@ -41,7 +41,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     @Override
     public Placa registrarPlaca(PlacaDTO nuevaPlaca, Vehiculo vehiculo) throws PersistenciaException {
         Cliente cliente = clienteDAO.consultarCliente(nuevaPlaca.getClienteDTO().getRFC());
-        
+
         Placa placa = new Placa(
                 generarNumeroAlfanumerico(),
                 getFechaRecepcion(),
@@ -50,6 +50,9 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
                 nuevaPlaca.getFecha_expedicion(),
                 nuevaPlaca.getCosto(),
                 cliente);
+
+        Vehiculo vehiculoID = vehiculoDAO.consultarVehiculo(placa.getVehiculo().getNumero_serie());
+        placa.getVehiculo().setId(vehiculoID.getId());
         placa.getVehiculo().setCliente(cliente);
         Placa placaNueva = placaDAO.agregarPlaca(placa);
         return placaNueva;
