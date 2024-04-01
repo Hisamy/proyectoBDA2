@@ -3,6 +3,7 @@ package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import org.itson.proyectoBDA.agencia_fiscal.Encriptar.EncriptarTelefonos;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroClientesBO;
@@ -139,26 +140,26 @@ public class Index extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         List<NuevoClienteDTO> clientes = new ArrayList<>();
 
-        clientes.add(new NuevoClienteDTO("TARE040818HSRLMDA1", "Juan", "Pérez", "Gómez", true, "Juan040818HSRLMDA1", "6442261760", new GregorianCalendar(1990, 0, 1)));
-        clientes.add(new NuevoClienteDTO("CICH191004HSRLMDA", "María", "Martínez", "Fernández", false, "María191004HSRLMDA", "6871699800", new GregorianCalendar(1992, 3, 15)));
-        clientes.add(new NuevoClienteDTO("CAMG040802", "Pedro", "González", "López", true, "Pedro040802HSRLMDA", "6441699800", new GregorianCalendar(1985, 5, 25)));
-        clientes.add(new NuevoClienteDTO("VEBV040902", "Laura", "Sánchez", "Rodríguez", false, "Laura040902HSRLMDA", "6871741035", new GregorianCalendar(1987, 8, 10)));
-        clientes.add(new NuevoClienteDTO("CICA120412", "Luis", "Díaz", "Fernández", true, "Luis120412HSRLMDA", "687211913", new GregorianCalendar(1993, 10, 20)));
-        clientes.add(new NuevoClienteDTO("CACA120D111", "Ana", "García", "Martínez", false, "Ana120111HSRLMDA", "687211945", new GregorianCalendar(1988, 2, 8)));
-        clientes.add(new NuevoClienteDTO("MAPA12A0412", "Sofía", "Gómez", "Sánchez", true, "Sofía120412HSRLMDA", "6442261555", new GregorianCalendar(1983, 11, 5)));
-        clientes.add(new NuevoClienteDTO("TARE0E40818HSRLMDA1", "Miguel", "López", "González", false, "Miguel040818HSRLMDA1", "687211913", new GregorianCalendar(1984, 6, 14)));
-        clientes.add(new NuevoClienteDTO("CIDCH191004HSRLMDA", "Elena", "Fernández", "Díaz", true, "Elena191004HSRLMDA", "687211945", new GregorianCalendar(1989, 9, 28)));
-        clientes.add(new NuevoClienteDTO("CAMAG040802", "Carlos", "Rodríguez", "Sánchez", false, "Carlos040802HSRLMDA", "6442261555", new GregorianCalendar(1995, 7, 3)));
-        clientes.add(new NuevoClienteDTO("VEABV040902", "Sara", "López", "García", true, "Sara040902HSRLMDA", "687211913", new GregorianCalendar(1986, 4, 18)));
-        clientes.add(new NuevoClienteDTO("CICA1A20412", "Diego", "Martínez", "Gómez", false, "Diego120412HSRLMDA", "687211945", new GregorianCalendar(1991, 1, 22)));
-        clientes.add(new NuevoClienteDTO("CACA12A0111", "Carmen", "Sánchez", "López", true, "Carmen120111HSRLMDA", "6442261555", new GregorianCalendar(1980, 3, 11)));
-        clientes.add(new NuevoClienteDTO("MAPDA120412", "Javier", "Fernández", "Martínez", false, "Javier120412HSRLMDA", "687211913", new GregorianCalendar(1982, 8, 6)));
-        clientes.add(new NuevoClienteDTO("TARE11111111RLMDA1", "Ana", "Gómez", "Rodríguez", true, "Ana040818HSRLMDA1", "687211945", new GregorianCalendar(1997, 5, 29)));
-        clientes.add(new NuevoClienteDTO("DASDASD12312FFDS21", "David", "López", "Fernández", false, "David191004HSRLMDA", "6442261555", new GregorianCalendar(1981, 11, 15)));
-        clientes.add(new NuevoClienteDTO("CASMG04083202", "Natalia", "Martínez", "González", true, "Natalia040802HSRLMDA", "687211913", new GregorianCalendar(1994, 7, 20)));
-        clientes.add(new NuevoClienteDTO("VEBDASV040902", "Pablo", "García", "López", false, "Pablo040902HSRLMDA", "687211945", new GregorianCalendar(1990, 2, 25)));
-        clientes.add(new NuevoClienteDTO("CDSAICA120412", "Silvia", "Sánchez", "Martínez", true, "Silvia120412HSRLMDA", "6442261555", new GregorianCalendar(1987, 9, 8)));
-        clientes.add(new NuevoClienteDTO("CADCA12012311", "Jorge", "Martínez", "Sánchez", false, "Jorge120111HSRLMDA", "687211913", new GregorianCalendar(1984, 4, 2)));
+        clientes.add(new NuevoClienteDTO("TARE040818HSRLMDA1", "Juan", "Pérez", "Gómez", true, "Juan040818HSRLMDA1", EncriptarTelefonos.encriptarMD5("6442261760"), new GregorianCalendar(1990, 0, 1)));
+        clientes.add(new NuevoClienteDTO("CICH191004HSRLMDA", "María", "Martínez", "Fernández", false, "María191004HSRLMDA", EncriptarTelefonos.encriptarMD5("6871699800"), new GregorianCalendar(1992, 3, 15)));
+        clientes.add(new NuevoClienteDTO("CAMG040802", "Pedro", "González", "López", true, "Pedro040802HSRLMDA", EncriptarTelefonos.encriptarMD5("6441699800"), new GregorianCalendar(1985, 5, 25)));
+        clientes.add(new NuevoClienteDTO("VEBV040902", "Laura", "Sánchez", "Rodríguez", false, "Laura040902HSRLMDA", EncriptarTelefonos.encriptarMD5("6871741035"), new GregorianCalendar(1987, 8, 10)));
+        clientes.add(new NuevoClienteDTO("CICA120412", "Luis", "Díaz", "Fernández", true, "Luis120412HSRLMDA", EncriptarTelefonos.encriptarMD5("687211913"), new GregorianCalendar(1993, 10, 20)));
+        clientes.add(new NuevoClienteDTO("CACA120D111", "Ana", "García", "Martínez", false, "Ana120111HSRLMDA", EncriptarTelefonos.encriptarMD5("687211945"), new GregorianCalendar(1988, 2, 8)));
+        clientes.add(new NuevoClienteDTO("MAPA12A0412", "Sofía", "Gómez", "Sánchez", true, "Sofía120412HSRLMDA", EncriptarTelefonos.encriptarMD5("6442261555"), new GregorianCalendar(1983, 11, 5)));
+        clientes.add(new NuevoClienteDTO("TARE0E40818HSRLMDA1", "Miguel", "López", "González", false, "Miguel040818HSRLMDA1", EncriptarTelefonos.encriptarMD5("687211913"), new GregorianCalendar(1984, 6, 14)));
+        clientes.add(new NuevoClienteDTO("CIDCH191004HSRLMDA", "Elena", "Fernández", "Díaz", true, "Elena191004HSRLMDA", EncriptarTelefonos.encriptarMD5("687211945"), new GregorianCalendar(1989, 9, 28)));
+        clientes.add(new NuevoClienteDTO("CAMAG040802", "Carlos", "Rodríguez", "Sánchez", false, "Carlos040802HSRLMDA", EncriptarTelefonos.encriptarMD5("6442261555"), new GregorianCalendar(1995, 7, 3)));
+        clientes.add(new NuevoClienteDTO("VEABV040902", "Sara", "López", "García", true, "Sara040902HSRLMDA", EncriptarTelefonos.encriptarMD5("687211913"), new GregorianCalendar(1986, 4, 18)));
+        clientes.add(new NuevoClienteDTO("CICA1A20412", "Diego", "Martínez", "Gómez", false, "Diego120412HSRLMDA", EncriptarTelefonos.encriptarMD5("687211945"), new GregorianCalendar(1991, 1, 22)));
+        clientes.add(new NuevoClienteDTO("CACA12A0111", "Carmen", "Sánchez", "López", true, "Carmen120111HSRLMDA", EncriptarTelefonos.encriptarMD5("6442261555"), new GregorianCalendar(1980, 3, 11)));
+        clientes.add(new NuevoClienteDTO("MAPDA120412", "Javier", "Fernández", "Martínez", false, "Javier120412HSRLMDA", EncriptarTelefonos.encriptarMD5("687211913"), new GregorianCalendar(1982, 8, 6)));
+        clientes.add(new NuevoClienteDTO("TARE11111111RLMDA1", "Ana", "Gómez", "Rodríguez", true, "Ana040818HSRLMDA1", EncriptarTelefonos.encriptarMD5("687211945"), new GregorianCalendar(1997, 5, 29)));
+        clientes.add(new NuevoClienteDTO("DASDASD12312FFDS21", "David", "López", "Fernández", false, "David191004HSRLMDA", EncriptarTelefonos.encriptarMD5("6442261555"), new GregorianCalendar(1981, 11, 15)));
+        clientes.add(new NuevoClienteDTO("CASMG04083202", "Natalia", "Martínez", "González", true, "Natalia040802HSRLMDA", EncriptarTelefonos.encriptarMD5("687211913"), new GregorianCalendar(1994, 7, 20)));
+        clientes.add(new NuevoClienteDTO("VEBDASV040902", "Pablo", "García", "López", false, "Pablo040902HSRLMDA", EncriptarTelefonos.encriptarMD5("687211945"), new GregorianCalendar(1990, 2, 25)));
+        clientes.add(new NuevoClienteDTO("CDSAICA120412", "Silvia", "Sánchez", "Martínez", true, "Silvia120412HSRLMDA", EncriptarTelefonos.encriptarMD5("6442261555"), new GregorianCalendar(1987, 9, 8)));
+        clientes.add(new NuevoClienteDTO("CADCA12012311", "Jorge", "Martínez", "Sánchez", false, "Jorge120111HSRLMDA", EncriptarTelefonos.encriptarMD5("687211913"), new GregorianCalendar(1984, 4, 2)));
 
         // Insertar los clientes en la base de datos
         for (NuevoClienteDTO cliente : clientes) {

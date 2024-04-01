@@ -1,12 +1,9 @@
 package org.itson.proyectoBDA.agencia_fiscal.DAO;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
-import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 
