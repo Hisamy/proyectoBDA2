@@ -430,7 +430,6 @@ public class ConsultaClientes extends javax.swing.JFrame {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             return this.button;
         }
-
     }
 
     private ActionListener botonVerReporte() {
@@ -438,13 +437,16 @@ public class ConsultaClientes extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ClienteDTO clienteSelec = clientes.get(jTPersonas.getSelectedRow());
+                HistorialTramites historialTramites = null;
+                try {
+                    historialTramites = new HistorialTramites(clienteSelec);
+                } catch (FindException ex) {
+                    Logger.getLogger(ConsultaClientes.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
-                HistorialTramites historialTramites = new HistorialTramites(clienteSelec);
                 historialTramites.setVisible(true);
-
             }
         };
-
         return validarListener;
     }
 

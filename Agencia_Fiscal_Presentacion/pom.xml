@@ -36,5 +36,12 @@
             <artifactId>Agencia_Fiscal_Negocio</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.21.2</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>

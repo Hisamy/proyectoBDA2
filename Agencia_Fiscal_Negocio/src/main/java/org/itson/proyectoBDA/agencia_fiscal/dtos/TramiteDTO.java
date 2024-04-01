@@ -10,14 +10,12 @@ public class TramiteDTO {
     private Boolean estado;
     private String tipo;
     private Calendar fecha_emision;
-    
 
-    
     public TramiteDTO(
-            Calendar fecha_expedicion, 
-            Float costo, 
-            ClienteDTO clienteDTO, 
-            Boolean estado, 
+            Calendar fecha_expedicion,
+            Float costo,
+            ClienteDTO clienteDTO,
+            Boolean estado,
             String tipo,
             Calendar fecha_emision) {
         this.fecha_expedicion = fecha_expedicion;
@@ -51,9 +49,5 @@ public class TramiteDTO {
     public Calendar getFecha_emision() {
         return fecha_emision;
     }
-    
-    
-    
-
 
 }

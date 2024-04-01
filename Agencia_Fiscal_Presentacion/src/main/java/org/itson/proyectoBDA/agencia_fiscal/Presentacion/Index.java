@@ -134,7 +134,6 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistorialLicenciaPlacasActionPerformed
 
     private void btnReporteTramitesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteTramitesActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnReporteTramitesActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

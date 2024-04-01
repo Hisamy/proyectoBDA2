@@ -4,17 +4,59 @@
  */
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.table.DefaultTableModel;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
+import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
+
 /**
  *
  * @author hisam
  */
 public class ReporteTramites extends javax.swing.JFrame {
 
+    private ClienteDTO clienteDTO;
+
     /**
      * Creates new form ReporteTramites
      */
     public ReporteTramites() {
         initComponents();
+    }
+
+    /**
+     * Creates new form ReporteTramites
+     *
+     * @param clienteDTO
+     */
+    public ReporteTramites(ClienteDTO clienteDTO) {
+        this.clienteDTO = clienteDTO;
+        initComponents();
+    }
+
+    private void llenarTabla(List<TramiteDTO> tramites) {
+        DefaultTableModel clientesEncontrados = new DefaultTableModel();
+        clientesEncontrados.addColumn("Tipo Tramite");
+        clientesEncontrados.addColumn("Fecha expedicion");
+        clientesEncontrados.addColumn("Fecha emision");
+        clientesEncontrados.addColumn("Costo");
+        clientesEncontrados.addColumn("Estado");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        for (TramiteDTO tramite : tramites) {
+            Object[] fila = {
+                tramite.getTipo(),
+                dateFormat.format(tramite.getFecha_expedicion()),
+                dateFormat.format(tramite.getFecha_emision()),
+                tramite.getCosto(),
+                tramite.getEstado(),};
+            clientesEncontrados.addRow(fila);
+        }
+        jTPersonas.setModel(clientesEncontrados);
+
     }
 
     /**
@@ -106,16 +148,16 @@ public class ReporteTramites extends javax.swing.JFrame {
                         .addComponent(lblTitulo)
                         .addGap(288, 288, 288)
                         .addComponent(flechaIcon))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,17 +213,7 @@ public class ReporteTramites extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-//        String busqueda = txtBuscador.getText().trim();
-//        String opcionSeleccionada = (String) jComboBox1.getSelectedItem();
-//
-//        if (opcionSeleccionada.equalsIgnoreCase("Nombre")) {
-//            buscarPorNombre(busqueda);
-//        } else if (opcionSeleccionada.equalsIgnoreCase("RFC")) {
-//            buscarPorRFC(busqueda);
-//        } else {
-//            Calendar fechaNacimiento = convertirAFecha(busqueda);
-//            buscarPorFechaNacimiento(fechaNacimiento.get(Calendar.YEAR));
-//        }
+
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -196,7 +228,6 @@ public class ReporteTramites extends javax.swing.JFrame {
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lblCostoLicenciaMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
