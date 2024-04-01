@@ -124,6 +124,7 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
      * Consulta el historial de trámites y lo convierte a una lista de objetos TramiteDTO.
      *
      * @return Una lista de objetos TramiteDTO que representa el historial de trámites.
+     * @throws org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException
      */
     @Override
     public List<TramiteDTO> historialTramite() throws FindException {
@@ -138,8 +139,6 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
                         tramite.getEstado(),
                         tramite.getTipo_tramite(),
                         tramite.getFecha_emision());
-
-                //persona
                 tramitesDTO.add(tramiteDTO);
             }
             return tramitesDTO;
@@ -147,7 +146,6 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
             Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
             throw new FindException(ex.getMessage());
         }
-
     }
 
     /**

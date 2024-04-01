@@ -3,7 +3,10 @@ package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.itson.proyectoBDA.agencia_fiscal.Encriptar.EncriptarTelefonos;
+import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroClientesBO;
@@ -135,6 +138,14 @@ public class Index extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistorialLicenciaPlacasActionPerformed
 
     private void btnReporteTramitesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteTramitesActionPerformed
+        ReporteTramites reporteTramites = null;
+        try {
+            reporteTramites = new ReporteTramites();
+        } catch (FindException ex) {
+            Logger.getLogger(Index.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        reporteTramites.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnReporteTramitesActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

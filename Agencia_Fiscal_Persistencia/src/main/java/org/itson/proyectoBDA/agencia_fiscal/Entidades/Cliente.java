@@ -40,7 +40,7 @@ public class Cliente implements Serializable {
     @Column(name = "RFC", nullable = false, length = 20)
     private String RFC;
 
-    @Column(name = "telefono", nullable = false, length = 15)
+    @Column(name = "telefono", nullable = false, length = 255)
     private String telefono;
 
     @Column(name = "fecha_nacimiento", nullable = false)

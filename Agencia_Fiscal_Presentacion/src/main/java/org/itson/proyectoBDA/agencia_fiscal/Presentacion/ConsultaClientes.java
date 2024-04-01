@@ -24,9 +24,6 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
-import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
-import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
-import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
 public class ConsultaClientes extends javax.swing.JFrame {
 
@@ -89,7 +86,6 @@ public class ConsultaClientes extends javax.swing.JFrame {
         jTPersonas.setModel(clientesEncontrados);
         jTPersonas.getColumnModel().getColumn(6).setCellRenderer(new JButtonRenderer("Ver"));
         jTPersonas.getColumnModel().getColumn(6).setCellEditor(new JButtonCellEditor("Ver", botonVerReporte()));
-
     }
 
     private void buscarPorNombre(String nombre) {
