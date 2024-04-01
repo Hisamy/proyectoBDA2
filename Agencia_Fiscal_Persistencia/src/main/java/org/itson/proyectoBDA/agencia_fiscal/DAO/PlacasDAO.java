@@ -5,7 +5,6 @@ import javax.persistence.TypedQuery;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
-import static org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite_.id;
 
 public class PlacasDAO implements IPlacasDAO {
 
@@ -33,6 +32,21 @@ public class PlacasDAO implements IPlacasDAO {
         return placa;
     }
 
+    @Override
+    public Placa consultarDatosUltimaLicencia(Cliente cliente) {
+        EntityManager entityManager = conexion.crearConexion();
+
+        TypedQuery<Placa> query = entityManager.createQuery(
+                "SELECT l FROM Placa l WHERE l.cliente = :cliente AND l.estado = true", Placa.class);
+        query.setParameter("cliente", cliente);
+        query.setMaxResults(1); // Obtener solo el primer resultado, que sería el más reciente
+        Placa placa = query.getSingleResult();
+
+        entityManager.close();
+
+        return placa;
+    }
+
     /**
      * Agrega una nueva placa a la base de datos.
      *
@@ -51,4 +65,15 @@ public class PlacasDAO implements IPlacasDAO {
         return nuevaPlaca;
     }
 
+    @Override
+    public Placa actualizarPlaca(Placa placaActualizada) {
+        EntityManager entityManager = conexion.crearConexion();
+
+        entityManager.getTransaction().begin();
+        Placa placaPersistida = entityManager.merge(placaActualizada);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+        return placaPersistida;
+    }
 }

@@ -3,6 +3,8 @@ package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 import java.util.Calendar;
 import java.util.Random;
 import java.util.TimeZone;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
@@ -42,7 +44,16 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     @Override
     public Placa registrarPlaca(PlacaDTO nuevaPlaca, Vehiculo vehiculo) throws PersistenciaException {
         Cliente cliente = clienteDAO.consultarClienteRFC(nuevaPlaca.getClienteDTO().getRFC());
-
+        Placa placaAnterior = null;
+        try {
+            placaAnterior = placaDAO.consultarDatosUltimaLicencia(clienteDAO.consultarClienteRFC(cliente.getRFC()));
+        } catch (NoResultException e) {
+            System.out.println("No se encontró una placa anterior para el cliente: " + cliente.getNombre());
+        }
+        if (placaAnterior != null) {
+            placaAnterior.setEstado(false);
+            placaDAO.actualizarPlaca(placaAnterior);
+        }
         Placa placa = new Placa(
                 generarNumeroAlfanumerico(),
                 getFechaRecepcion(),
@@ -134,5 +145,4 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
         Calendar calendar = Calendar.getInstance(zonaHoraria);
         return calendar;
     }
-
 }

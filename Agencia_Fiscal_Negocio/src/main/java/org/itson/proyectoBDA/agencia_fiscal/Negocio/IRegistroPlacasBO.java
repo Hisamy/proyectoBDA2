@@ -15,5 +15,5 @@ public interface IRegistroPlacasBO {
 
     VehiculoDTO conversorVehiculoDTO(PlacaDTO nuevaPlaca) throws PersistenciaException;
 
-    Calendar getFechaRecepcion();
+    Calendar getFechaRecepcion() throws PersistenciaException;
 }
