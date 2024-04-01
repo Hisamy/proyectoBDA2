@@ -5,9 +5,14 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaClientesBO;
@@ -18,7 +23,9 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
 /**
- * Clase JFrame para mostrar un informe de trámites. Esta clase proporciona métodos para buscar trámites, mostrarlos en una tabla y exportar el informe a PDF.
+ * Clase JFrame para mostrar un informe de trámites. Esta clase proporciona
+ * métodos para buscar trámites, mostrarlos en una tabla y exportar el informe a
+ * PDF.
  *
  * @author hisam
  */
@@ -28,25 +35,32 @@ public class ReporteTramites extends javax.swing.JFrame {
     List<TramiteDTO> tramites;
     IConsultaTramitesBO consultaTramites;
     List<ClienteDTO> clientes;
+    TramiteDTO tramite;
+    List<TramiteDTO> tramitesFiltrados = new ArrayList<>();
 
     /**
      * Crea una nueva instancia de ReporteTramites.
      *
-     * @throws org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException si ocurre un error al obtener los datos.
+     * @throws org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException si
+     * ocurre un error al obtener los datos.
      */
     public ReporteTramites() throws FindException {
         this.consultaClientesBO = new ConsultaClientesBO();
         this.clientes = consultaClientesBO.historialCliente();
-
         this.consultaTramites = new ConsultaTramitesBO();
         this.tramites = consultaTramites.historialTramite();
-
         initComponents();
         llenarTabla(tramites);
+
+        txtBuscador.setEnabled(false);
+        txtBuscador.setEditable(false);
+        jdchFechaInicio.setEnabled(false);
+        jdchFechaFin.setEnabled(false);
     }
 
     /**
-     * Formatea el objeto de calendario dado a una cadena de fecha en formato "dd/MM/yyyy".
+     * Formatea el objeto de calendario dado a una cadena de fecha en formato
+     * "dd/MM/yyyy".
      *
      * @param fecha el objeto de calendario para formatear.
      * @return la cadena de fecha formateada.
@@ -54,6 +68,12 @@ public class ReporteTramites extends javax.swing.JFrame {
     private String fechaDateFormat(Calendar fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(fecha);
+    }
+
+    private void limpiarTabla() {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        modeloTabla.setColumnIdentifiers(new String[]{"Nombre", "Apellido Paterno", "Apellido Materno", "Tramite", "Fecha emision", "Fecha expedición", "Costo"});
+        jTPersonas.setModel(modeloTabla);
     }
 
     /**
@@ -95,63 +115,66 @@ public class ReporteTramites extends javax.swing.JFrame {
      * @param nombre el nombre a buscar.
      */
     private void buscarPorNombre(String nombre) {
-//        try {
-//            consultaClientesBO.consultarClientePorNombre(nombre);
-//            List<TramiteDTO> tramitesDTO = consultaTramites.consultarTramitesPorCliente();
-//            if (tramitesDTO != null && !tramitesDTO.isEmpty()) {
-//                tramites.clear();
-//                tramites.addAll(tramitesDTO);
-//
-//                llenarTabla(tramites);
-//            }
-//
-//        } catch (FindException ex) {
-//            Logger.getLogger(ConsultaClientes.class.getName()).log(Level.SEVERE, null, ex);
-//            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//
-//        }
+        tramitesFiltrados = new ArrayList<>();
+
+        for (TramiteDTO tramiteDTO : tramites) {
+            // Acceder al ClienteDTO dentro de TramiteDTO
+            ClienteDTO clienteDTO = tramiteDTO.getClienteDTO();
+            // Obtener el nombre del cliente
+            String nombreCliente = clienteDTO.getNombre();
+            if (nombreCliente.equalsIgnoreCase(nombre)) {
+                TramiteDTO tramiteBuscado = new TramiteDTO(
+                        tramiteDTO.getFecha_expedicion(),
+                        tramiteDTO.getCosto(),
+                        clienteDTO,
+                        tramiteDTO.getEstado(),
+                        tramiteDTO.getTipo(),
+                        tramiteDTO.getFecha_emision()
+                );
+                tramitesFiltrados.add(tramiteBuscado);
+            }
+        }
     }
 
     /**
      * Busca trámites por período.
      */
-    private void buscarPorPeriodo() {
-//        try {
-//            List<ClienteDTO> clientesDTO = consultaClientesBO.consultarClientePorFechaNacimiento(anioNacimiento);
-//            if (clientesDTO != null && !clientesDTO.isEmpty()) {
-//                clientes.clear();
-//                clientes.addAll(clientesDTO);
-//                llenarTabla(tramites);
-//            }
-//        } catch (FindException ex) {
-//            Logger.getLogger(ConsultaClientes.class
-//                    .getName()).log(Level.SEVERE, null, ex);
-//            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//
-//        }
+    private void buscarPorPeriodo(Date fechaInicio, Date fechaFin) {
+        tramitesFiltrados = new ArrayList<>();
+        for (TramiteDTO tramiteDTO : tramites) {
+            // Obtener la fecha de emisión del tramiteDTO
+            Date fechaEmision = tramiteDTO.getFecha_emision().getTime();
+
+            // Verificar si la fecha de emisión está dentro del rango especificado
+            if (fechaEmision.after(fechaInicio) && fechaEmision.before(fechaFin)) {
+                // Si está dentro del rango, agregar el tramiteDTO a la lista de tramitesFiltrados
+                tramitesFiltrados.add(tramiteDTO);
+            }
+        }
     }
 
     /**
      * Busca trámites por tipo.
      */
-    private void buscarPorTipo() {
-//        try {
-//            List<ClienteDTO> clientesDTO = consultaClientesBO.consultarClientePorFechaNacimiento(anioNacimiento);
-//            if (clientesDTO != null && !clientesDTO.isEmpty()) {
-//                clientes.clear();
-//                clientes.addAll(clientesDTO);
-//                llenarTabla(tramites);
-//            }
-//        } catch (FindException ex) {
-//            Logger.getLogger(ConsultaClientes.class
-//                    .getName()).log(Level.SEVERE, null, ex);
-//            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//
-//        }
+    private void buscarPorTipo(String tipo) {
+        tramitesFiltrados = new ArrayList<>();
+
+        for (TramiteDTO tramiteDTO : tramites) {
+            // Obtener el tipo de trámite del tramiteDTO
+            String tipoTramite = tramiteDTO.getTipo();
+
+            // Verificar si el tipo de trámite coincide con el tipo especificado
+            if (tipoTramite.equalsIgnoreCase(tipo)) {
+                // Si coincide, agregar el tramiteDTO a la lista de tramitesFiltrados
+                tramitesFiltrados.add(tramiteDTO);
+            }
+        }
     }
 
     /**
-     * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -164,10 +187,11 @@ public class ReporteTramites extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTPersonas = new javax.swing.JTable();
         lblNombre = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbOpcionesFiltrado = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
+        jdchFechaFin = new com.toedter.calendar.JDateChooser();
         btnExportar = new javax.swing.JButton();
-        jDateChooser = new com.toedter.calendar.JDateChooser();
+        jdchFechaInicio = new com.toedter.calendar.JDateChooser();
         txtBuscador = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         lblCostoLicencia = new javax.swing.JLabel();
@@ -203,10 +227,10 @@ public class ReporteTramites extends javax.swing.JFrame {
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblNombre.setText("Buscar por:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Periodo", "Tipo de trámite" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbOpcionesFiltrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Nombre", "Periodo", "Tipo de trámite" }));
+        cmbOpcionesFiltrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmbOpcionesFiltradoActionPerformed(evt);
             }
         });
 
@@ -246,14 +270,17 @@ public class ReporteTramites extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtBuscador, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addComponent(lblNombre)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbOpcionesFiltrado, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jdchFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jdchFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,12 +293,14 @@ public class ReporteTramites extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblNombre)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cmbOpcionesFiltrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(txtBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jdchFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdchFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -313,24 +342,101 @@ public class ReporteTramites extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String busqueda = txtBuscador.getText().trim();
-        String opcionSeleccionada = (String) jComboBox1.getSelectedItem();
+        String opcionSeleccionada = cmbOpcionesFiltrado.getSelectedItem().toString().trim();
 
-        if (opcionSeleccionada.equalsIgnoreCase("Nombre")) {
-            buscarPorNombre(busqueda);
-        } else if (opcionSeleccionada.equalsIgnoreCase("Periodo")) {
-            buscarPorPeriodo();
-        } else if (opcionSeleccionada.equalsIgnoreCase("Tipo de trámite")) {
-            buscarPorTipo();
+        if (opcionSeleccionada.equals("Nombre")) {
+            try {
+                String nombre = txtBuscador.getText().trim();
+                if (!nombre.isEmpty()) {
+                    buscarPorNombre(nombre);
+                    limpiarTabla();
+                    llenarTabla(tramitesFiltrados);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor ingrese un nombre en el campo de búsqueda", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (FindException ex) {
+                Logger.getLogger(ReporteTramites.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Debe verificar el nombre del buscador", "Informe", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (opcionSeleccionada.equals("Periodo")) {
+            Date fechaInicio = jdchFechaInicio.getDate();
+            Date fechaFin = jdchFechaFin.getDate();
+
+            // Verificar que ambas fechas no sean null
+            if (fechaInicio != null && fechaFin != null) {
+                try {
+                    // Llamar al método buscarPorPeriodo con las fechas seleccionadas
+                    buscarPorPeriodo(fechaInicio, fechaFin);
+
+                    limpiarTabla();
+                    llenarTabla(tramitesFiltrados);
+                } catch (FindException ex) {
+                    Logger.getLogger(ReporteTramites.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                // Si alguna de las fechas es null, mostrar un mensaje de error o manejar la situación adecuadamente
+                JOptionPane.showMessageDialog(null, "Seleccione ambas fechas de inicio y fin del período.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (opcionSeleccionada.equals("Tipo de trámite")) {
+            String tipoTramite = txtBuscador.getText().trim();
+            if (!tipoTramite.isEmpty()) {
+                try {
+                    buscarPorTipo(tipoTramite);
+                    limpiarTabla();
+                    llenarTabla(tramitesFiltrados);
+                } catch (FindException ex) {
+                    Logger.getLogger(ReporteTramites.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un tipo de trámite en el campo de búsqueda", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (opcionSeleccionada.equals("Todos")) {
+            try {
+                limpiarTabla();
+                llenarTabla(tramites);
+            } catch (FindException ex) {
+                Logger.getLogger(ReporteTramites.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void cmbOpcionesFiltradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOpcionesFiltradoActionPerformed
+        String opcionSeleccionada = cmbOpcionesFiltrado.getSelectedItem().toString();
+        if (opcionSeleccionada.equals("Nombre")) {
+            txtBuscador.setEnabled(true);
+            txtBuscador.setEditable(true);
+            jdchFechaInicio.setEnabled(false);
+            jdchFechaFin.setEnabled(false);
+            txtBuscador.setText("");
+            jdchFechaInicio.setDate(null);
+            jdchFechaFin.setDate(null);
+        } else if (opcionSeleccionada.equals("Periodo")) {
+            txtBuscador.setEnabled(false);
+            txtBuscador.setEditable(false);
+            jdchFechaInicio.setEnabled(true);
+            jdchFechaFin.setEnabled(true);
+            txtBuscador.setText("");
+        } else if (opcionSeleccionada.equals("Tipo de trámite")) {
+            txtBuscador.setEnabled(true);
+            txtBuscador.setEditable(true);
+            jdchFechaInicio.setEnabled(false);
+            jdchFechaFin.setEnabled(false);
+            txtBuscador.setText("");
+            jdchFechaInicio.setDate(null);
+            jdchFechaFin.setDate(null);
+        } else if (opcionSeleccionada.equals("Todos")) {
+            txtBuscador.setEnabled(false);
+            txtBuscador.setEditable(false);
+            jdchFechaInicio.setEnabled(false);
+            jdchFechaFin.setEnabled(false);
+            txtBuscador.setText("");
+            jdchFechaInicio.setDate(null);
+            jdchFechaFin.setDate(null);
+        }
+    }//GEN-LAST:event_cmbOpcionesFiltradoActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnExportarActionPerformed
 
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
@@ -340,14 +446,15 @@ public class ReporteTramites extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnExportar;
+    private javax.swing.JComboBox<String> cmbOpcionesFiltrado;
     private javax.swing.JLabel flechaIcon;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTPersonas;
+    private com.toedter.calendar.JDateChooser jdchFechaFin;
+    private com.toedter.calendar.JDateChooser jdchFechaInicio;
     private javax.swing.JLabel lblCostoLicencia;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTitulo;

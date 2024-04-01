@@ -32,60 +32,6 @@ public class Agencia_Fiscal {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
-        // Crear clientes de prueba
-        Cliente cliente1 = new Cliente(
-                "TARE040818HSRLMDA1",
-                "Eduardo",
-                "Talavera",
-                "Ramos",
-                true,
-                "RETADGAG12344",
-                "6442261760",
-                new GregorianCalendar(2004, 8, 18));
-
-        Cliente cliente2 = new Cliente(
-                "CICH191004HSRLMDA",
-                "Hisamy",
-                "Cinco",
-                "Cota",
-                false,
-                "HOLA1234",
-                "6871699800",
-                new GregorianCalendar(2004, 10, 19));
-
-        Cliente cliente3 = new Cliente(
-                "CAMG040802",
-                "Gael",
-                "Catro",
-                "Molina",
-                true,
-                "GETO18921",
-                "6441699800",
-                new GregorianCalendar(2004, 8, 02));
-
-        Cliente cliente4 = new Cliente(
-                "VEBV040902",
-                "Victoria",
-                "Vega",
-                "Bernal",
-                true,
-                "MIKU09211",
-                "6871741035",
-                new GregorianCalendar(2004, 9, 02));
-
-        Cliente cliente5 = new Cliente(
-                "CICA120412",
-                "Angel",
-                "Cinco",
-                "Cota",
-                false,
-                "BEIS0983211",
-                "687211913",
-                new GregorianCalendar(2012, 4, 12));
-
-        // Crear un vehículo de prueba
-        Vehiculo vehiculo1 = new Vehiculo("num_serie", "tipo", 1998, "color", "marca", "linea", true);
-
         // Confirmar las transacciones en la base de datos
         entityManager.getTransaction().commit();
 

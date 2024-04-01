@@ -84,17 +84,21 @@
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="txtBuscador" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jDateChooser" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" min="-2" pref="265" max="-2" attributes="0"/>
+                                  <Component id="cmbOpcionesFiltrado" min="-2" pref="265" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnBuscar" min="-2" pref="123" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jdchFechaInicio" min="-2" pref="218" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jdchFechaFin" min="-2" pref="218" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -110,14 +114,17 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbOpcionesFiltrado" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="btnBuscar" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="txtBuscador" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jDateChooser" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jdchFechaInicio" min="-2" max="-2" attributes="0"/>
+                          <Component id="jdchFechaFin" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="339" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -223,18 +230,19 @@
                 <Property name="text" type="java.lang.String" value="Buscar por:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox1">
+            <Component class="javax.swing.JComboBox" name="cmbOpcionesFiltrado">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Nombre"/>
-                    <StringItem index="1" value="Periodo"/>
-                    <StringItem index="2" value="Tipo de tr&#xe1;mite"/>
+                  <StringArray count="4">
+                    <StringItem index="0" value="Todos"/>
+                    <StringItem index="1" value="Nombre"/>
+                    <StringItem index="2" value="Periodo"/>
+                    <StringItem index="3" value="Tipo de tr&#xe1;mite"/>
                   </StringArray>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbOpcionesFiltradoActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -257,6 +265,8 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
               </Events>
             </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="jdchFechaFin">
+            </Component>
             <Component class="javax.swing.JButton" name="btnExportar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -274,7 +284,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser">
+            <Component class="com.toedter.calendar.JDateChooser" name="jdchFechaInicio">
             </Component>
             <Component class="javax.swing.JTextField" name="txtBuscador">
             </Component>
