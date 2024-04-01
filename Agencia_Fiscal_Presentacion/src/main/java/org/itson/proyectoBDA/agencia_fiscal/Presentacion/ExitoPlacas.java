@@ -87,7 +87,7 @@ public class ExitoPlacas extends javax.swing.JFrame {
         lblPlaca.setText("Texto 1");
         lblPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlaca.setVerifyInputWhenFocusTarget(false);
-        jPanel2.add(lblPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, -1, -1));
+        jPanel2.add(lblPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
 
         btnContiuar.setBackground(new java.awt.Color(65, 34, 52));
         btnContiuar.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
@@ -102,11 +102,11 @@ public class ExitoPlacas extends javax.swing.JFrame {
 
         lblFechas.setText("Texto 2");
         lblPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(lblFechas, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
+        jPanel2.add(lblFechas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
 
         lblCosto.setText("Texto 2");
         lblPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
+        jPanel2.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 560, 350));
 
@@ -153,7 +153,6 @@ public class ExitoPlacas extends javax.swing.JFrame {
         dispose();
         consultaClientes.setVisible(true);
     }//GEN-LAST:event_lblCostoLicenciaMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContiuar;

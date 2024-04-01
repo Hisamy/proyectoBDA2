@@ -9,7 +9,6 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaTramitesBO;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaVehiculosBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroPlacasBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroVehiculosBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroPlacasBO;
@@ -34,12 +33,9 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private String tipo = "Placas";
 
     /**
-     * Crea una nueva instancia de DatosVehiculo con el clienteDTO
-     * proporcionado. Este constructor inicializa los objetos de negocio
-     * necesarios y establece el costo en 1500.
+     * Crea una nueva instancia de DatosVehiculo con el clienteDTO proporcionado. Este constructor inicializa los objetos de negocio necesarios y establece el costo en 1500.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
-     * cliente.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
      */
     public DatosVehiculo(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
@@ -54,13 +50,9 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Crea una nueva instancia de DatosVehiculo con el clienteDTO y vehiculoDTO
-     * proporcionados.Este constructor inicializa los objetos de negocio
-     * necesarios, establece el costo en 1000 y establece los datos del vehículo
-     * en los campos correspondientes de la interfaz gráfica.
+     * Crea una nueva instancia de DatosVehiculo con el clienteDTO y vehiculoDTO proporcionados.Este constructor inicializa los objetos de negocio necesarios, establece el costo en 1000 y establece los datos del vehículo en los campos correspondientes de la interfaz gráfica.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
-     * cliente.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
      * @param vehiculoDTO
      */
     public DatosVehiculo(ClienteDTO clienteDTO, VehiculoDTO vehiculoDTO) {
@@ -77,9 +69,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Establece los datos del vehículo en los campos de la interfaz gráfica.
-     * Este método se llama automáticamente después de la inicialización del
-     * objeto para mostrar los datos del vehículo en la interfaz.
+     * Establece los datos del vehículo en los campos de la interfaz gráfica. Este método se llama automáticamente después de la inicialización del objeto para mostrar los datos del vehículo en la interfaz.
      */
     public final void setearDatos() {
         txtNumSerie.setText(vehiculoDTO.getNumero_serie());
@@ -98,19 +88,14 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Transporta los datos del vehículo ingresados por el usuario al
-     * sistema.Este método convierte el modelo del vehículo a un entero, luego
-     * transporta los datos del vehículo al sistema utilizando objetos de
-     * negocio y maneja cualquier excepción que pueda ocurrir durante el
-     * proceso.
+     * Transporta los datos del vehículo ingresados por el usuario al sistema.Este método convierte el modelo del vehículo a un entero, luego transporta los datos del vehículo al sistema utilizando objetos de negocio y maneja cualquier excepción que pueda ocurrir durante el proceso.
      *
      * @return
-     * @throws PersistenciaException Si ocurre un error durante el proceso de
-     * transporte de datos.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de transporte de datos.
      */
     public VehiculoDTO transporteDatosVehiculo() throws PersistenciaException {
         Integer modelo = Integer.valueOf(txtModelo.getText());
-        VehiculoDTO nuevoVehiculo = null;
+        VehiculoDTO nuevoVehiculo = vehiculoDTO;
 
         Boolean licenciaVigente = consultaTramitesBO.transporteDatos(clienteDTO);
         System.out.println(licenciaVigente);
@@ -133,17 +118,11 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Transporta los datos de la placa al sistema y devuelve el objeto PlacaDTO
-     * resultante. Este método calcula la fecha de expedición de la placa,
-     * transporta los datos de la placa al sistema utilizando objetos de negocio
-     * y maneja cualquier excepción que pueda ocurrir durante el proceso.
+     * Transporta los datos de la placa al sistema y devuelve el objeto PlacaDTO resultante. Este método calcula la fecha de expedición de la placa, transporta los datos de la placa al sistema utilizando objetos de negocio y maneja cualquier excepción que pueda ocurrir durante el proceso.
      *
-     * @return El objeto PlacaDTO transportado que contiene los datos de la
-     * placa.
-     * @throws ParseException Si ocurre un error durante el análisis de la fecha
-     * de expedición.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de
-     * transporte de datos.
+     * @return El objeto PlacaDTO transportado que contiene los datos de la placa.
+     * @throws ParseException Si ocurre un error durante el análisis de la fecha de expedición.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de transporte de datos.
      */
     public PlacaDTO transporteDatosPlaca() throws java.text.ParseException, PersistenciaException {
         //Se calcula la fecha de expedicion la cual es de 5 años
@@ -159,16 +138,14 @@ public class DatosVehiculo extends javax.swing.JFrame {
                         fechaExpedicion,
                         costo,
                         clienteDTO,
-                        true, 
+                        true,
                         tipo,
                         fechaEmision));
         return placaDTO;
     }
 
     /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
+     * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -273,10 +250,16 @@ public class DatosVehiculo extends javax.swing.JFrame {
                 btnContinuarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 209, 123, 31));
+        jPanel2.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 209, 123, 30));
 
         btnAtras.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
+        btnAtras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtrasMouseClicked(evt);
+            }
+        });
         jPanel2.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 33, -1, 40));
 
         lblMarca1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
@@ -303,11 +286,23 @@ public class DatosVehiculo extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 560, 290));
 
         btnLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        btnLogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogoMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(109, 70, 107));
         lblCostoLicencia.setText("Historial licencias y placas");
+        lblCostoLicencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCostoLicencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCostoLicenciaMouseClicked(evt);
+            }
+        });
         jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -363,6 +358,22 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private void jcbTipoVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoVehiculoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbTipoVehiculoActionPerformed
+
+    private void btnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasMouseClicked
+        BuscarVehiculo buscarVehiculo = new BuscarVehiculo(clienteDTO);
+        dispose();
+        buscarVehiculo.setVisible(true);
+    }//GEN-LAST:event_btnAtrasMouseClicked
+
+    private void btnLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoMouseClicked
+        navegacion.cambiarFrmIndex(this);
+    }//GEN-LAST:event_btnLogoMouseClicked
+
+    private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
+        ConsultaClientes consultaClientes = new ConsultaClientes();
+        dispose();
+        consultaClientes.setVisible(true);
+    }//GEN-LAST:event_lblCostoLicenciaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

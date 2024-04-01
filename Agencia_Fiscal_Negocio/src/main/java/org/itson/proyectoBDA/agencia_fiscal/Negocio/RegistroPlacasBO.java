@@ -96,9 +96,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
                 tipo,
                 fechaActual);
         conversorVehiculoDTO(placaDTO);
-
         return placaDTO;
-
     }
 
     /**

@@ -145,6 +145,11 @@ public class ReporteTramites extends javax.swing.JFrame {
         lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(109, 70, 107));
         lblCostoLicencia.setText("Historial licencias y placas");
+        lblCostoLicencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCostoLicenciaMouseClicked(evt);
+            }
+        });
         jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,6 +192,10 @@ public class ReporteTramites extends javax.swing.JFrame {
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExportarActionPerformed
+
+    private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblCostoLicenciaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

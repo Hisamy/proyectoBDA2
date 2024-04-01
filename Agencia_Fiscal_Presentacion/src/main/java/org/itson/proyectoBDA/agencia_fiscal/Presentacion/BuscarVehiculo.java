@@ -11,19 +11,19 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
 public class BuscarVehiculo extends javax.swing.JFrame {
-
+    
     INavegacion navegacion;
     private IConsultaVehiculosBO consultaVehiculosBO;
     private ClienteDTO clienteDTO;
     private VehiculoDTO vehiculoDTO;
-
+    
     public BuscarVehiculo(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
         this.consultaVehiculosBO = new ConsultaVehiculosBO();
         navegacion = new Navegacion();
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,6 +76,12 @@ public class BuscarVehiculo extends javax.swing.JFrame {
 
         flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
+        flechaIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        flechaIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flechaIconMouseClicked(evt);
+            }
+        });
         jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 40, 40));
 
         btnBuscar.setBackground(new java.awt.Color(65, 34, 52));
@@ -103,6 +109,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -132,11 +139,13 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarVehiculoNuevoActionPerformed
 
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
-
+        ConsultaClientes consultaClientes = new ConsultaClientes();
+        dispose();
+        consultaClientes.setVisible(true);
     }//GEN-LAST:event_lblCostoLicenciaMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-
+        navegacion.cambiarFrmIndex(this);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void txtNumSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumSerieActionPerformed
@@ -146,7 +155,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             VehiculoDTO buscarVehiculo = consultaVehiculosBO.transporteDatos(txtNumSerie.getText());
-
+            
             if (buscarVehiculo != null) {
                 DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO, buscarVehiculo);
                 this.dispose();
@@ -165,6 +174,12 @@ public class BuscarVehiculo extends javax.swing.JFrame {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void flechaIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaIconMouseClicked
+        SolicitarPlacas solicitarPlacas = new SolicitarPlacas(clienteDTO);
+        dispose();
+        solicitarPlacas.setVisible(true);
+    }//GEN-LAST:event_flechaIconMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
