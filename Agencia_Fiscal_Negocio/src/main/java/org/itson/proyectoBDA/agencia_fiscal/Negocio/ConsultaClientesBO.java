@@ -45,9 +45,8 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
                 cliente.getFecha_nacimiento());
         return clienteDTO;
     }
-   
-    
-     /**
+
+    /**
      * Consulta clientes en la base de datos que tengan una fecha de nacimiento específica.
      *
      * @return Una lista de clientes que tienen la fecha de nacimiento especificada.
@@ -180,9 +179,10 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
         } catch (FindException ex) {
             Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
             throw new FindException(ex.getMessage());
-        }}
-        
-         /**
+        }
+    }
+
+    /**
      * Consulta clientes en la base de datos que coincidan con un nombre.
      *
      * @param nombre nombre del cliente
@@ -212,7 +212,5 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
             throw new FindException(ex.getMessage());
         }
     }
-
-    
 
 }

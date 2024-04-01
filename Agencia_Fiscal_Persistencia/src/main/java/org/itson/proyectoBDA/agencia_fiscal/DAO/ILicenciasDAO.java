@@ -9,4 +9,8 @@ public interface ILicenciasDAO {
 
     public Licencia consultarDatosLicencia(Cliente cliente);
 
+    public Licencia actualizarLicencia(Licencia licenciaActualizada);
+
+    public Licencia consultarDatosUltimaLicencia(Cliente cliente);
+
 }

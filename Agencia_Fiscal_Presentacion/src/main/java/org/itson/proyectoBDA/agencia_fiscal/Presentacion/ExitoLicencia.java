@@ -1,7 +1,7 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
-import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroLicenciasBO;
+import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 
 public class ExitoLicencia extends javax.swing.JFrame {
@@ -13,9 +13,9 @@ public class ExitoLicencia extends javax.swing.JFrame {
     private final String mensajeCosto
             = "cobrará %.2f de tu método de pago seleccionado.";
 
-  
     public ExitoLicencia(LicenciaDTO licenciaDTO) {
         this.licenciaDTO = licenciaDTO;
+        this.navegacion = new Navegacion();
         initComponents();
         setearLabel();
     }
@@ -69,8 +69,14 @@ public class ExitoLicencia extends javax.swing.JFrame {
         lblTramiteExitoso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(lblTramiteExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
 
-        flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
-        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 40, 40));
+        flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        flechaIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        flechaIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flechaIconMouseClicked(evt);
+            }
+        });
+        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, -1, 40));
 
         lblVigencia.setText("El trámite de licencia con duración de _____ se ha concretado con éxito, se ");
         lblVigencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,12 +97,18 @@ public class ExitoLicencia extends javax.swing.JFrame {
         lblVigencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel2.add(lblCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 560, 350));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 560, 350));
 
         lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(109, 70, 107));
         lblCostoLicencia.setText("Historial licencias y placas");
-        jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
+        lblCostoLicencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCostoLicencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCostoLicenciaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,10 +130,18 @@ public class ExitoLicencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContiuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContiuarActionPerformed
-        Index index = new Index();
-        index.setVisible(true);
-        dispose();
+        navegacion.cambiarFrmIndex(this);
     }//GEN-LAST:event_btnContiuarActionPerformed
+
+    private void flechaIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaIconMouseClicked
+        navegacion.cambiarFrmIndex(this);
+    }//GEN-LAST:event_flechaIconMouseClicked
+
+    private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
+        ConsultaClientes consultaClientes = new ConsultaClientes();
+        dispose();
+        consultaClientes.setVisible(true);
+    }//GEN-LAST:event_lblCostoLicenciaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContiuar;

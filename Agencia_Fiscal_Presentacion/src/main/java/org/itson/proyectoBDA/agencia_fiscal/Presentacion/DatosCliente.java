@@ -1,4 +1,3 @@
-
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import java.text.SimpleDateFormat;
@@ -7,7 +6,6 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 
-
 public class DatosCliente extends javax.swing.JFrame {
 
     INavegacion navegacion;
@@ -15,7 +13,7 @@ public class DatosCliente extends javax.swing.JFrame {
 
     public DatosCliente(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
-        
+
         initComponents();
         setearDatos();
         navegacion = new Navegacion();
@@ -207,6 +205,12 @@ public class DatosCliente extends javax.swing.JFrame {
 
         flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
+        flechaIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        flechaIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flechaIconMouseClicked(evt);
+            }
+        });
 
         lblCURP1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lblCURP1.setText("Si");
@@ -333,11 +337,23 @@ public class DatosCliente extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 560, 350));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(109, 70, 107));
         lblCostoLicencia.setText("Historial licencias y placas");
+        lblCostoLicencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCostoLicencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCostoLicenciaMouseClicked(evt);
+            }
+        });
         jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -400,6 +416,22 @@ public class DatosCliente extends javax.swing.JFrame {
         this.dispose();
         tramites.setVisible(true);
     }//GEN-LAST:event_btnContiuarActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        navegacion.cambiarFrmIndex(this);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void flechaIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaIconMouseClicked
+        BuscarCliente buscarCliente = new BuscarCliente();
+        dispose();
+        buscarCliente.setVisible(true);
+    }//GEN-LAST:event_flechaIconMouseClicked
+
+    private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
+        ConsultaClientes consultaClientes = new ConsultaClientes();
+        dispose();
+        consultaClientes.setVisible(true);
+    }//GEN-LAST:event_lblCostoLicenciaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContiuar;

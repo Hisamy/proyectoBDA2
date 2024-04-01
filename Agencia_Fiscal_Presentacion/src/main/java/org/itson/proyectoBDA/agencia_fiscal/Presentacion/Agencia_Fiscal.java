@@ -1,6 +1,5 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -70,7 +69,6 @@ public class Agencia_Fiscal {
                 "687211913",
                 new GregorianCalendar(2012, 4, 12));
 
-       
         Vehiculo vehiculo1 = new Vehiculo("num_serie", "tipo", 1998, "color", "marca", "linea", true);
 
 //        entityManager.persist(cliente1);

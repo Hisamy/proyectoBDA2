@@ -71,6 +71,12 @@ public class BuscarCliente extends javax.swing.JFrame {
 
         flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
+        flechaIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        flechaIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flechaIconMouseClicked(evt);
+            }
+        });
         jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 40, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 530, 230));
@@ -115,7 +121,7 @@ public class BuscarCliente extends javax.swing.JFrame {
         try {
             clienteDTO = consultaClientes.transporteDatos(txtRFC.getText());
             DatosCliente mostrarDatos = new DatosCliente(clienteDTO);
-            
+
             this.dispose();
             mostrarDatos.setVisible(true);
         } catch (FindException ex) {
@@ -127,10 +133,6 @@ public class BuscarCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
-        navegacion.cambiarFrmHistorialLicencias(this);
-    }//GEN-LAST:event_lblCostoLicenciaMouseClicked
-
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         navegacion.cambiarFrmIndex(this);
     }//GEN-LAST:event_jLabel2MouseClicked
@@ -139,6 +141,16 @@ public class BuscarCliente extends javax.swing.JFrame {
         txtRFC.getText();
 
     }//GEN-LAST:event_txtRFCActionPerformed
+
+    private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
+        ConsultaClientes consultaClientes = new ConsultaClientes();
+        dispose();
+        consultaClientes.setVisible(true);
+    }//GEN-LAST:event_lblCostoLicenciaMouseClicked
+
+    private void flechaIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaIconMouseClicked
+        navegacion.cambiarFrmIndex(this);
+    }//GEN-LAST:event_flechaIconMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

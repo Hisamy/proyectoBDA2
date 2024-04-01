@@ -2,10 +2,13 @@ package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
+import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
 
 public class ExitoPlacas extends javax.swing.JFrame {
 
+    private INavegacion navegacion;
     private final PlacaDTO placaDTO;
 
     private final String mensajeNumeroAlfanumerico = "El número alfanumérico asignado será: ";
@@ -14,6 +17,7 @@ public class ExitoPlacas extends javax.swing.JFrame {
 
     public ExitoPlacas(PlacaDTO placaDTO) {
         this.placaDTO = placaDTO;
+        this.navegacion = new Navegacion();
         initComponents();
         setearLabel();
     }
@@ -27,7 +31,6 @@ public class ExitoPlacas extends javax.swing.JFrame {
         String mensajeNumeroAlfanumerico2 = mensajeNumeroAlfanumerico + numeroAlfanumerico;
         lblPlaca.setText(mensajeNumeroAlfanumerico2);
 
- 
         String fechaVigencia = fechaEnFormato(vigencia);
         String fechaRecepcion = fechaEnFormato(recepcion);
 
@@ -72,8 +75,14 @@ public class ExitoPlacas extends javax.swing.JFrame {
         lblTramiteExitoso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(lblTramiteExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, -1));
 
-        flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
-        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 40, 40));
+        flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        flechaIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        flechaIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flechaIconMouseClicked(evt);
+            }
+        });
+        jPanel2.add(flechaIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 60, 40));
 
         lblPlaca.setText("Texto 1");
         lblPlaca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -104,6 +113,12 @@ public class ExitoPlacas extends javax.swing.JFrame {
         lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(109, 70, 107));
         lblCostoLicencia.setText("Historial licencias y placas");
+        lblCostoLicencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCostoLicencia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCostoLicenciaMouseClicked(evt);
+            }
+        });
         jPanel1.add(lblCostoLicencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,10 +141,18 @@ public class ExitoPlacas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContiuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContiuarActionPerformed
-        Index index = new Index();
-        index.setVisible(true);
-        dispose();
+        navegacion.cambiarFrmIndex(this);
     }//GEN-LAST:event_btnContiuarActionPerformed
+
+    private void flechaIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaIconMouseClicked
+        navegacion.cambiarFrmIndex(this);
+    }//GEN-LAST:event_flechaIconMouseClicked
+
+    private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
+        ConsultaClientes consultaClientes = new ConsultaClientes();
+        dispose();
+        consultaClientes.setVisible(true);
+    }//GEN-LAST:event_lblCostoLicenciaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

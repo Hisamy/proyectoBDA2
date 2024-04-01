@@ -32,15 +32,12 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
-     * Registra una nueva placa en el sistema utilizando los datos
-     * proporcionados en un objeto PlacaDTO.
+     * Registra una nueva placa en el sistema utilizando los datos proporcionados en un objeto PlacaDTO.
      *
-     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva
-     * placa a registrar.
+     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
      * @param vehiculo
      * @return El objeto Placa recién registrado.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de
-     * persistencia.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
      */
     @Override
     public Placa registrarPlaca(PlacaDTO nuevaPlaca, Vehiculo vehiculo) throws PersistenciaException {
@@ -79,15 +76,11 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
-     * Transporta los datos de una nueva placa y registra la placa en el
-     * sistema.
+     * Transporta los datos de una nueva placa y registra la placa en el sistema.
      *
-     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva
-     * placa a registrar.
-     * @return El objeto PlacaDTO transportado, que contiene los mismos datos
-     * que la placa registrada.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de
-     * persistencia.
+     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
+     * @return El objeto PlacaDTO transportado, que contiene los mismos datos que la placa registrada.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
      */
     @Override
     public PlacaDTO transporteDatos(PlacaDTO nuevaPlaca) throws PersistenciaException {
@@ -109,11 +102,9 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
-     * Genera y devuelve un número alfanumérico único que puede ser utilizado
-     * como número de placa.
+     * Genera y devuelve un número alfanumérico único que puede ser utilizado como número de placa.
      *
-     * @return Un número alfanumérico único que representa una placa de
-     * vehículo.
+     * @return Un número alfanumérico único que representa una placa de vehículo.
      */
     private String generarNumeroAlfanumerico() {
         StringBuilder placa = new StringBuilder();
@@ -137,8 +128,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     /**
      * Obtiene la fecha y hora actuales del sistema en un objeto Calendar.
      *
-     * @return Un objeto Calendar que representa la fecha y hora actuales del
-     * sistema.
+     * @return Un objeto Calendar que representa la fecha y hora actuales del sistema.
      */
     @Override
     public Calendar getFechaRecepcion() {
