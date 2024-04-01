@@ -25,26 +25,28 @@ public class RegistroClientesBO implements IRegistroClientesBO {
     }
 
     /**
-     * Registra un cliente. Convierte el NuevoClienteDTO a cliente para poder mandar los datos del cliente a la capa de persistencia.
+     * Registra un cliente. Convierte el NuevoClienteDTO a cliente para poder
+     * mandar los datos del cliente a la capa de persistencia.
      *
      * @param nuevoCliente nuevo cliente que se está registrando
      * @return una variable de tipo id_cliente
-     * @throws PersistenciaException Por si no se puedo guardar correctamente el cliente.
+     * @throws PersistenciaException Por si no se puedo guardar correctamente el
+     * cliente.
      */
     @Override
     public Cliente registrarCliente(NuevoClienteDTO nuevoCliente) throws PersistenciaException {
         try {
             validarCliente(nuevoCliente);
             Cliente clienteNuevo = clienteDAO.agregarCliente(new Cliente(
-                            nuevoCliente.getCURP(),
-                            nuevoCliente.getNombre(),
-                            nuevoCliente.getApellido_paterno(),
-                            nuevoCliente.getApellido_materno(),
-                            nuevoCliente.isDiscapacidad(),
-                            nuevoCliente.getRFC(),
-                            nuevoCliente.getTelefono(),
-                            nuevoCliente.getFecha_nacimiento()
-                    ));
+                    nuevoCliente.getCURP(),
+                    nuevoCliente.getNombre(),
+                    nuevoCliente.getApellido_paterno(),
+                    nuevoCliente.getApellido_materno(),
+                    nuevoCliente.isDiscapacidad(),
+                    nuevoCliente.getRFC(),
+                    nuevoCliente.getTelefono(),
+                    nuevoCliente.getFecha_nacimiento()
+            ));
             return clienteNuevo;
         } catch (PersistenciaException e) {
             logger.warning("No se puedo registrar correctamente el vehiculo");
@@ -52,6 +54,13 @@ public class RegistroClientesBO implements IRegistroClientesBO {
         }
     }
 
+    /**
+     * Transporta los datos de un nuevo cliente y los registra en el sistema.
+     *
+     * @param nuevoCliente El objeto NuevoClienteDTO que contiene los datos del
+     * nuevo cliente.
+     * @return El objeto NuevoClienteDTO transportado.
+     */
     @Override
     public NuevoClienteDTO transporteDatos(NuevoClienteDTO nuevoCliente) {
         try {

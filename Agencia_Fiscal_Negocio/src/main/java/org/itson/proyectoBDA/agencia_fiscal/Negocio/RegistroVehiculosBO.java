@@ -27,11 +27,14 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
     }
 
     /**
-     * Registra un nuevo vehículo en el sistema utilizando los datos proporcionados en un objeto VehiculoDTO.
+     * Registra un nuevo vehículo en el sistema utilizando los datos
+     * proporcionados en un objeto VehiculoDTO.
      *
-     * @param nuevoVehiculo El objeto VehiculoDTO que contiene los datos del nuevo vehículo a registrar.
+     * @param nuevoVehiculo El objeto VehiculoDTO que contiene los datos del
+     * nuevo vehículo a registrar.
      * @return El objeto Vehiculo recién registrado.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de
+     * persistencia.
      */
     @Override
     public Vehiculo registrarVehiculo(VehiculoDTO nuevoVehiculo) throws PersistenciaException {
@@ -54,10 +57,13 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
     }
 
     /**
-     * Transporta los datos de un nuevo vehículo y registra el vehículo en el sistema.
+     * Transporta los datos de un nuevo vehículo y registra el vehículo en el
+     * sistema.
      *
-     * @param nuevoVehiculo El objeto VehiculoDTO que contiene los datos del nuevo vehículo a registrar.
-     * @return El objeto VehiculoDTO transportado, que contiene los mismos datos que el vehículo registrado.
+     * @param nuevoVehiculo El objeto VehiculoDTO que contiene los datos del
+     * nuevo vehículo a registrar.
+     * @return El objeto VehiculoDTO transportado, que contiene los mismos datos
+     * que el vehículo registrado.
      *
      */
     @Override
@@ -70,6 +76,13 @@ public class RegistroVehiculosBO implements IRegistroVehiculosBO {
         return nuevoVehiculo;
     }
 
+    /**
+ * Convierte un objeto ClienteDTO en un objeto Cliente.
+ * 
+ * @param clienteDTO El objeto ClienteDTO a convertir.
+ * @return El objeto Cliente resultante de la conversión.
+ * @throws PersistenciaException Si ocurre un error durante la conversión.
+ */
     @Override
     public Cliente convertirClienteADTO(ClienteDTO clienteDTO) throws PersistenciaException {
         return new Cliente(

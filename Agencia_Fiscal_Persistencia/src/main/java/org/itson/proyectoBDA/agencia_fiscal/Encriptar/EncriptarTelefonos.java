@@ -5,6 +5,11 @@ import java.security.NoSuchAlgorithmException;
 
 public class EncriptarTelefonos {
 
+    /**
+     * Genera el hash MD5 de una cadena de texto.
+     *
+     * @return El hash MD5 del texto proporcionado.
+     */
     public static String encriptarMD5(String telefono) {
         try {
 

@@ -14,6 +14,12 @@ public class LicenciasDAO implements ILicenciasDAO {
         this.conexion = conexion;
     }
 
+    /**
+     * Consulta los datos de la licencia asociada a un cliente.
+     *
+     * @param cliente El cliente cuya licencia se desea consultar.
+     * @return La licencia asociada al cliente.
+     */
     @Override
     public Licencia consultarDatosLicencia(Cliente cliente) {
         EntityManager entityManager = conexion.crearConexion();
@@ -28,6 +34,12 @@ public class LicenciasDAO implements ILicenciasDAO {
         return licencia;
     }
 
+    /**
+     * Consulta los datos de la última licencia emitida para un cliente.
+     *
+     * @param cliente El cliente cuya última licencia se desea consultar.
+     * @return La última licencia emitida para el cliente.
+     */
     @Override
     public Licencia consultarDatosUltimaLicencia(Cliente cliente) {
         EntityManager entityManager = conexion.crearConexion();
@@ -43,6 +55,12 @@ public class LicenciasDAO implements ILicenciasDAO {
         return licencia;
     }
 
+    /**
+     * Agrega una nueva licencia a la base de datos.
+     *
+     * @param nuevaLicencia La nueva licencia a agregar.
+     * @return La licencia agregada.
+     */
     @Override
     public Licencia agregarLicencia(Licencia nuevaLicencia) {
         EntityManager entityManager = conexion.crearConexion();
@@ -55,6 +73,12 @@ public class LicenciasDAO implements ILicenciasDAO {
         return nuevaLicencia;
     }
 
+    /**
+     * Actualiza los datos de una licencia en la base de datos.
+     *
+     * @param licenciaActualizada La licencia con los datos actualizados.
+     * @return La licencia actualizada.
+     */
     @Override
     public Licencia actualizarLicencia(Licencia licenciaActualizada) {
         EntityManager entityManager = conexion.crearConexion();

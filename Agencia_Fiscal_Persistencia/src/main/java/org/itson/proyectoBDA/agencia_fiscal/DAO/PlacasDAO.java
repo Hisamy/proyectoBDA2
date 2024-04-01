@@ -65,6 +65,12 @@ public class PlacasDAO implements IPlacasDAO {
         return nuevaPlaca;
     }
 
+    /**
+     * Actualiza los datos de una placa en la base de datos.
+     *
+     * @param placaActualizada La placa con los datos actualizados.
+     * @return La placa actualizada.
+     */
     @Override
     public Placa actualizarPlaca(Placa placaActualizada) {
         EntityManager entityManager = conexion.crearConexion();

@@ -30,9 +30,11 @@ public class RegistroLicenciasBO implements IRegistroLicenciasBO {
     /**
      * Registra una nueva licencia en el sistema.
      *
-     * @param nuevoLicencia Objeto LicenciaDTO que contiene los datos de la nueva licencia a registrar.
+     * @param nuevoLicencia Objeto LicenciaDTO que contiene los datos de la
+     * nueva licencia a registrar.
      * @return La licencia registrada en el sistema.
-     * @throws PersistenciaException Si ocurre un error durante la persistencia de la licencia.
+     * @throws PersistenciaException Si ocurre un error durante la persistencia
+     * de la licencia.
      */
     @Override
     public Licencia registrarLicencia(LicenciaDTO nuevoLicencia) throws PersistenciaException {
@@ -61,9 +63,11 @@ public class RegistroLicenciasBO implements IRegistroLicenciasBO {
     /**
      * Transporta los datos de una nueva licencia al sistema.
      *
-     * @param nuevaLicencia Objeto LicenciaDTO que contiene los datos de la nueva licencia a transportar.
+     * @param nuevaLicencia Objeto LicenciaDTO que contiene los datos de la
+     * nueva licencia a transportar.
      * @return La licencia DTO transportada.
-     * @throws PersistenciaException Si ocurre un error durante el transporte de los datos de la licencia.
+     * @throws PersistenciaException Si ocurre un error durante el transporte de
+     * los datos de la licencia.
      */
     @Override
     public LicenciaDTO transporteDatos(LicenciaDTO nuevaLicencia) throws PersistenciaException {
@@ -75,6 +79,13 @@ public class RegistroLicenciasBO implements IRegistroLicenciasBO {
         return nuevaLicencia;
     }
 
+    /**
+     * Convierte un objeto ClienteDTO en un objeto Cliente.
+     *
+     * @param clienteDTO El objeto ClienteDTO a convertir.
+     * @return El objeto Cliente resultante.
+     * @throws PersistenciaException Si ocurre un error durante la conversión.
+     */
     @Override
     public Cliente convertirClienteADTO(ClienteDTO clienteDTO) throws PersistenciaException {
         return new Cliente(
