@@ -6,10 +6,18 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class PlacasDAO implements IPlacasDAO {
 
     final private IConexion conexion;
 
+    /**
+     *
+     * @param conexion
+     */
     public PlacasDAO(IConexion conexion) {
         this.conexion = conexion;
     }
@@ -32,6 +40,11 @@ public class PlacasDAO implements IPlacasDAO {
         return placa;
     }
 
+    /**
+     *
+     * @param cliente
+     * @return
+     */
     @Override
     public Placa consultarDatosUltimaLicencia(Cliente cliente) {
         EntityManager entityManager = conexion.crearConexion();

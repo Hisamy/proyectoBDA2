@@ -19,6 +19,10 @@ import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class RegistroPlacasBO implements IRegistroPlacasBO {
 
     IConexion conexion = new Conexion();
@@ -27,6 +31,9 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     private String tipo = "Placa";
     private IPlacasDAO placaDAO;
 
+    /**
+     *
+     */
     public RegistroPlacasBO() {
         IConexion conexion = new Conexion();
         this.placaDAO = new PlacasDAO(conexion);
@@ -71,6 +78,12 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
         return placaNueva;
     }
 
+    /**
+     *
+     * @param nuevaPlaca
+     * @return
+     * @throws PersistenciaException
+     */
     @Override
     public VehiculoDTO conversorVehiculoDTO(PlacaDTO nuevaPlaca) throws PersistenciaException {
         VehiculoDTO vehiculoDTO = nuevaPlaca.getVehiculo();

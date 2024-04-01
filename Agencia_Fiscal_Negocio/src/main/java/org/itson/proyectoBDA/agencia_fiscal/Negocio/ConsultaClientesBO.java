@@ -15,10 +15,18 @@ import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 
+/**
+ * Clase de negocio que proporciona operaciones para consultar y manipular datos de clientes. Implementa la interfaz IConsultaClientesBO.
+ *
+ * @author Ramosz
+ */
 public class ConsultaClientesBO implements IConsultaClientesBO {
 
-    private final IClientesDAO clienteDAO;
+    private final IClientesDAO clienteDAO; // Instancia de la interfaz IClientesDAO
 
+    /**
+     * Constructor que inicializa la instancia de clienteDAO utilizando una conexión.
+     */
     public ConsultaClientesBO() {
         IConexion conexion = new Conexion();
         this.clienteDAO = new ClientesDAO(conexion);
@@ -49,6 +57,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     /**
      * Consulta clientes en la base de datos que tengan una fecha de nacimiento específica.
      *
+     * @param anio Año de nacimiento a buscar.
      * @return Una lista de clientes que tienen la fecha de nacimiento especificada.
      * @throws FindException Si no se encuentran clientes con la fecha de nacimiento especificada.
      */
@@ -158,6 +167,12 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
         return edad;
     }
 
+    /**
+     * Consulta el historial de clientes en la base de datos.
+     *
+     * @return Una lista de clientes con su historial.
+     * @throws FindException Si no se encuentra el historial de clientes.
+     */
     @Override
     public List<ClienteDTO> historialCliente() throws FindException {
         try {
@@ -185,7 +200,7 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
     /**
      * Consulta clientes en la base de datos que coincidan con un nombre.
      *
-     * @param nombre nombre del cliente
+     * @param nombre Nombre del cliente a buscar.
      * @return Una lista de clientes que coinciden con el criterio de búsqueda.
      * @throws FindException Si no se encuentran clientes que coincidan con el criterio de búsqueda.
      */
@@ -212,5 +227,4 @@ public class ConsultaClientesBO implements IConsultaClientesBO {
             throw new FindException(ex.getMessage());
         }
     }
-
 }

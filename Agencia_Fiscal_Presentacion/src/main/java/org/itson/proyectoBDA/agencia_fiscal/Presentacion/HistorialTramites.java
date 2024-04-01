@@ -10,12 +10,21 @@ import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
+/**
+ * Esta clase representa la ventana de la aplicación que muestra el historial de trámites de un cliente. Extiende de javax.swing.JFrame.
+ */
 public class HistorialTramites extends javax.swing.JFrame {
 
     private final ClienteDTO clienteDTO;
     List<TramiteDTO> tramites;
     IConsultaTramitesBO consultaTramites;
 
+    /**
+     * Constructor de la clase HistorialTramites.
+     *
+     * @param clienteDTO Objeto ClienteDTO que contiene la información del cliente cuyo historial de trámites se mostrará.
+     * @throws FindException Si ocurre un error al buscar los trámites.
+     */
     public HistorialTramites(ClienteDTO clienteDTO) throws FindException {
         this.clienteDTO = clienteDTO;
         this.consultaTramites = new ConsultaTramitesBO();
@@ -27,9 +36,9 @@ public class HistorialTramites extends javax.swing.JFrame {
     }
 
     /**
-     * Llena la tabla con el historial de clientes.
+     * Llena la tabla con el historial de trámites.
      *
-     * @param clientesDTO Lista de objetos ClienteDTO que representan el historial de clientes.
+     * @param tramites Lista de objetos TramiteDTO que representan el historial de trámites del cliente.
      */
     private void llenarTabla(List<TramiteDTO> tramites) {
         DefaultTableModel clientesEncontrados = new DefaultTableModel();

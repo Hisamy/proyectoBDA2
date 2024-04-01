@@ -8,11 +8,24 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaClientesBO;
 
+/**
+ * La clase `BuscarCliente` representa la ventana de búsqueda de clientes en la interfaz de la aplicación de la agencia fiscal. Permite al usuario buscar un cliente por su RFC y luego muestra una ventana con los datos del cliente encontrado.
+ */
 public class BuscarCliente extends javax.swing.JFrame {
 
+    /**
+     * Interfaz para la navegación entre ventanas
+     */
     INavegacion navegacion;
+
+    /**
+     * Instancia para realizar consultas de clientes
+     */
     private IConsultaClientesBO consultaClientes;
 
+    /**
+     * Constructor de la clase `BuscarCliente`. Inicializa los componentes de la interfaz de usuario y las instancias necesarias para la navegación y las consultas de clientes.
+     */
     public BuscarCliente() {
         this.consultaClientes = new ConsultaClientesBO();
         navegacion = new Navegacion();
@@ -116,6 +129,12 @@ public class BuscarCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // Código generado para inicializar los componentes de la interfaz de usuario omitido por brevedad
+    /**
+     * Maneja el evento de clic en el botón "Buscar". Realiza una consulta de cliente utilizando el RFC ingresado por el usuario. Si se encuentra el cliente, muestra una ventana con los datos del cliente encontrado. Si ocurre algún error durante la consulta, muestra un mensaje de error.
+     *
+     * @param evt El evento de acción que desencadena este método.
+     */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         ClienteDTO clienteDTO;
         try {
@@ -133,21 +152,41 @@ public class BuscarCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    /**
+     * Maneja el evento de clic en el ícono "Index". Navega hacia la ventana principal "Index".
+     *
+     * @param evt El evento de clic del mouse que desencadena este método.
+     */
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         navegacion.cambiarFrmIndex(this);
     }//GEN-LAST:event_jLabel2MouseClicked
 
+    /**
+     * Maneja el evento de presionar la tecla "Enter" en el campo de texto "RFC". No realiza ninguna acción específica aparte de obtener el texto del campo.
+     *
+     * @param evt El evento de acción que desencadena este método.
+     */
     private void txtRFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCActionPerformed
         txtRFC.getText();
 
     }//GEN-LAST:event_txtRFCActionPerformed
 
+    /**
+     * Maneja el evento de clic en el enlace "Historial licencias y placas". Crea una nueva instancia de la ventana "ConsultaClientes" y la muestra. Cierra la ventana actual.
+     *
+     * @param evt El evento de clic del mouse que desencadena este método.
+     */
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
         ConsultaClientes consultaClientes = new ConsultaClientes();
         dispose();
         consultaClientes.setVisible(true);
     }//GEN-LAST:event_lblCostoLicenciaMouseClicked
 
+    /**
+     * Maneja el evento de clic en el ícono de flecha. Navega hacia la ventana principal "Index".
+     *
+     * @param evt El evento de clic del mouse que desencadena este método.
+     */
     private void flechaIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaIconMouseClicked
         navegacion.cambiarFrmIndex(this);
     }//GEN-LAST:event_flechaIconMouseClicked

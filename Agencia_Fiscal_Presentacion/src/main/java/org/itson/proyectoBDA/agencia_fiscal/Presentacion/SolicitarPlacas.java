@@ -5,12 +5,22 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
+/**
+ * Clase JFrame para solicitar placas de vehículos. Esta clase permite al cliente solicitar placas para vehículos nuevos o usados.
+ *
+ * @author hisam
+ */
 public class SolicitarPlacas extends javax.swing.JFrame {
 
     INavegacion navegacion;
     private ClienteDTO clienteDTO;
     private VehiculoDTO vehiculoDTO;
 
+    /**
+     * Crea una nueva instancia de SolicitarPlacas.
+     *
+     * @param clienteDTO el DTO del cliente para el que se solicitarán las placas.
+     */
     public SolicitarPlacas(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
         navegacion = new Navegacion();

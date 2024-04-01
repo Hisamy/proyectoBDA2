@@ -10,20 +10,32 @@ import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaVehiculosBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
+/**
+ * La clase `BuscarVehiculo` representa una ventana de búsqueda de vehículos. Permite al usuario buscar un vehículo por su número de serie.
+ *
+ * Esta clase está diseñada para recibir un objeto `ClienteDTO` como parámetro en su constructor.
+ *
+ * @author Ramosz
+ */
 public class BuscarVehiculo extends javax.swing.JFrame {
-    
+
     INavegacion navegacion;
     private IConsultaVehiculosBO consultaVehiculosBO;
     private ClienteDTO clienteDTO;
     private VehiculoDTO vehiculoDTO;
-    
+
+    /**
+     * Constructor de la clase `BuscarVehiculo`. Crea una instancia de `BuscarVehiculo` con el cliente proporcionado y realiza la configuración inicial.
+     *
+     * @param clienteDTO Objeto `ClienteDTO` que representa al cliente asociado a la búsqueda de vehículos.
+     */
     public BuscarVehiculo(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
         this.consultaVehiculosBO = new ConsultaVehiculosBO();
         navegacion = new Navegacion();
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -132,30 +144,55 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento de clic en el botón "Registrar Vehículo Nuevo". Crea una nueva instancia de la ventana "DatosVehiculo" con el cliente actual y la muestra. Cierra la ventana actual.
+     *
+     * @param evt El evento de acción que desencadena este método.
+     */
     private void btnRegistrarVehiculoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarVehiculoNuevoActionPerformed
         DatosVehiculo datosVehiculo = new DatosVehiculo(clienteDTO);
         datosVehiculo.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegistrarVehiculoNuevoActionPerformed
 
+    /**
+     * Maneja el evento de clic en el enlace "Historial licencias y placas". Crea una nueva instancia de la ventana "ConsultaClientes" y la muestra. Cierra la ventana actual.
+     *
+     * @param evt El evento de clic del mouse que desencadena este método.
+     */
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
         ConsultaClientes consultaClientes = new ConsultaClientes();
         dispose();
         consultaClientes.setVisible(true);
     }//GEN-LAST:event_lblCostoLicenciaMouseClicked
 
+    /**
+     * Maneja el evento de clic en el ícono "Index". Navega hacia la ventana principal "Index".
+     *
+     * @param evt El evento de clic del mouse que desencadena este método.
+     */
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         navegacion.cambiarFrmIndex(this);
     }//GEN-LAST:event_jLabel2MouseClicked
 
+    /**
+     * Maneja el evento de presionar la tecla "Enter" en el campo de texto "Número de serie". Este método no realiza ninguna acción específica.
+     *
+     * @param evt El evento de acción que desencadena este método.
+     */
     private void txtNumSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumSerieActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumSerieActionPerformed
 
+    /**
+     * Maneja el evento de clic en el botón "Buscar". Intenta buscar un vehículo utilizando el número de serie ingresado. Si el vehículo es encontrado, abre la ventana "DatosVehiculo" con la información del vehículo y cliente actual. Si no se encuentra ningún vehículo, muestra un mensaje de error.
+     *
+     * @param evt El evento de acción que desencadena este método.
+     */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
             VehiculoDTO buscarVehiculo = consultaVehiculosBO.transporteDatos(txtNumSerie.getText());
-            
+
             if (buscarVehiculo != null) {
                 DatosVehiculo datosAutomovil = new DatosVehiculo(clienteDTO, buscarVehiculo);
                 this.dispose();
@@ -175,6 +212,11 @@ public class BuscarVehiculo extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }    }//GEN-LAST:event_btnBuscarActionPerformed
 
+    /**
+     * Maneja el evento de clic en el ícono de flecha. Crea una nueva instancia de la ventana "SolicitarPlacas" con el cliente actual y la muestra. Cierra la ventana actual.
+     *
+     * @param evt El evento de clic del mouse que desencadena este método.
+     */
     private void flechaIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaIconMouseClicked
         SolicitarPlacas solicitarPlacas = new SolicitarPlacas(clienteDTO);
         dispose();

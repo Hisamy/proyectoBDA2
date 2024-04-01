@@ -6,6 +6,9 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
 
+/**
+ * Esta clase representa la ventana de éxito después de realizar un trámite de placas. Extiende de javax.swing.JFrame.
+ */
 public class ExitoPlacas extends javax.swing.JFrame {
 
     private INavegacion navegacion;
@@ -15,6 +18,11 @@ public class ExitoPlacas extends javax.swing.JFrame {
     private final String mensajeFechas = "Fechas:\nVigencia: %s \nRecepción: %s";
     private final String mensajeCosto = "Se le cobrará $ %f";
 
+    /**
+     * Constructor de la clase ExitoPlacas.
+     *
+     * @param placaDTO Objeto PlacaDTO que contiene la información de las placas tramitadas con éxito.
+     */
     public ExitoPlacas(PlacaDTO placaDTO) {
         this.placaDTO = placaDTO;
         this.navegacion = new Navegacion();
@@ -22,6 +30,9 @@ public class ExitoPlacas extends javax.swing.JFrame {
         setearLabel();
     }
 
+    /**
+     * Método privado para configurar los textos de los labels con la información de las placas.
+     */
     private void setearLabel() {
         String numeroAlfanumerico = placaDTO.getNumero_alfanumerico();
         Calendar vigencia = placaDTO.getFecha_expedicion();
@@ -40,6 +51,12 @@ public class ExitoPlacas extends javax.swing.JFrame {
         lblCosto.setText(String.format(mensajeCosto, costo));
     }
 
+    /**
+     * Método privado para formatear una fecha a String en el formato "dd/MM/yyyy".
+     *
+     * @param fecha Objeto Calendar que representa la fecha a formatear.
+     * @return Una cadena de caracteres que representa la fecha formateada.
+     */
     private String fechaEnFormato(Calendar fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(fecha.getTime());

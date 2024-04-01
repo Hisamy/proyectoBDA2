@@ -17,6 +17,9 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.PlacaDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
+/**
+ * Esta clase proporciona una interfaz gráfica de usuario (GUI) para ingresar y procesar datos de vehículos.
+ */
 public class DatosVehiculo extends javax.swing.JFrame {
 
     INavegacion navegacion;
@@ -33,7 +36,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
     private String tipo = "Placas";
 
     /**
-     * Crea una nueva instancia de DatosVehiculo con el clienteDTO proporcionado. Este constructor inicializa los objetos de negocio necesarios y establece el costo en 1500.
+     * Crea una nueva instancia de DatosVehiculo con el clienteDTO proporcionado.
      *
      * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
      */
@@ -50,10 +53,10 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Crea una nueva instancia de DatosVehiculo con el clienteDTO y vehiculoDTO proporcionados.Este constructor inicializa los objetos de negocio necesarios, establece el costo en 1000 y establece los datos del vehículo en los campos correspondientes de la interfaz gráfica.
+     * Crea una nueva instancia de DatosVehiculo con el clienteDTO y vehiculoDTO proporcionados.
      *
      * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
-     * @param vehiculoDTO
+     * @param vehiculoDTO El objeto VehiculoDTO que contiene los datos del vehículo.
      */
     public DatosVehiculo(ClienteDTO clienteDTO, VehiculoDTO vehiculoDTO) {
         this.clienteDTO = clienteDTO;
@@ -88,9 +91,9 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Transporta los datos del vehículo ingresados por el usuario al sistema.Este método convierte el modelo del vehículo a un entero, luego transporta los datos del vehículo al sistema utilizando objetos de negocio y maneja cualquier excepción que pueda ocurrir durante el proceso.
+     * Transporta los datos del vehículo ingresados por el usuario al sistema.
      *
-     * @return
+     * @return El objeto VehiculoDTO transportado que contiene los datos del vehículo.
      * @throws PersistenciaException Si ocurre un error durante el proceso de transporte de datos.
      */
     public VehiculoDTO transporteDatosVehiculo() throws PersistenciaException {
@@ -118,7 +121,7 @@ public class DatosVehiculo extends javax.swing.JFrame {
     }
 
     /**
-     * Transporta los datos de la placa al sistema y devuelve el objeto PlacaDTO resultante. Este método calcula la fecha de expedición de la placa, transporta los datos de la placa al sistema utilizando objetos de negocio y maneja cualquier excepción que pueda ocurrir durante el proceso.
+     * Transporta los datos de la placa al sistema y devuelve el objeto PlacaDTO resultante.
      *
      * @return El objeto PlacaDTO transportado que contiene los datos de la placa.
      * @throws ParseException Si ocurre un error durante el análisis de la fecha de expedición.

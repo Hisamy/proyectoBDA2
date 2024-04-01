@@ -11,6 +11,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ *
+ * @author Ramosz
+ */
 @Entity
 @Table(name = "placas")
 public class Placa extends Tramite implements Serializable {
@@ -26,9 +30,22 @@ public class Placa extends Tramite implements Serializable {
     @JoinColumn(name = "id_vehiculo", referencedColumnName = "id_vehiculo")
     private Vehiculo vehiculo;
 
+    /**
+     *
+     */
     public Placa() {
     }
 
+    /**
+     *
+     * @param id
+     * @param fecha_expedicion
+     * @param tipo_tramite
+     * @param costo
+     * @param cliente
+     * @param estado
+     * @param fecha_emision
+     */
     public Placa(
             Long id, 
             Calendar fecha_expedicion, 
@@ -40,7 +57,18 @@ public class Placa extends Tramite implements Serializable {
         super(id, fecha_expedicion, tipo_tramite, costo, cliente, estado, fecha_emision);
     }
     
-
+    /**
+     *
+     * @param numero_alfanumerico
+     * @param fecha_recepcion
+     * @param vehiculo
+     * @param fecha_expedicion
+     * @param tipo_tramite
+     * @param costo
+     * @param cliente
+     * @param estado
+     * @param fecha_emision
+     */
     public Placa(
             String numero_alfanumerico, 
             Calendar fecha_recepcion, 
@@ -57,14 +85,29 @@ public class Placa extends Tramite implements Serializable {
         this.vehiculo = vehiculo;
     }
     
-   
+    /**
+     *
+     * @param numero_alfanumerico
+     * @param fecha_recepcion
+     * @param vehiculo
+     */
     public Placa(String numero_alfanumerico, Calendar fecha_recepcion, Vehiculo vehiculo) {
         this.numero_alfanumerico = numero_alfanumerico;
         this.fecha_recepcion = fecha_recepcion;
         this.vehiculo = vehiculo;
     }
     
-
+    /**
+     *
+     * @param numero_alfanumerico
+     * @param fecha_recepcion
+     * @param vehiculo
+     * @param fecha_expedicion
+     * @param costo
+     * @param cliente
+     * @param estado
+     * @param fecha_emision
+     */
     public Placa(
             String numero_alfanumerico, 
             Calendar fecha_recepcion, 
@@ -80,34 +123,63 @@ public class Placa extends Tramite implements Serializable {
         this.vehiculo = vehiculo;
     }
 
+    /**
+     *
+     * @param fecha_expedicion
+     * @param tipo_tramite
+     * @param costo
+     * @param cliente
+     * @param estado
+     * @param fecha_emision
+     */
     public Placa(Calendar fecha_expedicion, String tipo_tramite, Float costo, Cliente cliente, Boolean estado, Calendar fecha_emision) {
         super(fecha_expedicion, tipo_tramite, costo, cliente, estado, fecha_emision);
     }
     
-    
-
-
+    /**
+     *
+     * @return
+     */
     public String getNumero_alfanumerico() {
         return numero_alfanumerico;
     }
 
+    /**
+     *
+     * @param numero_alfanumerico
+     */
     public void setNumero_alfanumerico(String numero_alfanumerico) {
         this.numero_alfanumerico = numero_alfanumerico;
     }
 
+    /**
+     *
+     * @return
+     */
     public Calendar getFecha_recepcion() {
         return fecha_recepcion;
     }
 
+    /**
+     *
+     * @param fecha_recepcion
+     */
     public void setFecha_recepcion(Calendar fecha_recepcion) {
         this.fecha_recepcion = fecha_recepcion;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public Vehiculo getVehiculo() {
         return vehiculo;
     }
 
+    /**
+     *
+     * @param vehiculo
+     */
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }

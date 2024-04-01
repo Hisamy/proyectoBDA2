@@ -5,6 +5,11 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroLicenciasBO;
 
+/**
+ * Clase JFrame para gestionar trámites. Esta clase proporciona funcionalidades para solicitar licencias y placas.
+ *
+ * @author hisam
+ */
 public class Tramites extends javax.swing.JFrame {
 
     INavegacion navegacion;
@@ -12,9 +17,9 @@ public class Tramites extends javax.swing.JFrame {
     IRegistroLicenciasBO registroLicenciasBO;
 
     /**
-     * Creates new form Tramites
+     * Crea una nueva instancia de Tramites.
      *
-     * @param clienteDTO
+     * @param clienteDTO el DTO del cliente para el que se realizarán los trámites.
      */
     public Tramites(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;

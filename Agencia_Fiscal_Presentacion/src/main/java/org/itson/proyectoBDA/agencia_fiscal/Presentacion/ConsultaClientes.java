@@ -25,6 +25,11 @@ import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 
+/**
+ * La clase `ConsultaClientes` representa una ventana de consulta de clientes. Permite al usuario buscar clientes por nombre, RFC o año de nacimiento, y visualizar su historial de trámites.
+ *
+ * @author Ramosz
+ */
 public class ConsultaClientes extends javax.swing.JFrame {
 
     INavegacion navegacion;
@@ -33,7 +38,7 @@ public class ConsultaClientes extends javax.swing.JFrame {
     List<ClienteDTO> clientes;
 
     /**
-     * Constructor de la clase HistorialTramites. Inicializa los componentes de la interfaz gráfica y llena la tabla con el historial de clientes.
+     * Constructor de la clase `ConsultaClientes`. Inicializa los componentes de la interfaz gráfica y llena la tabla con el historial de clientes.
      */
     public ConsultaClientes() {
         navegacion = new Navegacion();
@@ -50,6 +55,12 @@ public class ConsultaClientes extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Convierte una instancia de Calendar en una cadena de texto con formato de fecha.
+     *
+     * @param fecha Objeto Calendar que representa la fecha a formatear.
+     * @return Una cadena de texto que representa la fecha en el formato "dd/MM/yyyy".
+     */
     private String fechaDateFormat(Calendar fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(fecha);
@@ -88,6 +99,11 @@ public class ConsultaClientes extends javax.swing.JFrame {
         jTPersonas.getColumnModel().getColumn(6).setCellEditor(new JButtonCellEditor("Ver", botonVerReporte()));
     }
 
+    /**
+     * Busca clientes por nombre y actualiza la tabla con los resultados de la búsqueda.
+     *
+     * @param nombre El nombre del cliente a buscar.
+     */
     private void buscarPorNombre(String nombre) {
         try {
             List<ClienteDTO> clientesDTO = consultaClientesBO.consultarClientePorNombre(nombre);
@@ -105,6 +121,11 @@ public class ConsultaClientes extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Busca clientes por año de nacimiento y actualiza la tabla con los resultados de la búsqueda.
+     *
+     * @param anioNacimiento El año de nacimiento de los clientes a buscar.
+     */
     private void buscarPorFechaNacimiento(int anioNacimiento) {
         try {
 
@@ -122,6 +143,11 @@ public class ConsultaClientes extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Busca un cliente por su RFC y actualiza la tabla con el resultado de la búsqueda.
+     *
+     * @param rfc El RFC del cliente a buscar.
+     */
     private void buscarPorRFC(String rfc) {
         try {
             ClienteDTO clienteDTO = consultaClientesBO.transporteDatos(rfc);
@@ -305,6 +331,11 @@ public class ConsultaClientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento de clic en el botón de búsqueda. Realiza la búsqueda según la opción seleccionada en el combo box.
+     *
+     * @param evt El evento de acción asociado al clic en el botón de búsqueda.
+     */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String busqueda = txtBuscador.getText().trim();
         String opcionSeleccionada = (String) jComboBox1.getSelectedItem();
@@ -317,9 +348,14 @@ public class ConsultaClientes extends javax.swing.JFrame {
             Calendar fechaNacimiento = convertirAFecha(busqueda);
             buscarPorFechaNacimiento(fechaNacimiento.get(Calendar.YEAR));
         }
-
-
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    /**
+     * Convierte una cadena de texto que representa un año en un objeto Calendar.
+     *
+     * @param fechaStr La cadena de texto que representa el año a convertir.
+     * @return Un objeto Calendar configurado con el año especificado.
+     */
     private Calendar convertirAFecha(String fechaStr) {
         Calendar calendar = Calendar.getInstance();
         try {
@@ -334,8 +370,6 @@ public class ConsultaClientes extends javax.swing.JFrame {
         }
         return calendar;
     }
-
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -353,15 +387,24 @@ public class ConsultaClientes extends javax.swing.JFrame {
         dispose();
         consultaClientes.setVisible(true);
     }//GEN-LAST:event_lblCostoLicenciaMouseClicked
+
+    /**
+     * Clase interna que actúa como editor de celda para botones en una tabla.
+     */
     private class JButtonCellEditor implements TableCellEditor {
 
         private final JButton button;
         private int row;
         private ActionListener actionListener;
 
+        /**
+         * Constructor de la clase JButtonCellEditor.
+         *
+         * @param text El texto que se mostrará en el botón.
+         * @param actionListener El ActionListener asociado al botón.
+         */
         public JButtonCellEditor(String text, ActionListener actionListener) {
             this.button = new JButton(text);
-//        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
             this.button.setBackground(new Color(65, 6, 36));
             this.button.setForeground(new Color(242, 242, 242));
             this.actionListener = actionListener;
@@ -411,10 +454,18 @@ public class ConsultaClientes extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Clase interna que actúa como renderizador de celda para botones en una tabla.
+     */
     private class JButtonRenderer implements TableCellRenderer {
 
         private final JButton button;
 
+        /**
+         * Constructor de la clase JButtonRenderer.
+         *
+         * @param text El texto que se mostrará en el botón.
+         */
         public JButtonRenderer(String text) {
             this.button = new JButton(text);
 //        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
@@ -428,6 +479,11 @@ public class ConsultaClientes extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Crea un ActionListener para el botón "Ver" en la tabla.
+     *
+     * @return El ActionListener creado para el botón "Ver".
+     */
     private ActionListener botonVerReporte() {
         ActionListener validarListener = new ActionListener() {
             @Override

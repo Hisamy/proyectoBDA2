@@ -22,6 +22,10 @@ import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class ConsultaTramitesBO implements IConsultaTramitesBO {
 
     private final ILicenciasDAO licenciaDAO;
@@ -29,6 +33,9 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     private final IClientesDAO clienteDAO;
     private final ITramitesDAO tramiteDAO;
 
+    /**
+     *
+     */
     public ConsultaTramitesBO() {
         Conexion conexion = new Conexion();
         this.licenciaDAO = new LicenciasDAO(conexion);
@@ -63,6 +70,12 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
         return getLicencia;
     }
 
+    /**
+     *
+     * @param cliente
+     * @return
+     * @throws FindException
+     */
     @Override
     public Placa consultarPlaca(Cliente cliente) throws FindException {
         Placa placa = null;

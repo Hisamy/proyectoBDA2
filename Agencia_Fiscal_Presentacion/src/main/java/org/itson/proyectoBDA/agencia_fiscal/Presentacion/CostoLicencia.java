@@ -14,14 +14,39 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroLicenciasBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroLicenciasBO;
 
+/**
+ * Esta clase representa la ventana de la interfaz gráfica para calcular el costo de una licencia. Permite al usuario seleccionar la vigencia de la licencia y muestra el costo correspondiente. Además, permite continuar con el proceso de registro de la licencia.
+ */
 public final class CostoLicencia extends javax.swing.JFrame {
 
+    /**
+     * Costo de la licencia para 1 año para personas sin discapacidad.
+     */
     final static Float COSTO1ANIONORMAL = 600f;
+
+    /**
+     * Costo de la licencia para 2 años para personas sin discapacidad.
+     */
     final static Float COSTO2ANIONORMAL = 900f;
+
+    /**
+     * Costo de la licencia para 3 años para personas sin discapacidad.
+     */
     final static Float COSTO3ANIONORMAL = 1100f;
 
+    /**
+     * Costo de la licencia para 1 año para personas con discapacidad.
+     */
     final static Float COSTO1ANIODISCAPACITADO = 200f;
+
+    /**
+     * Costo de la licencia para 2 años para personas con discapacidad.
+     */
     final static Float COSTO2ANIODISCAPACITADO = 500f;
+
+    /**
+     * Costo de la licencia para 3 años para personas con discapacidad.
+     */
     final static Float COSTO3ANIODISCAPACITADO = 700f;
 
     private boolean discapacidad;
@@ -31,6 +56,11 @@ public final class CostoLicencia extends javax.swing.JFrame {
     private LicenciaDTO licenciaDTO;
     private String tipo = "Licencia";
 
+    /**
+     * Constructor de la clase CostoLicencia.
+     *
+     * @param clienteDTO Cliente para el cual se calculará el costo de la licencia.
+     */
     public CostoLicencia(ClienteDTO clienteDTO) {
         initComponents();
         this.clienteDTO = clienteDTO;
@@ -40,6 +70,9 @@ public final class CostoLicencia extends javax.swing.JFrame {
         navegacion = new Navegacion();
     }
 
+    /**
+     * Verifica si el cliente tiene alguna discapacidad.
+     */
     public void discapacidad() {
         if (clienteDTO.isDiscapacidad() == true) {
             this.discapacidad = true;
@@ -48,6 +81,9 @@ public final class CostoLicencia extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Establece los datos de la licencia en la interfaz gráfica.
+     */
     private void setearDatosLicencia() {
         if (discapacidad == false) {
             lblCosto.setText("Costo normal");
@@ -62,6 +98,13 @@ public final class CostoLicencia extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Transporta los datos de la licencia a la siguiente ventana y realiza el registro de la licencia.
+     *
+     * @return Los datos de la licencia.
+     * @throws ParseException Si ocurre un error al parsear la fecha.
+     * @throws PersistenciaException Si ocurre un error en la persistencia de los datos.
+     */
     public LicenciaDTO transporteDatos() throws java.text.ParseException, PersistenciaException {
         // Obtener la fecha actual como Calendar
         Calendar fechaActual = Calendar.getInstance();

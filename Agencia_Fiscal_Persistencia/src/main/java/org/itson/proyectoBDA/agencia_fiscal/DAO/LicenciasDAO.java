@@ -6,10 +6,18 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Licencia;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class LicenciasDAO implements ILicenciasDAO {
 
     final private IConexion conexion;
 
+    /**
+     *
+     * @param conexion
+     */
     public LicenciasDAO(IConexion conexion) {
         this.conexion = conexion;
     }

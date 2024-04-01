@@ -14,6 +14,10 @@ import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class RegistroLicenciasBO implements IRegistroLicenciasBO {
 
     private final IClientesDAO clienteDAO;
@@ -21,6 +25,9 @@ public class RegistroLicenciasBO implements IRegistroLicenciasBO {
 
     static final Logger logger = Logger.getLogger(RegistroClientesBO.class.getName());
 
+    /**
+     *
+     */
     public RegistroLicenciasBO() {
         IConexion conexion = new Conexion();
         this.clienteDAO = new ClientesDAO(conexion);

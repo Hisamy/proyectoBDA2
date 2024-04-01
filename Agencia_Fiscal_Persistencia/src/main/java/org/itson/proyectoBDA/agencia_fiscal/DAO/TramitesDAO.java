@@ -11,10 +11,18 @@ import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Tramite;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class TramitesDAO implements ITramitesDAO {
 
     private final IConexion conexion;
 
+    /**
+     *
+     * @param conexion
+     */
     public TramitesDAO(IConexion conexion) {
         this.conexion = conexion;
     }
@@ -61,6 +69,12 @@ public class TramitesDAO implements ITramitesDAO {
         return historialTramites;
     }
 
+    /**
+     *
+     * @param cliente
+     * @return
+     * @throws FindException
+     */
     @Override
     public List<Tramite> consultarTramitesPorCliente(List<Cliente> cliente) throws FindException {
         EntityManager entityManager = conexion.crearConexion();

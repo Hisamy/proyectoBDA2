@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Haz clic en nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt para cambiar esta licencia
+ * Haz clic en nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java para editar esta plantilla
  */
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
@@ -8,9 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaClientesBO;
@@ -21,6 +18,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
 /**
+ * Clase JFrame para mostrar un informe de trámites. Esta clase proporciona métodos para buscar trámites, mostrarlos en una tabla y exportar el informe a PDF.
  *
  * @author hisam
  */
@@ -32,9 +30,9 @@ public class ReporteTramites extends javax.swing.JFrame {
     List<ClienteDTO> clientes;
 
     /**
-     * Creates new form ReporteTramites
+     * Crea una nueva instancia de ReporteTramites.
      *
-     * @throws org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException
+     * @throws org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException si ocurre un error al obtener los datos.
      */
     public ReporteTramites() throws FindException {
         this.consultaClientesBO = new ConsultaClientesBO();
@@ -47,11 +45,23 @@ public class ReporteTramites extends javax.swing.JFrame {
         llenarTabla(tramites);
     }
 
+    /**
+     * Formatea el objeto de calendario dado a una cadena de fecha en formato "dd/MM/yyyy".
+     *
+     * @param fecha el objeto de calendario para formatear.
+     * @return la cadena de fecha formateada.
+     */
     private String fechaDateFormat(Calendar fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(fecha);
     }
 
+    /**
+     * Llena la tabla con la lista de trámites proporcionada.
+     *
+     * @param tramites la lista de trámites para poblar la tabla.
+     * @throws FindException si ocurre un error al obtener los datos.
+     */
     private void llenarTabla(List<TramiteDTO> tramites) throws FindException {
         DefaultTableModel clientesEncontrados = new DefaultTableModel();
         clientesEncontrados.addColumn("Nombre");
@@ -79,6 +89,11 @@ public class ReporteTramites extends javax.swing.JFrame {
         jTPersonas.setModel(clientesEncontrados);
     }
 
+    /**
+     * Busca trámites por nombre.
+     *
+     * @param nombre el nombre a buscar.
+     */
     private void buscarPorNombre(String nombre) {
 //        try {
 //            consultaClientesBO.consultarClientePorNombre(nombre);
@@ -97,6 +112,9 @@ public class ReporteTramites extends javax.swing.JFrame {
 //        }
     }
 
+    /**
+     * Busca trámites por período.
+     */
     private void buscarPorPeriodo() {
 //        try {
 //            List<ClienteDTO> clientesDTO = consultaClientesBO.consultarClientePorFechaNacimiento(anioNacimiento);
@@ -113,6 +131,9 @@ public class ReporteTramites extends javax.swing.JFrame {
 //        }
     }
 
+    /**
+     * Busca trámites por tipo.
+     */
     private void buscarPorTipo() {
 //        try {
 //            List<ClienteDTO> clientesDTO = consultaClientesBO.consultarClientePorFechaNacimiento(anioNacimiento);

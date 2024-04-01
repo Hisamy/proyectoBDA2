@@ -9,10 +9,17 @@ import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
 
     private final IVehiculosDAO vehiculoDAO;
 
+    /**
+     *
+     */
     public ConsultaVehiculosBO() {
         IConexion conexion = new Conexion();
         this.vehiculoDAO = new VehiculosDAO(conexion);

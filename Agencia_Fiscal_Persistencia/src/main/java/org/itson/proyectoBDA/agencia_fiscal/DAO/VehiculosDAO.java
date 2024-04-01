@@ -7,10 +7,18 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class VehiculosDAO implements IVehiculosDAO {
 
     final private IConexion conexion;
 
+    /**
+     *
+     * @param conexion
+     */
     public VehiculosDAO(IConexion conexion) {
         this.conexion = conexion;
     }

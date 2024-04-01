@@ -8,17 +8,31 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 
+/**
+ * Clase principal de la aplicación Agencia_Fiscal. Esta clase realiza la inicialización de la base de datos, crea algunos clientes y vehículos de prueba, y muestra la ventana principal de la aplicación.
+ *
+ * @author Ramosz
+ */
 public class Agencia_Fiscal {
 
+    /**
+     * Objeto para la conexión a la base de datos.
+     */
     public static IConexion conexion;
 
+    /**
+     * Método principal de la aplicación.
+     *
+     * @param args Los argumentos de línea de comandos (no utilizados en este caso).
+     */
     public static void main(String[] args) {
 
+        // Inicialización del EntityManagerFactory y EntityManager para la base de datos
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Agencia_Fiscal_PU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
-        // Crear clientes
+        // Crear clientes de prueba
         Cliente cliente1 = new Cliente(
                 "TARE040818HSRLMDA1",
                 "Eduardo",
@@ -69,12 +83,17 @@ public class Agencia_Fiscal {
                 "687211913",
                 new GregorianCalendar(2012, 4, 12));
 
+        // Crear un vehículo de prueba
         Vehiculo vehiculo1 = new Vehiculo("num_serie", "tipo", 1998, "color", "marca", "linea", true);
 
+        // Confirmar las transacciones en la base de datos
         entityManager.getTransaction().commit();
+
+        // Cerrar el EntityManager y EntityManagerFactory
         entityManager.close();
         entityManagerFactory.close();
 
+        // Mostrar la ventana principal de la aplicación
         Index index = new Index();
         index.setVisible(true);
     }

@@ -12,10 +12,18 @@ import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class ClientesDAO implements IClientesDAO {
 
     final private IConexion conexion;
 
+    /**
+     *
+     * @param conexion
+     */
     public ClientesDAO(IConexion conexion) {
         this.conexion = conexion;
     }

@@ -4,6 +4,9 @@ import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 
+/**
+ * Esta clase representa la ventana de éxito después de realizar un trámite de licencia. Extiende de javax.swing.JFrame.
+ */
 public class ExitoLicencia extends javax.swing.JFrame {
 
     private INavegacion navegacion;
@@ -13,6 +16,11 @@ public class ExitoLicencia extends javax.swing.JFrame {
     private final String mensajeCosto
             = "cobrará %.2f de tu método de pago seleccionado.";
 
+    /**
+     * Constructor de la clase ExitoLicencia.
+     *
+     * @param licenciaDTO Objeto LicenciaDTO que contiene la información de la licencia tramitada con éxito.
+     */
     public ExitoLicencia(LicenciaDTO licenciaDTO) {
         this.licenciaDTO = licenciaDTO;
         this.navegacion = new Navegacion();
@@ -21,7 +29,7 @@ public class ExitoLicencia extends javax.swing.JFrame {
     }
 
     /**
-     * Establece el texto de las etiquetas lblVigencia y lblCosto según los datos de la licencia. Utiliza el formato definido en los mensajes mensajeVigencia y mensajeCosto.
+     * Establece el texto de las etiquetas lblVigencia y lblCosto según los datos de la licencia.
      */
     private void setearLabel() {
         if (licenciaDTO.getVigencia() == 1) {
@@ -137,6 +145,11 @@ public class ExitoLicencia extends javax.swing.JFrame {
         navegacion.cambiarFrmIndex(this);
     }//GEN-LAST:event_flechaIconMouseClicked
 
+    /**
+     * Maneja el evento de clic del mouse en el componente lblCostoLicencia. Cuando se hace clic en este componente, se crea una nueva instancia de la clase ConsultaClientes, se cierra la ventana actual (ExitoLicencia) y se hace visible la ventana de la consulta de clientes.
+     *
+     * @param evt Evento de clic del mouse.
+     */
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
         ConsultaClientes consultaClientes = new ConsultaClientes();
         dispose();

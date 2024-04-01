@@ -15,11 +15,18 @@ import static org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroClientesBO.lo
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
+/**
+ *
+ * @author Ramosz
+ */
 public class RegistroVehiculosBO implements IRegistroVehiculosBO {
 
     private final VehiculosDAO vehiculoDAO;
     private final IClientesDAO clienteDAO;
 
+    /**
+     *
+     */
     public RegistroVehiculosBO() {
         IConexion conexion = new Conexion();
         this.vehiculoDAO = new VehiculosDAO(conexion);

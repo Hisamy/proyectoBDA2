@@ -6,11 +6,19 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 
+/**
+ * Esta clase representa la interfaz gráfica para mostrar los datos del cliente. Permite visualizar y modificar los datos personales del cliente.
+ */
 public class DatosCliente extends javax.swing.JFrame {
 
     INavegacion navegacion;
     ClienteDTO clienteDTO;
 
+    /**
+     * Constructor de la clase DatosCliente.
+     *
+     * @param clienteDTO El DTO (Data Transfer Object) que contiene los datos del cliente.
+     */
     public DatosCliente(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
 
@@ -19,6 +27,9 @@ public class DatosCliente extends javax.swing.JFrame {
         navegacion = new Navegacion();
     }
 
+    /**
+     * Este método se utiliza para establecer los datos del cliente en los campos correspondientes de la interfaz gráfica.
+     */
     public void setearDatos() {
         txtNombre.setText(clienteDTO.getNombre());
         txtApellidoMaterno.setText(clienteDTO.getApellido_materno());

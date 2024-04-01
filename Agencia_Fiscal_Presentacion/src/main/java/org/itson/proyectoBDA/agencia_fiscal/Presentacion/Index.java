@@ -13,11 +13,19 @@ import org.itson.proyectoBDA.agencia_fiscal.Negocio.IRegistroClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.RegistroClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.NuevoClienteDTO;
 
+/**
+ * Clase JFrame para la pantalla de inicio de la aplicación. Esta clase proporciona opciones para realizar diferentes operaciones en la agencia fiscal.
+ *
+ * @author ramosz
+ */
 public class Index extends javax.swing.JFrame {
 
     INavegacion navegacion;
     IRegistroClientesBO registroCliente;
 
+    /**
+     * Crea una nueva instancia de Index.
+     */
     public Index() {
         navegacion = new Navegacion();
         registroCliente = new RegistroClientesBO();
@@ -125,12 +133,22 @@ public class Index extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que se activa cuando se hace clic en el botón "Buscar cliente". Abre la ventana de búsqueda de cliente y cierra la ventana actual.
+     *
+     * @param evt Evento de acción que desencadena el método.
+     */
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         BuscarCliente buscarCliente = new BuscarCliente();
         buscarCliente.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
+    /**
+     * Método que se activa cuando se hace clic en el botón "Historial licencias y placas". Abre la ventana de consulta de clientes para ver el historial de licencias y placas, luego cierra la ventana actual.
+     *
+     * @param evt Evento de acción que desencadena el método.
+     */
     private void btnHistorialLicenciaPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialLicenciaPlacasActionPerformed
         ConsultaClientes historialLicencias = new ConsultaClientes();
         historialLicencias.setVisible(true);
