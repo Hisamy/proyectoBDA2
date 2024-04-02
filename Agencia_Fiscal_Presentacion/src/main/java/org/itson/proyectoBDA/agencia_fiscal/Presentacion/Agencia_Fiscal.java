@@ -1,12 +1,9 @@
 package org.itson.proyectoBDA.agencia_fiscal.Presentacion;
 
-import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
-import org.itson.proyectoBDA.agencia_fiscal.Entidades.Cliente;
-import org.itson.proyectoBDA.agencia_fiscal.Entidades.Vehiculo;
 
 /**
  * Clase principal de la aplicación Agencia_Fiscal. Esta clase realiza la inicialización de la base de datos, crea algunos clientes y vehículos de prueba, y muestra la ventana principal de la aplicación.

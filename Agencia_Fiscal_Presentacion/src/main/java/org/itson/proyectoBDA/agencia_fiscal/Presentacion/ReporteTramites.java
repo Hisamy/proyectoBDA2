@@ -21,34 +21,73 @@ import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaClientesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfPageEventHelper;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
+import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 
 /**
- * Clase JFrame para mostrar un informe de trámites. Esta clase proporciona
- * métodos para buscar trámites, mostrarlos en una tabla y exportar el informe a
- * PDF.
+ * Clase JFrame para mostrar un informe de trámites. Esta clase proporciona métodos para buscar trámites, mostrarlos en una tabla y exportar el informe a PDF.
  *
- * @author hisam
+ * Autor: hisam
  */
 public class ReporteTramites extends javax.swing.JFrame {
 
+    /**
+     * Interfaz para la capa de negocio que proporciona métodos para consultar clientes.
+     */
     private IConsultaClientesBO consultaClientesBO;
+
+    /**
+     * Lista de trámites.
+     */
     List<TramiteDTO> tramites;
+
+    INavegacion navegacion;
+
+    /**
+     * Interfaz para la capa de negocio que proporciona métodos para consultar trámites.
+     */
     IConsultaTramitesBO consultaTramites;
+
+    /**
+     * Lista de clientes.
+     */
     List<ClienteDTO> clientes;
+
+    /**
+     * Trámite.
+     */
     TramiteDTO tramite;
+
+    /**
+     * Lista de trámites filtrados.
+     */
     List<TramiteDTO> tramitesFiltrados = new ArrayList<>();
 
     /**
      * Crea una nueva instancia de ReporteTramites.
      *
-     * @throws org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException si
-     * ocurre un error al obtener los datos.
+     * @throws org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException si ocurre un error al obtener los datos.
      */
     public ReporteTramites() throws FindException {
         this.consultaClientesBO = new ConsultaClientesBO();
         this.clientes = consultaClientesBO.historialCliente();
         this.consultaTramites = new ConsultaTramitesBO();
         this.tramites = consultaTramites.historialTramite();
+        navegacion = new Navegacion();
         initComponents();
         llenarTabla(tramites);
 
@@ -59,8 +98,7 @@ public class ReporteTramites extends javax.swing.JFrame {
     }
 
     /**
-     * Formatea el objeto de calendario dado a una cadena de fecha en formato
-     * "dd/MM/yyyy".
+     * Formatea el objeto de calendario dado a una cadena de fecha en formato "dd/MM/yyyy".
      *
      * @param fecha el objeto de calendario para formatear.
      * @return la cadena de fecha formateada.
@@ -70,6 +108,9 @@ public class ReporteTramites extends javax.swing.JFrame {
         return formato.format(fecha);
     }
 
+    /**
+     * Limpia la tabla.
+     */
     private void limpiarTabla() {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.setColumnIdentifiers(new String[]{"Nombre", "Apellido Paterno", "Apellido Materno", "Tramite", "Fecha emision", "Fecha expedición", "Costo"});
@@ -85,8 +126,6 @@ public class ReporteTramites extends javax.swing.JFrame {
     private void llenarTabla(List<TramiteDTO> tramites) throws FindException {
         DefaultTableModel clientesEncontrados = new DefaultTableModel();
         clientesEncontrados.addColumn("Nombre");
-        clientesEncontrados.addColumn("Apellido Paterno");
-        clientesEncontrados.addColumn("Apellido Materno");
         clientesEncontrados.addColumn("Tramite");
         clientesEncontrados.addColumn("Fecha emision");
         clientesEncontrados.addColumn("Fecha expedición");
@@ -96,9 +135,7 @@ public class ReporteTramites extends javax.swing.JFrame {
 
         for (TramiteDTO tramite : tramites) {
             Object[] fila = {
-                tramite.getClienteDTO().getNombre(),
-                tramite.getClienteDTO().getApellido_paterno(),
-                tramite.getClienteDTO().getApellido_materno(),
+                tramite.getClienteDTO().getNombre() + " " + tramite.getClienteDTO().getApellido_paterno() + " " + tramite.getClienteDTO().getApellido_materno(),
                 tramite.getTipo(),
                 dateFormat.format(tramite.getFecha_emision().getTime()),
                 dateFormat.format(tramite.getFecha_expedicion().getTime()),
@@ -107,6 +144,72 @@ public class ReporteTramites extends javax.swing.JFrame {
             clientesEncontrados.addRow(fila);
         }
         jTPersonas.setModel(clientesEncontrados);
+    }
+
+    /**
+     * Exporta los trámites a un archivo PDF.
+     *
+     * @param tramites la lista de trámites a exportar.
+     */
+    public void exportar(List<TramiteDTO> tramites) {
+        Document doc = new Document();
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("reporte.pdf"));
+
+            // Agregar evento para manejar el número de página
+            writer.setPageEvent(new PageNumberEvent());
+
+            doc.open();
+            Font tituloFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
+            Paragraph titulo = new Paragraph("Reporte de Trámites", tituloFont);
+            titulo.setAlignment(Element.ALIGN_CENTER);
+
+            Font fechaFont = new Font(Font.FontFamily.HELVETICA, 12);
+            Paragraph fecha = new Paragraph("Fecha de solicitud: " + dateFormat.format(new Date()), fechaFont);
+            fecha.setAlignment(Element.ALIGN_RIGHT);
+
+            PdfPTable tabla = new PdfPTable(5);
+            tabla.addCell("Nombre");
+            tabla.addCell("Tramite");
+            tabla.addCell("Fecha emision");
+            tabla.addCell("Fecha expedición");
+            tabla.addCell("Costo");
+
+            for (TramiteDTO tramite : tramites) {
+                tabla.addCell(tramite.getClienteDTO().getNombre() + " " + tramite.getClienteDTO().getApellido_paterno() + " " + tramite.getClienteDTO().getApellido_materno());
+                tabla.addCell(tramite.getTipo());
+                tabla.addCell(dateFormat.format(tramite.getFecha_emision().getTime()));
+                tabla.addCell(dateFormat.format(tramite.getFecha_expedicion().getTime()));
+                tabla.addCell(String.valueOf(tramite.getCosto()));
+            }
+
+            doc.add(titulo);
+            doc.add(fecha);
+            doc.add(Chunk.SPACETABBING);
+            doc.add(tabla);
+
+            System.out.println("Reporte generado");
+
+        } catch (DocumentException | FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            doc.close();
+        }
+    }
+
+    // Clase interna para manejar el evento de número de página
+    private static class PageNumberEvent extends PdfPageEventHelper {
+
+        @Override
+        public void onEndPage(PdfWriter writer, Document document) {
+            PdfContentByte cb = writer.getDirectContent();
+            Phrase footer = new Phrase("Página " + writer.getPageNumber(), new Font(Font.FontFamily.HELVETICA, 12));
+            ColumnText.showTextAligned(cb, Element.ALIGN_RIGHT,
+                    footer,
+                    document.right() - 50,
+                    document.bottom() - 10, 0); // Ajusta la posición según sea necesario
+        }
     }
 
     /**
@@ -172,9 +275,7 @@ public class ReporteTramites extends javax.swing.JFrame {
     }
 
     /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
+     * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -210,6 +311,12 @@ public class ReporteTramites extends javax.swing.JFrame {
 
         flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
+        flechaIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        flechaIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flechaIconMouseClicked(evt);
+            }
+        });
 
         jTPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -280,7 +387,7 @@ public class ReporteTramites extends javax.swing.JFrame {
                         .addComponent(jdchFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jdchFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,11 +418,18 @@ public class ReporteTramites extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 560, 640));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCostoLicencia.setForeground(new java.awt.Color(109, 70, 107));
         lblCostoLicencia.setText("Historial licencias y placas");
+        lblCostoLicencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCostoLicencia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCostoLicenciaMouseClicked(evt);
@@ -339,6 +453,7 @@ public class ReporteTramites extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -436,12 +551,22 @@ public class ReporteTramites extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbOpcionesFiltradoActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-       
+        exportar(tramites);
     }//GEN-LAST:event_btnExportarActionPerformed
 
     private void lblCostoLicenciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCostoLicenciaMouseClicked
-        // TODO add your handling code here:
+        ConsultaClientes historialLicencias = new ConsultaClientes();
+        historialLicencias.setVisible(true);
+        dispose();
     }//GEN-LAST:event_lblCostoLicenciaMouseClicked
+
+    private void flechaIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flechaIconMouseClicked
+        navegacion.cambiarFrmIndex(this);
+    }//GEN-LAST:event_flechaIconMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        navegacion.cambiarFrmIndex(this);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

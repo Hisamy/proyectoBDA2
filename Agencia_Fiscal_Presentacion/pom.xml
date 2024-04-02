@@ -54,5 +54,12 @@
             <artifactId>jcalendar-1.4</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.12</version>
+        </dependency>
+
     </dependencies>
 </project>

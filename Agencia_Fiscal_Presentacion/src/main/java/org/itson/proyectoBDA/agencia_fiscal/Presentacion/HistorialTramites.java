@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Locale;
 import javax.swing.table.DefaultTableModel;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
+import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
+import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.ConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.Negocio.IConsultaTramitesBO;
 import org.itson.proyectoBDA.agencia_fiscal.dtos.ClienteDTO;
@@ -18,6 +20,7 @@ public class HistorialTramites extends javax.swing.JFrame {
     private final ClienteDTO clienteDTO;
     List<TramiteDTO> tramites;
     IConsultaTramitesBO consultaTramites;
+    INavegacion navegacion;
 
     /**
      * Constructor de la clase HistorialTramites.
@@ -29,6 +32,7 @@ public class HistorialTramites extends javax.swing.JFrame {
         this.clienteDTO = clienteDTO;
         this.consultaTramites = new ConsultaTramitesBO();
         this.tramites = consultaTramites.historialTramite();
+        navegacion = new Navegacion();
 
         initComponents();
         llenarTabla(tramites);
@@ -78,7 +82,6 @@ public class HistorialTramites extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblSolicitarLicencia = new javax.swing.JLabel();
-        flechaIcon = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTPersonas = new javax.swing.JTable();
         lblNombre = new javax.swing.JLabel();
@@ -96,9 +99,6 @@ public class HistorialTramites extends javax.swing.JFrame {
         lblSolicitarLicencia.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblSolicitarLicencia.setForeground(new java.awt.Color(65, 34, 52));
         lblSolicitarLicencia.setText("Historial Tramites");
-
-        flechaIcon.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        flechaIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/flecha.jpg"))); // NOI18N
 
         jTPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,19 +124,14 @@ public class HistorialTramites extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblSolicitarLicencia)
-                        .addGap(288, 288, 288)
-                        .addComponent(flechaIcon)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(lblSolicitarLicencia))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblSolicitarLicencia)
-                    .addComponent(flechaIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addComponent(lblSolicitarLicencia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombre)
                 .addGap(28, 28, 28)
@@ -147,6 +142,11 @@ public class HistorialTramites extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 560, 640));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         lblCostoLicencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -173,9 +173,12 @@ public class HistorialTramites extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        navegacion.cambiarFrmIndex(this);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel flechaIcon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
