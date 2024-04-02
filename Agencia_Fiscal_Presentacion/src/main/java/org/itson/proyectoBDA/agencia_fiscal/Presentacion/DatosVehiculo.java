@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException;
 import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.INavegacion;
 import org.itson.proyectoBDA.agencia_fiscal.Navegacion.Navegacion;
@@ -145,6 +147,23 @@ public class DatosVehiculo extends javax.swing.JFrame {
                         tipo,
                         fechaEmision));
         return placaDTO;
+    }
+
+    public Boolean validarDatos() {
+        if (txtNumSerie.getText().isEmpty() || txtColor.getText().isEmpty() || txtModelo.getText().isEmpty() || txtLinea.getText().isEmpty() || txtMarca.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos obligatorios.", "Campos Vacíos", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            try {
+                // Intenta convertir el texto del campo de modelo a un número entero
+                Integer.valueOf(txtModelo.getText());
+                return true;
+            } catch (NumberFormatException e) {
+                // El texto no es un número entero válido
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese un año válido en el campo de modelo.", "Modelo Inválido", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
     }
 
     /**
@@ -345,11 +364,13 @@ public class DatosVehiculo extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         try {
-            transporteDatosPlaca();
-            ExitoPlacas exitoPlacas = new ExitoPlacas(placaDTO);
-            this.dispose();
-            exitoPlacas.setVisible(true);
-        } catch (ParseException | PersistenciaException ex) {
+            if (validarDatos() && consultaTramitesBO.validarLicencia(clienteDTO)) {
+                transporteDatosPlaca();
+                ExitoPlacas exitoPlacas = new ExitoPlacas(placaDTO);
+                this.dispose();
+                exitoPlacas.setVisible(true);
+            }
+        } catch (FindException | ParseException | PersistenciaException ex) {
             Logger.getLogger(DatosVehiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnContinuarActionPerformed

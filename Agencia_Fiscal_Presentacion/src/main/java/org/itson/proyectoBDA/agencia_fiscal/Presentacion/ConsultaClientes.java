@@ -110,14 +110,13 @@ public class ConsultaClientes extends javax.swing.JFrame {
             if (clientesDTO != null && !clientesDTO.isEmpty()) {
                 clientes.clear();
                 clientes.addAll(clientesDTO);
-
                 llenarTabla(clientesDTO);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron clientes con el nombre especificado.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
         } catch (FindException ex) {
             Logger.getLogger(ConsultaClientes.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
         }
     }
 
@@ -128,18 +127,17 @@ public class ConsultaClientes extends javax.swing.JFrame {
      */
     private void buscarPorFechaNacimiento(int anioNacimiento) {
         try {
-
             List<ClienteDTO> clientesDTO = consultaClientesBO.consultarClientePorFechaNacimiento(anioNacimiento);
             if (clientesDTO != null && !clientesDTO.isEmpty()) {
                 clientes.clear();
                 clientes.addAll(clientesDTO);
                 llenarTabla(clientesDTO);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron clientes nacidos en el año especificado.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (FindException ex) {
-            Logger.getLogger(ConsultaClientes.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaClientes.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
         }
     }
 
@@ -155,13 +153,12 @@ public class ConsultaClientes extends javax.swing.JFrame {
                 clientes.clear();
                 clientes.add(clienteDTO);
                 llenarTabla(clientes);
-
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró ningún cliente con el RFC especificado.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (FindException ex) {
-            Logger.getLogger(ConsultaClientes.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaClientes.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-
         }
     }
 
@@ -323,29 +320,31 @@ public class ConsultaClientes extends javax.swing.JFrame {
             buscarPorRFC(busqueda);
         } else {
             Calendar fechaNacimiento = convertirAFecha(busqueda);
-            buscarPorFechaNacimiento(fechaNacimiento.get(Calendar.YEAR));
+            if (fechaNacimiento != null) {
+                buscarPorFechaNacimiento(fechaNacimiento.get(Calendar.YEAR));
+            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    /**
-     * Convierte una cadena de texto que representa un año en un objeto Calendar.
-     *
-     * @param fechaStr La cadena de texto que representa el año a convertir.
-     * @return Un objeto Calendar configurado con el año especificado.
-     */
     private Calendar convertirAFecha(String fechaStr) {
         Calendar calendar = Calendar.getInstance();
         try {
+            // Validar si la cadena es un número entero
+            if (!fechaStr.matches("\\d+")) {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese un año válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return null;
+            }
+
             int year = Integer.parseInt(fechaStr);
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, Calendar.JANUARY);
             calendar.set(Calendar.DAY_OF_MONTH, 1);
-
+            return calendar;
         } catch (NumberFormatException ex) {
-            Logger.getLogger(ConsultaClientes.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaClientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un año válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
-        return calendar;
     }
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:

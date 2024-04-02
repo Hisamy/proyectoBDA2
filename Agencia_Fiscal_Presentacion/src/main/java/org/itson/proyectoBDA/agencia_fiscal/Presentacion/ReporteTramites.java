@@ -464,32 +464,37 @@ public class ReporteTramites extends javax.swing.JFrame {
                 String nombre = txtBuscador.getText().trim();
                 if (!nombre.isEmpty()) {
                     buscarPorNombre(nombre);
-                    limpiarTabla();
-                    llenarTabla(tramitesFiltrados);
+                    if (tramitesFiltrados.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No se encontraron resultados para el nombre proporcionado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        limpiarTabla();
+                        llenarTabla(tramitesFiltrados);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Por favor ingrese un nombre en el campo de búsqueda", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (FindException ex) {
                 Logger.getLogger(ReporteTramites.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Debe verificar el nombre del buscador", "Informe", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Ocurrió un error al buscar por nombre. Por favor, verifique el nombre del buscador.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (opcionSeleccionada.equals("Periodo")) {
             Date fechaInicio = jdchFechaInicio.getDate();
             Date fechaFin = jdchFechaFin.getDate();
 
-            // Verificar que ambas fechas no sean null
             if (fechaInicio != null && fechaFin != null) {
                 try {
-                    // Llamar al método buscarPorPeriodo con las fechas seleccionadas
                     buscarPorPeriodo(fechaInicio, fechaFin);
-
-                    limpiarTabla();
-                    llenarTabla(tramitesFiltrados);
+                    if (tramitesFiltrados.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No se encontraron resultados para el período seleccionado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        limpiarTabla();
+                        llenarTabla(tramitesFiltrados);
+                    }
                 } catch (FindException ex) {
                     Logger.getLogger(ReporteTramites.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error al buscar por período.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                // Si alguna de las fechas es null, mostrar un mensaje de error o manejar la situación adecuadamente
                 JOptionPane.showMessageDialog(null, "Seleccione ambas fechas de inicio y fin del período.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (opcionSeleccionada.equals("Tipo de trámite")) {
@@ -497,10 +502,15 @@ public class ReporteTramites extends javax.swing.JFrame {
             if (!tipoTramite.isEmpty()) {
                 try {
                     buscarPorTipo(tipoTramite);
-                    limpiarTabla();
-                    llenarTabla(tramitesFiltrados);
+                    if (tramitesFiltrados.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No se encontraron resultados para el tipo de trámite proporcionado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        limpiarTabla();
+                        llenarTabla(tramitesFiltrados);
+                    }
                 } catch (FindException ex) {
                     Logger.getLogger(ReporteTramites.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error al buscar por tipo de trámite.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Por favor ingrese un tipo de trámite en el campo de búsqueda", "Error", JOptionPane.ERROR_MESSAGE);
@@ -511,6 +521,7 @@ public class ReporteTramites extends javax.swing.JFrame {
                 llenarTabla(tramites);
             } catch (FindException ex) {
                 Logger.getLogger(ReporteTramites.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Ocurrió un error al buscar todos los trámites.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed

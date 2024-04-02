@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.NoResultException;
+import javax.swing.JOptionPane;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.ClientesDAO;
 import org.itson.proyectoBDA.agencia_fiscal.DAO.IClientesDAO;
@@ -56,18 +58,25 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
         Licencia licencia = null;
         try {
             licencia = licenciaDAO.consultarDatosUltimaLicencia(clienteDAO.consultarClienteRFC(cliente.getRFC()));
+            if (licencia == null) {
+                JOptionPane.showMessageDialog(null, "El cliente no tiene una licencia activa.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Licencia getLicencia = new Licencia(
+                        licencia.getVigencia(),
+                        licencia.getFecha_expedicion(),
+                        licencia.getTipo_tramite(),
+                        licencia.getCosto(),
+                        cliente,
+                        licencia.getEstado(),
+                        licencia.getFecha_emision());
+                return getLicencia;
+            }
         } catch (PersistenciaException ex) {
             Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoResultException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontró ninguna licencia para el cliente.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        Licencia getLicencia = new Licencia(
-                licencia.getVigencia(),
-                licencia.getFecha_expedicion(),
-                licencia.getTipo_tramite(),
-                licencia.getCosto(),
-                cliente,
-                licencia.getEstado(),
-                licencia.getFecha_emision());
-        return getLicencia;
+        return null;
     }
 
     /**
@@ -97,7 +106,7 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
      * Transporta los datos de un objeto ClienteDTO a un objeto Cliente y consulta su licencia asociada.
      *
      * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
-     * @return
+     * @return El cliente con su licencia asociada si existe y está activa, de lo contrario, retorna null.
      * @throws FindException Si hay algún error al intentar encontrar la licencia asociada al cliente.
      */
     @Override
@@ -111,12 +120,22 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
                 clienteDTO.getRFC(),
                 clienteDTO.getTelefono(),
                 clienteDTO.getFecha_nacimiento());
-        consultarLicencia(cliente);
-        return cliente;
+
+        // Consultar la licencia asociada al cliente
+        Licencia licencia = consultarLicencia(cliente);
+
+        // Verificar si el cliente tiene una licencia activa
+        if (licencia != null && licencia.getEstado().equals("Activa")) {
+            return cliente; // Devuelve el cliente con su licencia activa
+        } else {
+            // Si el cliente no tiene una licencia activa, muestra un JOptionPane
+            JOptionPane.showMessageDialog(null, "El cliente no tiene una licencia activa.", "Licencia No Válida", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
     }
 
     /**
-     * Transporta los datos de un objeto ClienteDTO y consulta su licencia asociada. Este método solo ejecuta el método transporteDatosConsultarCliente, atrapando cualquier excepción y registrándola.
+     * Transporta los datos de un objeto ClienteDTO y consulta su licencia asociada. Este método solo ejecuta el método validarLicencia, atrapando cualquier excepción y registrándola.
      *
      * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
      * @return true si la operación de transporte de datos y consulta de licencia se realiza correctamente, de lo contrario, retorna false.
@@ -124,13 +143,11 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     @Override
     public Boolean transporteDatos(ClienteDTO clienteDTO) {
         try {
-            if (transporteDatosConsultarCliente(clienteDTO) != null) {
-                return true;
-            }
+            return validarLicencia(clienteDTO); // Simplemente llama al método validarLicencia y devuelve su resultado
         } catch (FindException ex) {
             Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
+            return false; // Devuelve false si hay una excepción
         }
-        return null;
     }
 
     /**
@@ -179,4 +196,18 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
                 cliente.getFecha_nacimiento());
     }
 
+    @Override
+    public boolean validarLicencia(ClienteDTO clienteDTO) throws FindException {
+        try {
+            Licencia licencia = consultarLicencia(clienteDAO.consultarClienteRFC(clienteDTO.getRFC()));
+            if (licencia == null) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(ConsultaTramitesBO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }

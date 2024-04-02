@@ -47,9 +47,10 @@ public interface IConsultaTramitesBO {
 
     /**
      *
-     * @return
-     * @throws FindException
+     * @return @throws FindException
      */
     public List<TramiteDTO> historialTramite() throws FindException;
+
+    public boolean validarLicencia(ClienteDTO clienteDTO) throws FindException;
 
 }

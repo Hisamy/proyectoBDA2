@@ -28,8 +28,7 @@ public class VehiculosDAO implements IVehiculosDAO {
      *
      * @param nuevoVehiculo El vehículo a agregar.
      * @return El vehículo agregado.
-     * @throws PersistenciaException Si ocurre un error durante la persistencia
-     * del vehículo.
+     * @throws PersistenciaException Si ocurre un error durante la persistencia del vehículo.
      */
     @Override
     public Vehiculo agregarVehiculo(Vehiculo nuevoVehiculo) throws PersistenciaException {
@@ -49,8 +48,7 @@ public class VehiculosDAO implements IVehiculosDAO {
      *
      * @param numero_serie El número de serie del vehículo a consultar.
      * @return El vehículo encontrado.
-     * @throws PersistenciaException Si no se encuentra ningún vehículo con el
-     * número de serie especificado.
+     * @throws PersistenciaException Si no se encuentra ningún vehículo con el número de serie especificado.
      */
     @Override
     public Vehiculo consultarVehiculo(String numero_serie) throws PersistenciaException {
