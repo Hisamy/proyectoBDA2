@@ -8,7 +8,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Entidades.Placa;
 
 /**
  *
- * @author Ramosz
+ * @author Eduardo Talavera, Hisamy Cinco
  */
 public class PlacasDAO implements IPlacasDAO {
 
@@ -41,9 +41,11 @@ public class PlacasDAO implements IPlacasDAO {
     }
 
     /**
+     * Consulta la última placa activa asociada a un cliente en particular.
      *
-     * @param cliente
-     * @return
+     * @param cliente El cliente para el cual se desea consultar la última placa
+     * activa.
+     * @return La última placa activa asociada al cliente especificado.
      */
     @Override
     public Placa consultarDatosUltimaLicencia(Cliente cliente) {
@@ -94,5 +96,22 @@ public class PlacasDAO implements IPlacasDAO {
         entityManager.close();
 
         return placaPersistida;
+    }
+
+    @Override
+    public boolean validarPlaca(String numero_alfanumerico) {
+     EntityManager entityManager = conexion.crearConexion();    
+      try {
+            TypedQuery<Long> query = entityManager.createQuery(
+                    "SELECT COUNT(p) FROM Placa p WHERE p.numero_alfanumerico = :numero_alfanumerico",
+                    Long.class);
+            query.setParameter("numero_alfanumerico", numero_alfanumerico);
+
+            Long count = query.getSingleResult();
+
+         return count != 0;
+        } finally {
+            entityManager.close();
+        }
     }
 }

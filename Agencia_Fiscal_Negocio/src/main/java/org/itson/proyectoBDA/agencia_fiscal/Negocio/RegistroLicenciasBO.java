@@ -21,7 +21,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 public class RegistroLicenciasBO implements IRegistroLicenciasBO {
 
     private final IClientesDAO clienteDAO;
-    private ILicenciasDAO licenciaDAO;
+    private final ILicenciasDAO licenciaDAO;
 
     static final Logger logger = Logger.getLogger(RegistroClientesBO.class.getName());
 

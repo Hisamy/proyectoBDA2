@@ -3,7 +3,6 @@ package org.itson.proyectoBDA.agencia_fiscal.Negocio;
 import java.util.Calendar;
 import java.util.Random;
 import java.util.TimeZone;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.Conexion;
 import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
@@ -28,8 +27,8 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     IConexion conexion = new Conexion();
     ClientesDAO clienteDAO = new ClientesDAO(conexion);
     IVehiculosDAO vehiculoDAO;
-    private String tipo = "Placa";
-    private IPlacasDAO placaDAO;
+    private final String tipo = "Placa";
+    private final IPlacasDAO placaDAO;
 
     /**
      * Constructor de RegistroPlacasBO
@@ -143,19 +142,26 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
         StringBuilder placa = new StringBuilder();
         Random random = new Random();
 
-        for (int i = 0; i < 3; i++) {
-            char letra = (char) ('A' + random.nextInt(26)); // Generar una letra aleatoria entre A y Z
-            placa.append(letra);
-        }
+        do {
+            for (int i = 0; i < 3; i++) {
+                char letra = (char) ('A' + random.nextInt(26));
+                placa.append(letra);
+            }
 
-        placa.append("-");
+            placa.append("-");
 
-        for (int i = 0; i < 3; i++) {
-            int digito = random.nextInt(10); // Generar un dígito aleatorio entre 0 y 9
-            placa.append(digito);
-        }
+            for (int i = 0; i < 3; i++) {
+                int digito = random.nextInt(10);
+                placa.append(digito);
+            }
+        } while (validarPlaca(placa.toString()));
 
         return placa.toString();
+    }
+
+    private boolean validarPlaca(String placa) {
+        return placaDAO.validarPlaca(placa);
+
     }
 
     /**
