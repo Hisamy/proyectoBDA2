@@ -18,7 +18,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 /**
  * Clase de negocio que proporciona operaciones para consultar y manipular datos de clientes. Implementa la interfaz IConsultaClientesBO.
  *
- * @author Ramosz
+ * @author Eduardo Talavera, Hisamy Cinco
  */
 public class ConsultaClientesBO implements IConsultaClientesBO {
 

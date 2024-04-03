@@ -8,7 +8,7 @@ import org.itson.proyectoBDA.agencia_fiscal.Conexion.IConexion;
 /**
  * Clase principal de la aplicación Agencia_Fiscal. Esta clase realiza la inicialización de la base de datos, crea algunos clientes y vehículos de prueba, y muestra la ventana principal de la aplicación.
  *
- * @author Ramosz
+ * @author Eduardo Talavera, Hisamy Cinco
  */
 public class Agencia_Fiscal {
 

@@ -11,7 +11,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.NuevoClienteDTO;
 
 /**
  *
- * @author Ramosz
+ * @author Eduardo Talavera, Hisamy Cinco
  */
 public class RegistroClientesBO implements IRegistroClientesBO {
 

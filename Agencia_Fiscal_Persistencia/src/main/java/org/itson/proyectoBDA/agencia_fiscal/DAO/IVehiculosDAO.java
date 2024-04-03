@@ -9,23 +9,33 @@ import org.itson.proyectoBDA.agencia_fiscal.Excepciones.PersistenciaException;
 
 /**
  *
- * @author Ramosz
+ * @author Eduardo Talavera, Hisamy Cinco
  */
 public interface IVehiculosDAO {
 
     /**
-     *
-     * @param nuevoVehiculo
-     * @return
-     * @throws PersistenciaException
+     * Agrega un nuevo vehículo.
+     * 
+     * @param nuevoVehiculo el vehículo a agregar
+     * @return el vehículo agregado
+     * @throws PersistenciaException si ocurre un error durante la persistencia
      */
     public Vehiculo agregarVehiculo(Vehiculo nuevoVehiculo) throws PersistenciaException;
 
     /**
-     *
-     * @param numero_serie
-     * @return
-     * @throws PersistenciaException
+     * Consulta un vehículo por su número de serie.
+     * 
+     * @param numero_serie el número de serie del vehículo a consultar
+     * @return el vehículo encontrado
+     * @throws PersistenciaException si ocurre un error durante la consulta
      */
-    public Vehiculo consultarVehiculo(String numero_serie) throws PersistenciaException;
+    public Vehiculo consultarVehiculoPorNumSerie(String numero_serie) throws PersistenciaException;
+
+    /**
+     * Consulta si un vehículo existe en la base de datos.
+     * 
+     * @param numero_serie numero de serie del vehiculo
+     * @return true si el vehículo existe, false si no existe
+     */
+    public boolean validarVehiculo (String numero_serie) throws PersistenciaException;
 }

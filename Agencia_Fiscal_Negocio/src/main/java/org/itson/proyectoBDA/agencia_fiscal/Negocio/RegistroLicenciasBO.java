@@ -16,7 +16,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.LicenciaDTO;
 
 /**
  *
- * @author Ramosz
+ * @author Eduardo Talavera, Hisamy Cinco
  */
 public class RegistroLicenciasBO implements IRegistroLicenciasBO {
 
@@ -26,7 +26,7 @@ public class RegistroLicenciasBO implements IRegistroLicenciasBO {
     static final Logger logger = Logger.getLogger(RegistroClientesBO.class.getName());
 
     /**
-     *
+     * Constructor de RegistroLicenciasBO
      */
     public RegistroLicenciasBO() {
         IConexion conexion = new Conexion();

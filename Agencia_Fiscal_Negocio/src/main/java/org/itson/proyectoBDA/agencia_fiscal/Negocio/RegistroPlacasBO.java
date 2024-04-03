@@ -21,7 +21,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
 /**
  *
- * @author Ramosz
+ * @author Eduardo Talavera, Hisamy Cinco
  */
 public class RegistroPlacasBO implements IRegistroPlacasBO {
 
@@ -32,7 +32,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     private IPlacasDAO placaDAO;
 
     /**
-     *
+     * Constructor de RegistroPlacasBO
      */
     public RegistroPlacasBO() {
         IConexion conexion = new Conexion();
@@ -41,12 +41,15 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
-     * Registra una nueva placa en el sistema utilizando los datos proporcionados en un objeto PlacaDTO.
+     * Registra una nueva placa en el sistema utilizando los datos
+     * proporcionados en un objeto PlacaDTO.
      *
-     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
+     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva
+     * placa a registrar.
      * @param vehiculo
      * @return El objeto Placa recién registrado.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de
+     * persistencia.
      */
     @Override
     public Placa registrarPlaca(PlacaDTO nuevaPlaca, Vehiculo vehiculo) throws PersistenciaException {
@@ -71,7 +74,7 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
                 true,
                 nuevaPlaca.getFecha_emision());
 
-        Vehiculo vehiculoID = vehiculoDAO.consultarVehiculo(placa.getVehiculo().getNumero_serie());
+        Vehiculo vehiculoID = vehiculoDAO.consultarVehiculoPorNumSerie(placa.getVehiculo().getNumero_serie());
         placa.getVehiculo().setId(vehiculoID.getId());
         placa.getVehiculo().setCliente(cliente);
         Placa placaNueva = placaDAO.agregarPlaca(placa);
@@ -79,10 +82,12 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
+     * Convierte un objeto PlacaDTO a un objeto VehiculoDTO y registra la placa
+     * en la base de datos.
      *
-     * @param nuevaPlaca
-     * @return
-     * @throws PersistenciaException
+     * @param nuevaPlaca El objeto PlacaDTO que se va a convertir y registrar.
+     * @return El objeto VehiculoDTO convertido.
+     * @throws PersistenciaException Si ocurre un error durante la persistencia.
      */
     @Override
     public VehiculoDTO conversorVehiculoDTO(PlacaDTO nuevaPlaca) throws PersistenciaException {
@@ -100,11 +105,15 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
-     * Transporta los datos de una nueva placa y registra la placa en el sistema.
+     * Transporta los datos de una nueva placa y registra la placa en el
+     * sistema.
      *
-     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva placa a registrar.
-     * @return El objeto PlacaDTO transportado, que contiene los mismos datos que la placa registrada.
-     * @throws PersistenciaException Si ocurre un error durante el proceso de persistencia.
+     * @param nuevaPlaca El objeto PlacaDTO que contiene los datos de la nueva
+     * placa a registrar.
+     * @return El objeto PlacaDTO transportado, que contiene los mismos datos
+     * que la placa registrada.
+     * @throws PersistenciaException Si ocurre un error durante el proceso de
+     * persistencia.
      */
     @Override
     public PlacaDTO transporteDatos(PlacaDTO nuevaPlaca) throws PersistenciaException {
@@ -124,9 +133,11 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     }
 
     /**
-     * Genera y devuelve un número alfanumérico único que puede ser utilizado como número de placa.
+     * Genera y devuelve un número alfanumérico único que puede ser utilizado
+     * como número de placa.
      *
-     * @return Un número alfanumérico único que representa una placa de vehículo.
+     * @return Un número alfanumérico único que representa una placa de
+     * vehículo.
      */
     private String generarNumeroAlfanumerico() {
         StringBuilder placa = new StringBuilder();
@@ -150,7 +161,8 @@ public class RegistroPlacasBO implements IRegistroPlacasBO {
     /**
      * Obtiene la fecha y hora actuales del sistema en un objeto Calendar.
      *
-     * @return Un objeto Calendar que representa la fecha y hora actuales del sistema.
+     * @return Un objeto Calendar que representa la fecha y hora actuales del
+     * sistema.
      */
     @Override
     public Calendar getFechaRecepcion() {

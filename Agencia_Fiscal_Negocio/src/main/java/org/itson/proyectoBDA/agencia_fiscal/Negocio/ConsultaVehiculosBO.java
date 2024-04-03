@@ -11,14 +11,14 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.VehiculoDTO;
 
 /**
  *
- * @author Ramosz
+ * @author Eduardo Talavera, Hisamy Cinco
  */
 public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
 
     private final IVehiculosDAO vehiculoDAO;
 
     /**
-     *
+     * Constructos de ConsultaVehiculosBO
      */
     public ConsultaVehiculosBO() {
         IConexion conexion = new Conexion();
@@ -35,7 +35,7 @@ public class ConsultaVehiculosBO implements IConsultaVehiculosBO {
     @Override
     public Vehiculo consultarVehiculoNumSerie(String numero_serie) throws FindException {
         try {
-            Vehiculo vehiculo = vehiculoDAO.consultarVehiculo(numero_serie);
+            Vehiculo vehiculo = vehiculoDAO.consultarVehiculoPorNumSerie(numero_serie);
             regresaVehiculoConsultado(vehiculo);
             Vehiculo getVehiculo = new Vehiculo(
                     vehiculo.getNumero_serie(),

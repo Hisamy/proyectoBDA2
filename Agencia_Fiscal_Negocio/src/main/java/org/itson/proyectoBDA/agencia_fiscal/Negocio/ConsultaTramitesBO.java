@@ -26,7 +26,7 @@ import org.itson.proyectoBDA.agencia_fiscal.dtos.TramiteDTO;
 
 /**
  *
- * @author Ramosz
+ * @author Eduardo Talavera, Hisamy Cinco
  */
 public class ConsultaTramitesBO implements IConsultaTramitesBO {
 
@@ -36,7 +36,7 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     private final ITramitesDAO tramiteDAO;
 
     /**
-     *
+     * Constructor de ConsultaTramitesBO
      */
     public ConsultaTramitesBO() {
         Conexion conexion = new Conexion();
@@ -51,7 +51,8 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
      *
      * @param cliente El cliente para el cual se desea consultar la licencia.
      * @return La licencia asociada al cliente.
-     * @throws FindException Si hay algún error al intentar encontrar la licencia en la base de datos.
+     * @throws FindException Si hay algún error al intentar encontrar la
+     * licencia en la base de datos.
      */
     @Override
     public Licencia consultarLicencia(Cliente cliente) throws FindException {
@@ -80,10 +81,12 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     }
 
     /**
+     * Consulta la placa asociada al cliente especificado.
      *
-     * @param cliente
-     * @return
-     * @throws FindException
+     * @param cliente El cliente para el cual se desea consultar la placa.
+     * @return La placa asociada al cliente.
+     * @throws FindException Si hay algún error al intentar encontrar la placa
+     * en la base de datos.
      */
     @Override
     public Placa consultarPlaca(Cliente cliente) throws FindException {
@@ -103,11 +106,15 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     }
 
     /**
-     * Transporta los datos de un objeto ClienteDTO a un objeto Cliente y consulta su licencia asociada.
+     * Transporta los datos de un objeto ClienteDTO a un objeto Cliente y
+     * consulta su licencia asociada.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
-     * @return El cliente con su licencia asociada si existe y está activa, de lo contrario, retorna null.
-     * @throws FindException Si hay algún error al intentar encontrar la licencia asociada al cliente.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
+     * @return El cliente con su licencia asociada si existe y está activa, de
+     * lo contrario, retorna null.
+     * @throws FindException Si hay algún error al intentar encontrar la
+     * licencia asociada al cliente.
      */
     @Override
     public Cliente transporteDatosConsultarCliente(ClienteDTO clienteDTO) throws FindException {
@@ -135,10 +142,14 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     }
 
     /**
-     * Transporta los datos de un objeto ClienteDTO y consulta su licencia asociada. Este método solo ejecuta el método validarLicencia, atrapando cualquier excepción y registrándola.
+     * Transporta los datos de un objeto ClienteDTO y consulta su licencia
+     * asociada. Este método solo ejecuta el método validarLicencia, atrapando
+     * cualquier excepción y registrándola.
      *
-     * @param clienteDTO El objeto ClienteDTO que contiene los datos del cliente.
-     * @return true si la operación de transporte de datos y consulta de licencia se realiza correctamente, de lo contrario, retorna false.
+     * @param clienteDTO El objeto ClienteDTO que contiene los datos del
+     * cliente.
+     * @return true si la operación de transporte de datos y consulta de
+     * licencia se realiza correctamente, de lo contrario, retorna false.
      */
     @Override
     public Boolean transporteDatos(ClienteDTO clienteDTO) {
@@ -151,9 +162,11 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
     }
 
     /**
-     * Consulta el historial de trámites y lo convierte a una lista de objetos TramiteDTO.
+     * Consulta el historial de trámites y lo convierte a una lista de objetos
+     * TramiteDTO.
      *
-     * @return Una lista de objetos TramiteDTO que representa el historial de trámites.
+     * @return Una lista de objetos TramiteDTO que representa el historial de
+     * trámites.
      * @throws org.itson.proyectoBDA.agencia_fiscal.Excepciones.FindException
      */
     @Override
@@ -196,6 +209,15 @@ public class ConsultaTramitesBO implements IConsultaTramitesBO {
                 cliente.getFecha_nacimiento());
     }
 
+    /**
+     * Valida la licencia de un cliente representado por un objeto ClienteDTO.
+     *
+     * @param clienteDTO El objeto ClienteDTO que representa al cliente cuya
+     * licencia se va a validar.
+     * @return true si la licencia es válida, false si no lo es.
+     * @throws FindException Si hay algún error al intentar encontrar la
+     * licencia asociada al cliente.
+     */
     @Override
     public boolean validarLicencia(ClienteDTO clienteDTO) throws FindException {
         try {
